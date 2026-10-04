@@ -27,15 +27,16 @@ import org.teavm.jso.JSProperty;
 import java.util.*;
 
 /**
- *  IIInzEffectiveLangCode callbacks implementing this interface are registered with IInz to allow different user presentation layers to wire a current-session-language type hook based on the APIs for the presentation layer, instead of making assumptions or imposing restrictions on how such callbacks are registered.
+ *  IInzEffectiveLangCode callbacks implementing this interface are registered with IInz to allow different user presentation layers to wire a current-session-language type hook based on the APIs for the presentation layer, instead of making assumptions or imposing restrictions on how such callbacks are registered.
  * 
  *  @see IInz
  */
-public interface IIInzEffectiveLangCode extends JSObject {
+public interface IInzEffectiveLangCode extends JSObject {
 
     /**
      * Get the current effective language id for NLS translation.
      * @return
      */
+	@JSProperty
     public String getEffectiveLangCode();
 }

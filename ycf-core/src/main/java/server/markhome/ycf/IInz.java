@@ -34,9 +34,30 @@ import java.util.concurrent.atomic.AtomicReference;
  * The IInz interface is responsible for loading language files, managing language codes,
  * and providing access to translations through the IInzLang interface.
  */
-public class IInz {
+public interface IInz extends JSObject {
 //    public static final String IYCFLIB_INZ_PATH = "/server.markhome.ycf.v3_1.cflib/src/main/resources/inz/langs";
+	@JSExport
     public static final String IYCFLIB_INZ_PATH = "resource://inz/langs";
+
+    /**
+     * The default language code used when no specific language is set.
+     * This is typically "en" for English.
+     */
+	@JSExport
+    public static final String DEFAULT_LANG_CODE = "en";
+
+	@JSExport
+	public static String systemLangCode = DEFAULT_LANG_CODE;
+
+	/**
+	 * The initial default effective language code handler returns the system language code.
+	 */
+	public static IInzEffectiveLangCode effectiveLangCode = new IInzEffectiveLangCode() {
+																@Override
+																public String getEffectiveLangCode() {
+																	return(systemLangCode);
+																}
+															};
 
     /**
      * The language file path is a list of semicolon-separated path names to language file directories.
@@ -44,69 +65,79 @@ public class IInz {
      * with the pre-".properties" portion of the file name used as the language code.
      * The built-in default path is "resource:server.markhome.ycf.langs".  Although the only populated
      * language in that resource directory is "en", there is a hierarchy of accepted language codes and their fallbacks
-     * defined with no actual translations in them, so the default for IYCF is to report all exceptions in English.
+     * defined with no actual translations in them, so the default for CFLib is to report all exceptions in English.
      */
-    protected static ArrayList<IInzPathEntry> pathEntries = new ArrayList<>();
-    static {
-        // Add the default IYCF IInz path entry
-        pathEntries.add(new IInzPathEntry(IInz.interface, IYCFLIB_INZ_PATH));
-//        pathEntries.add(new IInzPathEntry("/opt/ycf/v3_1/java" + IYCFLIB_INZ_PATH));
-    }
+    protected static final ArrayList<InzPathEntry> pathEntries = new ArrayList<>(new InzPathEntry(Inz.class, YCFLIB_INZ_PATH));
 
     /**
      * The language file entries matching the langPath.
      */
-    protected static ArrayList<IInzEntry> entries = new ArrayList<>();
+    protected static final ArrayList<InzEntry> entries = new ArrayList<>();
 
     /**
-     * The default language code used when no specific language is set.
-     * This is typically "en" for English.
-     */
-    public static final String DEFAULT_LANG_CODE = "en";
-    
-    /**
-     * The current system language code, used for the single-argument version of x().
-     */
-    protected static String systemLangCode = DEFAULT_LANG_CODE;
-
-    protected static AtomicReference<IIInzEffectiveLangCode> effectiveLangCallback = new AtomicReference<>(null);
-
-    /**
-     * The IYCF IInzEntry references resource:server.markhome.ycf.langs and
-     * defines the hierarchy of language codes.  All other language codes hierarchy information
-     * is ignored and overwritten by the hierarchy information from the IYCF IInzEntry.
-     */
-    public static final IInzEntry IYCFLIB_INZ_ENTRY;
-    static {
-        IYCFLIB_INZ_ENTRY = new IInzEntry(pathEntries.get(0));
-        entries.add(IYCFLIB_INZ_ENTRY);
-    }
+     * Set the callback hook for getting the current session's language id string.
+     * 
+     * @param callback
+     * @return The previously registered callback
+	 */
+	@JSExport
+    public static default IInzEffectiveLangCode installEffectiveLangCodeCallback(IInzEffectiveLangCode callback) {
+		if (callback == null) {
+			return(effectiveLangCode);
+		}
+		else {
+			IInzEffectiveLangCode ret = effectiveLangCode;
+			effectiveLangCode = callback;
+			return(ret);
+		}
+	}
 
     /**
-     * Private constructor to prevent instantiation.
-     * This class is designed to be used as a singleton, so the constructor is private.
-     */
-    private IInz() {
-       
-    }
+     * Get the callback hook for getting the current session's language id string.
+     * 
+     * @return The IIInzEffectiveLangId callback that was most recently installed; initially null.
+	 */
+	@JSExport
+    public static default IInzEffectiveLangCode getEffectiveLangCodeCallback() {
+		return(effectiveLangCode);
+	}
+
+    /**
+     * Get the current effective language id.  If any exceptions are thrown by the most recently installed callback, the system language code is used. If that isn't valid, the language defaults to "en".
+     * 
+     * @return The current effective language id.
+     *
+     * public static default String getEffectiveLangCode()
+	 */
+	@JSExport
+	public static string getEffectiveLangCode() {
+		String langcode;
+		try {
+			langcode = effectiveLangeCode.getEffectiveLangCode();
+		}
+		catch(Throwable t) {
+			langcode = getSystemLangCode();
+		}
+		return(langcode);
+	}
 
     /**
      * Add a language path entry to the list of path entries, load and initialize it, and wire it for translations
+	 *
      * @param pathEntry The IInzPathEntry to add.
      */
-    public static void addPathEntry(IInzPathEntry pathEntry) {
-        if (pathEntry == null) {
-            throw new IllegalArgumentException("Path entry cannot be null.");
-        }
-        if (!pathEntries.contains(pathEntry)) {
-            pathEntries.add(pathEntry);
-            IInzEntry entry = new IInzEntry(pathEntry);
-            entry.loadLangs();
-            entries.add(entry);
-        } // else {
-        //     throw new IllegalArgumentException("Path entry already exists: " + pathEntry.getPath());
-        // }
-    }
+	@JSExport
+    public static default void addPathEntry(IInzPathEntry pathEntry) {
+		if (pathEntry == null || pathEntry.getPath() == null || pathEntry.getPath().isEmpty()) {
+			return;
+		}
+		for (IInzPathEntry entry: pathEntries) {
+			if(entry.getPath().equals(pathEntry.getPath()) {
+				return;
+			}
+		}
+		pathEntries.add(0, pathEntry);
+	}
 
     /**
      * Get the list of path entries.
@@ -114,9 +145,10 @@ public class IInz {
      *
      * @return The list of IInzPathEntry objects.
      */
+	@JSExport
     public static ArrayList<IInzPathEntry> getPathEntries() {
-        return new ArrayList<>(pathEntries); // Return a copy to prevent external modification
-    }
+		return(new ArrayList<>(pathEntries));
+	}
 
     /**
      * Load the language entries and their language translations from the path specified.
@@ -152,8 +184,9 @@ public class IInz {
      * inz.loadLangEntries(true); // Load entries, clearing existing ones if any
      * String translation = inz.x("greeting", "en"); // Get translation for 'greeting' in English
      * </pre>
-     */
-    public static void loadLangEntries(boolean forceReload) {
+	 */
+	@JSExport
+    public static default void loadLangEntries(boolean forceReload) {
         if (pathEntries == null || pathEntries.isEmpty()) {
             throw new IllegalStateException("Path entries are not set");
         }
@@ -162,21 +195,21 @@ public class IInz {
         }
         if (entries.size() <= 1) {
             if (entries.isEmpty()) {
-                entries.add(IYCFLIB_INZ_ENTRY); // Ensure the IYCF IInzEntry is
+                entries.add(YCFLIB_INZ_ENTRY); // Ensure the CFLib InzEntry is present
             }
             for (int idx = 1; idx < pathEntries.size(); idx++) {
-                IInzPathEntry pathEntry = pathEntries.get(idx);
+                InzPathEntry pathEntry = pathEntries.get(idx);
                 if (pathEntry == null || pathEntry.getPath() == null || pathEntry.getPath().isEmpty()) {
                     throw new IllegalStateException("Path entry is not set for index: " + idx);
                 }
-                IInzEntry entry = new IInzEntry(pathEntry);
+                InzEntry entry = new InzEntry(pathEntry);
                 try {
                     entry.loadLangs();
                     entries.add(entry);
                 } catch (Exception e) {
                     throw new RuntimeException("Failed to load language entries from path: " + pathEntry.getPath(), e);
                 }
-            }   
+            }
         }
     }
 
@@ -186,88 +219,26 @@ public class IInz {
      *
      * @return The current system language code as a String.
      */
-    public static String getSystemLangCode() {
-        return systemLangCode;
-    }
+	@JSExport
+    public static default String getSystemLangCode() {
+		return(systemLangCode);
+	}
 
     /**
      * Set the current system language code.
      * @param langCode
      */
-    public static void setSystemLangCode(String langCode) {
-        if (langCode == null || langCode.isEmpty()) {
-            throw new IllegalArgumentException("Language code cannot be null or empty.");
-        }
-        if (langCode.length() != 2 && langCode.length() != 5) {
-            throw new IllegalArgumentException("Language code must be 2..5 characters");
-        }
-        if (langCode.length() == 5 && langCode.charAt(2) != '-') {
-            throw new IllegalArgumentException( "5-character language code must be separated in position 2 by a hyphen");
-        }
-        systemLangCode = langCode.toLowerCase(); // Store the language code in lowercase for consistency
-    }
-
-    /**
-     * Set the callback hook for getting the current session's language id string.
-     * 
-     * @param callback
-     * @return The previously registered callback
-     */
-    public static IIInzEffectiveLangCode installEffectiveLangCodeCallback(IIInzEffectiveLangCode callback) {
-        IIInzEffectiveLangCode prevCallback = effectiveLangCallback.get();
-        if (prevCallback != callback) {
-            effectiveLangCallback.compareAndSet(prevCallback, callback);
-            if (callback == effectiveLangCallback.get()) {
-                return prevCallback;
-            }
-            else {
-                throw new IllegalStateException("Error registering replacement Effective Language Code callback");
-            }
-        }
-        else {
-            return prevCallback;
-        }
-    }
-
-    /**
-     * Get the callback hook for getting the current session's language id string.
-     * 
-     * @return The IIInzEffectiveLangId callback that was most recently installed; initially null.
-     */
-    public static IIInzEffectiveLangCode getEffectiveLangCodeCallback() {
-        return effectiveLangCallback.get();
-    }
-
-    /**
-     * Get the current effective language id.  If any exceptions are thrown by the most recently installed callback, the system language code is used. If that isn't valid, the language defaults to "en".
-     * 
-     * @return The current effective language id.
-     */
-    public static String getEffectiveLangCode() {
-        String effLangCode;
-        IIInzEffectiveLangCode cb = getEffectiveLangCodeCallback();
-        if (cb != null) {
-            try {
-                effLangCode = cb.getEffectiveLangCode();
-            }
-            catch (Exception ex) {
-                effLangCode = null;
-            }
-        }
-        else {
-            effLangCode = null;
-        }
-
-        if (effLangCode == null || effLangCode.isEmpty()) {
-            effLangCode = getSystemLangCode();
-        }
-
-        if (effLangCode == null || effLangCode.isEmpty()) {
-            effLangCode = "en";
-        }
-
-        return effLangCode;
-    }
+     public static default void setSystemLangCode(String langCode) {
+		if (langCode == null || langCode.isEmpty()) {
+			return;
+		}
+		if (langCode.length() == 2 || (langCode.length() == 5 && langCode.charAt(2) == '-')) {
+			systemLangCode = langCode.toLowerCase();
+		}
+		else {
+			throw new MCFInvalidArgumentException(IInz.class, "setSystemLangCode", 1, "langCode", "Language code \"" + langCode + "\" must be a two or five character ISO language code", "Language code \"" + langCode + "\" must be a two or five character ISO language code");
+		}
+	}
 
     /**
      * Get a translation for a given key in the current system language, probing each of the path entries in order
@@ -278,7 +249,8 @@ public class IInz {
      * @see IInzEntry#x(String, String)
      * @see IInzLang#x(String)
      */
-    public static String x(String key) {
+	@JSExport
+    public static default String x(String key) {
         if (key == null || key.isEmpty()) {
             throw new IllegalArgumentException("Key cannot be null or empty.");
         }
@@ -295,8 +267,9 @@ public class IInz {
      * @throws IllegalArgumentException if the key or language code is null or empty.
      * @see IInzEntry#x(String, String)
      * @see IInzLang#x(String)
-     */
-    public static String x(String key, String langCode) {
+	 */
+	@JSExport
+    public static default String x(String key, String langCode) {
         if (key == null || key.isEmpty()) {
             throw new IllegalArgumentException("Key cannot be null or empty.");
         }
@@ -309,7 +282,7 @@ public class IInz {
         String lowerLangCode = langCode.toLowerCase();
         while (lowerLangCode != null) {
             for (int i = entries.size() - 1; i >= 0; i--) {
-                IInzEntry entry = entries.get(i);
+                InzEntry entry = entries.get(i);
                 String translation = entry.x(key, lowerLangCode);
                 if (translation != null) {
                     return translation; // Return the first non-null translation found
@@ -338,13 +311,14 @@ public class IInz {
      * @throws IllegalArgumentException if the key is null or empty.
      * @see IInzEntry#x(String, String)
      * @see IInzLang#x(String)
-     */
-    public static String s(String key) {
+	 */
+	@JSExport
+    public static default String s(String key) {
         if (key == null || key.isEmpty()) {
             throw new IllegalArgumentException("Key cannot be null or empty.");
         }
         for (int i = entries.size() - 1; i >= 0; i--) {
-            IInzEntry entry = entries.get(i);
+            InzEntry entry = entries.get(i);
             if (entry.getPathEntry().getClazz() != null && entry.getPathEntry().getPath().startsWith("resource:")) {
                 String translation = entry.x(key, "en");
                 if (translation != null) {

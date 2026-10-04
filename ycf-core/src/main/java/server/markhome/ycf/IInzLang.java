@@ -66,15 +66,6 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
     public final static String LANG_CODE_PROP = "_IInzLangCode";
     public final static String ENGLISH_NAME_PROP = "_IInzEnglishName";
     public final static String NLS_NAME_PROP = "_IInzNlsName";
-    protected String langCode = null;
-    protected String englishName = null;
-    protected String nlsName = null;
-
-    protected String iso639 = null;
-    protected String iso3166 = null;
-    protected Properties translations = null;
-
-    public IInzLang() {};
 
     /**
      * Construct and IInzLang specifying the langCode, englishName, and nlsName, in that order.
@@ -83,11 +74,6 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @param englishName
      * @param nlsName
      */
-    public IInzLang(String langCode, String englishName, String nlsName) {
-        setLangCode(langCode);
-        setEnglishName(englishName);
-        setNlsName(nlsName);
-    }
 
     /**
      * Returns the language code for this IInzLang instance.
@@ -102,7 +88,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      *         or if a 5-character langCode does not have a hyphen separating the codes.
      * @return the language code as a String, always in lowercase.
      */
-    public final String getLangCode() {
+	@JSProperty
+    public final default String getLangCode() {
         return langCode;
     }
 
@@ -121,7 +108,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      *         or if a 5-character langCode does not have a hyphen separating the codes.
      * @param langCode
      */
-    public final void setLangCode(String langCode) {
+	@JSProperty
+    public final default void setLangCode(String langCode) {
         if (langCode == null || langCode.isEmpty() || langCode.isBlank()) {
             throw new IllegalArgumentException("langCode is required");
         }
@@ -152,7 +140,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * 
      * @throws IllegalArgumentException if englishName is null, empty, or blank.
      */
-    public final String getEnglishName() {
+	@JSProperty
+    public final default String getEnglishName() {
         return englishName;
     }
 
@@ -165,7 +154,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @throws IllegalArgumentException if englishName is null, empty, or blank.
      * @param englishName the English name of the language as a String.
      */
-    public final void setEnglishName(String englishName) {
+	@JSProperty
+    public final default void setEnglishName(String englishName) {
         if (englishName == null || englishName.isEmpty() || englishName.isBlank()) {
             throw new IllegalArgumentException("englishName is required");
         }
@@ -181,7 +171,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * 
      * @throws IllegalArgumentException if nlsName is null, empty, or blank.
      */
-    public final String getNlsName() {
+	@JSProperty
+    public final default String getNlsName() {
         return nlsName;
     }
 
@@ -195,7 +186,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @throws IllegalArgumentException if nlsName is null, empty, or blank.
      * @param nlsName the NLS name of the language as a String.
      */
-    public final void setNlsName(String nlsName) {
+	@JSProperty
+    public final default void setNlsName(String nlsName) {
         if (nlsName == null || nlsName.isEmpty() || nlsName.isBlank()) {
             throw new IllegalArgumentException("nlsName is required");
         }
@@ -209,7 +201,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @see #setLangCode(String)
      * @return the ISO 639 code as a String.
      */
-    public final String getIso639() {
+	@JSProperty
+    public final default String getIso639() {
         return iso639;
     }
 
@@ -220,36 +213,9 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @see #setLangCode(String)
      * @return the ISO 3166 code as a String, or null if not applicable.
      */
-    public final String getIso3166() {
+	@JSProperty
+    public final default String getIso3166() {
         return iso3166;
-    }
-
-    /**
-     * Sets the translations for this IInzLang instance.
-     * The translations are loaded from a .properties file and stored in a Properties object.
-     * This method is typically called after loading the translations from a file.
-     *
-     * @see #getTranslations()
-     *
-     * @throws IllegalArgumentException if translations is null.
-     * @param translations the Properties object containing the translations for this language.
-     */
-    protected void setTranslations(Properties translations) {
-        if (translations == null) {
-            throw new IllegalArgumentException("translations cannot be null");
-        }
-        this.translations = translations;
-    }
-
-    /**
-     * Returns the translations for this IInzLang instance.
-     * The translations are stored in a Properties object and can be used to retrieve translation values by key.
-     *
-     * @see #setTranslations(Properties)
-     * @return the Properties object containing the translations for this language.
-     */
-    protected final Properties getTranslations() {
-        return translations;
     }
 
     /**
@@ -261,7 +227,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * 
      * @throws IllegalStateException if translations have not been loaded for this language.
      */
-    public String x(String key) {
+	@Export
+    public default String x(String key) {
         if (translations == null) {
             throw new IllegalStateException("Translations not loaded for language: " + langCode);
         }
@@ -280,7 +247,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * 
      * @throws IllegalArgumentException if key is null, empty, or blank, or if value is null.
      */
-    public void addTranslation(String key, String value) {
+	@JSExport
+    public default void addTranslation(String key, String value) {
         if (translations == null) {
             translations = new Properties();
         }
@@ -298,7 +266,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * This method checks if the translations Properties object contains the specified key.
      * If the translations are null, it returns false.
      */
-    public boolean containsKey(String key) {
+	@JSExport
+    public default boolean containsKey(String key) {
         if (translations == null) {
             return false; // No translations loaded, so no keys can be present
         }
@@ -315,7 +284,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      *          equal to, or greater than the specified instance's langCode.
      */
     @Override
-    public int compareTo(IInzLang other) {
+	@JSExport
+    public default int compareTo(IInzLang other) {
         if (other == null) {
             return 1; // This instance is greater than null
         }
@@ -329,7 +299,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @return true if the other object is an IInzLang instance with the same langCode, false otherwise.
      */
     @Override
-    public boolean equals(Object obj) {
+	@JSExport
+    public default boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof IInzLang)) return false;
         IInzLang other = (IInzLang) obj;
@@ -343,7 +314,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @return the hash code as an int.
      */
     @Override
-    public int hashCode() {
+	@JSExport
+    public default int hashCode() {
         return langCode.hashCode();
     }
 
@@ -355,7 +327,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @return a string representation of this IInzLang instance.
      */
     @Override
-    public String toString() {
+	@JSExport
+    public default String toString() {
         return "IInzLang{" +
                 "langCode='" + langCode + '\'' +
                 ", englishName='" + englishName + '\'' +
@@ -376,7 +349,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      * @throws IllegalArgumentException if the required properties are not present in the Properties object.
      * @param properties the Properties object containing the language attributes.
      */
-    public void loadFromProperties(Properties properties) {
+	@JSExport
+    public default void loadFromProperties(Properties properties) {
         if (properties == null) {
             throw new IllegalArgumentException("Properties cannot be null");
         }
@@ -412,7 +386,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      *
      * @param properties the Properties object to which the translations will be applied.
      */
-    public void applyToProperties(Properties properties) {
+	@JSExport
+    public default void applyToProperties(Properties properties) {
         if (translations != null) {
             for (String key : translations.stringPropertyNames()) {
                 properties.setProperty(key, translations.getProperty(key));
@@ -433,7 +408,8 @@ public interface IInzLang extends JSObject implements Comparable<IInzLang> {
      *
      * @see #addTranslation(String, String)
      */
-    public void initTranslations() {
+	@JSExport
+    public default void initTranslations() {
         if (translations == null) {
             translations = new Properties();
         }

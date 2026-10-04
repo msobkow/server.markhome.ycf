@@ -45,22 +45,15 @@ import java.util.Properties;
  * @see IInzLang
  */
 public interface IInzEntry extends JSObject {
-    protected IInzPathEntry pathEntry = null;
-    protected HashMap<String, IInzLang> langs = new HashMap<>();
-    
+
     /**
      * Construct an IInzEntry for the specified pathName, using it to open the directory specified as pathEntry,
      * and then loading all the IInzLang entries from the properties files in that directory.
      * 
      * @param pathName
-     */
-    public IInzEntry(IInzPathEntry pathEntry) {
-        if (pathEntry == null) {
-            throw new IllegalArgumentException("Path entry cannot be null.");
-        }
-        this.pathEntry = pathEntry;
-        loadLangs();
-    }
+     *
+     * public IInzEntry(IInzPathEntry pathEntry)
+	 */
 
     /**
      * Load all IInzLang entries from the properties files in the pathEntry directory.
@@ -88,79 +81,9 @@ public interface IInzEntry extends JSObject {
      * 
      * Note: This method assumes that the properties files are well-formed and contain the required properties.
      * It does not handle malformed files or unexpected formats, which should be validated before calling this method.
-     */
-    protected final void loadLangs() {
-        String propnames;
-        InputStream input = pathEntry.getInputStream("propnames.txt");
-        if (input == null) {
-            throw new IllegalArgumentException("Resource or file not found: " + pathEntry.getPath() + "/propnames.txt");
-        }
-        try {
-            propnames = new String(input.readAllBytes());
-            propnames = propnames.replace("\r", "").trim(); // Normalize line endings
-            propnames = propnames.replace("\n", " ").trim(); // Replace newlines with spaces
-            propnames = propnames.replace("  ", " "); // Replace multiple spaces with a single space
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Failed to read propnames.txt for path entry " + pathEntry.getPath(), e);
-        }
-        finally {
-            try {
-                input.close();
-            } catch (IOException e) {
-                // Ignore close exception
-            }
-        }
-        String[] propNamesArray = propnames.split(" ");
-        for (String propname: propNamesArray) {
-            input = null;
-            Properties properties = new Properties();
-            try {
-                input = pathEntry.getInputStream(propname);
-                if (input == null) {
-                    throw new IllegalArgumentException("Resource or file not found: " + propname + " for path entry " + pathEntry.getPath());
-                }
-                properties.load(input);
-            } catch (IOException e) {
-                throw new RuntimeException("Failed to load language resource or file: " + propname + " for path entry " + pathEntry.getPath(), e);
-            }
-            finally {
-                if (input != null) {
-                    try {
-                        input.close();
-                    } catch (IOException e) {
-                        // Ignore close exception
-                    }
-                }
-            }
-
-            String langCode = propname.substring(0, propname.length() - 11); // Remove ".properties"
-            String loadedLangCodeString;
-            String englishName;
-            String nlsName;
-
-            loadedLangCodeString = properties.getProperty(IInzLang.LANG_CODE_PROP);
-            if (loadedLangCodeString == null || loadedLangCodeString.isEmpty()) {
-                throw new IllegalArgumentException("Language file " + propname + " must contain " +
-                        IInzLang.LANG_CODE_PROP + " property for path entry " + pathEntry.getPath());
-            }
-            if (!loadedLangCodeString.toLowerCase().equals(langCode.toLowerCase())) {
-                throw new IllegalArgumentException("Language file " + propname + " has mismatched language code: " +
-                        loadedLangCodeString.toLowerCase() + ", expected: " + langCode.toLowerCase() + " for path entry " + pathEntry.getPath());
-            }
-            englishName = properties.getProperty(IInzLang.ENGLISH_NAME_PROP);
-            nlsName = properties.getProperty(IInzLang.NLS_NAME_PROP);
-            if (englishName == null || nlsName == null || englishName.isEmpty() || nlsName.isEmpty()) {
-                throw new IllegalArgumentException("Language file " + propname + " must contain " +
-                        IInzLang.ENGLISH_NAME_PROP + " and " + IInzLang.NLS_NAME_PROP + " properties for path entry " + pathEntry.getPath());
-            }
-
-            // Create an IInzLang instance and add it to the langs map
-            IInzLang lang = new IInzLang(langCode.toLowerCase(), englishName, nlsName);
-            lang.setTranslations(properties);
-            langs.put(langCode, lang);
-        }
-    }
+	 *
+     * protected final void loadLangs();
+	 */
 
     /**
      * Search for a translation for the given key using the IInz.getEffectiveLangId() value.
@@ -168,9 +91,8 @@ public interface IInzEntry extends JSObject {
      * @param key
      * @return
      */
-    public String x(String key) {
-        return x(key, IInz.getEffectiveLangCode());
-    }
+	@JSExport
+    public String x(String key);
 
     /**
      * Search for a translation for the given key, starting with the specified language code.
@@ -181,39 +103,31 @@ public interface IInzEntry extends JSObject {
      * @param langCode The language code to start the search from.
      * @return The translation for the key, or "!key!" if not found in any language.
      */
-    public String x(String key, String langCode) {
-        IInzLang lang = langs.get(langCode.toLowerCase());
-        if (lang != null) {
-            return lang.x(key);
-        }
-        return null;
-    }
+	@JSExport
+    public String x(String key, String langCode);
 
     /**
      * Get the path entry of this IInzEntry.
      * 
      * @return The path entry associated with this IInzEntry.
      */
-    public IInzPathEntry getPathEntry() {
-        return pathEntry;
-    }
+	@JSExport
+    public IInzPathEntry getPathEntry();
 
     /**
      * Get the map of language codes to IInzLang instances for this IInzEntry.
      * 
      * @return A HashMap containing language codes and their corresponding IInzLang instances.
-     */
-    protected HashMap<String, IInzLang> getLangs() {
-        return langs;
-    }
+     *
+     * protected HashMap<String, IInzLang> getLangs()
+	 */
 
     /**
      * Get the IInzLang instance for the specified language code.
      * 
      * @param langCode The language code to retrieve the IInzLang instance for.
      * @return The IInzLang instance for the specified language code, or null if not found.
-     */
-    protected IInzLang getLang(String langCode) {
-        return langs.get(langCode.toLowerCase());
-    }
+     *
+     * protected IInzLang getLang(String langCode)
+	 */
 }
