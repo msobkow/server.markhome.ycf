@@ -56,7 +56,7 @@
 		<commons.compiler.release>25</commons.compiler.release>
 		<commons.compiler.version>3.15.0</commons.compiler.version>
 		<commons.componentid>parent</commons.componentid>
-		<commons.conf.dir>src/conf</commons.conf.dir>
+		<commons.conf.dir>${project.basedir}/src/conf</commons.conf.dir>
 		<commons.cyclonedx.version>2.9.2</commons.cyclonedx.version>
 		<commons.deployment.protocol>scp</commons.deployment.protocol>
 		<commons.deploy-plugin.version>3.1.4</commons.deploy-plugin.version>
@@ -458,10 +458,10 @@
 		<resources>
 			<!-- This is the default setting from the super-pom -->
 			<resource>
-			<directory>src/main/resources</directory>
+			<directory>${project.basedir}/src/main/resources</directory>
 			</resource>
 			<resource>
-			<directory>src/main/resources</directory>
+			<directory>${project.basedir}/src/main/resources</directory>
 			<targetPath>js</targetPath>
 			<includes>
 				<include>NOTICE.txt</include>
@@ -485,10 +485,10 @@
 		<testResources>
 			<!-- This is the default setting from the super-pom -->
 			<testResource>
-			<directory>src/test/resources</directory>
+			<directory>${project.basedir}/src/test/resources</directory>
 			</testResource>
 			<testResource>
-			<directory>src/test/resources</directory>
+			<directory>${project.basedir}/src/test/resources</directory>
 			<includes>
 				<include>NOTICE.txt</include>
 				<include>LICENSE.txt</include>
@@ -980,7 +980,7 @@
 						<version>${commons.assembly-plugin.version}</version>
 						<configuration>
 							<descriptors>
-								<descriptor>src/assembly/src.xml</descriptor>
+								<descriptor>${project.basedir}/src/assembly/src.xml</descriptor>
 							</descriptors>
 							<tarLongFileMode>gnu</tarLongFileMode>
 						</configuration>
@@ -1157,7 +1157,7 @@
 						<inputExclude>.pmd</inputExclude>
 						<inputExclude>.asf.yaml</inputExclude>
 						<inputExclude>.gitattributes</inputExclude>
-						<inputExclude>src/site/resources/download_*.cgi</inputExclude>
+						<inputExclude>${project.basedir}/src/site/resources/download_*.cgi</inputExclude>
 						<!-- Exclude Eclipse local files and folders -->
 						<inputExclude>maven-eclipse.xml</inputExclude>
 						<inputExclude>.externalToolBuilders/**</inputExclude>
@@ -1282,8 +1282,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/main/resources ]; then mkdir src/main/resources; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo \"Directory \\\\"/opt/mcf/v3_1/java/server.markhome.ycf/src\\\\" already exists.\"; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1297,8 +1297,8 @@
 								<mainClass>bogus</mainClass>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/main/resources/META-INF ]; then mkdir src/main/resources/META-INF; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1312,8 +1312,8 @@
 								<mainClass>bogus</mainClass>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/main/resources/META-INF/js ]; then mkdir src/main/resources/META-INF/js; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1326,8 +1326,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test ]; then mkdir src/test ;fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1340,8 +1340,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test/resources ]; then mkdir src/test/resources; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1354,8 +1354,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test/resources/META-INF ]; then mkdir src/test/resources/META-INF; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1368,8 +1368,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test/resources/META-INF/js ]; then mkdir src/test/resources/META-INF/js; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1382,8 +1382,8 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1443,7 +1443,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-c</argument>
-									<argument>if [ -f ${project.build.directory}/test-${project.build.finalName}.jar ]; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi</argument>
+									<argument>"if [ -f ${project.build.directory}/test-${project.build.finalName}.jar ]; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi"</argument>
 								</arguments>
 								<skipIfEmpty>true</skipIfEmpty>
 								<archive combine.children="append">
@@ -1490,7 +1490,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-c</argument>
-									<argument>if [ -f target/test-${artifactId}-${version}.jar ]; then cp -v target/${artifactId}-${version}.jar ${project.build.directory}/exported-libs/; fi</argument>
+									<argument>"if [ -f target/test-${artifactId}-${version}.jar ]; then cp -v target/${artifactId}-${version}.jar ${project.build.directory}/exported-libs/; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1504,7 +1504,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-c</argument>
-									<argument>java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}</argument>
+									<argument>"java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1518,7 +1518,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-c</argument>
-									<argument>if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/src/test/resources/META-INF/js &#45;&#45;targetfile test${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi</argument>
+									<argument>"if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/test/resources/META-INF/js &#45;&#45;targetfile test${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1536,7 +1536,7 @@
 				<artifactId>maven-changes-plugin</artifactId>
 				<version>${commons.install-plugin.version}</version>
 				<configuration>
-					<xmlPath>${basedir}/src/changes/changes.xml</xmlPath>
+					<xmlPath>${basedir}/${project.basedir}/src/changes/changes.xml</xmlPath>
 					<columnNames>Fix Version,Key,Component,Summary,Type,Resolution,Status</columnNames>
 					<!-- Sort cols in natural order when using JQL for JIRA 5.1 -->
 					<sortColumnNames>Fix Version DESC,Type,Key DESC</sortColumnNames>
@@ -1655,7 +1655,7 @@
 						<inputExclude>.pmd</inputExclude>
 						<inputExclude>.asf.yaml</inputExclude>
 						<inputExclude>.gitattributes</inputExclude>
-						<inputExclude>src/site/resources/download_*.cgi</inputExclude>
+						<inputExclude>${project.basedir}/src/site/resources/download_*.cgi</inputExclude>
 						<!-- Exclude Eclipse local files and folders -->
 						<inputExclude>maven-eclipse.xml</inputExclude>
 						<inputExclude>.externalToolBuilders/**</inputExclude>
@@ -1733,7 +1733,7 @@
 		<!--
 			Runs the Animal Sniffer plugin to check that generated code does not included references
 			to methods/classes etc that are not present in the standard Java runtime for the defined target version.
-			To bypass the checks, define "animal.sniffer.skip" as true, or create the file "src/site/resources/profile.noanimal"
+			To bypass the checks, define "animal.sniffer.skip" as true, or create the file "${project.basedir}/src/site/resources/profile.noanimal"
 		-->
 		<profile>
 			<id>animal-sniffer</id>
@@ -1742,7 +1742,7 @@
 				<jdk>(,9)</jdk>
 				<!-- active unless the file is found -->
 				<file>
-					<missing>src/site/resources/profile.noanimal</missing>
+					<missing>${project.basedir}/src/site/resources/profile.noanimal</missing>
 				</file>
 			</activation>
 			<properties>
@@ -1796,7 +1796,7 @@
 					just need to ensure they don't use JaCoCo by default.
 				-->
 				<file>
-					<exists>src/site/resources/profile.jacoco</exists>
+					<exists>${project.basedir}/src/site/resources/profile.jacoco</exists>
 				</file>
 			</activation>
 			<build>
@@ -1831,7 +1831,7 @@
 			<activation>
 				<jdk>[1.8,)</jdk>
 				<file>
-					<exists>src/site/resources/profile.japicmp</exists>
+					<exists>${project.basedir}/src/site/resources/profile.japicmp</exists>
 				</file>
 			</activation>
 			<build>
@@ -1991,15 +1991,15 @@
 		</profile>
 		<profile>
 			<!--
-				Generate release notes in top-level directory from src/changes/changes.xml
+				Generate release notes in top-level directory from ${project.basedir}/src/changes/changes.xml
 				Usage:
 				mvn changes:announcement-generate -Prelease-notes [-Dchanges.version=nnn]
 
 				Defining changes.version allows one to create the RN without first removing the SNAPSHOT suffix.
 
-				Requires file src/changes/release-notes.vm.
+				Requires file ${project.basedir}/src/changes/release-notes.vm.
 				A sample template is available from:
-				https://gitbox.apache.org/repos/asf?p=commons-parent.git;a=blob_plain;f=src/changes/release-notes.vm;hb=HEAD
+				https://gitbox.apache.org/repos/asf?p=commons-parent.git;a=blob_plain;f=${project.basedir}/src/changes/release-notes.vm;hb=HEAD
 			-->
 			<id>release-notes</id>
 			<build>
@@ -2010,7 +2010,7 @@
 						<version>${commons.changes.version}</version>
 						<configuration>
 							<template>release-notes.vm</template>
-							<templateDirectory>src/changes</templateDirectory>
+							<templateDirectory>${project.basedir}/src/changes</templateDirectory>
 							<runOnlyAtExecutionRoot>true</runOnlyAtExecutionRoot>
 							<announcementDirectory>${changes.announcementDirectory}</announcementDirectory>
 							<announcementFile>${changes.announcementFile}</announcementFile>

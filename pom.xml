@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd" root="true">
 	<modelVersion>4.1.0</modelVersion>
 	<artifactId>server.markhome.ycf</artifactId>
@@ -177,7 +177,7 @@
 		</license>
 	</licenses>
 
-	<buildDependencies>
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.teavm</groupId>
@@ -410,7 +410,7 @@
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
-	</buildDependencies>
+	</dependencyManagement>
 
 	<distributionManagement>
 		<repository>
@@ -981,8 +981,8 @@
 								</goals>
 								<configuration>
 									<target>
-										<copy todir="${project.build.directory}/apidocs/META-INF">
-											<fileset dir="${basedir}">
+										<copy todir=${project.build.directory}/apidocs/META-INF">
+											<fileset dir=${basedir}">
 												<include name="LICENSE.txt" />
 												<include name="NOTICE.txt" />
 												<include name="LICENSE" />
@@ -1253,6 +1253,34 @@
 					<extensions>true</extensions>
 				<executions>
 						<execution>
+							<id>mkdir-src</id>
+							<goals>
+								<goal>exec</goal>
+							</goals>
+							<phase>package</phase>
+							<configuration>
+								<executable>/bin/bash</executable>
+								<arguments>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src\\\\' already exists.\\'; fi"</argument>
+								</arguments>
+							</configuration>
+						</execution>
+						<execution>
+							<id>mkdir-src-main</id>
+							<goals>
+								<goal>exec</goal>
+							</goals>
+							<phase>package</phase>
+							<configuration>
+								<executable>/bin/bash</executable>
+								<arguments>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main\\\\' already exists.\\'; fi"</argument>
+								</arguments>
+							</configuration>
+						</execution>
+						<execution>
 							<id>mkdir-src-main-resources</id>
 							<goals>
 								<goal>exec</goal>
@@ -1261,8 +1289,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/main/resources ]; then mkdir src/main/resources; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources\\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1276,8 +1304,8 @@
 								<mainClass>bogus</mainClass>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/main/resources/META-INF ]; then mkdir src/main/resources/META-INF; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF\\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1291,8 +1319,8 @@
 								<mainClass>bogus</mainClass>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/main/resources/META-INF/js ]; then mkdir src/main/resources/META-INF/js; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF/js ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF/js; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF/js\\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1305,8 +1333,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test ]; then mkdir src/test ;fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1319,8 +1347,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test/resources ]; then mkdir src/test/resources; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1333,8 +1361,8 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test/resources/META-INF ]; then mkdir src/test/resources/META-INF; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1347,13 +1375,13 @@
 							<configuration>
 								<executable>/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d src/test/resources/META-INF/js ]; then mkdir src/test/resources/META-INF/js; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF/js ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF/js; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF/js\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
 						<execution>
-							<id>mkdir-exported-libs</id>
+							<id>mkdir-target</id>
 							<goals>
 								<goal>exec</goal>
 							</goals>
@@ -1361,8 +1389,22 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/target ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/target; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/target\\\' already exists.\\'; fi"</argument>
+								</arguments>
+							</configuration>
+						</execution>
+						<execution>
+							<id>mkdir-target-exported-libs</id>
+							<goals>
+								<goal>exec</goal>
+							</goals>
+							<phase>package</phase>
+							<configuration>
+								<executable>/usr/bin/bash</executable>
+								<arguments>
+									<argument>-cx</argument>
+									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/target/exported-libs ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/target/exported-libs; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/target/exported-libs\\\' already exists.\\'; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1421,8 +1463,8 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ -f ${project.build.directory}/test-${project.build.finalName}.jar ]; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ -f ${project.build.directory}/test-${project.build.finalName}.jar; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi"</argument>
 								</arguments>
 								<skipIfEmpty>true</skipIfEmpty>
 								<archive combine.children="append">
@@ -1468,8 +1510,8 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ -f target/test-${artifactId}-${version}.jar ]; then cp -v target/${artifactId}-${version}.jar ${project.build.directory}/exported-libs/; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ -f target/test-${project.build.finalName}.jar; then cp -v target/test-${project.build.finalName}.jar ${project.build.directory}/exported-libs/; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1482,8 +1524,8 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}</argument>
+									<argument>-cx</argument>
+									<argument>"java &#45;cp \\"${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1496,8 +1538,8 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/src/test/resources/META-INF/js &#45;&#45;targetfile test${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi</argument>
+									<argument>-cx</argument>
+									<argument>"if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then java &#45;cp \\"${project.build.directory}/exported-libs/*\\" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/test/resources/META-INF/js &#45;&#45;targetfile test${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi"</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1515,7 +1557,7 @@
 				<artifactId>maven-changes-plugin</artifactId>
 				<version>${commons.install-plugin.version}</version>
 				<configuration>
-					<xmlPath>${basedir}/src/changes/changes.xml</xmlPath>
+					<xmlPath>${basedir}/${project.basedir}/src/changes/changes.xml</xmlPath>
 					<columnNames>Fix Version,Key,Component,Summary,Type,Resolution,Status</columnNames>
 					<!-- Sort cols in natural order when using JQL for JIRA 5.1 -->
 					<sortColumnNames>Fix Version DESC,Type,Key DESC</sortColumnNames>
@@ -1634,7 +1676,7 @@
 						<inputExclude>.pmd</inputExclude>
 						<inputExclude>.asf.yaml</inputExclude>
 						<inputExclude>.gitattributes</inputExclude>
-						<inputExclude>src/site/resources/download_*.cgi</inputExclude>
+						<inputExclude>${project.basedir}/src/site/resources/download_*.cgi</inputExclude>
 						<!-- Exclude Eclipse local files and folders -->
 						<inputExclude>maven-eclipse.xml</inputExclude>
 						<inputExclude>.externalToolBuilders/**</inputExclude>
@@ -1712,7 +1754,7 @@
 		<!--
 			Runs the Animal Sniffer plugin to check that generated code does not included references
 			to methods/classes etc that are not present in the standard Java runtime for the defined target version.
-			To bypass the checks, define "animal.sniffer.skip" as true, or create the file "src/site/resources/profile.noanimal"
+			To bypass the checks, define "animal.sniffer.skip" as true, or create the file ${project.basedir}/src/site/resources/profile.noanimal"
 		-->
 		<profile>
 			<id>animal-sniffer</id>
@@ -1721,7 +1763,7 @@
 				<jdk>(,9)</jdk>
 				<!-- active unless the file is found -->
 				<file>
-					<missing>src/site/resources/profile.noanimal</missing>
+					<missing>${project.basedir}/src/site/resources/profile.noanimal</missing>
 				</file>
 			</activation>
 			<properties>
@@ -1775,7 +1817,7 @@
 					just need to ensure they don't use JaCoCo by default.
 				-->
 				<file>
-					<exists>src/site/resources/profile.jacoco</exists>
+					<exists>${project.basedir}/src/site/resources/profile.jacoco</exists>
 				</file>
 			</activation>
 			<build>
@@ -1810,7 +1852,7 @@
 			<activation>
 				<jdk>[1.8,)</jdk>
 				<file>
-					<exists>src/site/resources/profile.japicmp</exists>
+					<exists>${project.basedir}/src/site/resources/profile.japicmp</exists>
 				</file>
 			</activation>
 			<build>
@@ -1970,15 +2012,15 @@
 		</profile>
 		<profile>
 			<!--
-				Generate release notes in top-level directory from src/changes/changes.xml
+				Generate release notes in top-level directory from ${project.basedir}/src/changes/changes.xml
 				Usage:
 				mvn changes:announcement-generate -Prelease-notes [-Dchanges.version=nnn]
 
 				Defining changes.version allows one to create the RN without first removing the SNAPSHOT suffix.
 
-				Requires file src/changes/release-notes.vm.
+				Requires file ${project.basedir}/src/changes/release-notes.vm.
 				A sample template is available from:
-				https://gitbox.apache.org/repos/asf?p=commons-parent.git;a=blob_plain;f=src/changes/release-notes.vm;hb=HEAD
+				https://gitbox.apache.org/repos/asf?p=commons-parent.git;a=blob_plain;f=${project.basedir}/src/changes/release-notes.vm;hb=HEAD
 			-->
 			<id>release-notes</id>
 			<build>
@@ -1989,7 +2031,7 @@
 						<version>${commons.changes.version}</version>
 						<configuration>
 							<template>release-notes.vm</template>
-							<templateDirectory>src/changes</templateDirectory>
+							<templateDirectory>${project.basedir}/src/changes</templateDirectory>
 							<runOnlyAtExecutionRoot>true</runOnlyAtExecutionRoot>
 							<announcementDirectory>${changes.announcementDirectory}</announcementDirectory>
 							<announcementFile>${changes.announcementFile}</announcementFile>
