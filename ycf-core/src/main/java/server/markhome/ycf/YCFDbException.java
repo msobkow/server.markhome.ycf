@@ -27,20 +27,20 @@ import org.teavm.jso.JSProperty;
 import server.markhome.ycf.Inz;
 
 /**
- * YYCFDbException is thrown when a JPA database persistent store exception is thrown and caught/mapped.
+ * YCFDbException is thrown when a JPA database persistent store exception is thrown and caught/mapped.
  */
-public class YYCFDbException extends YYCFRuntimeException {
+public class YCFDbException extends YCFRuntimeException {
 
 	protected Object indexKey = null;
 
-	public YYCFDbException(
+	public YCFDbException(
 		String enMsg,
 		String xMsg )
 	{
 		super( enMsg, xMsg );
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		String enMsg,
 		String xMsg,
 		Object indexKey )
@@ -49,7 +49,7 @@ public class YYCFDbException extends YYCFRuntimeException {
 		this.indexKey = indexKey;
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -58,7 +58,7 @@ public class YYCFDbException extends YYCFRuntimeException {
 		super( throwingClass, methName, enMsg, xMsg );
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -69,7 +69,7 @@ public class YYCFDbException extends YYCFRuntimeException {
 		this.indexKey = indexKey;
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -79,7 +79,7 @@ public class YYCFDbException extends YYCFRuntimeException {
 		super( throwingClass, methName, enMsg, xMsg, th );
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -91,57 +91,57 @@ public class YYCFDbException extends YYCFRuntimeException {
 		this.indexKey = indexKey;
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super(	String.format(Inz.s("ycflib.YYCFDbException.sqlexcept"),
+		super(	String.format(Inz.s("ycflib.YCFDbException.sqlexcept"),
 					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
 					th.getMessage()),
-				String.format(Inz.x("ycflib.YYCFDbException.sqlexcept"),
+				String.format(Inz.x("ycflib.YCFDbException.sqlexcept"),
 					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
 					th.getMessage()),
 				th);
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		Class<?> throwingClass,
 		String methName,
 		Object indexKey )
 	{
 		super( ((indexKey != null)
-					? String.format(Inz.s("ycflib.YYCFDbException.pkey"),
+					? String.format(Inz.s("ycflib.YCFDbException.pkey"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
 						indexKey.toString())
-					: String.format(Inz.s("ycflib.YYCFDbException.default"),
+					: String.format(Inz.s("ycflib.YCFDbException.default"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")))),
 				((indexKey != null)
-					? String.format(Inz.x("ycflib.YYCFDbException.pkey"),
+					? String.format(Inz.x("ycflib.YCFDbException.pkey"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
 						indexKey.toString())
-					: String.format(Inz.s("ycflib.YYCFDbException.default"),
+					: String.format(Inz.s("ycflib.YCFDbException.default"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")))));
 		this.indexKey = indexKey;
 	}
 
-	public YYCFDbException(
+	public YCFDbException(
 		Class<?> throwingClass,
 		String methName,
 		Object indexKey,
 		Throwable th)
 	{
 		super( ((indexKey != null)
-					? String.format(Inz.s("ycflib.YYCFDbException.pkey"),
+					? String.format(Inz.s("ycflib.YCFDbException.pkey"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
 						indexKey.toString())
-					: String.format(Inz.s("ycflib.YYCFDbException.default"),
+					: String.format(Inz.s("ycflib.YCFDbException.default"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")))),
 				((indexKey != null)
-					? String.format(Inz.x("ycflib.YYCFDbException.pkey"),
+					? String.format(Inz.x("ycflib.YCFDbException.pkey"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
 						indexKey.toString())
-					: String.format(Inz.s("ycflib.YYCFDbException.default"),
+					: String.format(Inz.s("ycflib.YCFDbException.default"),
 						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")))),
 			th);
 		this.indexKey = indexKey;

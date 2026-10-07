@@ -27,13 +27,13 @@ import org.teavm.jso.JSProperty;
 import java.util.*;
 
 /**
- * YYCFUsageException is thrown when a method is being used in the wrong sequence or the wrong way, such trying to look up values in a cache before the cache has been initialized and primed with lookup data.
+ * YCFUsageException is thrown when a method is being used in the wrong sequence or the wrong way, such trying to look up values in a cache before the cache has been initialized and primed with lookup data.
  */
-public class YYCFUsageException extends IllegalStateException {
+public class YCFUsageException extends IllegalStateException {
 
 	protected String localMessage = null;
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		String enMsg,
 		String xMsg )
 	{
@@ -41,7 +41,7 @@ public class YYCFUsageException extends IllegalStateException {
 		this.localMessage = xMsg;
 	}
 
-	// public YYCFUsageException(
+	// public YCFUsageException(
 	// 	String enMsg,
 	// 	String xMsg,
 	// 	Throwable th)
@@ -50,37 +50,37 @@ public class YYCFUsageException extends IllegalStateException {
 	// 		this.localMessage = xMsg;
 	// }
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -88,19 +88,19 @@ public class YYCFUsageException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -109,49 +109,49 @@ public class YYCFUsageException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	// public YYCFUsageException(
+	// public YCFUsageException(
 	// 	String enFieldName,
 	// 	String xFieldName,
 	// 	String enMsg,
 	// 	String xMsg )
 	// {
-	// 	super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+	// 	super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 	// 			enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-	// 	this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+	// 	this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 	// 			(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	// }
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -159,16 +159,16 @@ public class YYCFUsageException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -177,19 +177,19 @@ public class YYCFUsageException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -199,56 +199,56 @@ public class YYCFUsageException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUsageException()
+	public YCFUsageException()
 	{
-		super(String.format(Inz.s("ycflib.YYCFUsageException.default"), ""));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUsageException.default"), "");
+		super(String.format(Inz.s("ycflib.YCFUsageException.default"), ""));
+		this.localMessage = String.format(Inz.x("ycflib.YCFUsageException.default"), "");
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		Class<?> throwingClass,
 		String methName )
 	{
-		super(String.format(Inz.s("ycflib.YYCFUsageException.default"),
+		super(String.format(Inz.s("ycflib.YCFUsageException.default"),
 				throwingClass.getName() + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "() ": " " )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUsageException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFUsageException.default"),
 				throwingClass.getName() + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "() ": " " ));
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFUsageException.default"),
+		super(String.format(Inz.s("ycflib.YCFUsageException.default"),
 				throwingClass.getName() + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "() ": " " )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUsageException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFUsageException.default"),
 				throwingClass.getName() + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "() ": " " ));
 	}
 
-	public YYCFUsageException(
+	public YCFUsageException(
 		String fieldName,
 		String methName,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFUsageException.default"),
+		super(String.format(Inz.s("ycflib.YCFUsageException.default"),
 				fieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "() ": " " )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUsageException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFUsageException.default"),
 				fieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "() ": " " ));
 	}
 

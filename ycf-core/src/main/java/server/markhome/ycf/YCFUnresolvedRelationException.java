@@ -29,9 +29,9 @@ import java.util.*;
 import server.markhome.ycf.Inz;
 
 /**
- * YYCFUnresolvedRelationException is thrown when there is no target object for a foreign key found.
+ * YCFUnresolvedRelationException is thrown when there is no target object for a foreign key found.
  */
-public class YYCFUnresolvedRelationException extends IllegalStateException {
+public class YCFUnresolvedRelationException extends IllegalStateException {
 
 	protected String localMessage = null;
 
@@ -46,7 +46,7 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 
 	protected Object indexKey = null;
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enMsg,
 		String xMsg )
 	{
@@ -54,7 +54,7 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		this.localMessage = xMsg;
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enMsg,
 		String xMsg,
 		Throwable th)
@@ -63,37 +63,37 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 			this.localMessage = xMsg;
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -101,19 +101,19 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -122,49 +122,49 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -172,16 +172,16 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -190,19 +190,19 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -212,61 +212,61 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFUnresolvedRelationException()
+	public YCFUnresolvedRelationException()
 	{
-		super(String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.default"), ""));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.default"), "");
+		super(String.format(Inz.s("ycflib.YCFUnresolvedRelationException.default"), ""));
+		this.localMessage = String.format(Inz.x("ycflib.YCFUnresolvedRelationException.default"), "");
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName )
 	{
-		super( String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.default"),
+		super( String.format(Inz.s("ycflib.YCFUnresolvedRelationException.default"),
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFUnresolvedRelationException.default"),
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.default"),
+		super( String.format(Inz.s("ycflib.YCFUnresolvedRelationException.default"),
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
 					th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFUnresolvedRelationException.default"),
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.default"),
+		super( String.format(Inz.s("ycflib.YCFUnresolvedRelationException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFUnresolvedRelationException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName,
 		String enRelationType,
@@ -277,24 +277,24 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		String xTargetName,
 		Object indexKey)
 	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		super( (indexKey != null) ? String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					indexKey.toString(),
 					enTargetName)
-				: String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					enTargetName ));
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
 					indexKey.toString(),
 					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
@@ -308,7 +308,7 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		this.indexKey = indexKey;
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		Class<?> throwingClass,
 		String methName,
 		String enRelationType,
@@ -320,25 +320,25 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		Object indexKey,
 		Throwable th )
 	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		super( (indexKey != null) ? String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					indexKey.toString(),
 					enTargetName)
-				: String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					enTargetName ),
 			th);
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
 					indexKey.toString(),
 					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
@@ -352,7 +352,7 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		this.indexKey = indexKey;
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -364,24 +364,24 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		String xTargetName,
 		Object indexKey)
 	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		super( (indexKey != null) ? String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					indexKey.toString(),
 					enTargetName)
-				: String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					enTargetName ));
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
 					indexKey.toString(),
 					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
@@ -395,7 +395,7 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		this.indexKey = indexKey;
 	}
 
-	public YYCFUnresolvedRelationException(
+	public YCFUnresolvedRelationException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -408,25 +408,25 @@ public class YYCFUnresolvedRelationException extends IllegalStateException {
 		Object indexKey,
 		Throwable th)
 	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		super( (indexKey != null) ? String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					indexKey.toString(),
 					enTargetName)
-				: String.format(Inz.s("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.s("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enRelationType,
 					enRelationName,
 					enTargetName ),
 			th);
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
+		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
 					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
 					indexKey.toString(),
 					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.YYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
+				: String.format(Inz.x("ycflib.YCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
 					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
 					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,

@@ -29,11 +29,11 @@ import server.markhome.ycf.Inz;
 /**
  * You can not open an edit if an object is already open for edit.
  */
-public class YYCFEditAlreadyOpenException extends IllegalStateException {
+public class YCFEditAlreadyOpenException extends IllegalStateException {
 
 	protected String localMessage = null;
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enMsg,
 		String xMsg )
 	{
@@ -41,43 +41,43 @@ public class YYCFEditAlreadyOpenException extends IllegalStateException {
 		this.localMessage = xMsg;
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enMsg, String xMsg, Throwable cause) {
 			super(enMsg, cause);
 			this.localMessage = xMsg;
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("cflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("cflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("cflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("cflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
 				th );
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -85,19 +85,19 @@ public class YYCFEditAlreadyOpenException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("cflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("cflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -106,49 +106,49 @@ public class YYCFEditAlreadyOpenException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("cflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("cflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	// public YYCFMustOverrideException(
+	// public YCFMustOverrideException(
 	// 	String enFieldName,
 	// 	String xFieldName,
 	// 	String enMsg,
 	// 	String xMsg )
 	// {
-	// 	super( String.format(Inz.s("cflib.YYCFArgumentException.FldMsg"),
+	// 	super( String.format(Inz.s("cflib.YCFArgumentException.FldMsg"),
 	// 			enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-	// 	this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.FldMsg"),
+	// 	this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.FldMsg"),
 	// 			(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	// }
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("cflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("cflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -156,16 +156,16 @@ public class YYCFEditAlreadyOpenException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("cflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("cflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -174,19 +174,19 @@ public class YYCFEditAlreadyOpenException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super(String.format(Inz.s("cflib.YYCFArgumentException.FldArgMsg"),
+		super(String.format(Inz.s("cflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -196,13 +196,13 @@ public class YYCFEditAlreadyOpenException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("cflib.YYCFArgumentException.FldArgMsg"),
+		super( String.format(Inz.s("cflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("cflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("cflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
@@ -210,60 +210,60 @@ public class YYCFEditAlreadyOpenException extends IllegalStateException {
 	}
 
 	
-	public YYCFEditAlreadyOpenException()
+	public YCFEditAlreadyOpenException()
 	{
-		super( String.format(Inz.s("cflib.YYCFEditAlreadyOpenException.default"), "").trim());
-		this.localMessage = String.format(Inz.x("cflib.YYCFEditAlreadyOpenException.default"), "").trim();
+		super( String.format(Inz.s("cflib.YCFEditAlreadyOpenException.default"), "").trim());
+		this.localMessage = String.format(Inz.x("cflib.YCFEditAlreadyOpenException.default"), "").trim();
 	}
 
-	public YYCFEditAlreadyOpenException(Throwable th)
+	public YCFEditAlreadyOpenException(Throwable th)
 	{
-		super( String.format(Inz.s("cflib.YYCFEditAlreadyOpenException.default"), "").trim(), th);
-		this.localMessage = String.format(Inz.x("cflib.YYCFEditAlreadyOpenException.default"), "").trim();
+		super( String.format(Inz.s("cflib.YCFEditAlreadyOpenException.default"), "").trim(), th);
+		this.localMessage = String.format(Inz.x("cflib.YCFEditAlreadyOpenException.default"), "").trim();
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		Class<?> throwingClass,
 		String methName)
 	{
-		super( String.format(Inz.s("cflib.YYCFEditAlreadyOpenException.default"),
+		super( String.format(Inz.s("cflib.YCFEditAlreadyOpenException.default"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("cflib.YYCFEditAlreadyOpenException.default"),
+		this.localMessage = String.format(Inz.x("cflib.YCFEditAlreadyOpenException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("cflib.YYCFEditAlreadyOpenException.default"),
+		super( String.format(Inz.s("cflib.YCFEditAlreadyOpenException.default"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("cflib.YYCFEditAlreadyOpenException.default"),
+		this.localMessage = String.format(Inz.x("cflib.YCFEditAlreadyOpenException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enFieldName,
 		String xFieldName,
 		String methName )
 	{
-		super( String.format(Inz.s("cflib.YYCFEditAlreadyOpenException.default"),
+		super( String.format(Inz.s("cflib.YCFEditAlreadyOpenException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("cflib.YYCFEditAlreadyOpenException.default"),
+		this.localMessage = String.format(Inz.x("cflib.YCFEditAlreadyOpenException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
-	public YYCFEditAlreadyOpenException(
+	public YCFEditAlreadyOpenException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("cflib.YYCFEditAlreadyOpenException.default"),
+		super( String.format(Inz.s("cflib.YCFEditAlreadyOpenException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("cflib.YYCFEditAlreadyOpenException.default"),
+		this.localMessage = String.format(Inz.x("cflib.YCFEditAlreadyOpenException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 

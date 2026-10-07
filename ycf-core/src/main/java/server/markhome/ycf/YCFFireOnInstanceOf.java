@@ -24,18 +24,18 @@ import org.teavm.jso.JSExport;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
 
-public class YYCFFireOnInstanceOf {
+public class YCFFireOnInstanceOf {
 	
 	protected Class<?> instOf = null;
 
-    public YYCFFireOnInstanceOf() {
+    public YCFFireOnInstanceOf() {
     	setInstanceOf( Object.class );
     }
 
     public void setInstanceOf(Class<?> value) {
     	final String S_ProcName = "setInstanceOf";
         if( value == null ) {
-            throw new YYCFNullArgumentException( getClass(),
+            throw new YCFNullArgumentException( getClass(),
                 S_ProcName,
                 1,
                 "value" );
@@ -47,7 +47,7 @@ public class YYCFFireOnInstanceOf {
         return( instOf );
     }
 
-    public boolean isInstanceOf( IYYCFAnyObj obj ) {
+    public boolean isInstanceOf( IYCFAnyObj obj ) {
     	if( obj == null ) {
     		return( false );
     	}
@@ -59,16 +59,16 @@ public class YYCFFireOnInstanceOf {
     	return( instOf.isInstance( obj ) );
     }
 
-    public void onInstanceOf( IYYCFAnyObj obj ) {
+    public void onInstanceOf( IYCFAnyObj obj ) {
         final String S_ProcName = "onInstanceOf";
         if( obj == null ) {
             return;
         }
-        throw new YYCFNotImplementedYetException( getClass(),
+        throw new YCFNotImplementedYetException( getClass(),
         	S_ProcName );
     }
 
-    public final void fireOnInstanceOf( IYYCFAnyObj obj ) {
+    public final void fireOnInstanceOf( IYCFAnyObj obj ) {
     	if( obj == null ) {
     		return;
     	}

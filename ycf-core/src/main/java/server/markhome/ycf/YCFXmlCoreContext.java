@@ -27,14 +27,14 @@ import org.teavm.jso.JSProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-import server.markhome.ycf.IYYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 
 /**
  *	An XML Core Context is a processing stack entry pushed
  *	at the start of each element or document and popped
  *	at the end of their processing.
  */
-public class YYCFXmlCoreContext {
+public class YCFXmlCoreContext {
 
 	/**
 	 *	Context stack chain.
@@ -42,7 +42,7 @@ public class YYCFXmlCoreContext {
 	 *	This had been handled via Java collections, but that
 	 *	made the access of stack top - 1 inefficient.
 	 */
-	private YYCFXmlCoreContext prevContext = null;
+	private YCFXmlCoreContext prevContext = null;
 
 	/**
 	 *	The StringBuilder to receive character event data.
@@ -53,19 +53,19 @@ public class YYCFXmlCoreContext {
 	 *	The XmlCoreElementHandler selected to handle the
 	 *	beginElement and endElement events.
 	 */
-	private YYCFXmlCoreElementHandler elementHandler = null;
+	private YCFXmlCoreElementHandler elementHandler = null;
 
 	/**
 	 *	The Log4J log to receive parser processing messages.
 	 *	<p>
 	 *	Programmer debug and trace messages should go to <tt>debuglog</tt>.
 	 */
-	private IYYCFMessageLog log = null;
+	private IYCFMessageLog log = null;
 
 	/**
 	 *	The XML Core Parser which owns this processing Context.
 	 */
-	private YYCFXmlCoreParser parser = null;
+	private YCFXmlCoreParser parser = null;
 
 	/**
 	 *	The QName of the element being processed.
@@ -88,10 +88,10 @@ public class YYCFXmlCoreContext {
 	 *	@param	qName	The QName of the element about to be processed.
 	 *	@param	handler	The XmlCoreElementHandler which will be used for processing.
 	 */
-	public YYCFXmlCoreContext(
-		YYCFXmlCoreContext src,
+	public YCFXmlCoreContext(
+		YCFXmlCoreContext src,
 		String qName,
-		YYCFXmlCoreElementHandler handler )
+		YCFXmlCoreElementHandler handler )
 	{
 		assert src != null : "src (arg 1) is null";
 
@@ -111,10 +111,10 @@ public class YYCFXmlCoreContext {
 	 *	@param	jlog	Log4J log to use, if null, use parser's log.
 	 *	@param	handler	The XmlCoreElementHandler which will be processing the doc root.
 	 */
-	public YYCFXmlCoreContext(
-		YYCFXmlCoreParser coreParser,
-		IYYCFMessageLog jlog,
-		YYCFXmlCoreElementHandler elementHandler )
+	public YCFXmlCoreContext(
+		YCFXmlCoreParser coreParser,
+		IYCFMessageLog jlog,
+		YCFXmlCoreElementHandler elementHandler )
 	{
 		assert coreParser != null : "coreParser (arg 1) is null";
 		assert elementHandler != null : "elementHandler (arg 3) is null";
@@ -141,7 +141,7 @@ public class YYCFXmlCoreContext {
 	 *	@return	The previous context or null if this is
 	 *			the bottom of the stack.
 	 */
-	public YYCFXmlCoreContext getPrevContext() {
+	public YCFXmlCoreContext getPrevContext() {
 		return( prevContext );
 	}
 
@@ -190,7 +190,7 @@ public class YYCFXmlCoreContext {
 	 *
 	 *	@return	The XML Core Parser which owns this element handler.
 	 */
-	public YYCFXmlCoreParser getParser() {
+	public YCFXmlCoreParser getParser() {
 		return( parser );
 	}
 
@@ -199,7 +199,7 @@ public class YYCFXmlCoreContext {
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
 	 */
-	protected void setParser( YYCFXmlCoreParser coreParser ) {
+	protected void setParser( YCFXmlCoreParser coreParser ) {
 		assert coreParser != null : "coreParser (arg 1) is null";
 		parser = coreParser;
 	}
@@ -211,7 +211,7 @@ public class YYCFXmlCoreContext {
 	 *
 	 *	@return	Log4J log
 	 */
-	public IYYCFMessageLog getLog() {
+	public IYCFMessageLog getLog() {
 		if( log != null ) {
 			return( log );
 		}
@@ -226,7 +226,7 @@ public class YYCFXmlCoreContext {
 	 *
 	 *	@param	jlog	The log to use for runtime processing messages
 	 */
-	public void setLog( IYYCFMessageLog jlog ) {
+	public void setLog( IYCFMessageLog jlog ) {
 		log = jlog;
 	}
 
@@ -255,7 +255,7 @@ public class YYCFXmlCoreContext {
 	 *
 	 *	@return	The element handler selected for processing the current element.
 	 */
-	public YYCFXmlCoreElementHandler getElementHandler() {
+	public YCFXmlCoreElementHandler getElementHandler() {
 		return( elementHandler );
 	}
 
@@ -264,7 +264,7 @@ public class YYCFXmlCoreContext {
 	 *
 	 *	@param	handler	The XmlCoreElementHandler selected to process the element.
 	 */
-	protected void setElementHandler( YYCFXmlCoreElementHandler handler ) {
+	protected void setElementHandler( YCFXmlCoreElementHandler handler ) {
 		assert handler != null : "handler (arg 1) is null";
 		elementHandler = handler;
 	}
@@ -275,7 +275,7 @@ public class YYCFXmlCoreContext {
 	 *	@param	qName	The QName of the element or document being processed.
 	 *	@param	handler	The XmlCoreElementHandler selected to process the element.
 	 */
-	public void setQNameElementHandler( String qName, YYCFXmlCoreElementHandler handler ) {
+	public void setQNameElementHandler( String qName, YCFXmlCoreElementHandler handler ) {
 		assert elementQName == null : "Element context QName has already been set";
 		assert qName != null && qName.length() > 0 : "qName (arg 1) is null or empty";
 		assert handler != null : "handler (arg 2) is null";

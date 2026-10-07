@@ -31,11 +31,11 @@ import server.markhome.ycf.Inz;
 /**
  * You can not open an edit if an object is already open for edit.
  */
-public class YYCFCannotDeleteNewInstanceException extends IllegalStateException {
+public class YCFCannotDeleteNewInstanceException extends IllegalStateException {
 
 	protected String localMessage = null;
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enMsg,
 		String xMsg )
 	{
@@ -43,43 +43,43 @@ public class YYCFCannotDeleteNewInstanceException extends IllegalStateException 
 		this.localMessage = xMsg;
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enMsg, String xMsg, Throwable cause) {
 			super(enMsg, cause);
 			this.localMessage = xMsg;
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -87,19 +87,19 @@ public class YYCFCannotDeleteNewInstanceException extends IllegalStateException 
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -108,49 +108,49 @@ public class YYCFCannotDeleteNewInstanceException extends IllegalStateException 
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	// public YYCFMustOverrideException(
+	// public YCFMustOverrideException(
 	// 	String enFieldName,
 	// 	String xFieldName,
 	// 	String enMsg,
 	// 	String xMsg )
 	// {
-	// 	super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+	// 	super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 	// 			enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-	// 	this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+	// 	this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 	// 			(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	// }
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -158,16 +158,16 @@ public class YYCFCannotDeleteNewInstanceException extends IllegalStateException 
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -176,19 +176,19 @@ public class YYCFCannotDeleteNewInstanceException extends IllegalStateException 
 		String enMsg,
 		String xMsg )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -198,13 +198,13 @@ public class YYCFCannotDeleteNewInstanceException extends IllegalStateException 
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
@@ -212,60 +212,60 @@ public class YYCFCannotDeleteNewInstanceException extends IllegalStateException 
 	}
 
 	
-	public YYCFCannotDeleteNewInstanceException()
+	public YCFCannotDeleteNewInstanceException()
 	{
-		super( String.format(Inz.s("ycflib.YYCFCannotDeleteNewInstanceException.default"), "").trim());
-		this.localMessage = String.format(Inz.x("ycflib.YYCFCannnotMoveEditedObjectException.default"), "").trim();
+		super( String.format(Inz.s("ycflib.YCFCannotDeleteNewInstanceException.default"), "").trim());
+		this.localMessage = String.format(Inz.x("ycflib.YCFCannnotMoveEditedObjectException.default"), "").trim();
 	}
 
-	public YYCFCannotDeleteNewInstanceException(Throwable th)
+	public YCFCannotDeleteNewInstanceException(Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YYCFCannotDeleteNewInstanceException.default"), "").trim(), th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFCannotDeleteNewInstanceException.default"), "").trim();
+		super( String.format(Inz.s("ycflib.YCFCannotDeleteNewInstanceException.default"), "").trim(), th);
+		this.localMessage = String.format(Inz.x("ycflib.YCFCannotDeleteNewInstanceException.default"), "").trim();
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		Class<?> throwingClass,
 		String methName)
 	{
-		super( String.format(Inz.s("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		super( String.format(Inz.s("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		super( String.format(Inz.s("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enFieldName,
 		String xFieldName,
 		String methName )
 	{
-		super( String.format(Inz.s("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		super( String.format(Inz.s("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
-	public YYCFCannotDeleteNewInstanceException(
+	public YCFCannotDeleteNewInstanceException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		super( String.format(Inz.s("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFCannotDeleteNewInstanceException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFCannotDeleteNewInstanceException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 

@@ -27,13 +27,13 @@ import org.teavm.jso.JSProperty;
 import server.markhome.ycf.Inz;
 
 /**
- * YYCFNotSupportedException is thrown when a method is not supported by a particular class.  This is distinct from MustOverride and NotImplementedYet in that the method will never be valid for this class.
+ * YCFNotSupportedException is thrown when a method is not supported by a particular class.  This is distinct from MustOverride and NotImplementedYet in that the method will never be valid for this class.
  */
-public class YYCFNotSupportedException extends UnsupportedOperationException {
+public class YCFNotSupportedException extends UnsupportedOperationException {
 
 	protected String localMessage = null;
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enMsg,
 		String xMsg )
 	{
@@ -41,7 +41,7 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 		this.localMessage = xMsg;
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enMsg,
 		String xMsg,
 		Throwable th)
@@ -50,37 +50,37 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 			this.localMessage = xMsg;
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -88,19 +88,19 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -109,49 +109,49 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	// public YYCFNotSupportedException(
+	// public YCFNotSupportedException(
 	// 	String enFieldName,
 	// 	String xFieldName,
 	// 	String enMsg,
 	// 	String xMsg )
 	// {
-	// 	super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+	// 	super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 	// 			enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-	// 	this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+	// 	this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 	// 			(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	// }
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -159,16 +159,16 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -177,19 +177,19 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 		String enMsg,
 		String xMsg )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -199,13 +199,13 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
@@ -213,60 +213,60 @@ public class YYCFNotSupportedException extends UnsupportedOperationException {
 	}
 
 
-	public YYCFNotSupportedException()
+	public YCFNotSupportedException()
 	{
-		super( String.format(Inz.s("ycflib.YYCFNotSupportedException.default"), "").trim());
-		this.localMessage = String.format(Inz.x("ycflib.YYCFNotSupportedException.default"), "").trim();
+		super( String.format(Inz.s("ycflib.YCFNotSupportedException.default"), "").trim());
+		this.localMessage = String.format(Inz.x("ycflib.YCFNotSupportedException.default"), "").trim();
 	}
 
-	public YYCFNotSupportedException(Throwable th)
+	public YCFNotSupportedException(Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YYCFNotSupportedException.default"), "").trim(), th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFNotSupportedException.default"), "").trim();
+		super( String.format(Inz.s("ycflib.YCFNotSupportedException.default"), "").trim(), th);
+		this.localMessage = String.format(Inz.x("ycflib.YCFNotSupportedException.default"), "").trim();
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		Class<?> throwingClass,
 		String methName )
 	{
-		super( String.format(Inz.s("ycflib.YYCFNotSupportedException.default"),
+		super( String.format(Inz.s("ycflib.YCFNotSupportedException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFNotSupportedException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFNotSupportedException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFNotSupportedException.default"),
+		super( String.format(Inz.s("ycflib.YCFNotSupportedException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFNotSupportedException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFNotSupportedException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enFieldName,
 		String xFieldName,
 		String methName )
 	{
-		super( String.format(Inz.s("ycflib.YYCFNotSupportedException.default"),
+		super( String.format(Inz.s("ycflib.YCFNotSupportedException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFNotSupportedException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFNotSupportedException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
-	public YYCFNotSupportedException(
+	public YCFNotSupportedException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFNotSupportedException.default"),
+		super( String.format(Inz.s("ycflib.YCFNotSupportedException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFNotSupportedException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFNotSupportedException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 

@@ -31,22 +31,22 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Base class for YYCF database key hashes.
+ * Base class for YCF database key hashes.
  *
  * This foundation class provides essential support for n-digit hashes, usually based on the sizes of commmon hash algorithms like SHA-256, SHA-512, etc. It
  * includes methods for byte manipulation, comparison, and static initialization of hash buffers. It is designed to be extended by specific hash
- * implementations, such as YYCFKeyHash256 or YYCFKeyHash512. It also provides a consistent way to handle the underlying byte arrays, ensuring that all
+ * implementations, such as YCFKeyHash256 or YCFKeyHash512. It also provides a consistent way to handle the underlying byte arrays, ensuring that all
  * derived classes can be compared and manipulated uniformly. One issue is that the base class may provide the "gateway" for synchronization of the hash buffer
  * attributes, so the static class data defined here is used as the thread synchronization coordinator, rather than attributes of the specialization classes. To
  * be fair, whether is even an issue really depends on what the JDK and JVM fine-print processing rules say about such specific cases.
  *
  * @author msobkow
  */
-public abstract class YYCFKeyHashBase<T extends YYCFKeyHashBase<T>> implements Comparator<T>, Comparable<T> {
+public abstract class YCFKeyHashBase<T extends YCFKeyHashBase<T>> implements Comparator<T>, Comparable<T> {
 
 	static final String hexDigits = "0123456789abcdef";
 	static final int UUID6_INDEX = 0;
-	static final int UUID6_LENGTH = YYCFUuid6.TOTAL_BYTES;
+	static final int UUID6_LENGTH = YCFUuid6.TOTAL_BYTES;
 	static final int COUNTER_INDEX = 28;
 	static final int COUNTER_LENGTH = 8;
 	static final int CLUSTERCODE_INDEX = 36;
@@ -76,14 +76,14 @@ public abstract class YYCFKeyHashBase<T extends YYCFKeyHashBase<T>> implements C
 		}
 		try {
 			hashBuffer = new ByteBuffer[CONCURRENT_DIGESTS];
-			YYCFHostAddr.initAddrHeader();
+			YCFHostAddr.initAddrHeader();
 			long pid = ProcessHandle.current().pid();
 			long tid = Thread.currentThread().getId();
 			for (int i = 0; i < CONCURRENT_DIGESTS; i++) {
-				YYCFUuid6 u = YYCFUuid6.generateUuid6();
+				YCFUuid6 u = YCFUuid6.generateUuid6();
 				hashBuffer[i] = ByteBuffer.allocate(TOTAL_BYTES);
 				byte[] uub = u.getBytes();
-				for (int j = 0; j < YYCFUuid6.TOTAL_BYTES; j++) {
+				for (int j = 0; j < YCFUuid6.TOTAL_BYTES; j++) {
 					hashBuffer[i].put(uub[j]);
 				}
 				hashBuffer[i].putLong(COUNTER_INDEX, counter);
@@ -248,17 +248,17 @@ public abstract class YYCFKeyHashBase<T extends YYCFKeyHashBase<T>> implements C
 
 	protected abstract MessageDigest[] getM();
 
-	public YYCFKeyHashBase() {
+	public YCFKeyHashBase() {
 	}
 
 	/**
 	 * This is the hex code of the underlying ID. THIS IS NOT A HASHING FUNCTION.
 	 */
-	public YYCFKeyHashBase(String hexId) {
+	public YCFKeyHashBase(String hexId) {
 		setBytes(bytesFromHex(hexId));
 	}
 
-	public YYCFKeyHashBase(byte[] anId) {
+	public YCFKeyHashBase(byte[] anId) {
 		if (anId == null) {
 			// allowed
 		} else if (anId.length > getHashLength()) {
@@ -270,7 +270,7 @@ public abstract class YYCFKeyHashBase<T extends YYCFKeyHashBase<T>> implements C
 		}
 	}
 
-	public YYCFKeyHashBase(T otherKey) {
+	public YCFKeyHashBase(T otherKey) {
 		if (otherKey == null) {
 			setBytes(new byte[getHashLength()]);
 			return;
@@ -280,7 +280,7 @@ public abstract class YYCFKeyHashBase<T extends YYCFKeyHashBase<T>> implements C
 		setBytes(_newId);
 	}
 
-	public YYCFKeyHashBase(int notUsed) {
+	public YCFKeyHashBase(int notUsed) {
 		initStatics();
 		int thid = (int) (Math.abs(rotator++) % CONCURRENT_DIGESTS);
 		synchronized (hashBuffer[thid]) {

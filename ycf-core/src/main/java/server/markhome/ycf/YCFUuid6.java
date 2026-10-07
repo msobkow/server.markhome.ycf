@@ -57,7 +57,7 @@ import java.util.Arrays;
  * 
  * @author msobkow
  */
-public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, IYYCFUuid6 {
+public class YCFUuid6 implements java.io.Serializable, Comparable<YCFUuid6>, IYCFUuid6 {
 
     /*
      * The random number generator used by this class to create random
@@ -82,7 +82,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
 
     // Constructors and Factories
 
-	public YYCFUuid6() {
+	public YCFUuid6() {
 		for (int i = 0; i < TOTAL_BYTES; i++) {
 			this.bytes[i] = 0;
 		}
@@ -91,7 +91,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
     /*
      * JPA needs access to this formerly private constructor which uses a byte array to construct the new Uuid6.
      */
-    public YYCFUuid6(byte[] data) {
+    public YCFUuid6(byte[] data) {
         assert data != null;
         assert data.length >= TOTAL_BYTES;
         for (int i = 0; i < TOTAL_BYTES; i++) {
@@ -104,8 +104,8 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
      *
      * @return  A newly initialized Uuid6
      */
-    public static YYCFUuid6 generateUuid6() {
-        YYCFHostAddr.initAddrHeader();
+    public static YCFUuid6 generateUuid6() {
+        YCFHostAddr.initAddrHeader();
         byte[] genBytes = new byte[TOTAL_BYTES];
         long ts = System.currentTimeMillis() >> 4;
         genBytes[STAMP_START] = (byte)((ts >> (5*8))&0xff);
@@ -123,8 +123,8 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
         genBytes[RANDOM_START+1] = randomBytes[1];
         genBytes[RANDOM_START+2] = randomBytes[2];
         genBytes[RANDOM_START+3] = randomBytes[3];
-        YYCFHostAddr.copyAddrHeaderTo(genBytes, NODE0_START);
-        // byte[] addrHeader = YYCFHostAddr.getAddrHeader(false);
+        YCFHostAddr.copyAddrHeaderTo(genBytes, NODE0_START);
+        // byte[] addrHeader = YCFHostAddr.getAddrHeader(false);
         // genBytes[NODE0_START] = addrHeader[0];
         // genBytes[NODE0_START+1] = addrHeader[1];
         // genBytes[NODE0_START+2] = addrHeader[2];
@@ -141,7 +141,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
         // genBytes[NODE3_START+1] = addrHeader[13];
         // genBytes[NODE3_START+2] = addrHeader[14];
         // genBytes[NODE3_START+3] = addrHeader[15];
-        return new YYCFUuid6(genBytes);
+        return new YCFUuid6(genBytes);
     }
 
     /**
@@ -152,7 +152,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
      *
      * @return  A randomly generated {@code UUID}
      */
-    public static YYCFUuid6 randomUuid6() {
+    public static YCFUuid6 randomUuid6() {
         byte[] randomBytes = new byte[TOTAL_BYTES];
         SecureRandom ng = Holder.numberGenerator2;
         ng.nextBytes(randomBytes);
@@ -160,7 +160,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
         randomBytes[VERSION_AND_VARIANT_START] |= 0x40;
         randomBytes[VERSION_AND_VARIANT_START+1] &= 0x3f;
         randomBytes[VERSION_AND_VARIANT_START+1] |= 0x80;
-        return new YYCFUuid6(randomBytes);
+        return new YCFUuid6(randomBytes);
     }
 
     private static final char[] HEXFORMAT;
@@ -244,7 +244,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
      *          described in {@link #toString}
      *
      */
-    public static YYCFUuid6 fromString(String name) {
+    public static YCFUuid6 fromString(String name) {
         if (name.length() == STRING_LENGTH) {
             char ch1 = name.charAt(12);
             char ch2 = name.charAt(17);
@@ -297,7 +297,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
                     || v[20] != 0 || v[21] != 0 || v[22] != 0 || v[23] != 0 || v[24] != 0
                     || v[25] != 0 || v[26] != 0 || v[27] != 0)
                 {
-                    return new YYCFUuid6(v);
+                    return new YCFUuid6(v);
                 }
             }
             else {
@@ -307,7 +307,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
         return fromString1(name);
     }
     
-    private static YYCFUuid6 fromString1(String name) {
+    private static YCFUuid6 fromString1(String name) {
         int len = name.length();
         if (len > STRING_LENGTH) {
             throw new IllegalArgumentException("Uuid6 string too large");
@@ -351,7 +351,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
         shaBytes[VERSION_AND_VARIANT_START]      |= 0x40;  /* set to version 4     */
         shaBytes[VERSION_AND_VARIANT_START+1]    &= 0x3f;  /* clear variant        */
         shaBytes[VERSION_AND_VARIANT_START+1]    |= (byte) 0x80;  /* set to IETF variant  */
-        return new YYCFUuid6(shaBytes);
+        return new YCFUuid6(shaBytes);
 
     }
 
@@ -364,7 +364,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
      *
      * @return  A {@code UUID} generated from the specified array
      */
-    public static YYCFUuid6 nameUuid6FromBytes(byte[] name) {
+    public static YCFUuid6 nameUuid6FromBytes(byte[] name) {
         MessageDigest md;
         try {
             // Try to get as close to 28 bytes as possible; SHA-224 is 224 bits, or 28 bytes, so we lose no entropy from the hash
@@ -382,7 +382,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
         shaBytes[VERSION_AND_VARIANT_START]      |= 0x40;  /* set to version 4     */
         shaBytes[VERSION_AND_VARIANT_START+1]    &= 0x3f;  /* clear variant        */
         shaBytes[VERSION_AND_VARIANT_START+1]    |= (byte) 0x80;  /* set to IETF variant  */
-        return new YYCFUuid6(shaBytes);
+        return new YCFUuid6(shaBytes);
     }
 
     /**
@@ -596,9 +596,9 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
      */
     @Override
     public boolean equals(Object obj) {
-        if ((null == obj) || (obj.getClass() != YYCFUuid6.class))
+        if ((null == obj) || (obj.getClass() != YCFUuid6.class))
             return false;
-        YYCFUuid6 id = (YYCFUuid6)obj;
+        YCFUuid6 id = (YCFUuid6)obj;
         if (this == id) return true;
         return Arrays.equals(bytes, id.bytes);
     }
@@ -620,7 +620,7 @@ public class YYCFUuid6 implements java.io.Serializable, Comparable<YYCFUuid6>, I
      *
      */
     @Override
-    public int compareTo(YYCFUuid6 val) {
+    public int compareTo(YCFUuid6 val) {
         if (val == null) {
             return 1;
         }

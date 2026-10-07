@@ -39,18 +39,18 @@ import java.util.Set;
  *
  * @author msobkow
  */
-public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements IYYCFKeyHash512, Serializable {
+public class YCFKeyHash512 extends YCFKeyHashBase<YCFKeyHash512> implements IYCFKeyHash512, Serializable {
   static final long serialVersionUID = 202608160345L;
   protected byte[] bytes;
 
   @Override
   @SuppressWarnings("unchecked")
-  public int compareTo(IYYCFKeyHash512 o) {
-    int result = compare((IYYCFKeyHash512) this, o);
+  public int compareTo(IYCFKeyHash512 o) {
+    int result = compare((IYCFKeyHash512) this, o);
     return result;
   }
 
-  static public int compareOrdered(IYYCFKeyHash512 h1, IYYCFKeyHash512 h2) {
+  static public int compareOrdered(IYCFKeyHash512 h1, IYCFKeyHash512 h2) {
     if (h1 == null) {
       if (h2 == null) {
         return 0;
@@ -132,47 +132,47 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
     return b;
   }
 
-  public static YYCFKeyHash512 fromHex(String string) {
+  public static YCFKeyHash512 fromHex(String string) {
     byte[] b = sbytesFromHex(string);
-    YYCFKeyHash512 h = new YYCFKeyHash512();
+    YCFKeyHash512 h = new YCFKeyHash512();
     h.bytes = b;
     return h;
   }
 
-  public static Comparator<IYYCFKeyHash512> getComparator() {
+  public static Comparator<IYCFKeyHash512> getComparator() {
 
-    return new Comparator<IYYCFKeyHash512>() {
+    return new Comparator<IYCFKeyHash512>() {
       @Override
-      public int compare(IYYCFKeyHash512 a, IYYCFKeyHash512 b) {
+      public int compare(IYCFKeyHash512 a, IYCFKeyHash512 b) {
         return compareOrdered(a, b);
       }
     };
   }
 
-  public YYCFKeyHash512() {
+  public YCFKeyHash512() {
     super();
   }
 
   /**
    * This is the hex code of the underlying ID. THIS IS NOT A HASHING FUNCTION.
    */
-  public YYCFKeyHash512(String hexId) {
+  public YCFKeyHash512(String hexId) {
     super(hexId);
   }
 
-  public YYCFKeyHash512(byte[] anId) {
+  public YCFKeyHash512(byte[] anId) {
     super(anId);
   }
 
-  public YYCFKeyHash512(IYYCFKeyHash512 otherKey) {
+  public YCFKeyHash512(IYCFKeyHash512 otherKey) {
 	bytes = new byte[HASH_LENGTH];
 	if(otherKey != null) {
 		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
 	}
   }
 
-  public static YYCFKeyHash512 fromInt(int v) {
-    YYCFKeyHash512 h = nullGet();
+  public static YCFKeyHash512 fromInt(int v) {
+    YCFKeyHash512 h = nullGet();
     h.bytes[3] = (byte) (v & 0xFF);
     h.bytes[2] = (byte) ((v >> 8) & 0xFF);
     h.bytes[1] = (byte) ((v >> 16) & 0xFF);
@@ -180,11 +180,11 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
     return h;
   }
 
-  public YYCFKeyHash512(int notUsed) {
+  public YCFKeyHash512(int notUsed) {
     super(notUsed);
   }
 
-  public static final boolean isNull(YYCFKeyHash512 anId) {
+  public static final boolean isNull(YCFKeyHash512 anId) {
     return anId == null || anId.isNull();
   }
 
@@ -196,8 +196,8 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
   /**
    * Get a new hash object with the key set to all 0s
    */
-  static public YYCFKeyHash512 nullGet() {
-    YYCFKeyHash512 k = new YYCFKeyHash512(new byte[HASH_LENGTH]);
+  static public YCFKeyHash512 nullGet() {
+    YCFKeyHash512 k = new YCFKeyHash512(new byte[HASH_LENGTH]);
     return k;
   }
 
@@ -228,61 +228,61 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
       System.arraycopy(newBytes, offset, bytes, 0, Math.min(HASH_LENGTH,length));
   }
 
-  public static YYCFKeyHash512 hash(String text) {
+  public static YCFKeyHash512 hash(String text) {
     if (text != null) {
       try {
         MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
         byte[] buf = text.getBytes("UTF-8");
         md.update(buf);
 
-        return new YYCFKeyHash512(md.digest());
+        return new YCFKeyHash512(md.digest());
       }
       catch (Exception ex) {
       }
     }
-    return new YYCFKeyHash512(0);
+    return new YCFKeyHash512(0);
   }
 
-  public static YYCFKeyHash512 hash(byte[] payload) {
+  public static YCFKeyHash512 hash(byte[] payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
       md.update(payload);
 
-      return new YYCFKeyHash512(md.digest());
+      return new YCFKeyHash512(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash512(0);
+    return new YCFKeyHash512(0);
   }
 
-  public static YYCFKeyHash512 hash(byte[]... payload) {
+  public static YCFKeyHash512 hash(byte[]... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
       for (byte[] bs : payload) {
         md.update(bs);
       }
 
-      return new YYCFKeyHash512(md.digest());
+      return new YCFKeyHash512(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash512(0);
+    return new YCFKeyHash512(0);
   }
 
-  public static YYCFKeyHash512 hash(IYYCFKeyHash512... payload) {
+  public static YCFKeyHash512 hash(IYCFKeyHash512... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (IYYCFKeyHash512 k : payload) {
+      for (IYCFKeyHash512 k : payload) {
         md.update(k.getBytes());
       }
-      return new YYCFKeyHash512(md.digest());
+      return new YCFKeyHash512(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash512(0);
+    return new YCFKeyHash512(0);
   }
 
-  public static YYCFKeyHash512 hash(int[] payload) {
+  public static YCFKeyHash512 hash(int[] payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
       for (int x : payload) {
@@ -292,19 +292,19 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
         md.update((byte) (x & 255));
       }
 
-      return new YYCFKeyHash512(md.digest());
+      return new YCFKeyHash512(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash512(0);
+    return new YCFKeyHash512(0);
   }
 
   @Override
-  public YYCFKeyHash512 deepClone() {
-    return new YYCFKeyHash512(this);
+  public YCFKeyHash512 deepClone() {
+    return new YCFKeyHash512(this);
   }
 
-  static public YYCFKeyHash512 fromHexQuick(String string) {
+  static public YCFKeyHash512 fromHexQuick(String string) {
     if (string == null) {
       return null;
     }
@@ -330,21 +330,21 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
     }
   }
 
-  public static final YYCFKeyHash512[] toYYCFKeyHash512(String[] ids) {
+  public static final YCFKeyHash512[] toYCFKeyHash512(String[] ids) {
     if (ids == null) {
       return null;
     }
     if (ids.length == 0) {
-      return new YYCFKeyHash512[0];
+      return new YCFKeyHash512[0];
     }
-    YYCFKeyHash512[] r = new YYCFKeyHash512[ids.length];
+    YCFKeyHash512[] r = new YCFKeyHash512[ids.length];
     for (int i = 0; i < ids.length; i++) {
-      r[i] = new YYCFKeyHash512(ids[i]);
+      r[i] = new YCFKeyHash512(ids[i]);
     }
     return r;
   }
 
-  public static final List<YYCFKeyHash512> toYYCFKeyHash512List(String[] ids) {
+  public static final List<YCFKeyHash512> toYCFKeyHash512List(String[] ids) {
 
     if (ids == null) {
       return null;
@@ -352,15 +352,15 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
     if (ids.length == 0) {
       return Collections.emptyList();
     }
-    List<YYCFKeyHash512> r = new ArrayList<YYCFKeyHash512>(ids.length);
+    List<YCFKeyHash512> r = new ArrayList<YCFKeyHash512>(ids.length);
     for (int i = 0; i < ids.length; i++) {
-      r.add(new YYCFKeyHash512(ids[i]));
+      r.add(new YCFKeyHash512(ids[i]));
     }
     return r;
 
   }
 
-  public static final Set<YYCFKeyHash512> toYYCFKeyHash512Set(String[] ids) {
+  public static final Set<YCFKeyHash512> toYCFKeyHash512Set(String[] ids) {
 
     if (ids == null) {
       return null;
@@ -368,9 +368,9 @@ public class YYCFKeyHash512 extends YYCFKeyHashBase<YYCFKeyHash512> implements I
     if (ids.length == 0) {
       return Collections.emptySet();
     }
-    Set<YYCFKeyHash512> r = new HashSet<YYCFKeyHash512>(ids.length);
+    Set<YCFKeyHash512> r = new HashSet<YCFKeyHash512>(ids.length);
     for (int i = 0; i < ids.length; i++) {
-      r.add(new YYCFKeyHash512(ids[i]));
+      r.add(new YCFKeyHash512(ids[i]));
     }
     return r;
 

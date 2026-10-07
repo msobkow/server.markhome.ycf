@@ -29,23 +29,23 @@ import java.util.*;
 import java.math.*;
 
 /**
- * YYCFArgumentOverflowException indicates that an argument exceeds the permitted value range.
+ * YCFArgumentOverflowException indicates that an argument exceeds the permitted value range.
  */
-public class YYCFArgumentOverflowException extends YYCFArgumentException {
+public class YCFArgumentOverflowException extends YCFArgumentException {
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enMsg,
 		String xMsg )
 	{
 		super(enMsg, xMsg);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enMsg, String xMsg, Throwable cause) {
 			super(enMsg, xMsg, cause);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -54,7 +54,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		super(throwingClass, methName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -64,7 +64,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		super(throwingClass, methName, enMsg, xMsg, th);
 	}
 
-	// public YYCFArgumentOverflowException(
+	// public YCFArgumentOverflowException(
 	//  	Class<?> throwingClass,
 	//  	String methName,
 	//  	int argNo,
@@ -75,7 +75,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 	//  	super(throwingClass, methName, argNo, argName, enMsg, xMsg);
 	// }
 
-	// public YYCFArgumentOverflowException(
+	// public YCFArgumentOverflowException(
 	// 	Class<?> throwingClass,
 	// 	String methName,
 	// 	int argNo,
@@ -87,7 +87,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 	// 	super(throwingClass, methName, argNo, argName, enMsg, xMsg, th);
 	// }
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
@@ -96,7 +96,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		super(enFieldName, xFieldName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -106,7 +106,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		super(enFieldName, xFieldName, methName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -117,7 +117,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		super(enFieldName, xFieldName, methName, enMsg, xMsg, th);
 	}
 
-	// public YYCFArgumentOverflowException(
+	// public YCFArgumentOverflowException(
 	// 	String enFieldName,
 	//  	String xFieldName,
 	//  	String methName,
@@ -129,7 +129,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 	//  	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg);
 	// }
 
-	// public YYCFArgumentOverflowException(
+	// public YCFArgumentOverflowException(
 	// 	String enFieldName,
 	// 	String xFieldName,
 	// 	String methName,
@@ -144,7 +144,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 
 
 	
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -152,13 +152,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		short argValue,
 		short maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -166,7 +166,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -175,13 +175,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		short maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -190,7 +190,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -198,13 +198,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		int argValue,
 		int maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -212,7 +212,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -221,13 +221,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		int maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -236,7 +236,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -244,13 +244,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		long argValue,
 		long maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -258,7 +258,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -267,13 +267,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		long maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -282,7 +282,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -290,13 +290,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		float argValue,
 		float maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -304,7 +304,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -313,13 +313,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		float maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -328,7 +328,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -336,13 +336,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		double argValue,
 		double maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -350,7 +350,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -359,13 +359,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		double maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -374,7 +374,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -382,13 +382,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		Calendar argValue,
 		Calendar maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -396,7 +396,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -405,13 +405,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		Calendar maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -420,7 +420,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -428,13 +428,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		String argValue,
 		String maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -442,7 +442,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -451,13 +451,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		String maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -466,7 +466,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -474,13 +474,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		BigDecimal argValue,
 		BigDecimal maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -488,7 +488,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -497,13 +497,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		BigDecimal maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -512,7 +512,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th );
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -521,13 +521,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		short argValue,
 		short maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -535,7 +535,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -545,13 +545,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		short maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -560,7 +560,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -569,13 +569,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		int argValue,
 		int maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -583,7 +583,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -593,13 +593,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		int maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -608,7 +608,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -617,13 +617,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		long argValue,
 		long maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -631,7 +631,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -641,13 +641,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		long maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -656,7 +656,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -665,13 +665,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		float argValue,
 		float maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -679,7 +679,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -689,13 +689,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		float maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -704,7 +704,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -713,13 +713,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		double argValue,
 		double maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -727,7 +727,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -737,13 +737,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		double maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -752,7 +752,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -761,13 +761,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		Calendar argValue,
 		Calendar maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -775,7 +775,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -785,13 +785,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		Calendar maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -800,7 +800,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -809,13 +809,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		String argValue,
 		String maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -823,7 +823,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -833,13 +833,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		String maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -848,7 +848,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -857,13 +857,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		BigDecimal argValue,
 		BigDecimal maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -871,7 +871,7 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentOverflowException(
+	public YCFArgumentOverflowException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -881,13 +881,13 @@ public class YYCFArgumentOverflowException extends YYCFArgumentException {
 		BigDecimal maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentOverflowException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentOverflowException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,

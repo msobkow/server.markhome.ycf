@@ -31,18 +31,18 @@ import server.markhome.ycf.Inz;
 import java.math.*;
 
 /**
- * YYCFArgumentRangeException indicates that a value did not fall with the range minValue to maxValue, inclusive.
+ * YCFArgumentRangeException indicates that a value did not fall with the range minValue to maxValue, inclusive.
  */
-public class YYCFArgumentRangeException extends YYCFArgumentException {
+public class YCFArgumentRangeException extends YCFArgumentException {
 	
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enMsg,
 		String xMsg )
 	{
 		super(enMsg, xMsg);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enMsg,
 		String xMsg,
 		Throwable th)
@@ -50,7 +50,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			super(enMsg, xMsg, th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -59,7 +59,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		super(throwingClass, methName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
@@ -69,7 +69,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		super(throwingClass, methName, enMsg, xMsg, th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 	 	Class<?> throwingClass,
 	 	String methName,
 	 	int argNo,
@@ -80,7 +80,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 	 	Class<?> throwingClass,
 	 	String methName,
 	 	int argNo,
@@ -92,7 +92,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg, th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
@@ -101,7 +101,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		super(enFieldName, xFieldName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -111,7 +111,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		super(enFieldName, xFieldName, methName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -122,7 +122,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		super(enFieldName, xFieldName, methName, enMsg, xMsg, th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 	 	String enFieldName,
 		String xFieldName,
 	 	String methName,
@@ -134,7 +134,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 	 	String enFieldName,
 		String xFieldName,
 	 	String methName,
@@ -149,7 +149,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 
 
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -158,14 +158,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		short minValue,
 		short maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -174,7 +174,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -184,14 +184,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		short maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -201,7 +201,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -210,14 +210,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		int minValue,
 		int maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -226,7 +226,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -236,14 +236,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		int maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -253,7 +253,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -262,14 +262,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		long minValue,
 		long maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -278,7 +278,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -288,14 +288,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		long maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -305,7 +305,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -314,14 +314,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		float minValue,
 		float maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -330,7 +330,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -340,14 +340,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		float maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -357,7 +357,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -366,14 +366,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		double minValue,
 		double maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -382,7 +382,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -392,14 +392,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		double maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -409,7 +409,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -418,14 +418,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		Calendar minValue,
 		Calendar maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -434,7 +434,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -444,14 +444,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		Calendar maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -461,7 +461,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -470,14 +470,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		String minValue,
 		String maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -486,7 +486,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -496,14 +496,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		String maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -513,7 +513,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -522,14 +522,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		BigDecimal minValue,
 		BigDecimal maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -538,7 +538,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -548,14 +548,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		BigDecimal maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.TcmnArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -565,7 +565,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -575,14 +575,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		short minValue,
 		short maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -591,7 +591,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -602,14 +602,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		short maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -619,7 +619,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -629,14 +629,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		int minValue,
 		int maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -645,7 +645,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -656,14 +656,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		int maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -673,7 +673,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -683,14 +683,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		long minValue,
 		long maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -699,7 +699,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -710,14 +710,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		long maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.decimal.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.decimal.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -727,7 +727,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -737,14 +737,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		float minValue,
 		float maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -753,7 +753,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -764,14 +764,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		float maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -781,7 +781,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -791,14 +791,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		double minValue,
 		double maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -807,7 +807,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -818,14 +818,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		double maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.float.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.float.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -835,7 +835,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -845,14 +845,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		Calendar minValue,
 		Calendar maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -861,7 +861,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -872,14 +872,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		Calendar maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -889,7 +889,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -899,14 +899,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		String minValue,
 		String maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -915,7 +915,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -926,14 +926,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		String maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue,
 				minValue,
 				maxValue),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -943,7 +943,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 			th);
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -953,14 +953,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		BigDecimal minValue,
 		BigDecimal maxValue )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
@@ -969,7 +969,7 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 				maxValue.toString()));
 	}
 
-	public YYCFArgumentRangeException(
+	public YCFArgumentRangeException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -980,14 +980,14 @@ public class YYCFArgumentRangeException extends YYCFArgumentException {
 		BigDecimal maxValue,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				argValue.toString(),
 				minValue.toString(),
 				maxValue.toString()),
-			String.format(Inz.x("ycflib.YYCFArgumentRangeException.string.FldArgMsg"),
+			String.format(Inz.x("ycflib.YCFArgumentRangeException.string.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,

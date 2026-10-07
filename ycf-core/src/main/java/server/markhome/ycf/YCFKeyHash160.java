@@ -40,18 +40,18 @@ import java.util.Set;
  *
  * @author msobkow
  */
-public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements IYYCFKeyHash160, Serializable {
+public class YCFKeyHash160 extends YCFKeyHashBase<YCFKeyHash160> implements IYCFKeyHash160, Serializable {
   static final long serialVersionUID = 202608160341L;
   protected byte[] bytes;
 
   @Override
   @SuppressWarnings("unchecked")
-  public int compareTo(IYYCFKeyHash160 o) {
-    int result = compare((IYYCFKeyHash160) this, o);
+  public int compareTo(IYCFKeyHash160 o) {
+    int result = compare((IYCFKeyHash160) this, o);
     return result;
   }
 
-  static public int compareOrdered(IYYCFKeyHash160 h1, IYYCFKeyHash160 h2) {
+  static public int compareOrdered(IYCFKeyHash160 h1, IYCFKeyHash160 h2) {
     if (h1 == null) {
       if (h2 == null) {
         return 0;
@@ -133,46 +133,46 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     return b;
   }
 
-  public static YYCFKeyHash160 fromHex(String string) {
+  public static YCFKeyHash160 fromHex(String string) {
     byte[] b = sbytesFromHex(string);
-    YYCFKeyHash160 h = new YYCFKeyHash160();
+    YCFKeyHash160 h = new YCFKeyHash160();
     h.bytes = b;
     return h;
   }
 
-  public static Comparator<IYYCFKeyHash160> getComparator() {
+  public static Comparator<IYCFKeyHash160> getComparator() {
 
-    return new Comparator<IYYCFKeyHash160>() {
+    return new Comparator<IYCFKeyHash160>() {
       @Override
-      public int compare(IYYCFKeyHash160 a, IYYCFKeyHash160 b) {
+      public int compare(IYCFKeyHash160 a, IYCFKeyHash160 b) {
         return compareOrdered(a, b);
       }
     };
   }
 
-  public YYCFKeyHash160() {
+  public YCFKeyHash160() {
     super();
   }
 
   /**
    * This is the hex code of the underlying ID. THIS IS NOT A HASHING FUNCTION.
    */
-  public YYCFKeyHash160(String hexId) {
+  public YCFKeyHash160(String hexId) {
     super(hexId);
   }
 
-  public YYCFKeyHash160(byte[] anId) {
+  public YCFKeyHash160(byte[] anId) {
     super(anId);
   }
 
-  public YYCFKeyHash160(IYYCFKeyHash160 otherKey) {
+  public YCFKeyHash160(IYCFKeyHash160 otherKey) {
 	bytes = new byte[HASH_LENGTH];
 	if(otherKey != null) {
 		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
 	}
   }
 
-  public YYCFKeyHash160(IYYCFKeyHash224 k) {
+  public YCFKeyHash160(IYCFKeyHash224 k) {
     super();
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
@@ -180,7 +180,7 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     }
   }
 
-  public YYCFKeyHash160(IYYCFKeyHash256 k) {
+  public YCFKeyHash160(IYCFKeyHash256 k) {
     super();
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
@@ -188,7 +188,7 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     }
   }
 
-  public YYCFKeyHash160(IYYCFKeyHash384 k) {
+  public YCFKeyHash160(IYCFKeyHash384 k) {
     super();
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
@@ -196,7 +196,7 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     }
   }
 
-  public YYCFKeyHash160(IYYCFKeyHash512 k) {
+  public YCFKeyHash160(IYCFKeyHash512 k) {
     super();
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
@@ -204,8 +204,8 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     }
   }
 
-  public static YYCFKeyHash160 fromInt(int v) {
-    YYCFKeyHash160 h = nullGet();
+  public static YCFKeyHash160 fromInt(int v) {
+    YCFKeyHash160 h = nullGet();
     h.bytes[3] = (byte) (v & 0xFF);
     h.bytes[2] = (byte) ((v >> 8) & 0xFF);
     h.bytes[1] = (byte) ((v >> 16) & 0xFF);
@@ -213,11 +213,11 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     return h;
   }
 
-  public YYCFKeyHash160(int notUsed) {
+  public YCFKeyHash160(int notUsed) {
     super(notUsed);
   }
 
-  public static final boolean isNull(YYCFKeyHash160 anId) {
+  public static final boolean isNull(YCFKeyHash160 anId) {
     return anId == null || anId.isNull();
   }
 
@@ -229,8 +229,8 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
   /**
    * Get a new hash object with the key set to all 0s
    */
-  static public YYCFKeyHash160 nullGet() {
-    YYCFKeyHash160 k = new YYCFKeyHash160(new byte[HASH_LENGTH]);
+  static public YCFKeyHash160 nullGet() {
+    YCFKeyHash160 k = new YCFKeyHash160(new byte[HASH_LENGTH]);
     return k;
   }
 
@@ -261,61 +261,61 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
       System.arraycopy(newBytes, offset, bytes, 0, Math.min(HASH_LENGTH,length));
   }
 
-  public static YYCFKeyHash160 hash(String text) {
+  public static YCFKeyHash160 hash(String text) {
     if (text != null) {
       try {
         MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
         byte[] buf = text.getBytes("UTF-8");
         md.update(buf);
 
-        return new YYCFKeyHash160(md.digest());
+        return new YCFKeyHash160(md.digest());
       }
       catch (Exception ex) {
       }
     }
-    return new YYCFKeyHash160(0);
+    return new YCFKeyHash160(0);
   }
 
-  public static YYCFKeyHash160 hash(byte[] payload) {
+  public static YCFKeyHash160 hash(byte[] payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
       md.update(payload);
 
-      return new YYCFKeyHash160(md.digest());
+      return new YCFKeyHash160(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash160(0);
+    return new YCFKeyHash160(0);
   }
 
-  public static YYCFKeyHash160 hash(byte[]... payload) {
+  public static YCFKeyHash160 hash(byte[]... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
       for (byte[] bs : payload) {
         md.update(bs);
       }
 
-      return new YYCFKeyHash160(md.digest());
+      return new YCFKeyHash160(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash160(0);
+    return new YCFKeyHash160(0);
   }
 
-  public static YYCFKeyHash160 hash(IYYCFKeyHash160... payload) {
+  public static YCFKeyHash160 hash(IYCFKeyHash160... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (IYYCFKeyHash160 k : payload) {
+      for (IYCFKeyHash160 k : payload) {
         md.update(k.getBytes());
       }
-      return new YYCFKeyHash160(md.digest());
+      return new YCFKeyHash160(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash160(0);
+    return new YCFKeyHash160(0);
   }
 
-  public static YYCFKeyHash160 hash(int[] payload) {
+  public static YCFKeyHash160 hash(int[] payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
       for (int x : payload) {
@@ -325,19 +325,19 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
         md.update((byte) (x & 255));
       }
 
-      return new YYCFKeyHash160(md.digest());
+      return new YCFKeyHash160(md.digest());
     }
     catch (Exception ex) {
     }
-    return new YYCFKeyHash160(0);
+    return new YCFKeyHash160(0);
   }
 
   @Override
-  public YYCFKeyHash160 deepClone() {
-    return new YYCFKeyHash160(this);
+  public YCFKeyHash160 deepClone() {
+    return new YCFKeyHash160(this);
   }
 
-  static public YYCFKeyHash160 fromHexQuick(String string) {
+  static public YCFKeyHash160 fromHexQuick(String string) {
     if (string == null) {
       return null;
     }
@@ -363,21 +363,21 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     }
   }
 
-  public static final YYCFKeyHash160[] toYYCFKeyHash160(String[] ids) {
+  public static final YCFKeyHash160[] toYCFKeyHash160(String[] ids) {
     if (ids == null) {
       return null;
     }
     if (ids.length == 0) {
-      return new YYCFKeyHash160[0];
+      return new YCFKeyHash160[0];
     }
-    YYCFKeyHash160[] r = new YYCFKeyHash160[ids.length];
+    YCFKeyHash160[] r = new YCFKeyHash160[ids.length];
     for (int i = 0; i < ids.length; i++) {
-      r[i] = new YYCFKeyHash160(ids[i]);
+      r[i] = new YCFKeyHash160(ids[i]);
     }
     return r;
   }
 
-  public static final List<YYCFKeyHash160> toYYCFKeyHash160List(String[] ids) {
+  public static final List<YCFKeyHash160> toYCFKeyHash160List(String[] ids) {
 
     if (ids == null) {
       return null;
@@ -385,15 +385,15 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     if (ids.length == 0) {
       return Collections.emptyList();
     }
-    List<YYCFKeyHash160> r = new ArrayList<YYCFKeyHash160>(ids.length);
+    List<YCFKeyHash160> r = new ArrayList<YCFKeyHash160>(ids.length);
     for (int i = 0; i < ids.length; i++) {
-      r.add(new YYCFKeyHash160(ids[i]));
+      r.add(new YCFKeyHash160(ids[i]));
     }
     return r;
 
   }
 
-  public static final Set<YYCFKeyHash160> toYYCFKeyHash160Set(String[] ids) {
+  public static final Set<YCFKeyHash160> toYCFKeyHash160Set(String[] ids) {
 
     if (ids == null) {
       return null;
@@ -401,9 +401,9 @@ public class YYCFKeyHash160 extends YYCFKeyHashBase<YYCFKeyHash160> implements I
     if (ids.length == 0) {
       return Collections.emptySet();
     }
-    Set<YYCFKeyHash160> r = new HashSet<YYCFKeyHash160>(ids.length);
+    Set<YCFKeyHash160> r = new HashSet<YCFKeyHash160>(ids.length);
     for (int i = 0; i < ids.length; i++) {
-      r.add(new YYCFKeyHash160(ids[i]));
+      r.add(new YCFKeyHash160(ids[i]));
     }
     return r;
 

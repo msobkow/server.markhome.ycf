@@ -25,16 +25,16 @@ import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
 
 /**
- * YYCFOptKeyHash160 extends YYCFKeyHash160 with the appropriate behavior for the isNull() and setNull() method signatures.
+ * YCFOptKeyHash160 extends YCFKeyHash160 with the appropriate behavior for the isNull() and setNull() method signatures.
  *
  * @author msobkow
  */
-public class YYCFOptKeyHash160 extends YYCFKeyHash160 implements IYYCFOptional, IYYCFOptKeyHash160 {
+public class YCFOptKeyHash160 extends YCFKeyHash160 implements IYCFOptional, IYCFOptKeyHash160 {
 
 	/**
 	 *	Make this value null.
 	 *
-	 *	@throws YYCFNullArgumentException
+	 *	@throws YCFNullArgumentException
 	 */
 	@Override
 	public void setNull() {

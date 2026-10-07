@@ -29,13 +29,13 @@ import java.util.*;
 import server.markhome.ycf.Inz;
 
 /**
- * If a base class only implements a method to allow it to be instantiated but it is only valid when a subclass specializes it, YYCFMustOverrideException is thrown by that base implementation.
+ * If a base class only implements a method to allow it to be instantiated but it is only valid when a subclass specializes it, YCFMustOverrideException is thrown by that base implementation.
  */
-public class YYCFMustOverrideException extends IllegalStateException {
+public class YCFMustOverrideException extends IllegalStateException {
 
 	protected String localMessage = null;
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enMsg,
 		String xMsg )
 	{
@@ -43,43 +43,43 @@ public class YYCFMustOverrideException extends IllegalStateException {
 		this.localMessage = xMsg;
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enMsg, String xMsg, Throwable cause) {
 			super(enMsg, cause);
 			this.localMessage = xMsg;
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -87,19 +87,19 @@ public class YYCFMustOverrideException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -108,49 +108,49 @@ public class YYCFMustOverrideException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	// public YYCFMustOverrideException(
+	// public YCFMustOverrideException(
 	// 	String enFieldName,
 	// 	String xFieldName,
 	// 	String enMsg,
 	// 	String xMsg )
 	// {
-	// 	super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+	// 	super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 	// 			enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-	// 	this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+	// 	this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 	// 			(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
 	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	// }
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -158,16 +158,16 @@ public class YYCFMustOverrideException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -176,19 +176,19 @@ public class YYCFMustOverrideException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -198,13 +198,13 @@ public class YYCFMustOverrideException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
@@ -212,60 +212,60 @@ public class YYCFMustOverrideException extends IllegalStateException {
 	}
 
 	
-	public YYCFMustOverrideException()
+	public YCFMustOverrideException()
 	{
-		super( String.format(Inz.s("ycflib.YYCFMustOverrideException.default"), "").trim());
-		this.localMessage = String.format(Inz.x("ycflib.YYCFMustOverrideException.default"), "").trim();
+		super( String.format(Inz.s("ycflib.YCFMustOverrideException.default"), "").trim());
+		this.localMessage = String.format(Inz.x("ycflib.YCFMustOverrideException.default"), "").trim();
 	}
 
-	public YYCFMustOverrideException(Throwable th)
+	public YCFMustOverrideException(Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YYCFMustOverrideException.default"), "").trim(), th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFMustOverrideException.default"), "").trim();
+		super( String.format(Inz.s("ycflib.YCFMustOverrideException.default"), "").trim(), th);
+		this.localMessage = String.format(Inz.x("ycflib.YCFMustOverrideException.default"), "").trim();
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		Class<?> throwingClass,
 		String methName)
 	{
-		super( String.format(Inz.s("ycflib.YYCFMustOverrideException.default"),
+		super( String.format(Inz.s("ycflib.YCFMustOverrideException.default"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFMustOverrideException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFMustOverrideException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFMustOverrideException.default"),
+		super( String.format(Inz.s("ycflib.YCFMustOverrideException.default"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFMustOverrideException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFMustOverrideException.default"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enFieldName,
 		String xFieldName,
 		String methName )
 	{
-		super( String.format(Inz.s("ycflib.YYCFMustOverrideException.default"),
+		super( String.format(Inz.s("ycflib.YCFMustOverrideException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFMustOverrideException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFMustOverrideException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
-	public YYCFMustOverrideException(
+	public YCFMustOverrideException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFMustOverrideException.default"),
+		super( String.format(Inz.s("ycflib.YCFMustOverrideException.default"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )),
 			th);
-		this.localMessage = String.format(Inz.x("ycflib.YYCFMustOverrideException.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFMustOverrideException.default"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
 	}
 

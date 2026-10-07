@@ -32,18 +32,18 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import server.markhome.ycf.IYYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 
-import server.markhome.ycf.YYCFNullArgumentException;
+import server.markhome.ycf.YCFNullArgumentException;
 
 /**
  *	An XmlCoreSaxParser is an abstract JAXP DefaultHandler
  *	specialized for SAX2 parsing. 
  */
-public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
+public abstract class YCFXmlCoreSaxParser extends YCFXmlCoreParser {
 
 //	Instance Attributes
 
@@ -57,7 +57,7 @@ public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
 	/**
 	 *	Construct a default parser.
 	 */
-	public YYCFXmlCoreSaxParser() {
+	public YCFXmlCoreSaxParser() {
 		super();
 	}
 
@@ -67,7 +67,7 @@ public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
 	 *
 	 *	@param	jLogger - Log4J Logger
 	 */
-	public YYCFXmlCoreSaxParser( IYYCFMessageLog jLogger ) {
+	public YCFXmlCoreSaxParser( IYCFMessageLog jLogger ) {
 		super( jLogger );
 	}
 
@@ -127,18 +127,18 @@ public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
     			nested = e;
     		}
     		if( getLog() != null ) {
-    			getLog().message( "YYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			getLog().message( "YCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
     		else {
-    			System.err.append( "YYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append( "YCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
         }
         catch (Exception e) {
         	if( getLog() != null ) {
-        		getLog().message( "YYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+        		getLog().message( "YCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
         	}
         	else {
-	    		System.err.append( "YYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+	    		System.err.append( "YCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
 	    	}
         }
     }
@@ -166,26 +166,26 @@ public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
     			nested = e;
     		}
     		if( getLog() != null ) {
-    			getLog().message( "YYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			getLog().message( "YCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
     		else {
-    			System.err.append( "ERROR: YYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append( "ERROR: YCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
         }
 		catch( FileNotFoundException e ) {
 			if( getLog() != null ) {
-				getLog().message( "YYCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n" );
+				getLog().message( "YCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n" );
 			}
 			else {
-				System.err.append( "ERROR: YYCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n" );
+				System.err.append( "ERROR: YCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n" );
 			}
 		}
 		catch (Exception e) {
 			if( getLog() != null ) {
-				getLog().message( "YYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+				getLog().message( "YCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
 			}
 			else {
-				System.err.append( "ERROR: YYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+				System.err.append( "ERROR: YCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
 			}
 		}
 	}
@@ -203,7 +203,7 @@ public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
 	public void parseStringContents( String str ) {
 		final String S_ProcName = "parseStringContents";
 		if( str == null ) {
-			throw new YYCFNullArgumentException( getClass(),
+			throw new YCFNullArgumentException( getClass(),
 				S_ProcName,
 				1,
 				"str" );
@@ -233,10 +233,10 @@ public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
     			nested = e;
     		}
     		if( getLog() != null ) {
-    			getLog().message( "YYCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			getLog().message( "YCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
     		else {
-    			System.err.append( "ERROR: YYCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append( "ERROR: YCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
         }
         catch (SAXException e) {
@@ -246,18 +246,18 @@ public abstract class YYCFXmlCoreSaxParser extends YYCFXmlCoreParser {
     			nested = e;
     		}
     		if( getLog() != null ) {
-    			getLog().message( "YYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			getLog().message( "YCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
     		else {
-    			System.err.append( "ERROR: YYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append( "ERROR: YCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
     		}
         }
 		catch (Exception e) {
 			if( getLog() != null ) {
-				getLog().message( "YYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+				getLog().message( "YCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
 			}
 			else {
-				System.err.append( "ERROR: YYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+				System.err.append( "ERROR: YCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
 			}
 		}
 	}

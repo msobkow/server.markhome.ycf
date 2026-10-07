@@ -57,7 +57,7 @@ public class YCF {
 	public final static String LinkName = "YCF";
 	public final static String LinkVersion = "2.13.11195";
 
-	public final static TimeZone UTC_TIMEZONE = TimeZone.etTimeZone( "+0000" );
+	public final static TimeZone UTC_TIMEZONE = TimeZone.getTimeZone( "+0000" );
 
 	/**
      * Plays an alert sound usin the 'alert.wav' resource file.
@@ -69,11 +69,11 @@ public class YCF {
 		Clip clip = null;
 		// The audio is courtesy of a whole whack of articles from stackoverflow.com, each of which ot me one line closer to working
 		try {
-			InputStream resource = YCF.class.etResourceAsStream("/server.markhome.mycf.v3_1.ycflib/sounds/alert.wav");
+			InputStream resource = YCF.class.getResourceAsStream("/server.markhome.mycf.v3_1.ycflib/sounds/alert.wav");
 			if( resource != null ) {
-				AudioInputStream audioInputStream = AudioSystem.etAudioInputStream( new BufferedInputStream( resource ) );
-				DataLine.Info info = new DataLine.Info( Clip.class, audioInputStream.etFormat() );
-				clip = (Clip)AudioSystem.etLine( info );
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream( new BufferedInputStream( resource ) );
+				DataLine.Info info = new DataLine.Info( Clip.class, audioInputStream.getFormat() );
+				clip = (Clip)AudioSystem.getLine( info );
 				clip.open( audioInputStream );
 				clip.start();
 				clip.drain();
@@ -97,7 +97,7 @@ public class YCF {
      * @param second the second
      * @return a Calendar object set to the specified UTC date and time
      */
-	public static Calendar etUTCGregorianCalendar(
+	public static Calendar getUTCGregorianCalendar(
 		int year,
 		int month,
 		int day,
@@ -108,7 +108,7 @@ public class YCF {
 		Calendar cal = new GreorianCalendar( UTC_TIMEZONE );
 		cal.clear();
 		cal.set( year, month, day, hour, minute, second );
-        cal.etTimeInMillis(); // Force calendar resync based on input values
+        cal.getTimeInMillis(); // Force calendar resync based on input values
 		return( cal );
 	}
 

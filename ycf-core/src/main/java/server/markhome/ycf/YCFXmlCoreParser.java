@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import server.markhome.ycf.IYYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 
 /**
  *	An OmxParser is an abstract Xerces-J DefaultHandler.
@@ -45,9 +45,9 @@ import server.markhome.ycf.IYYCFMessageLog;
  *
  *	@see	http://xerces.apache.org/
  */
-public abstract class YYCFXmlCoreParser
+public abstract class YCFXmlCoreParser
 extends DefaultHandler
-implements YYCFXmlCoreContextFactory
+implements YCFXmlCoreContextFactory
 {
 
 //	Constants
@@ -86,7 +86,7 @@ implements YYCFXmlCoreContextFactory
 	 */
 	private boolean secureProcessingEnabled = DEFAULT_SECURE_PROCESSING;
 
-	private IYYCFMessageLog log = null;
+	private IYCFMessageLog log = null;
 
 	/**
 	 *	The current document locator of the parse.
@@ -96,14 +96,14 @@ implements YYCFXmlCoreContextFactory
 	/**
 	 *	The root element handler for processing schema documents.
 	 */
-	private YYCFXmlCoreElementHandler rootElementHandler = null;
+	private YCFXmlCoreElementHandler rootElementHandler = null;
 
 	/**
 	 *	The processing of startDocument, endDocument,
 	 *	startElement, and stopElement events maintains
 	 *	the processing context stack of the parser.
 	 */
-	private volatile LinkedList<YYCFXmlCoreContext> contextStack = new LinkedList<YYCFXmlCoreContext>();
+	private volatile LinkedList<YCFXmlCoreContext> contextStack = new LinkedList<YCFXmlCoreContext>();
 
 	/**
 	 *	The Context factory to use.
@@ -111,7 +111,7 @@ implements YYCFXmlCoreContextFactory
 	 *	If no context factory is ever specified, the default "this"
 	 *	factory is used.
 	 */
-	private YYCFXmlCoreContextFactory xmlCoreContextFactory = null;
+	private YCFXmlCoreContextFactory xmlCoreContextFactory = null;
 
 	// private static XMLGrammarPoolImpl grammarPool = new XMLGrammarPoolImpl();
 	
@@ -156,7 +156,7 @@ implements YYCFXmlCoreContextFactory
 	/**
 	 *	Construct a default parser.
 	 */
-	public YYCFXmlCoreParser() {
+	public YCFXmlCoreParser() {
 		this.
 		log = null;
 	}
@@ -167,7 +167,7 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@param	jlog - Log4J log
 	 */
-	public YYCFXmlCoreParser( IYYCFMessageLog jlog ) {
+	public YCFXmlCoreParser( IYCFMessageLog jlog ) {
 		assert jlog != null
 			: "jlog (arg 1) is null";
 		log = jlog;
@@ -227,7 +227,7 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@return	The Log4J log 
 	 */
-	public IYYCFMessageLog getLog() {
+	public IYCFMessageLog getLog() {
 		return( log );
 	}
 	
@@ -236,7 +236,7 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@param	jlog - The log to use
 	 */
-	public void setLog( IYYCFMessageLog jlog ) {
+	public void setLog( IYCFMessageLog jlog ) {
 		assert jlog != null
 			: "jlog (arg 1) is null";
 		log = jlog;
@@ -249,7 +249,7 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@return	The root element handler
 	 */
-	public YYCFXmlCoreElementHandler getRootElementHandler() {
+	public YCFXmlCoreElementHandler getRootElementHandler() {
 		return( rootElementHandler );
 	}
 	
@@ -258,7 +258,7 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@param	handler	The root element handler to use.
 	 */
-	protected void setRootElementHandler( YYCFXmlCoreElementHandler handler ) {
+	protected void setRootElementHandler( YCFXmlCoreElementHandler handler ) {
 		assert handler != null : "handler (arg 1) is null";
 		rootElementHandler = handler;
 	}
@@ -327,12 +327,12 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@return	The top element handler on the stack.
 	 */
-	public YYCFXmlCoreContext getCurContext() {
+	public YCFXmlCoreContext getCurContext() {
 		if( contextStack.isEmpty() ) {
 			return( null );
 		}
 		
-		YYCFXmlCoreContext curContext = (YYCFXmlCoreContext)( contextStack.getLast() );
+		YCFXmlCoreContext curContext = (YCFXmlCoreContext)( contextStack.getLast() );
 		return( curContext );
 	}
 
@@ -343,7 +343,7 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@return	The context factory to use.
 	 */
-	public YYCFXmlCoreContextFactory getXmlCoreContextFactory() {
+	public YCFXmlCoreContextFactory getXmlCoreContextFactory() {
 		return( xmlCoreContextFactory );
 	}
 
@@ -352,7 +352,7 @@ implements YYCFXmlCoreContextFactory
 	 *
 	 *	@param	factory	The context factory to use.	
 	 */
-	public void setXmlCoreContextFactory( YYCFXmlCoreContextFactory factory ) {
+	public void setXmlCoreContextFactory( YCFXmlCoreContextFactory factory ) {
 		assert factory != null : "factory (arg 1) is null";
 		xmlCoreContextFactory = factory;
 	}
@@ -366,17 +366,17 @@ implements YYCFXmlCoreContextFactory
 	 *	@param	qName	The QName of the element about to be processed.
 	 *	@param	handler	The XmlCoreElementHandler which will be used for processing.
 	 */
-	public YYCFXmlCoreContext newXmlCoreContext(
-		YYCFXmlCoreContext src,
+	public YCFXmlCoreContext newXmlCoreContext(
+		YCFXmlCoreContext src,
 		String qName,
-		YYCFXmlCoreElementHandler handler )
+		YCFXmlCoreElementHandler handler )
 	{
-		YYCFXmlCoreContext retval;
+		YCFXmlCoreContext retval;
 		if( ( xmlCoreContextFactory != null ) && ( xmlCoreContextFactory != this ) ) {
 			retval = xmlCoreContextFactory.newXmlCoreContext( src, qName, handler );
 		}
 		else {
-			retval = new YYCFXmlCoreContext( src, qName, handler );
+			retval = new YCFXmlCoreContext( src, qName, handler );
 		}
 		
 		return( retval );
@@ -389,17 +389,17 @@ implements YYCFXmlCoreContextFactory
 	 *	@param	jlog	Log4J log to use, if null, use parser's log.
 	 *	@param	handler	The XmlCoreElementHandler which will be processing the doc root.
 	 */
-	public YYCFXmlCoreContext newXmlCoreContext(
-		YYCFXmlCoreParser coreParser,
-		IYYCFMessageLog jlog,
-		YYCFXmlCoreElementHandler elementHandler )
+	public YCFXmlCoreContext newXmlCoreContext(
+		YCFXmlCoreParser coreParser,
+		IYCFMessageLog jlog,
+		YCFXmlCoreElementHandler elementHandler )
 	{
-		YYCFXmlCoreContext retval;
+		YCFXmlCoreContext retval;
 		if( ( xmlCoreContextFactory != null ) && ( xmlCoreContextFactory != this ) ) {
 			retval = xmlCoreContextFactory.newXmlCoreContext( coreParser, jlog, elementHandler );
 		}
 		else {
-			retval = new YYCFXmlCoreContext( coreParser, jlog, elementHandler );
+			retval = new YCFXmlCoreContext( coreParser, jlog, elementHandler );
 		}
 		return( retval );
 	}
@@ -563,32 +563,32 @@ implements YYCFXmlCoreContextFactory
 		Attributes	attrs )
 	throws SAXException
 	{
-    	YYCFXmlCoreContext curContext;
+    	YCFXmlCoreContext curContext;
     	if( contextStack.isEmpty() ) {
-    		YYCFXmlCoreElementHandler rootHandler = getRootElementHandler();
+    		YCFXmlCoreElementHandler rootHandler = getRootElementHandler();
     		assert rootHandler != null;
-    		YYCFXmlCoreContext rootContext = new YYCFXmlCoreContext( this, getLog(), rootHandler );
+    		YCFXmlCoreContext rootContext = new YCFXmlCoreContext( this, getLog(), rootHandler );
     		contextStack.addLast( rootContext );
     	}
 
-		YYCFXmlCoreContext prev = (YYCFXmlCoreContext)contextStack.getLast();
+		YCFXmlCoreContext prev = (YCFXmlCoreContext)contextStack.getLast();
 		if( prev == null ) {
 			throw new RuntimeException( "ContextStack.top is a null value" );
 		}
 
-		YYCFXmlCoreElementHandler prevHandler = prev.getElementHandler();
+		YCFXmlCoreElementHandler prevHandler = prev.getElementHandler();
 		if( prevHandler == null ) {
 			throw new RuntimeException( "ContextStack.top.ElementHandler is null" );
 		}
 
-		YYCFXmlCoreElementHandler curHandler = prevHandler.getElementHandler( qName );
+		YCFXmlCoreElementHandler curHandler = prevHandler.getElementHandler( qName );
 		if( curHandler == null ) {
 			throw new RuntimeException( "ContextStack.top.ElementHandler<"
 				+ prevHandler.getClass().getSimpleName() + ">.getElementHandler( \""
 				+ qName + "\" ) has no such mapping" );
 		}
 
-    	curContext = new YYCFXmlCoreContext( prev, qName, curHandler );
+    	curContext = new YCFXmlCoreContext( prev, qName, curHandler );
 
     	contextStack.addLast( curContext );
 
@@ -621,8 +621,8 @@ implements YYCFXmlCoreContextFactory
 	{
     	assert ! contextStack.isEmpty() : "ContextStack underflow";
 
-    	YYCFXmlCoreContext curContext = (YYCFXmlCoreContext)contextStack.getLast();
-    	YYCFXmlCoreElementHandler curHandler = curContext.getElementHandler();
+    	YCFXmlCoreContext curContext = (YCFXmlCoreContext)contextStack.getLast();
+    	YCFXmlCoreElementHandler curHandler = curContext.getElementHandler();
 
     	try {
     		curHandler.endElement( uri, localName, qName );

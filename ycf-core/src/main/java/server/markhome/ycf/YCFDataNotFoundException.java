@@ -27,14 +27,14 @@ import org.teavm.jso.JSProperty;
 import server.markhome.ycf.Inz;
 
 /**
- * YYCFDataNotFoundException is thrown when data cannot be found that should exist
+ * YCFDataNotFoundException is thrown when data cannot be found that should exist
  */
-public class YYCFDataNotFoundException extends IllegalStateException {
+public class YCFDataNotFoundException extends IllegalStateException {
 
 	protected String localMessage = null;
 	protected Object indexKey = null;
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		String enMsg,
 		String xMsg )
 	{
@@ -42,7 +42,7 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 		this.localMessage = xMsg;
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		String enMsg,
 		String xMsg,
 		Throwable th)
@@ -51,37 +51,37 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 			this.localMessage = xMsg;
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -89,19 +89,19 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName,
 		int argNo,
@@ -110,49 +110,49 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.TcmnArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enMsg,
 		String xMsg )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -160,16 +160,16 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -178,19 +178,19 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 		String enMsg,
 		String xMsg )
 	{
-		super(String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -200,72 +200,72 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 		String xMsg,
 		Throwable th )
 	{
-		super( String.format(Inz.s("ycflib.YYCFArgumentException.FldArgMsg"),
+		super( String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
 				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFArgumentException.FldArgMsg"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
 				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				argNo,
 				argName,
 				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
 	}
 
-	public YYCFDataNotFoundException()
+	public YCFDataNotFoundException()
 	{
-		super(String.format(Inz.s("ycflib.YYCFDataNotFound.default"), "" ).trim());
-		this.localMessage = String.format(Inz.x("ycflib.YYCFDataNotFound.default"), "" ).trim();
+		super(String.format(Inz.s("ycflib.YCFDataNotFound.default"), "" ).trim());
+		this.localMessage = String.format(Inz.x("ycflib.YCFDataNotFound.default"), "" ).trim();
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName )
 	{
-		super(String.format(Inz.s("ycflib.YYCFDataNotFound.default"),
+		super(String.format(Inz.s("ycflib.YCFDataNotFound.default"),
 				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim());
-		this.localMessage = String.format(Inz.x("ycflib.YYCFDataNotFound.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFDataNotFound.default"),
 				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim();
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFDataNotFound.default"),
+		super(String.format(Inz.s("ycflib.YCFDataNotFound.default"),
 				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim(),
 				th );
-		this.localMessage = String.format(Inz.x("ycflib.YYCFDataNotFound.default"),
+		this.localMessage = String.format(Inz.x("ycflib.YCFDataNotFound.default"),
 				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim();
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName,
 		String enArgIndexName,
 		String xArgIndexName,
 		Object argKey )
 	{
-		super( (argKey != null) ? String.format(Inz.s("ycflib.YYCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
+		super( (argKey != null) ? String.format(Inz.s("ycflib.YCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enArgIndexName,
 					argKey.toString())
-				: String.format(Inz.s("ycflib.YYCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
+				: String.format(Inz.s("ycflib.YCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enArgIndexName));
-		this.localMessage = (argKey != null) ? String.format(Inz.x("ycflib.YYCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
+		this.localMessage = (argKey != null) ? String.format(Inz.x("ycflib.YCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName,
 					argKey.toString())
-				: String.format(Inz.x("ycflib.YYCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
+				: String.format(Inz.x("ycflib.YCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName);
 		this.indexKey = argKey;
 	}
 
-	public YYCFDataNotFoundException(
+	public YCFDataNotFoundException(
 		Class<?> throwingClass,
 		String methName,
 		String enArgIndexName,
@@ -273,18 +273,18 @@ public class YYCFDataNotFoundException extends IllegalStateException {
 		Object argKey,
 		Throwable th )
 	{
-		super( (argKey != null) ? String.format(Inz.s("ycflib.YYCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
+		super( (argKey != null) ? String.format(Inz.s("ycflib.YCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enArgIndexName,
 					argKey.toString())
-				: String.format(Inz.s("ycflib.YYCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
+				: String.format(Inz.s("ycflib.YCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					enArgIndexName));
-		this.localMessage = (argKey != null) ? String.format(Inz.x("ycflib.YYCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
+		this.localMessage = (argKey != null) ? String.format(Inz.x("ycflib.YCFDataNotFound.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName,
 					argKey.toString())
-				: String.format(Inz.x("ycflib.YYCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
+				: String.format(Inz.x("ycflib.YCFDataNotFound.index"),//%1$s Detected violation of unique index %2$s
 					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName);
 		this.indexKey = argKey;

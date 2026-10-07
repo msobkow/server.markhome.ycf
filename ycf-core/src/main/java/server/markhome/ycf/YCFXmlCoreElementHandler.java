@@ -26,7 +26,7 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
-import server.markhome.ycf.IYYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -37,17 +37,17 @@ import org.xml.sax.SAXException;
  *	Each element parse context has a map by QName, resolving to
  *	XmlCoreElementParser instances.
  */
-public abstract class YYCFXmlCoreElementHandler {
+public abstract class YCFXmlCoreElementHandler {
 
 	/**
 	 *	The XML Core Parser which owns this Element Handler.
 	 */
-	private YYCFXmlCoreParser parser = null;
+	private YCFXmlCoreParser parser = null;
 
 	/**
 	 *	The Map by QName for resolving sub-element handlers.
 	 */
-	private Map<String,YYCFXmlCoreElementHandler> elementHandler = new HashMap<String,YYCFXmlCoreElementHandler>();
+	private Map<String,YCFXmlCoreElementHandler> elementHandler = new HashMap<String,YCFXmlCoreElementHandler>();
 
 //	Constructors
 
@@ -60,7 +60,7 @@ public abstract class YYCFXmlCoreElementHandler {
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
 	 */
-	public YYCFXmlCoreElementHandler( YYCFXmlCoreParser coreParser ) {
+	public YCFXmlCoreElementHandler( YCFXmlCoreParser coreParser ) {
 		assert coreParser != null : "coreParser (arg 1) is null";
 		// Deprecated by Log4J 2 debugLogger.setLevel( Level.INFO );
 		setParser( coreParser );
@@ -73,9 +73,9 @@ public abstract class YYCFXmlCoreElementHandler {
 	 *
 	 *	@return	Logger
 	 */
-	public IYYCFMessageLog getLog() {
-		YYCFXmlCoreContext context = ( parser != null ) ? parser.getCurContext() : null;
-		IYYCFMessageLog retval = ( context != null ) ? context.getLog() : null;
+	public IYCFMessageLog getLog() {
+		YCFXmlCoreContext context = ( parser != null ) ? parser.getCurContext() : null;
+		IYCFMessageLog retval = ( context != null ) ? context.getLog() : null;
 		if( retval == null ) {
 			if( parser != null ) {
 				retval = parser.getLog();
@@ -91,7 +91,7 @@ public abstract class YYCFXmlCoreElementHandler {
 	 *
 	 *	@return	The XML Core Parser which owns this element handler.
 	 */
-	public YYCFXmlCoreParser getParser() {
+	public YCFXmlCoreParser getParser() {
 		return( parser );
 	}
 
@@ -100,7 +100,7 @@ public abstract class YYCFXmlCoreElementHandler {
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
 	 */
-	protected void setParser( YYCFXmlCoreParser coreParser ) {
+	protected void setParser( YCFXmlCoreParser coreParser ) {
 		assert coreParser != null : "coreParser (arg 1) is null";
 		parser = coreParser;
 	}
@@ -114,7 +114,7 @@ public abstract class YYCFXmlCoreElementHandler {
 	 *	@param	qName	The QName to map to the handler
 	 *	@param	handler	The XmlCoreElementHandler to process the element events.
 	 */
-	public void addElementHandler( String qName, YYCFXmlCoreElementHandler handler ) {
+	public void addElementHandler( String qName, YCFXmlCoreElementHandler handler ) {
 		assert qName != null && qName.length() > 0 : "qName (arg 1) is null or empty";
 		assert handler != null : "handler (arg 2) is null";
 		assert ! elementHandler.containsKey( qName ) : "Duplicate qName=\"" + qName + "\" in elementHandler map";
@@ -127,8 +127,8 @@ public abstract class YYCFXmlCoreElementHandler {
 	 *	@param	qName	The QName used to locate the handler.
 	 *	@return	The XmlCoreElementHandler mapped to the specified name or null.
 	 */
-	public YYCFXmlCoreElementHandler getElementHandler( String qName ) {
-		YYCFXmlCoreElementHandler retval = (YYCFXmlCoreElementHandler)elementHandler.get( qName );
+	public YCFXmlCoreElementHandler getElementHandler( String qName ) {
+		YCFXmlCoreElementHandler retval = (YCFXmlCoreElementHandler)elementHandler.get( qName );
 		return( retval );
 	}
 

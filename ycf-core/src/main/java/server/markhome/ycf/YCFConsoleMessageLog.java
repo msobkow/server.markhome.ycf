@@ -32,8 +32,8 @@ import java.util.*;
 /**
  *	Implement the OmfMessageLogInterface over a Log4J Logger.
  */
-public class YYCFConsoleMessageLog
-implements IYYCFMessageLog {
+public class YCFConsoleMessageLog
+implements IYCFMessageLog {
 
 	/**
 	 *	Handle for the current file output stream.
@@ -48,7 +48,7 @@ implements IYYCFMessageLog {
 	/**
 	 *	Default constructor.
 	 */
-	public YYCFConsoleMessageLog() {
+	public YCFConsoleMessageLog() {
 		indent = 0;
 	}
 	

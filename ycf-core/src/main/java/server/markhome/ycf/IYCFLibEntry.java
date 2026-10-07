@@ -28,74 +28,73 @@ import java.util.*;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-@JSExportClasses({IYYCFEntry.class, YYCFEntry.class })
-public final class YYCFEntry implements IYYCFEntry {
+public final interface IYCFLibEntry extends JSObject {
 
 	/**
 	 *	The public resource name for the parent library.
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_PARENT_NAME = "server.markhome";</tt>
+	 *	<tt>public static final String IYCF_LIB_PARENT_NAME = "server.markhome";</tt>
 	 */
-	public static final String YCF_LIB_PARENT_NAME = "server.markhome";
+	public static final String IYCF_LIB_PARENT_NAME = "server.markhome";
 
 	/**
 	 *	The parent resource name for this library.
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_PARENT_VERSION = "3.1.42-20260918";</tt>
+	 *	<tt>public static final String IYCF_LIB_PARENT_VERSION = "3.1.42-20260918";</tt>
 	 */
-	public static final String YCF_LIB_PARENT_VERSION = "3.1.42-20260918";
+	public static final String IYCF_LIB_PARENT_VERSION = "3.1.42-20260918";
 
 	/**
 	 *	The public resource name for this library.
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_NAME = YCF_LIB_PARENT_NAME + ".ycf";</tt>
+	 *	<tt>public static final String IYCF_LIB_NAME = IYCF_LIB_PARENT_NAME + ".ycf";</tt>
 	 */
-	public static final String YCF_LIB_NAME = YCF_LIB_PARENT_NAME + ".ycf";
+	public static final String IYCF_LIB_NAME = IYCF_LIB_PARENT_NAME + ".ycf";
 
 	/**
 	 *	The public version string for this library.
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_VERSION = YCF_LIB_PARENT_VERSION;</tt>
+	 *	<tt>public static final String IYCF_LIB_VERSION = IYCF_LIB_PARENT_VERSION;</tt>
 	 */
-	public static final String YCF_LIB_VERSION = YCF_LIB_PARENT_VERSION;
+	public static final String IYCF_LIB_VERSION = IYCF_LIB_PARENT_VERSION;
 
 	/**
 	 *	Implementations must be a singleton, returning the same instance over and over after initialization. How this is achieved may vary.
 	 *
-	 *	<tt>protected final static singleton = new AtomicReference<YYCFEntry>(null);</tt>
+	 *	<tt>protected final static singleton = new AtomicReference<IYCFLibEntry>(null);</tt>
 	 */
-	protected final static AtomicReference<YYCFEntry> singleton = new AtomicReference<YYCFEntry>(null);
+	protected final static AtomicReference<IYCFLibEntry> singleton = new AtomicReference<IYCFLibEntry>(null);
 
 	/**
 	 *	Default constructor is protected so that only a singleton can be created.
 	 *
-	 *	<tt>protected YYCFEntry { }</tt>
+	 *	<tt>protected IYCFLibEntry { }</tt>
 	 */
 	@JSExport
-	protected YYCFEntry() { }
+	protected IYCFLibEntry() { }
 
 	/**
 	 *	Get the singleton.
 	 *
-	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "YCF" as appropriate.
+	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
 	 *
-	 *	<tt>public final static YYCFEntry getYYCFEntrySingleton()</tt>
+	 *	<tt>public final static IYCFLibEntry getIYCFLibEntrySingleton()</tt>
 	 *
 	 *	@return Return the library singleton. Always returns the same instance after the first invocation unless reset(true) is invoked.
 	 */
 	@JSExport
-	public final static YYCFEntry getYYCFEntrySingleton() {
-		YYCFEntry retval = singleton.get();
+	public final static IYCFLibEntry getIYCFLibEntrySingleton() {
+		IYCFLibEntry retval = singleton.get();
 		if( retval == null ) {
-			retval = new YYCFEntry();
+			retval = new IYCFLibEntry();
 			singleton.compareAndSet(null, retval);
 			retval = singleton.get();
 		}
@@ -103,29 +102,29 @@ public final class YYCFEntry implements IYYCFEntry {
 	}
 
 	/**
-	 *	Get an instance. Because this is a singleton, getInstance() always returns null, as it just invokes YYCFEntry() under the hood.
+	 *	Get an instance. Because this is a singleton, getInstance() always returns null, as it just invokes IYCFLibEntry() under the hood.
 	 *
-	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "YCF" as appropriate.
+	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
 	 *
-	 *	<tt>public final static YYCFEntry getYYCFEntryInstance()</tt>
+	 *	<tt>public final static IYCFLibEntry getIYCFLibEntryInstance()</tt>
 	 *
 	 *	@return The instance, if any. Always returns null.
 	 */
 	@JSExport
-	public static YYCFEntry getYYCFEntryInstance() { return(null); }
+	public static IYCFLibEntry getIYCFLibEntryInstance() { return(null); }
 
 	/**
 	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
 	 *
-	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "YCF" as appropriate.
+	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
 	 *
-	 *	<tt>public static boolean execYYCFEntryYCFReset(boolean yesReally)</tt>
+	 *	<tt>public static boolean execIYCFLibEntryLibReset(boolean yesReally)</tt>
 	 *
 	 *	@param	yesReally Are you sure you want to reset the value?
 	 */
 	@JSExport
-	public static boolean execYYCFEntryYCFReset(boolean yesReally) {
-		YYCFEntry sgl = singleton.get();
+	public static boolean execIYCFLibEntryLibReset(boolean yesReally) {
+		IYCFLibEntry sgl = singleton.get();
 		boolean retval;
 		if (sgl == null || yesReally) {
 			retval = false;
@@ -134,7 +133,7 @@ public final class YYCFEntry implements IYYCFEntry {
 				singleton.compareAndSet(sgl, null);
 			}
 
-			sgl = getYYCFEntrySingleton();
+			sgl = getIYCFLibEntrySingleton();
 			assert sgl != null: "Singleton must not be null after initialization";
 
 			retval = true;
@@ -146,20 +145,20 @@ public final class YYCFEntry implements IYYCFEntry {
 	}
 
 	/**
-	 *	Get an instance, if possible.  Invokes getYYCFEntryInstance() under the hood.
+	 *	Get an instance, if possible.  Invokes getIYCFLibEntryInstance() under the hood.
 	 *
 	 *	@return Return an instance if dynamically allocated, otherwise null. Because this is a singleton, null will always be returned.
 	 */
 	@JSExport
-	public YYCFEntry getInstance() { return(getYYCFEntryInstance()); }
+	public IYCFLibEntry getInstance() { return(getIYCFLibEntryInstance()); }
 
 	/**
-	 *	Get the singleton instance, if any. Invokes getYYCFEntrySingleton() under the hood.
+	 *	Get the singleton instance, if any. Invokes getIYCFLibEntrySingleton() under the hood.
 	 *
 	 *	@return Return the library singleton, if any. Always returns the same value after the first invocation unless reset(true) is invoked.
 	 */
 	@JSExport
-	public YYCFEntry getSingleton() { return(getYYCFEntrySingleton()); }
+	public IYCFLibEntry getSingleton() { return(getIYCFLibEntrySingleton()); }
 
 	/**
 	 *	Reset the singleton and any other data caches after an application reload or other package or executable reloading event.
@@ -174,12 +173,12 @@ public final class YYCFEntry implements IYYCFEntry {
 	/**
 	 *	Reset the singleton and any other data caches after an application reload or other package or executable reloading event.
 	 *
-	 *	Invokes execYYCFEntryReset(false) under the hood.
+	 *	Invokes execIYCFLibEntryReset(false) under the hood.
 	 *
 	 *	@return True if the library was reinitialized, false if the code detected that the library has not been used since the last reinitialization.
 	 */
 	@JSExport
-	public boolean libReset(boolean yesReally) { return execYYCFEntryYCFReset(yesReally); }
+	public boolean libReset(boolean yesReally) { return execIYCFLibEntryLibReset(yesReally); }
 
 	/**
 	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
@@ -189,7 +188,7 @@ public final class YYCFEntry implements IYYCFEntry {
 	 *	@return	True if the singleton was reset, false if the singleton was set and yesReally was false.
 	 */
 	@JSExport
-	public boolean resetYCF(boolean yesReally) { return execYYCFEntryYCFReset(yesReally); }
+	public boolean resetLib(boolean yesReally) { return execIYCFLibEntryLibReset(yesReally); }
 
 	/**
 	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
@@ -197,7 +196,7 @@ public final class YYCFEntry implements IYYCFEntry {
 	 *	@return	True if the value was reset, false if the singleton was already initialized.
 	 */
 	@JSExport
-	public boolean resetYCF() { return(resetYCF(false)); }
+	public boolean resetLib() { return(resetLib(false)); }
 
 	/**
 	 *	Get the parent's public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -205,7 +204,7 @@ public final class YYCFEntry implements IYYCFEntry {
 	 *	@return The parent's public resource name used for named resource resolution.
 	 */
 	@JSExport
-	public String getParentYCFName() { return(YCF_LIB_PARENT_NAME); }
+	public String getParentLibName() { return(IYCF_LIB_PARENT_NAME); }
 
 	/**
 	 *	Get name public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -213,7 +212,7 @@ public final class YYCFEntry implements IYYCFEntry {
 	 *	@return The name of this package used for public naming resolution.
 	 */
 	@JSExport
-	public String getParentYCFVersion() { return(YCF_LIB_PARENT_VERSION); }
+	public String getParentLibVersion() { return(IYCF_LIB_PARENT_VERSION); }
 
 	/**
 	 *	Get the public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -221,7 +220,7 @@ public final class YYCFEntry implements IYYCFEntry {
 	 *	@return The name of this package used for public naming resolution.
 	 */
 	@JSExport
-	public String getYCFName() { return(YCF_LIB_NAME); }
+	public String getLibName() { return(IYCF_LIB_NAME); }
 
 	/**
 	 *	Get the public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -229,7 +228,7 @@ public final class YYCFEntry implements IYYCFEntry {
 	 *	@return The name of this package used for public naming resolution.
 	 */
 	@JSExport
-	public String getYCFVersion() { return(YCF_LIB_VERSION); }
+	public String getLibVersion() { return(IYCF_LIB_VERSION); }
 
 	/**
 	 *	The default main does nothing.

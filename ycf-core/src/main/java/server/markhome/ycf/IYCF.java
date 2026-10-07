@@ -68,11 +68,11 @@ public interface IYCF extends JSObject {
 		Clip clip = null;
 		// The audio is courtesy of a whole whack of articles from stackoverflow.com, each of which ot me one line closer to working
 		try {
-			InputStream resource = IYCF.interface.etResourceAsStream("/server.markhome.mycf.v3_1.ycflib/sounds/alert.wav");
+			InputStream resource = IYCF.interface.getResourceAsStream("/server.markhome.mycf.v3_1.ycflib/sounds/alert.wav");
 			if( resource != null ) {
-				AudioInputStream audioInputStream = AudioSystem.etAudioInputStream( new BufferedInputStream( resource ) );
-				DataLine.Info info = new DataLine.Info( Clip.class, audioInputStream.etFormat() );
-				clip = (Clip)AudioSystem.etLine( info );
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream( new BufferedInputStream( resource ) );
+				DataLine.Info info = new DataLine.Info( Clip.class, audioInputStream.getFormat() );
+				clip = (Clip)AudioSystem.getLine( info );
 				clip.open( audioInputStream );
 				clip.start();
 				clip.drain();

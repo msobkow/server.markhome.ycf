@@ -28,16 +28,16 @@ import java.util.*;
 
 
 /**
- * YYCFOptKeyHash128 extends YYCFKeyHash128 with the appropriate behavior for the isNull() and setNull() method signatures.
+ * YCFOptKeyHash128 extends YCFKeyHash128 with the appropriate behavior for the isNull() and setNull() method signatures.
  *
  * @author msobkow
  */
-public class YYCFOptKeyHash128 extends YYCFKeyHash128 implements IYYCFOptional, IYYCFOptKeyHash128 {
+public class YCFOptKeyHash128 extends YCFKeyHash128 implements IYCFOptional, IYCFOptKeyHash128 {
 
 	/**
 	 *	Make this value null.
 	 *
-	 *	@throws YYCFNullArgumentException
+	 *	@throws YCFNullArgumentException
 	 */
 	@Override
 	public void setNull() {

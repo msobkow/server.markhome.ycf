@@ -26,20 +26,20 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
-import server.markhome.ycf.IYYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 
 /**
  *	An XML Core Context Factory instantiates new instances
  *	derived from XmlCoreContext. 
  */
-public interface YYCFXmlCoreContextFactory {
+public interface YCFXmlCoreContextFactory {
 
 	/**
 	 *	Get the application processing logger.
 	 *
 	 *	@return	The application processing Log4J Logger.
 	 */
-	public IYYCFMessageLog getLog();
+	public IYCFMessageLog getLog();
 
 	/**
 	 *	Copy an XML Core Context.
@@ -48,21 +48,21 @@ public interface YYCFXmlCoreContextFactory {
 	 *	@param	qName	The QName of the element about to be processed.
 	 *	@param	handler	The XmlCoreElementHandler which will be used for processing.
 	 */
-	public YYCFXmlCoreContext newXmlCoreContext(
-		YYCFXmlCoreContext src,
+	public YCFXmlCoreContext newXmlCoreContext(
+		YCFXmlCoreContext src,
 		String qName,
-		YYCFXmlCoreElementHandler handler );
+		YCFXmlCoreElementHandler handler );
 
 	/**
 	 *	Construct a "root" XML Core Context instance.
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
-	 *	@param	log	IYYCFMessageLog to use, if null, use parser's logger.
+	 *	@param	log	IYCFMessageLog to use, if null, use parser's logger.
 	 *	@param	handler	The XmlCoreElementHandler which will be processing the doc root.
 	 */
-	public YYCFXmlCoreContext newXmlCoreContext(
-		YYCFXmlCoreParser coreParser,
-		IYYCFMessageLog jLogger,
-		YYCFXmlCoreElementHandler elementHandler );
+	public YCFXmlCoreContext newXmlCoreContext(
+		YCFXmlCoreParser coreParser,
+		IYCFMessageLog jLogger,
+		YCFXmlCoreElementHandler elementHandler );
 
 }

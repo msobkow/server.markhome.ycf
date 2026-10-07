@@ -26,7 +26,7 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
-public class YYCFKeyHashUtil {
+public class YCFKeyHashUtil {
 
 	public final static TimeZone tzUTC = TimeZone.getTimeZone( "GMT+0000" );
 	public final static Calendar localCalendar = new GregorianCalendar();

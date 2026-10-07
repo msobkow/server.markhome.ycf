@@ -26,20 +26,20 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
-public class YYCFFiringList
-extends ArrayList<YYCFFireOnInstanceOf>
+public class YCFFiringList
+extends ArrayList<YCFFireOnInstanceOf>
 {
-    public YYCFFiringList() {
+    public YCFFiringList() {
     	super();
     }
 
-    public void fireOnInstanceOf( IYYCFAnyObj obj ) {
+    public void fireOnInstanceOf( IYCFAnyObj obj ) {
     	if( obj == null ) {
     		return;
     	}
     	if( ! isEmpty() ) {
-	    	YYCFFireOnInstanceOf curToFire;
-	    	Iterator<YYCFFireOnInstanceOf> iterToFire = iterator();
+	    	YCFFireOnInstanceOf curToFire;
+	    	Iterator<YCFFireOnInstanceOf> iterToFire = iterator();
 	    	while( iterToFire.hasNext() ) {
 	    		curToFire = iterToFire.next();
 	    		if( curToFire != null ) {

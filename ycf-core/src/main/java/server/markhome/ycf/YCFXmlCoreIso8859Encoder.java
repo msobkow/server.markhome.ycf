@@ -32,15 +32,15 @@ import java.text.StringCharacterIterator;
  *	The XmlCoreIso8859Encoder converts native strings and characters
  *	to HTML/XML escaped text.
  */
-public class YYCFXmlCoreIso8859Encoder {
+public class YCFXmlCoreIso8859Encoder {
 
 	protected char		ch;
 	protected byte		len;
 	protected String	map;
 
-	protected static	YYCFXmlCoreIso8859Encoder[]	ToXml = null;
+	protected static	YCFXmlCoreIso8859Encoder[]	ToXml = null;
 
-	YYCFXmlCoreIso8859Encoder() {
+	YCFXmlCoreIso8859Encoder() {
 		ch = '\000';
 		len = 0;
 		map = null;
@@ -327,10 +327,10 @@ public class YYCFXmlCoreIso8859Encoder {
 		int		idx;
 		char	ca[] = new char[1];
 
-		ToXml = new YYCFXmlCoreIso8859Encoder[256];
+		ToXml = new YCFXmlCoreIso8859Encoder[256];
 
 		for( idx = 0x00; idx <= 0xFF; idx++ ) {
-			ToXml[idx] = new YYCFXmlCoreIso8859Encoder();
+			ToXml[idx] = new YCFXmlCoreIso8859Encoder();
 			ToXml[idx].ch = (char)idx;
 			ToXml[idx].len = 0;
 			ToXml[idx].map = null;

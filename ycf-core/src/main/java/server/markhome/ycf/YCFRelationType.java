@@ -27,7 +27,7 @@ import org.teavm.jso.JSProperty;
 import java.util.*;
 
 import server.markhome.mycf.v3_1.ycflib.Inz;
-import server.markhome.mycf.v3_1.ycflib.YYCFXmlUtil;
+import server.markhome.mycf.v3_1.ycflib.YCFXmlUtil;
 
 /**
  * The YCFRelationType defines the common relationship types found in a generic business ERD model.
@@ -44,7 +44,7 @@ import server.markhome.mycf.v3_1.ycflib.YYCFXmlUtil;
  * formats, so the JSON data stream looks like it is comprised of XML data which has just had it's structural
  * details changed.
  * 
- * @see YYCFXmlUtil
+ * @see YCFXmlUtil
  * 
  * The Lookup relationship is special; it implies that the target does not allow deletion and has to be pre-loaded and cached by the client and middleware.
  * You can add new lookups, but you can't delete them. It also doesn't block deletion of the object which defines the relationship.

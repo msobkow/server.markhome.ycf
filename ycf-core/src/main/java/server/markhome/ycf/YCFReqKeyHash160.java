@@ -27,21 +27,21 @@ import org.teavm.jso.JSProperty;
 import java.util.*;
 
 /**
- * YYCFReqKeyHash160 extends YYCFKeyHash160 with the appropriate behavior for the isNull() and setNull() method signatures.
+ * YCFReqKeyHash160 extends YCFKeyHash160 with the appropriate behavior for the isNull() and setNull() method signatures.
  *
  * @author msobkow
  */
-public class YYCFReqKeyHash160 extends YYCFKeyHash160 implements IYYCFRequired, IYYCFReqKeyHash160 {
+public class YCFReqKeyHash160 extends YCFKeyHash160 implements IYCFRequired, IYCFReqKeyHash160 {
 
 	/**
 	 *	Is this value null?
 	 *
-	 *	@throws YYCFInvalidStateException if the superclass implementation of isNull() returns true.
+	 *	@throws YCFInvalidStateException if the superclass implementation of isNull() returns true.
 	 */
 	@Override
 	public boolean isNull() {
 		if (super.isNull()) {
-			throw new YYCFInvalidStateException(getClass(), "isNull", 0, "super.isNull()", "superclass value is not allowed to be null", null);
+			throw new YCFInvalidStateException(getClass(), "isNull", 0, "super.isNull()", "superclass value is not allowed to be null", null);
 		}
 		return(false);
 	}
@@ -49,10 +49,10 @@ public class YYCFReqKeyHash160 extends YYCFKeyHash160 implements IYYCFRequired, 
 	/**
 	 *	Make this value null.
 	 *
-	 *	@throws YYCFNullArgumentException
+	 *	@throws YCFNullArgumentException
 	 */
 	@Override
 	public void setNull() {
-		throw new YYCFNullArgumentException(getClass(), "setNull", 0, "required-attribute");
+		throw new YCFNullArgumentException(getClass(), "setNull", 0, "required-attribute");
 	}
 }

@@ -1253,135 +1253,7 @@
 					<extensions>true</extensions>
 				<executions>
 						<execution>
-							<id>mkdir-src</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src\\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-main</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main\\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-main-resources</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources\\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-main-resources-META-INF</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<mainClass>bogus</mainClass>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF\\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-main-resources-META-INF-js</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<mainClass>bogus</mainClass>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF/js ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF/js; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/main/resources/META-INF/js\\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test-resources</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test-resources-META-INF</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test-resources-META-INF-js</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF/js ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF/js; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/src/test/resources/META-INF/js\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-target</id>
+							<id>make-all-dirs</id>
 							<goals>
 								<goal>exec</goal>
 							</goals>
@@ -1390,21 +1262,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/target ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/target; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/target\\\' already exists.\\'; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-target-exported-libs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d /opt/mcf/v3_1/java/server.markhome.ycf/target/exported-libs ]; then mkdir /opt/mcf/v3_1/java/server.markhome.ycf/target/exported-libs; else echo \\'Directory \\\\'/opt/mcf/v3_1/java/server.markhome.ycf/target/exported-libs\\\' already exists.\\'; fi"</argument>
+									<argument>if [ ! -d ${project.basedir}/src ]; then mkdir ${project.basedir}/src; else echo "Directory ${project.basedir}/src already exists."; fi; if [ ! -d ${project.basedir}/src/main ]; then mkdir ${project.basedir}/src/main; else echo "Directory ${project.basedir}/src/main already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo "Directory ${project.basedir}/src/main/resources already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; else echo "Directory ${project.basedir}/src/main/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; else echo "Directory ${project.basedir}/src/main/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; else echo "Directory ${project.basedir}/src/test already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; else echo "Directory ${project.basedir}/src/test/resources already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; else echo "Directory ${project.basedir}/src/test/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; else echo "Directory ${project.basedir}/src/test/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/target ]; then mkdir ${project.basedir}/target; else echo "Directory ${project.basedir}/target already exists."; fi; if [ ! -d ${project.basedir}/target/exported-libs ]; then mkdir ${project.basedir}/target/exported-libs; else echo "Directory ${project.basedir}/target already exists."; fi;</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1423,7 +1281,7 @@
 							</configuration>
 						</execution>
 						<execution>
-							<id>repackage-jar</id>
+							<id>package-jar</id>
 							<goals>
 								<goal>exec</goal>
 							</goals>
@@ -1431,9 +1289,10 @@
 							<configuration>
 								<executable>jar</executable>
 								<arguments>
-									<argument>ufe</argument>
+									<argument>cfe</argument>
 									<argument>${project.build.directory}/${project.build.finalName}.jar</argument>
-									<argument>${package.mainClass}</argument>
+									<argument>-C</argument>
+									<argument>target/classes</argument>
 								</arguments>
 								<archive combine.children="append">
 									<manifestFile>${commons.manifestfile}</manifestFile>

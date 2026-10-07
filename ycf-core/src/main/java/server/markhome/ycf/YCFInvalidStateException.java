@@ -28,20 +28,20 @@ import org.teavm.jso.JSProperty;
 import server.markhome.ycf.Inz;
 
 /**
- * YYCFEmptyArgumentException is thrown when an argument is null or empty.
+ * YCFEmptyArgumentException is thrown when an argument is null or empty.
  */
-public class YYCFInvalidStateException extends YYCFArgumentException {
+public class YCFInvalidStateException extends YCFArgumentException {
 
 	// Inherited constructor patterns
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 		String enMsg,
 		String xMsg )
 	{
 		super(enMsg, xMsg);
 	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 		String enMsg,
 		String xMsg,
 		Throwable th)
@@ -49,7 +49,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 			super(enMsg, xMsg, th);
 	}
 
-//	public YYCFInvalidStateException(
+//	public YCFInvalidStateException(
 //		Class<?> throwingClass,
 //		String methName,
 //		String enMsg,
@@ -58,7 +58,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 //		super(throwingClass, methName, enMsg, xMsg);
 //	}
 
-//	public YYCFInvalidStateException(
+//	public YCFInvalidStateException(
 //		Class<?> throwingClass,
 //		String methName,
 //		String enMsg,
@@ -68,7 +68,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 //		super(throwingClass, methName, enMsg, xMsg, th);
 //	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 	 	Class<?> throwingClass,
 	 	String methName,
 	 	int argNo,
@@ -79,7 +79,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg);
 	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 	 	Class<?> throwingClass,
 	 	String methName,
 	 	int argNo,
@@ -91,7 +91,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg, th);
 	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
@@ -100,7 +100,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 		super(enFieldName, xFieldName, enMsg, xMsg);
 	}
 
-//	public YYCFInvalidStateException(
+//	public YCFInvalidStateException(
 //		String enFieldName,
 //		String xFieldName,
 //		String methName,
@@ -110,7 +110,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 //		super(enFieldName, xFieldName, methName, enMsg, xMsg);
 //	}
 
-//	public YYCFInvalidStateException(
+//	public YCFInvalidStateException(
 //		String enFieldName,
 //		String xFieldName,
 //		String methName,
@@ -121,7 +121,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 //		super(enFieldName, xFieldName, methName, enMsg, xMsg, th);
 //	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 	 	String enFieldName,
 		String xFieldName,
 	 	String methName,
@@ -133,7 +133,7 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg);
 	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 	 	String enFieldName,
 		String xFieldName,
 	 	String methName,
@@ -148,52 +148,52 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 
 	// Custom/most-often-used constructors
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 		Class<?> throwingClass,
 		String methName,
 		String enReason,
 		String xReason )
 	{
-		super(String.format(Inz.s("ycflib.YYCFInvalidStateException.TcmnMsg"),
+		super(String.format(Inz.s("ycflib.YCFInvalidStateException.TcmnMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				enReason),
-			String.format(Inz.x("ycflib.YYCFInvalidStateException.TcmnMsg"),
+			String.format(Inz.x("ycflib.YCFInvalidStateException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				xReason));
 	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 		Class<?> throwingClass,
 		String methName,
 		String enReason,
 		String xReason,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFInvalidStateException.TcmnMsg"),
+		super(String.format(Inz.s("ycflib.YCFInvalidStateException.TcmnMsg"),
 				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
 				enReason),
-		String.format(Inz.x("ycflib.YYCFInvalidStateException.TcmnMsg"),
+		String.format(Inz.x("ycflib.YCFInvalidStateException.TcmnMsg"),
 				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
 				xReason),
 			th);
 	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
 		String enReason,
 		String xReason )
 	{
-		super(String.format(Inz.s("ycflib.YYCFInvalidStateException.FldMsg"),
+		super(String.format(Inz.s("ycflib.YCFInvalidStateException.FldMsg"),
 				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				enReason),
-		String.format(Inz.x("ycflib.YYCFInvalidStateException.FldMsg"),
+		String.format(Inz.x("ycflib.YCFInvalidStateException.FldMsg"),
 				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				xReason));
 	}
 
-	public YYCFInvalidStateException(
+	public YCFInvalidStateException(
 		String enFieldName,
 		String xFieldName,
 		String methName,
@@ -201,10 +201,10 @@ public class YYCFInvalidStateException extends YYCFArgumentException {
 		String xReason,
 		Throwable th )
 	{
-		super(String.format(Inz.s("ycflib.YYCFInvalidStateException.FldMsg"),
+		super(String.format(Inz.s("ycflib.YCFInvalidStateException.FldMsg"),
 				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				enReason),
-		String.format(Inz.x("ycflib.YYCFInvalidStateException.FldMsg"),
+		String.format(Inz.x("ycflib.YCFInvalidStateException.FldMsg"),
 				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
 				xReason),
 				th );
