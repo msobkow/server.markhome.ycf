@@ -3,7 +3,6 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IInzEntry.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IInzLang.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IInzPathEntry.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCF.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFAnyObj.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFArgumentException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFArgumentOverflowException.java
@@ -75,7 +74,6 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/InzEntry.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/InzLang.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/InzPathEntry.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCF.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFArgumentException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFArgumentOverflowException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFArgumentRangeException.java

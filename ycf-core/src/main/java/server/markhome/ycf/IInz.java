@@ -132,7 +132,7 @@ public interface IInz extends JSObject {
 			return;
 		}
 		for (IInzPathEntry entry: pathEntries) {
-			if(entry.getPath().equals(pathEntry.getPath()) {
+			if(entry.getPath().equals(pathEntry.getPath())) {
 				return;
 			}
 		}

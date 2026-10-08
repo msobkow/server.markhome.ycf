@@ -62,7 +62,7 @@ import java.util.Properties;
  * 
  * @author Mark Stephen Sobkow
  */
-public interface IInzLang extends JSObject implements Comparable<IInzLang> {
+public interface IInzLang extends JSObject {
     public final static String LANG_CODE_PROP = "_IInzLangCode";
     public final static String ENGLISH_NAME_PROP = "_IInzEnglishName";
     public final static String NLS_NAME_PROP = "_IInzNlsName";

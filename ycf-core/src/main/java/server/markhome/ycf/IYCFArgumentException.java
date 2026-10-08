@@ -36,189 +36,132 @@ public interface IYCFArgumentException extends JSObject {
 
 	protected String localMessage = null;
 
-	public IYCFArgumentException(
-		String enMsg,
-		String xMsg )
-	{
-		super( enMsg );
-		this.localMessage = xMsg;
-	}
+	/**
+	 *	YCFArgumentException(enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 */
 
-	public IYCFArgumentException(
-		String enMsg, String xMsg, Throwable cause) {
-			super(enMsg, cause);
-			this.localMessage = xMsg;
-	}
+	/**
+	 *	YCFArgumentException(enMsg, xMsg, th)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param th Root cause thrown by code
+	 */
 
-	public IYCFArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
-	}
+	/**
+	 *	YCFArgumentException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 */
 
-	public IYCFArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
-	}
+	/**
+	 *	YCFArgumentException(throwingClass, methName, enMsg, xMsg, th)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param th Root cause thrown by code
+	 */
 
-	public IYCFArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	YCFArgumentException(throwingClass, methName, argNo, argName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 */
 
-	public IYCFArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	YCFArgumentException(throwingClass, methName, argNo, argName, enMsg, xMsg, th)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param th Root cause thrown by code
+	 */
 
-	public IYCFArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	YCFArgumentException(enFieldName, xFieldName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 */
 
-	public IYCFArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	YCFArgumentException(enFieldName, xFieldName, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName The method name that detected the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 */
 
-	public IYCFArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	YCFArgumentException(enFieldName, xFieldName, methName, enMsg, xMsg, th)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName The method name that detected the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param th Root cause thrown by code
+	 */
 
-	public IYCFArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentException.FldArgMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	YCFArgumentException(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName The method name that detected the issue
+	 *	@param argNo The offset or index of the argument
+	 *	@param argName The name of the argument
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 */
 
-	public IYCFArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldArgMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	YCFArgumentException(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg, th)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName The method name that detected the issue
+	 *	@param argNo The offset or index of the argument
+	 *	@param argName The name of the argument
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param th Root cause thrown by code
+	 */
 
-	@Override
-	public String getLocalizedMessage() {
-		if (localMessage != null) {
-			return localMessage;
-		}
-		else {
-			return getMessage();
-		}
-	}
+	/**
+	 *	Get the localized/translated version of the exception message
+	 *
+	 *	@return The localized/translated exception message body.
+	 */
 }
