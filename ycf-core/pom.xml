@@ -101,7 +101,7 @@
 		<commons.jxr.version>3.6.0</commons.jxr.version>
 		<commons.main.branch>master</commons.main.branch>
 		<commons.manifestfile>${project.build.directory}/osgi/MANIFEST.MF</commons.manifestfile>
-		<common.resources-plugin.version>3.3.0</common.resources-plugin.version>
+		<commons.resources-plugin.version>3.3.0</commons.resources-plugin.version>
 		<commons.site-plugin.version>3.22.0</commons.site-plugin.version>
 		<commons.toolchains-plugin.version>???</commons.toolchains-plugin.version>
 		<commons.mockito.version>4.11.0</commons.mockito.version>
@@ -200,7 +200,14 @@
 		</license>
 	</licenses>
 
+	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-classlib</artifactId>
+				<version>${commons.teavm.version}</version>
+				<scope>provided</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.teavm</groupId>
 				<artifactId>teavm-jso</artifactId>
@@ -209,11 +216,6 @@
 			<dependency>
 				<groupId>org.teavm</groupId>
 				<artifactId>teavm-jso-apis</artifactId>
-				<version>${commons.teavm.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-classlib</artifactId>
 				<version>${commons.teavm.version}</version>
 			</dependency>
 			<dependency>
@@ -227,9 +229,247 @@
 				<version>${commons.teavm.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>${commons.junit.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit-pioneer</groupId>
+				<artifactId>junit-pioneer</artifactId>
+				<version>${commons.junit-pioneer.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-bom</artifactId>
+				<version>${commons.mockito.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${commons.mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-android</artifactId>
+				<version>${commons.mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-errorprone</artifactId>
+				<version>${commons.mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-inline</artifactId>
+				<version>${commons.mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-junit-jupiter</artifactId>
+				<version>${commons.mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-proxy</artifactId>
+				<version>${commons.mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-subclass</artifactId>
+				<version>${commons.mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${commons.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${commons.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${commons.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-migrationsupport</artifactId>
+				<version>${commons.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-params</artifactId>
+				<version>${commons.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-commons</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-console</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-engine</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-jfr</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-launcher</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-reporting</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-runner</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-suite</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-suite-api</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-suite-commons</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-suite-engine</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-testkit</artifactId>
+				<version>${commons.junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.vintage</groupId>
+				<artifactId>junit-vintage-engine</artifactId>
+				<version>${commons.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${easymock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- For Javadoc links -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>${commons.text.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openjdk.jmh</groupId>
+				<artifactId>jmh-core</artifactId>
+				<version>${commons.jmh.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openjdk.jmh</groupId>
+				<artifactId>jmh-generator-annprocess</artifactId>
+				<version>${commons.jmh.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.findbugs</groupId>
+				<artifactId>jsr305</artifactId>
+				<version>${google-code-findbugs.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.ycf.markhome.server:8081/repository/ycf.markhome.server-hosted/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.ycf.markhome.server:8081/repository/ycf.markhome.server-hosted/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+		<dependencies>
+			<dependency>
 				<groupId>org.teavm</groupId>
-				<artifactId>teavm-cli</artifactId>
-				<version>${commons.teavmcli.version}</version>
+				<artifactId>teavm-classlib</artifactId>
+				<version>${commons.teavm.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-jso</artifactId>
+				<version>${commons.teavm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-jso-apis</artifactId>
+				<version>${commons.teavm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-browser-runner</artifactId>
+				<version>${commons.teavm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-tooling</artifactId>
+				<version>${commons.teavm.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.junit</groupId>
@@ -433,19 +673,6 @@
 			</dependency>
 		</dependencies>
 
-	<distributionManagement>
-		<repository>
-			<id>nexus-releases</id>
-			<name>Nexus release repository</name>
-			<url>http://nexus3.ycf.markhome.server:8081/repository/ycf.markhome.server-hosted/</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>Nexus release repository</name>
-			<url>http://nexus3.ycf.markhome.server:8081/repository/ycf.markhome.server-hosted/</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<build>
 		<extensions>
 			<extension>
@@ -458,10 +685,10 @@
 		<resources>
 			<!-- This is the default setting from the super-pom -->
 			<resource>
-			<directory>${project.basedir}/src/main/resources</directory>
+			<directory>src/main/resources</directory>
 			</resource>
 			<resource>
-			<directory>${project.basedir}/src/main/resources</directory>
+			<directory>src/main/resources</directory>
 			<targetPath>js</targetPath>
 			<includes>
 				<include>NOTICE.txt</include>
@@ -485,10 +712,10 @@
 		<testResources>
 			<!-- This is the default setting from the super-pom -->
 			<testResource>
-			<directory>${project.basedir}/src/test/resources</directory>
+			<directory>src/test/resources</directory>
 			</testResource>
 			<testResource>
-			<directory>${project.basedir}/src/test/resources</directory>
+			<directory>src/test/resources</directory>
 			<includes>
 				<include>NOTICE.txt</include>
 				<include>LICENSE.txt</include>
@@ -615,7 +842,7 @@
 							<!-- TODO see above - find better way to add N&L files to jars and test jars -->
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-remote-resources-plugin</artifactId>
-							<version>${common.resources-plugin.version}</version>
+							<version>${commons.resources-plugin.version}</version>
 							<configuration>
 								<!--
 									Apache parent POM automatically adds "LICENSE" and "NOTICE" files
@@ -980,7 +1207,7 @@
 						<version>${commons.assembly-plugin.version}</version>
 						<configuration>
 							<descriptors>
-								<descriptor>${project.basedir}/src/assembly/src.xml</descriptor>
+								<descriptor>src/assembly/src.xml</descriptor>
 							</descriptors>
 							<tarLongFileMode>gnu</tarLongFileMode>
 						</configuration>
@@ -1002,8 +1229,8 @@
 								</goals>
 								<configuration>
 									<target>
-										<copy todir="${project.build.directory}/apidocs/META-INF">
-											<fileset dir="${basedir}">
+										<copy todir=${project.build.directory}/apidocs/META-INF">
+											<fileset dir=${basedir}">
 												<include name="LICENSE.txt" />
 												<include name="NOTICE.txt" />
 												<include name="LICENSE" />
@@ -1157,7 +1384,7 @@
 						<inputExclude>.pmd</inputExclude>
 						<inputExclude>.asf.yaml</inputExclude>
 						<inputExclude>.gitattributes</inputExclude>
-						<inputExclude>${project.basedir}/src/site/resources/download_*.cgi</inputExclude>
+						<inputExclude>src/site/resources/download_*.cgi</inputExclude>
 						<!-- Exclude Eclipse local files and folders -->
 						<inputExclude>maven-eclipse.xml</inputExclude>
 						<inputExclude>.externalToolBuilders/**</inputExclude>
@@ -1267,6 +1494,30 @@
 							</execution>
 						</executions>
 					</plugin>
+					<plugin>
+						<groupId>org.teavm</groupId>
+						<artifactId>teavm-maven-plugin</artifactId>
+						<version>${commons.teavm.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+								<configuration>
+									<mainClass>${package.mainClass}</mainClass>
+									<targetDirectory>${project.basedir}/${project.basedir}/src/main/resources/META-INF/js</targetDirectory>
+									<targetFileName>${artifactId}Classes.js</targetFileName>
+									<targetType>JAVASCRIPT</targetType>
+									<optimizationLevel>SIMPLE</optimizationLevel>
+									<minifying>false</minifying>
+									<sourceMapsGenerated>true</sourceMapsGenerated>
+									<sourceFilesCopied>true</sourceFilesCopied>
+									<debugInformationGenerated>true</debugInformationGenerated>
+									<jsModuleType>UMD</jsModuleType>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
@@ -1274,107 +1525,7 @@
 					<extensions>true</extensions>
 				<executions>
 						<execution>
-							<id>mkdir-src-main-resources</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo \"Directory \\\\"/opt/mcf/v3_1/java/server.markhome.ycf/src\\\\" already exists.\"; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-main-resources-META-INF</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<mainClass>bogus</mainClass>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-main-resources-META-INF-js</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<mainClass>bogus</mainClass>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test-resources</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test-resources-META-INF</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-src-test-resources-META-INF-js</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; fi"</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>mkdir-exported-libs</id>
+							<id>make-all-dirs</id>
 							<goals>
 								<goal>exec</goal>
 							</goals>
@@ -1383,7 +1534,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-cx</argument>
-									<argument>"if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; fi"</argument>
+									<argument>if [ ! -d ${project.basedir}/src ]; then mkdir ${project.basedir}/src; else echo "Directory ${project.basedir}/src already exists."; fi; if [ ! -d ${project.basedir}/src/main ]; then mkdir ${project.basedir}/src/main; else echo "Directory ${project.basedir}/src/main already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo "Directory ${project.basedir}/src/main/resources already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; else echo "Directory ${project.basedir}/src/main/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; else echo "Directory ${project.basedir}/src/main/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; else echo "Directory ${project.basedir}/src/test already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; else echo "Directory ${project.basedir}/src/test/resources already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; else echo "Directory ${project.basedir}/src/test/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; else echo "Directory ${project.basedir}/src/test/resources/META-INF/js already exists."; fi; if [ ! -d ${project.build.directory} ]; then mkdir ${project.build.directory}; else echo "Directory ${project.build.directory} already exists."; fi; if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; else echo "Directory ${project.build.directory}/exported-libs already exists."; fi;</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1402,7 +1553,7 @@
 							</configuration>
 						</execution>
 						<execution>
-							<id>repackage-jar</id>
+							<id>package-jar</id>
 							<goals>
 								<goal>exec</goal>
 							</goals>
@@ -1410,9 +1561,10 @@
 							<configuration>
 								<executable>jar</executable>
 								<arguments>
-									<argument>ufe</argument>
+									<argument>cfe</argument>
 									<argument>${project.build.directory}/${project.build.finalName}.jar</argument>
-									<argument>${package.mainClass}</argument>
+									<argument>-C</argument>
+									<argument>target/classes</argument>
 								</arguments>
 								<archive combine.children="append">
 									<manifestFile>${commons.manifestfile}</manifestFile>
@@ -1442,8 +1594,8 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>"if [ -f ${project.build.directory}/test-${project.build.finalName}.jar ]; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi"</argument>
+									<argument>-cx</argument>
+									<argument>if [ -f ${project.build.directory}/test-${project.build.finalName}.jar; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi</argument>
 								</arguments>
 								<skipIfEmpty>true</skipIfEmpty>
 								<archive combine.children="append">
@@ -1489,12 +1641,12 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>"if [ -f target/test-${artifactId}-${version}.jar ]; then cp -v target/${artifactId}-${version}.jar ${project.build.directory}/exported-libs/; fi"</argument>
+									<argument>-cx</argument>
+									<argument>if [ -f target/test-${project.build.finalName}.jar; then cp -v target/test-${project.build.finalName}.jar ${project.build.directory}/exported-libs/; fi</argument>
 								</arguments>
 							</configuration>
 						</execution>
-						<execution>
+						<!--execution>
 							<id>run-teavm-compile-javascript</id>
 							<phase>package</phase>
 							<goals>
@@ -1503,12 +1655,12 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>"java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}"</argument>
+									<argument>-cx</argument>
+									<argument>cd ${project.build.directory}/exported-libs; java org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}</argument>
 								</arguments>
 							</configuration>
-						</execution>
-						<execution>
+						</execution-->
+						<!--execution>
 							<id>run-teavm-compile-test-javascript</id>
 							<phase>package-test</phase>
 							<goals>
@@ -1517,11 +1669,11 @@
 							<configuration>
 								<executable>/usr/bin/bash</executable>
 								<arguments>
-									<argument>-c</argument>
-									<argument>"if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then java &#45;cp "${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/test/resources/META-INF/js &#45;&#45;targetfile test${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi"</argument>
+									<argument>-cx</argument>
+									<argument>if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then cd ${project.build.directory}/exported-libs; java &#45;cp . org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi</argument>
 								</arguments>
 							</configuration>
-						</execution>
+						</execution-->
 					</executions>
 				</plugin>
 		</plugins>
@@ -1733,7 +1885,7 @@
 		<!--
 			Runs the Animal Sniffer plugin to check that generated code does not included references
 			to methods/classes etc that are not present in the standard Java runtime for the defined target version.
-			To bypass the checks, define "animal.sniffer.skip" as true, or create the file "${project.basedir}/src/site/resources/profile.noanimal"
+			To bypass the checks, define "animal.sniffer.skip" as true, or create the file ${project.basedir}/src/site/resources/profile.noanimal"
 		-->
 		<profile>
 			<id>animal-sniffer</id>
@@ -2115,3 +2267,4 @@
 		</profile>
 	</profiles>
 </project>
+

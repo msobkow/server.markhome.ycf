@@ -10,7 +10,6 @@
 
 	<modules>
 		<module>ycf-core</module>
-		<module>ycf-teavm</module>
 	</modules>
 
 	<properties>
@@ -148,8 +147,7 @@
 		<commons.surefire-report.aggregate>false</commons.surefire-report.aggregate>
 		<commons.surefire.version>3.5.6</commons.surefire.version>
 		<commons.taglist.version>3.2.2</commons.taglist.version>
-		<commons.teavm.version>0.14.1</commons.teavm.version>
-		<commons.teavmcli.version>0.14.1</commons.teavmcli.version>
+		<commons.teavm.version>0.15.0</commons.teavm.version>
 		<commons.text.version>1.15.0</commons.text.version>
 		<commons.versions-plugin.version>2.21.0</commons.versions-plugin.version>
 		<commons.wagon-ssh.version>3.5.3</commons.wagon-ssh.version>
@@ -181,17 +179,18 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.teavm</groupId>
+				<artifactId>teavm-classlib</artifactId>
+				<version>${commons.teavm.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.teavm</groupId>
 				<artifactId>teavm-jso</artifactId>
 				<version>${commons.teavm.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.teavm</groupId>
 				<artifactId>teavm-jso-apis</artifactId>
-				<version>${commons.teavm.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-classlib</artifactId>
 				<version>${commons.teavm.version}</version>
 			</dependency>
 			<dependency>
@@ -203,11 +202,6 @@
 				<groupId>org.teavm</groupId>
 				<artifactId>teavm-tooling</artifactId>
 				<version>${commons.teavm.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-cli</artifactId>
-				<version>${commons.teavmcli.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.junit</groupId>
@@ -1246,164 +1240,6 @@
 							</execution>
 						</executions>
 					</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId>
-					<version>${commons.exec-plugin.version}</version>
-					<extensions>true</extensions>
-				<executions>
-						<execution>
-							<id>make-all-dirs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ ! -d ${project.basedir}/src ]; then mkdir ${project.basedir}/src; else echo "Directory ${project.basedir}/src already exists."; fi; if [ ! -d ${project.basedir}/src/main ]; then mkdir ${project.basedir}/src/main; else echo "Directory ${project.basedir}/src/main already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo "Directory ${project.basedir}/src/main/resources already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; else echo "Directory ${project.basedir}/src/main/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; else echo "Directory ${project.basedir}/src/main/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; else echo "Directory ${project.basedir}/src/test already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; else echo "Directory ${project.basedir}/src/test/resources already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; else echo "Directory ${project.basedir}/src/test/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; else echo "Directory ${project.basedir}/src/test/resources/META-INF/js already exists."; fi; if [ ! -d ${project.build.directory} ]; then mkdir ${project.build.directory}; else echo "Directory ${project.build.directory} already exists."; fi; if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; else echo "Directory ${project.build.directory}/exported-libs already exists."; fi;</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>copy-dependencies-to-exported-libs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>mvn</executable>
-								<arguments>
-									<argument>dependency:copy-dependencies</argument>
-									<argument>-DoutputDirectory=${project.build.directory}/exported-libs</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>package-jar</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>jar</executable>
-								<arguments>
-									<argument>cfe</argument>
-									<argument>${project.build.directory}/${project.build.finalName}.jar</argument>
-									<argument>-C</argument>
-									<argument>target/classes</argument>
-								</arguments>
-								<archive combine.children="append">
-									<manifestFile>${commons.manifestfile}</manifestFile>
-									<manifestEntries>
-										<Automatic-Module-Name>${commons.module.name}</Automatic-Module-Name>
-										<addClasspath>true</addClasspath>
-										<mainClass>${package.mainClass}</mainClass>
-										<Specification-Title>${project.name}</Specification-Title>
-										<Specification-Version>${project.version}</Specification-Version>
-										<Specification-Vendor>${project.organization.name}</Specification-Vendor>
-										<Implementation-Title>${project.name}</Implementation-Title>
-										<Implementation-Version>${project.version}</Implementation-Version>
-										<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-										<Implementation-Vendor-Id>org.apache</Implementation-Vendor-Id>
-										<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-										<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-									</manifestEntries>
-								</archive>
-							</configuration>
-						</execution>
-						<execution>
-							<id>repackage-test-jar</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package-test</phase>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ -f ${project.build.directory}/test-${project.build.finalName}.jar; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi</argument>
-								</arguments>
-								<skipIfEmpty>true</skipIfEmpty>
-								<archive combine.children="append">
-									<manifestFile>${commons.manifestfile}</manifestFile>
-									<manifestEntries>
-										<Automatic-Module-Name>${commons.module.name}</Automatic-Module-Name>
-										<addClasspath>true</addClasspath>
-										<mainClass>${package.mainClass}</mainClass>
-										<Specification-Title>${project.name}</Specification-Title>
-										<Specification-Version>${project.version}</Specification-Version>
-										<Specification-Vendor>${project.organization.name}</Specification-Vendor>
-										<Implementation-Title>${project.name}</Implementation-Title>
-										<Implementation-Version>${project.version}</Implementation-Version>
-										<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-										<Implementation-Vendor-Id>org.apache</Implementation-Vendor-Id>
-										<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-										<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-									</manifestEntries>
-								</archive>
-							</configuration>
-						</execution>
-						<execution>
-							<id>copy-project-jars-to-exported-libs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>cp</executable>
-								<arguments>
-									<argument>-v</argument>
-									<argument>target/${artifactId}-${version}.jar</argument>
-									<argument>${project.build.directory}/exported-libs/</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>copy-project-test-jars-to-exported-libs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package-test</phase>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ -f target/test-${project.build.finalName}.jar; then cp -v target/test-${project.build.finalName}.jar ${project.build.directory}/exported-libs/; fi</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>run-teavm-compile-javascript</id>
-							<phase>package</phase>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>cd ${project.build.directory}/exported-libs; java org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>run-teavm-compile-test-javascript</id>
-							<phase>package-test</phase>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then cd ${project.build.directory}/exported-libs; java &#45;cp . org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi</argument>
-								</arguments>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
 		</plugins>
 	</build>
 	<reporting>
