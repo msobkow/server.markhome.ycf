@@ -1262,7 +1262,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-cx</argument>
-									<argument>if [ ! -d ${project.basedir}/src ]; then mkdir ${project.basedir}/src; else echo "Directory ${project.basedir}/src already exists."; fi; if [ ! -d ${project.basedir}/src/main ]; then mkdir ${project.basedir}/src/main; else echo "Directory ${project.basedir}/src/main already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo "Directory ${project.basedir}/src/main/resources already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; else echo "Directory ${project.basedir}/src/main/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; else echo "Directory ${project.basedir}/src/main/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; else echo "Directory ${project.basedir}/src/test already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; else echo "Directory ${project.basedir}/src/test/resources already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; else echo "Directory ${project.basedir}/src/test/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; else echo "Directory ${project.basedir}/src/test/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/target ]; then mkdir ${project.basedir}/target; else echo "Directory ${project.basedir}/target already exists."; fi; if [ ! -d ${project.basedir}/target/exported-libs ]; then mkdir ${project.basedir}/target/exported-libs; else echo "Directory ${project.basedir}/target already exists."; fi;</argument>
+									<argument>if [ ! -d ${project.basedir}/src ]; then mkdir ${project.basedir}/src; else echo "Directory ${project.basedir}/src already exists."; fi; if [ ! -d ${project.basedir}/src/main ]; then mkdir ${project.basedir}/src/main; else echo "Directory ${project.basedir}/src/main already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo "Directory ${project.basedir}/src/main/resources already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; else echo "Directory ${project.basedir}/src/main/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; else echo "Directory ${project.basedir}/src/main/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; else echo "Directory ${project.basedir}/src/test already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; else echo "Directory ${project.basedir}/src/test/resources already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; else echo "Directory ${project.basedir}/src/test/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; else echo "Directory ${project.basedir}/src/test/resources/META-INF/js already exists."; fi; if [ ! -d ${project.build.directory} ]; then mkdir ${project.build.directory}; else echo "Directory ${project.build.directory} already exists."; fi; if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; else echo "Directory ${project.build.directory}/exported-libs already exists."; fi;</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1323,7 +1323,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-cx</argument>
-									<argument>"if [ -f ${project.build.directory}/test-${project.build.finalName}.jar; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi"</argument>
+									<argument>if [ -f ${project.build.directory}/test-${project.build.finalName}.jar; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi</argument>
 								</arguments>
 								<skipIfEmpty>true</skipIfEmpty>
 								<archive combine.children="append">
@@ -1370,7 +1370,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-cx</argument>
-									<argument>"if [ -f target/test-${project.build.finalName}.jar; then cp -v target/test-${project.build.finalName}.jar ${project.build.directory}/exported-libs/; fi"</argument>
+									<argument>if [ -f target/test-${project.build.finalName}.jar; then cp -v target/test-${project.build.finalName}.jar ${project.build.directory}/exported-libs/; fi</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1384,7 +1384,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-cx</argument>
-									<argument>"java &#45;cp \\"${project.build.directory}/exported-libs/*" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}"</argument>
+									<argument>cd ${project.build.directory}/exported-libs; java org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}</argument>
 								</arguments>
 							</configuration>
 						</execution>
@@ -1398,7 +1398,7 @@
 								<executable>/usr/bin/bash</executable>
 								<arguments>
 									<argument>-cx</argument>
-									<argument>"if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then java &#45;cp \\"${project.build.directory}/exported-libs/*\\" org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/test/resources/META-INF/js &#45;&#45;targetfile test${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi"</argument>
+									<argument>if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then cd ${project.build.directory}/exported-libs; java &#45;cp . org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi</argument>
 								</arguments>
 							</configuration>
 						</execution>
