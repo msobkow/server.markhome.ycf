@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd" root="true">
-	<modelVersion>4.1.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>server.markhome.ycf.v3_1</groupId>
+	<artifactId>server.markhome.ycf.v3_1</artifactId>
+	<version>3.1.42-20260930</version>
+	<name>server.markhome.ycf.v3_1</name>
+	<description>Yorkton Code Fractal 3.1.42</description>
+	<packaging>pom</packaging>
+
 	<parent>
 		<groupId>server.markhome</groupId>
 		<artifactId>server.markhome.ycf</artifactId>
 		<version>20260930</version>
 	</parent>
-	<artifactId>server.markhome.ycf</artifactId>
-	<version>20260930</version>
-	<groupId>server.markhome.ycf</groupId>
-	<name>server.markhome.ycf-core</name>
-	<description>Yorkton Code Fractal Core Services</description>
-	<packaging>jar</packaging>
 
-	<modules>
-	</modules>
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<rat.skip>true</rat.skip>
 		<url>https://github.com/msobkow/server.markhome.ycf/</url>
-		<project.url>https://github.com/msobkow/server.markhome.ycf/</project.url>
-		<project.scm.url>https://github.com/msobkow/server.markhome.ycf/</project.scm.url>
+		<project.url>https://github.com/msobkow/server.markhome.ycf/v3_1/</project.url>
+		<project.scm.url>https://github.com/msobkow/server.markhome.ycf.v3_1/</project.scm.url>
 		<project.build.outputTimestamp>2026-09-30T00:00:00Z</project.build.outputTimestamp>
-		<package.mainClass>server.markhome.ycf.YCFLibEntry</package.mainClass>
-		<package.testMainClass>server.markhome.ycf.testYCFLibEntry</package.testMainClass>
+		<package.mainClass>server.markhome.ycf.YCFV3_1LibEntry</package.mainClass>
+		<package.testMainClass>server.markhome.ycf.v3_1.testYCFLibEntry</package.testMainClass>
 		<ycf.version>3.1.42-20260930</ycf.version>
 		<commons.rc.version>YCFRC1</commons.rc.version>
 		<changes.announcementDirectory>.</changes.announcementDirectory>
@@ -56,7 +67,7 @@
 		<commons.compiler.release>25</commons.compiler.release>
 		<commons.compiler.version>3.15.0</commons.compiler.version>
 		<commons.componentid>parent</commons.componentid>
-		<commons.conf.dir>${project.basedir}/src/conf</commons.conf.dir>
+		<commons.conf.dir>src/conf</commons.conf.dir>
 		<commons.cyclonedx.version>2.9.2</commons.cyclonedx.version>
 		<commons.deployment.protocol>scp</commons.deployment.protocol>
 		<commons.deploy-plugin.version>3.1.4</commons.deploy-plugin.version>
@@ -101,7 +112,7 @@
 		<commons.jxr.version>3.6.0</commons.jxr.version>
 		<commons.main.branch>master</commons.main.branch>
 		<commons.manifestfile>${project.build.directory}/osgi/MANIFEST.MF</commons.manifestfile>
-		<commons.resources-plugin.version>3.3.0</commons.resources-plugin.version>
+		<common.resources-plugin.version>3.3.0</common.resources-plugin.version>
 		<commons.site-plugin.version>3.22.0</commons.site-plugin.version>
 		<commons.toolchains-plugin.version>???</commons.toolchains-plugin.version>
 		<commons.mockito.version>4.11.0</commons.mockito.version>
@@ -111,7 +122,7 @@
 		<commons.native-plugin.version>1.1.10</commons.native-plugin.version>
 		<commons.osgi.dynamicImport />
 		<commons.osgi.excludeDependencies>true</commons.osgi.excludeDependencies>
-		<commons.osgi.export>server.markhome.ycf.*;version=${project.version};-noimport:=true</commons.osgi.export>
+		<commons.osgi.export>server.markhomeycf.*;version=${project.version};-noimport:=true</commons.osgi.export>
 		<commons.osgi.import>*</commons.osgi.import>
 		<commons.osgi.private />
 		<commons.osgi.symbolicName>server.markhome.ycf.${commons.packageId}</commons.osgi.symbolicName>
@@ -175,26 +186,6 @@
 		<license>
 			<name>Apache-2.0-or-later</name>
 			<url>https://apache.org/</url>
-			<distribution>repo</distribution>
-		</license>
-		<license>
-			<name>LGPL-3.0-or-later</name>
-			<url>https://gnu.org/</url>
-			<distribution>repo</distribution>
-		</license>
-		<license>
-			<name>LicenseRef-YCFDualLGPL-3.0-or-later</name>
-			<url>https://msobkow.github.io/licenses/</url>
-			<distribution>repo</distribution>
-		</license>
-		<license>
-			<name>GPL-3.0-or-later</name>
-			<url>https://gnu.org/</url>
-			<distribution>repo</distribution>
-		</license>
-		<license>
-			<name>LicenseRef-YCFDualGPL-3.0-or-later</name>
-			<url>https://msobkow.github.io/licenses/</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -430,248 +421,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<distributionManagement>
-		<repository>
-			<id>nexus-releases</id>
-			<name>Nexus release repository</name>
-			<url>http://nexus3.ycf.markhome.server:8081/repository/ycf.markhome.server-hosted/</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>Nexus release repository</name>
-			<url>http://nexus3.ycf.markhome.server:8081/repository/ycf.markhome.server-hosted/</url>
-		</snapshotRepository>
-	</distributionManagement>
-
-		<dependencies>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-classlib</artifactId>
-				<version>${commons.teavm.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-jso</artifactId>
-				<version>${commons.teavm.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-jso-apis</artifactId>
-				<version>${commons.teavm.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-browser-runner</artifactId>
-				<version>${commons.teavm.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-tooling</artifactId>
-				<version>${commons.teavm.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.junit</groupId>
-				<artifactId>junit-bom</artifactId>
-				<version>${commons.junit.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit-pioneer</groupId>
-				<artifactId>junit-pioneer</artifactId>
-				<version>${commons.junit-pioneer.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-bom</artifactId>
-				<version>${commons.mockito.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<version>${commons.mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-android</artifactId>
-				<version>${commons.mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-errorprone</artifactId>
-				<version>${commons.mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-inline</artifactId>
-				<version>${commons.mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-junit-jupiter</artifactId>
-				<version>${commons.mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-proxy</artifactId>
-				<version>${commons.mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-subclass</artifactId>
-				<version>${commons.mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter</artifactId>
-				<version>${commons.junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-api</artifactId>
-				<version>${commons.junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-engine</artifactId>
-				<version>${commons.junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-migrationsupport</artifactId>
-				<version>${commons.junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-params</artifactId>
-				<version>${commons.junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-commons</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-console</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-engine</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-jfr</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-launcher</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-reporting</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-runner</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-suite</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-suite-api</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-suite-commons</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-suite-engine</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-testkit</artifactId>
-				<version>${commons.junit-platform.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.vintage</groupId>
-				<artifactId>junit-vintage-engine</artifactId>
-				<version>${commons.junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.easymock</groupId>
-				<artifactId>easymock</artifactId>
-				<version>${easymock.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- For Javadoc links -->
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-text</artifactId>
-				<version>${commons.text.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openjdk.jmh</groupId>
-				<artifactId>jmh-core</artifactId>
-				<version>${commons.jmh.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openjdk.jmh</groupId>
-				<artifactId>jmh-generator-annprocess</artifactId>
-				<version>${commons.jmh.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.findbugs</groupId>
-				<artifactId>jsr305</artifactId>
-				<version>${google-code-findbugs.version}</version>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
-
 	<build>
 		<extensions>
 			<extension>
@@ -841,7 +590,7 @@
 							<!-- TODO see above - find better way to add N&L files to jars and test jars -->
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-remote-resources-plugin</artifactId>
-							<version>${commons.resources-plugin.version}</version>
+							<version>${common.resources-plugin.version}</version>
 							<configuration>
 								<!--
 									Apache parent POM automatically adds "LICENSE" and "NOTICE" files
@@ -1267,48 +1016,6 @@
 							</execution>
 						</executions>
 					</plugin>
-						<!--plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>exec-maven-plugin</artifactId>
-							<version>${commons.exec-plugin.version}</version>
-							<executions>
-								<execution>
-									<id>default-jar</id>
-									<phase>compile</phase>
-									<configuration>
-										<!- - Use the system java executable - ->
-										<executable>${env.JV_HOME}/bin/jar</executable>
-										<includes>
-											<include>**/*.class</include>
-											<include>**/META-INF/*</include>
-											<include>**/META-INF/**/*</include>
-										</includes>
-										<excludes>
-											<exclude>**/*Test.class</exclude>
-										</excludes>
-										<arguments>
-											<argument>cf ${project.basedir}/target/${artifactId}-${version}.jar</argument>
-										</arguments>
-									</configuration>
-								</execution>
-								<execution>
-									<id>test-jar</id>
-									<phase>compile</phase>
-									<configuration>
-										<!- - Use the system java executable - ->
-										<executable>${env.JV_HOME}/bin/jar</executable>
-										<includes>
-											<include>**/*Test.class</include>
-											<include>**/META-INF/*</include>
-											<include>**/META-INF/**/*</include>
-										</includes>
-										<arguments>
-											<argument>cf ${project.basedir}/target/${artifactId}-${version}-test.jar</argument>
-										</arguments>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin-->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
@@ -1517,164 +1224,6 @@
 							</execution>
 						</executions>
 					</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId>
-					<version>${commons.exec-plugin.version}</version>
-					<extensions>true</extensions>
-				<executions>
-						<execution>
-							<id>make-all-dirs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ ! -d ${project.basedir}/src ]; then mkdir ${project.basedir}/src; else echo "Directory ${project.basedir}/src already exists."; fi; if [ ! -d ${project.basedir}/src/main ]; then mkdir ${project.basedir}/src/main; else echo "Directory ${project.basedir}/src/main already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources ]; then mkdir ${project.basedir}/src/main/resources; else echo "Directory ${project.basedir}/src/main/resources already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF ]; then mkdir ${project.basedir}/src/main/resources/META-INF; else echo "Directory ${project.basedir}/src/main/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/main/resources/META-INF/js ]; then mkdir ${project.basedir}/src/main/resources/META-INF/js; else echo "Directory ${project.basedir}/src/main/resources/META-INF/js already exists."; fi; if [ ! -d ${project.basedir}/src/test ]; then mkdir ${project.basedir}/src/test; else echo "Directory ${project.basedir}/src/test already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources ]; then mkdir ${project.basedir}/src/test/resources; else echo "Directory ${project.basedir}/src/test/resources already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF ]; then mkdir ${project.basedir}/src/test/resources/META-INF; else echo "Directory ${project.basedir}/src/test/resources/META-INF already exists."; fi; if [ ! -d ${project.basedir}/src/test/resources/META-INF/js ]; then mkdir ${project.basedir}/src/test/resources/META-INF/js; else echo "Directory ${project.basedir}/src/test/resources/META-INF/js already exists."; fi; if [ ! -d ${project.build.directory} ]; then mkdir ${project.build.directory}; else echo "Directory ${project.build.directory} already exists."; fi; if [ ! -d ${project.build.directory}/exported-libs ]; then mkdir ${project.build.directory}/exported-libs; else echo "Directory ${project.build.directory}/exported-libs already exists."; fi;</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>copy-dependencies-to-exported-libs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>mvn</executable>
-								<arguments>
-									<argument>dependency:copy-dependencies</argument>
-									<argument>-DoutputDirectory=${project.build.directory}/exported-libs</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>package-jar</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>jar</executable>
-								<arguments>
-									<argument>cfe</argument>
-									<argument>${project.build.directory}/${project.build.finalName}.jar</argument>
-									<argument>-C</argument>
-									<argument>target/classes</argument>
-								</arguments>
-								<archive combine.children="append">
-									<manifestFile>${commons.manifestfile}</manifestFile>
-									<manifestEntries>
-										<Automatic-Module-Name>${commons.module.name}</Automatic-Module-Name>
-										<addClasspath>true</addClasspath>
-										<mainClass>${package.mainClass}</mainClass>
-										<Specification-Title>${project.name}</Specification-Title>
-										<Specification-Version>${project.version}</Specification-Version>
-										<Specification-Vendor>${project.organization.name}</Specification-Vendor>
-										<Implementation-Title>${project.name}</Implementation-Title>
-										<Implementation-Version>${project.version}</Implementation-Version>
-										<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-										<Implementation-Vendor-Id>org.apache</Implementation-Vendor-Id>
-										<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-										<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-									</manifestEntries>
-								</archive>
-							</configuration>
-						</execution>
-						<execution>
-							<id>repackage-test-jar</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package-test</phase>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ -f ${project.build.directory}/test-${project.build.finalName}.jar; then jar ufe ${project.build.directory}/test-${project.build.finalName}.jar ${package.mainClass}; fi</argument>
-								</arguments>
-								<skipIfEmpty>true</skipIfEmpty>
-								<archive combine.children="append">
-									<manifestFile>${commons.manifestfile}</manifestFile>
-									<manifestEntries>
-										<Automatic-Module-Name>${commons.module.name}</Automatic-Module-Name>
-										<addClasspath>true</addClasspath>
-										<mainClass>${package.mainClass}</mainClass>
-										<Specification-Title>${project.name}</Specification-Title>
-										<Specification-Version>${project.version}</Specification-Version>
-										<Specification-Vendor>${project.organization.name}</Specification-Vendor>
-										<Implementation-Title>${project.name}</Implementation-Title>
-										<Implementation-Version>${project.version}</Implementation-Version>
-										<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-										<Implementation-Vendor-Id>org.apache</Implementation-Vendor-Id>
-										<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-										<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-									</manifestEntries>
-								</archive>
-							</configuration>
-						</execution>
-						<execution>
-							<id>copy-project-jars-to-exported-libs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<executable>cp</executable>
-								<arguments>
-									<argument>-v</argument>
-									<argument>target/${artifactId}-${version}.jar</argument>
-									<argument>${project.build.directory}/exported-libs/</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<execution>
-							<id>copy-project-test-jars-to-exported-libs</id>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<phase>package-test</phase>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ -f target/test-${project.build.finalName}.jar; then cp -v target/test-${project.build.finalName}.jar ${project.build.directory}/exported-libs/; fi</argument>
-								</arguments>
-							</configuration>
-						</execution>
-						<!--execution>
-							<id>run-teavm-compile-javascript</id>
-							<phase>package</phase>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>cd ${project.build.directory}/exported-libs; java org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.mainClass}</argument>
-								</arguments>
-							</configuration>
-						</execution-->
-						<!--execution>
-							<id>run-teavm-compile-test-javascript</id>
-							<phase>package-test</phase>
-							<goals>
-								<goal>exec</goal>
-							</goals>
-							<configuration>
-								<executable>/usr/bin/bash</executable>
-								<arguments>
-									<argument>-cx</argument>
-									<argument>if [ -f ${project.build.directory}/exported-libs/test-${artifactId}-${version}.jar ]; then cd ${project.build.directory}/exported-libs; java &#45;cp . org.teavm.cli.TeaVMRunner &#45;&#45;targetdir ${project.basedir}/${project.basedir}/src/main/resources/META-INF/js &#45;&#45;targetfile ${artifactId}Classes.js &#45;&#45;entry-point main &#45;&#45;debug &#45;&#45;sourcemaps &#45;&#45;js-module-type umd -O 1 &#45;&#45;strict -t js ${package.testMainClass}; fi</argument>
-								</arguments>
-							</configuration>
-						</execution-->
-					</executions>
-				</plugin>
 		</plugins>
 	</build>
 	<reporting>
@@ -2266,4 +1815,3 @@
 		</profile>
 	</profiles>
 </project>
-

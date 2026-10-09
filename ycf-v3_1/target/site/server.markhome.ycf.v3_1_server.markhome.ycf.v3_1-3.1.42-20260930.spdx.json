@@ -1,0 +1,142 @@
+{
+  "SPDXID" : "SPDXRef-DOCUMENT",
+  "spdxVersion" : "SPDX-2.3",
+  "creationInfo" : {
+    "created" : "2026-09-30T00:00:00Z",
+    "creators" : [ "Tool: spdx-maven-plugin" ],
+    "licenseListVersion" : "3.29.0"
+  },
+  "name" : "server.markhome.ycf.v3_1",
+  "dataLicense" : "CC0-1.0",
+  "documentNamespace" : "http://spdx.org/spdxpackages/server.markhome.ycf.v3_1_server.markhome.ycf.v3_1-3.1.42-20260930",
+  "packages" : [ {
+    "SPDXID" : "SPDXRef--4b3779bf0",
+    "copyrightText" : "NOASSERTION",
+    "description" : "Yorkton Code Fractal 3.1.42",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/server.markhome.ycf.v3_1/server.markhome.ycf.v3_1@3.1.42-20260930",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : true,
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "licenseInfoFromFiles" : [ "NOASSERTION" ],
+    "name" : "server.markhome.ycf.v3_1",
+    "packageFileName" : "NOASSERTION",
+    "packageVerificationCode" : {
+      "packageVerificationCodeValue" : "13bfe1f27af13d950568199e2d0ad798e7665406"
+    },
+    "primaryPackagePurpose" : "INSTALL",
+    "summary" : "Yorkton Code Fractal 3.1.42",
+    "versionInfo" : "3.1.42-20260930"
+  } ],
+  "files" : [ {
+    "SPDXID" : "SPDXRef--364c1a5c0",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8309f34784db10f6e5bec2f91598f88a33c464a1"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/server/markhome/mcf/v3_1/server.markhome.mcf.v3_1/server.markhome.mcf.v3_1.jfx25u-js/LibraryEntry.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-148ee0290",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8309f34784db10f6e5bec2f91598f88a33c464a1"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/server/markhome/mcf/v3_1/server.markhome.mcf.v3_1/server.markhome.mcf.v3_1/SServer.markhome.mcf.v3_1LibraryEntry.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-45c93c560",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8309f34784db10f6e5bec2f91598f88a33c464a1"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/server/markhome/mcf/v3_1/jfx25u-js/server.markhome.mcf.v3_1.jfx25u-js/LibraryEntry.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-63ad227e0",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8309f34784db10f6e5bec2f91598f88a33c464a1"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/server/markhome/mcf/v3_1/server.markhome.mcf.v3_1/server.markhome.mcf.v3_1/CFLibLibraryEntry.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-67f57fde0",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8309f34784db10f6e5bec2f91598f88a33c464a1"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/server/markhome/mcf/v3_1/CFLibLibraryEntry.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  } ],
+  "relationships" : [ {
+    "spdxElementId" : "SPDXRef-DOCUMENT",
+    "relationshipType" : "DESCRIBES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf0",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--364c1a5c0",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf0",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-148ee0290",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf0",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-45c93c560",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf0",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-63ad227e0",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf0",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-67f57fde0",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf0",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf0",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--364c1a5c0"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf0",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-148ee0290"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf0",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-45c93c560"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf0",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-63ad227e0"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf0",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-67f57fde0"
+  } ]
+}
