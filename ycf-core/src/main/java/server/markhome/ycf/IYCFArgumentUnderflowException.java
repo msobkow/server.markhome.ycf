@@ -31,871 +31,746 @@ import server.markhome.ycf.Inz;
 import java.math.*;
 
 /**
- * IYCFArgumentUnderflowException is thrown when an argument is under the minimum value allowed.
+ * IYCFArgumentUnderflowException indicates that an argument is outside the permitted value range.
  */
 public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 
-	public IYCFArgumentUnderflowException(
-		String enMsg,
-		String xMsg )
-	{
-		super( enMsg, xMsg );
-	}
+	/**
+	 *	Get the interface implementation singleton providing the getInstance() implementations.
+	 *
+	 *	@return IYCFArgumentUnderflowException The interface singleton
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getSingleton();
 
-	public IYCFArgumentUnderflowException(
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( enMsg, xMsg, th );
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages.
+	 *
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enMsg, String xMsg );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( throwingClass, methName, enMsg, xMsg );
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages.
+	 *
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enMsg, String xMsg, Throwable cause);
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( throwingClass, methName, enMsg, xMsg, th );
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass Class throwing the exception
+	 *	@param methName Method name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg );
 
-	// public IYCFArgumentUnderflowException(
-	// 	Class<?> throwingClass,
-	// 	String methName,
-	// 	int argNo,
-	// 	String argName,
-	// 	String enMsg,
-	// 	String xMsg )
-	// {
-	// 	super( throwingClass, methName, argNo, argName, enMsg, xMsg );
-	// }
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass Class throwing the exception
+	 *	@param methName Method name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause );
 
-	// public IYCFArgumentUnderflowException(
-	// 	Class<?> throwingClass,
-	// 	String methName,
-	// 	int argNo,
-	// 	String argName,
-	// 	String enMsg,
-	// 	String xMsg,
-	// 	Throwable th )
-	// {
-	// 	super( throwingClass, methName, argNo, argName, enMsg, xMsg, th );
-	// }
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String enMsg, String xMsg );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method Name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method Name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argValue, short minValue, short maxValue );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argValue, short minValue, short maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argValue, int minValue );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argValue, int minValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argValue, long minValue, long maxValue );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argValue, long minValue, long maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argValue, float minValue, float maxValue );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argValue, float minValue, float maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argValue, double minValue, double maxValue );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argValue, double minValue, double maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue );
 
-	public IYCFArgumentUnderflowException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String enMsg,
-		String xMsg )
-	{
-		super( enFieldName, xFieldName, enMsg, xMsg );
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( enFieldName, xFieldName, methName, enMsg, xMsg );
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( enFieldName, xFieldName, methName, enMsg, xMsg, th );
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argValue, String minValue, String maxValue );
 
-// 	public IYCFArgumentUnderflowException(
-// 		String enFieldName,
-// 		String xFieldName,
-// 		String methName,
-// 		int argNo,
-// 		String argName,
-// 		String enMsg,
-// 		String xMsg )
-// 	{
-// 		super( enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg );
-// 	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argValue, String minValue, String maxValue, Throwable cause );
 
-// 	public IYCFArgumentUnderflowException(
-// 		String enFieldName,
-// 		String xFieldName,
-// 		String methName,
-// 		int argNo,
-// 		String argName,
-// 		String enMsg,
-// 		String xMsg,
-// 		Throwable th )
-// 	{
-// 		super( enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg, th );
-// 	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argValue, short minValue, short maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argValue, short minValue, short maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argValue, int minValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argValue, int minValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argValue, long minValue, long maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argValue, long minValue, long maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argValue, float minValue, float maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argValue, float minValue, float maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argValue, double minValue, double maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue.toString(),
-				minValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argValue, double minValue, double maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue.toString(),
-				minValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue,
-				minValue),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue,
-				minValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue.toString(),
-				minValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue, Throwable cause );
 
-	public IYCFArgumentUnderflowException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentUnderflowException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
-				argNo,
-				(argName),
-				argValue.toString(),
-				minValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argValue, String minValue, String maxValue );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argValue, String minValue, String maxValue, Throwable cause );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue, Throwable cause );
 }

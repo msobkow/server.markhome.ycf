@@ -31,969 +31,787 @@ import server.markhome.ycf.Inz;
 import java.math.*;
 
 /**
- * IYCFArgumentRangeException indicates that a value did not fall with the range minValue to maxValue, inclusive.
+ * IYCFArgumentRangeException indicates that an argument is outside the permitted value range.
  */
 public interface IYCFArgumentRangeException extends IYCFArgumentException {
-	
-	public IYCFArgumentRangeException(
-		String enMsg,
-		String xMsg )
-	{
-		super(enMsg, xMsg);
-	}
 
-	public IYCFArgumentRangeException(
-		String enMsg,
-		String xMsg,
-		Throwable th)
-	{
-			super(enMsg, xMsg, th);
-	}
+	/**
+	 *	Get the interface implementation singleton providing the getInstance() implementations.
+	 *
+	 *	@return IYCFArgumentRangeException The interface singleton
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getSingleton();
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super(throwingClass, methName, enMsg, xMsg);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages.
+	 *
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enMsg, String xMsg );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super(throwingClass, methName, enMsg, xMsg, th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages.
+	 *
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enMsg, String xMsg, Throwable cause);
 
-	public IYCFArgumentRangeException(
-	 	Class<?> throwingClass,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-	 	String xMsg )
-	{
-	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass Class throwing the exception
+	 *	@param methName Method name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg );
 
-	public IYCFArgumentRangeException(
-	 	Class<?> throwingClass,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-	 	String xMsg,
-	 	Throwable th )
-	{
-	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg, th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass Class throwing the exception
+	 *	@param methName Method name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String enMsg,
-		String xMsg )
-	{
-		super(enFieldName, xFieldName, enMsg, xMsg);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String enMsg, String xMsg );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super(enFieldName, xFieldName, methName, enMsg, xMsg);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method Name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super(enFieldName, xFieldName, methName, enMsg, xMsg, th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method Name
+	 *	@param enMsg English message text
+	 *	@param xMsg Translated message text
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg, Throwable cause );
 
-	public IYCFArgumentRangeException(
-	 	String enFieldName,
-		String xFieldName,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-		String xMsg )
-	{
-	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argValue, short minValue, short maxValue );
 
-	public IYCFArgumentRangeException(
-	 	String enFieldName,
-		String xFieldName,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-	 	String xMsg,
-	 	Throwable th )
-	{
-	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg, th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argValue, short minValue, short maxValue, Throwable cause );
 
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argValue, int minValue, int maxValue );
 
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argValue, int minValue, int maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue,
-		short maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argValue, long minValue, long maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue,
-		short maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argValue, long minValue, long maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue,
-		int maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argValue, float minValue, float maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue,
-		int maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argValue, float minValue, float maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue,
-		long maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param maxValue Limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argValue, double minValue, double maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue,
-		long maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argValue, double minValue, double maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue,
-		float maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue,
-		float maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue,
-		double maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue,
-		double maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue,
-		Calendar maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue,
-		Calendar maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue,
-		String maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argValue, String minValue, String maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue,
-		String maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argValue, String minValue, String maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue,
-		BigDecimal maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue );
 
-	public IYCFArgumentRangeException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue,
-		BigDecimal maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue,
-		short maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argValue, short minValue, short maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		short argValue,
-		short minValue,
-		short maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argValue, short minValue, short maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue,
-		int maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argValue, int minValue, int maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		int argValue,
-		int minValue,
-		int maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argValue, int minValue, int maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue,
-		long maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argValue, long minValue, long maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		long argValue,
-		long minValue,
-		long maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.decimal.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argValue, long minValue, long maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue,
-		float maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argValue, float minValue, float maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		float argValue,
-		float minValue,
-		float maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argValue, float minValue, float maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue,
-		double maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argValue, double minValue, double maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		double argValue,
-		double minValue,
-		double maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.float.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argValue, double minValue, double maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue,
-		Calendar maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		Calendar argValue,
-		Calendar minValue,
-		Calendar maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argValue, LocalDate minValue, LocalDate maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue,
-		String maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String argValue,
-		String minValue,
-		String maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue,
-				minValue,
-				maxValue),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argValue, LocalTime minValue, LocalTime maxValue, Throwable cause );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue,
-		BigDecimal maxValue )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()));
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue );
 
-	public IYCFArgumentRangeException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		BigDecimal argValue,
-		BigDecimal minValue,
-		BigDecimal maxValue,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			String.format(Inz.x("ycflib.IYCFArgumentRangeException.string.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				argValue.toString(),
-				minValue.toString(),
-				maxValue.toString()),
-			th);
-	}
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argValue, String minValue, String maxValue );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argValue, String minValue, String maxValue, Throwable cause );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue );
+
+	/**
+	 *	Get an exception instance with the specified English and translated messages and source.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argValue Value which caused the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal minValue, BigDecimal maxValue, Throwable cause );
 }
