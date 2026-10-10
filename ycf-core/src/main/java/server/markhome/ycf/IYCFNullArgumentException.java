@@ -33,235 +33,260 @@ import server.markhome.ycf.Inz;
  */
 public interface IYCFNullArgumentException extends IYCFArgumentException {
 
-	// Inherited constructor patterns
+	/**
+	 *	IYCFNullArgumentException getSingleton()
+	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *
+	 *	@return IYCFNullArgumentException The singleton for the exception implementation.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getSingleton();
 
-	public IYCFNullArgumentException(
-		String enMsg,
-		String xMsg )
-	{
-		super(enMsg, xMsg);
-	}
+	/**
+	 *	IYCFNullArgumentException(enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(String enMsg, String xMsg);
 
-	public IYCFNullArgumentException(
-		String enMsg,
-		String xMsg,
-		Throwable th)
-	{
-		super(enMsg, xMsg, th);
-	}
+	/**
+	 *	IYCFNullArgumentException(enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(String enMsg, String xMsg, Throwable cause);
 
-	public IYCFNullArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super(throwingClass, methName, enMsg, xMsg);
-	}
+	/**
+	 *	IYCFNullArgumentException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg);
 
-	public IYCFNullArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super(throwingClass, methName, enMsg, xMsg, th);
-	}
+	/**
+	 *	IYCFNullArgumentException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFNullArgumentException(
-	 	Class<?> throwingClass,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-	 	String xMsg )
-	{
-	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg);
-	}
+	/**
+	 *	IYCFNullArgumentException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFNullArgumentException(
-	 	Class<?> throwingClass,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-	 	String xMsg,
-	 	Throwable th )
-	{
-	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg, th);
-	}
+	/**
+	 *	IYCFNullArgumentException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	// public IYCFNullArgumentException(
-	// 	String enFieldName,
-	// 	String xFieldName,
-	// 	String enMsg,
-	// 	String xMsg )
-	// {
-	// 	super(enFieldName, xFieldName, enMsg, xMsg);
-	// }
+	/**
+	 *	IYCFNullArgumentException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
 
-	public IYCFNullArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super(enFieldName, xFieldName, methName, enMsg, xMsg);
-	}
+	/**
+	 *	IYCFNullArgumentException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFNullArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super(enFieldName, xFieldName, methName, enMsg, xMsg, th);
-	}
+	/**
+	 *	IYCFNullArgumentException(enFieldName, xFieldName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
-	public IYCFNullArgumentException(
-	 	String enFieldName,
-		String xFieldName,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-		String xMsg )
-	{
-	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg);
-	}
+	/**
+	 *	IYCFNullArgumentException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFNullArgumentException(
-	 	String enFieldName,
-		String xFieldName,
-	 	String methName,
-	 	int argNo,
-	 	String argName,
-	 	String enMsg,
-	 	String xMsg,
-	 	Throwable th )
-	{
-	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg, th);
-	}
+	/**
+	 *	IYCFNullArgumentException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	// Custom/most-often-used constructors
+	/**
+	 *	IYCFNullArgumentException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
 
-	public IYCFNullArgumentException(
-		Class<?> throwingClass,
-		String methName )
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )));
-	}
+	/**
+	 *	IYCFNullArgumentException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFNullArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFNullArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFNullArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		Throwable th)
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-			th);
-	}
+	/**
+	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
+	 *
+	 *	@return The source of the exception.
+	 */
+	@JSExport
+	public String getSource();
 
-	public IYCFNullArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName )
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName));
-	}
+	/**
+	 *	Get the English version of the exception message.
+	 *
+	 *	@return The English exception message body.
+	 */
+	@JSExport
+	public String getEnMessage();
 
-	public IYCFNullArgumentException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName),
-			th);
-	}
+	/**
+	 *	Get the localized/translated version of the exception message.
+	 *
+	 *	@return The localized/translated exception message body.
+	 */
+	@JSExport
+	public String getXMessage();
 
-	public IYCFNullArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName )
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.FldMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )));
-	}
+	/**
+	 *	Get the argument index provided at construction, if any.
+	 *
+	 *	@return The argument index provided at construction.
+	 */
+	@JSExport
+	public int getArgNo();
 
-	public IYCFNullArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		Throwable th)
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.FldMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-			th);
-	}
+	/**
+	 *	Get the argument name provided at construction, if any.
+	 *
+	 *	@return The argument name provided at construction.
+	 */
+	@JSExport
+	public String getArgName();
 
-	public IYCFNullArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName )
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName));
-	}
-
-	public IYCFNullArgumentException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		Throwable th )
-	{
-		super(String.format(Inz.s("ycflib.IYCFNullArgumentException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName),
-			String.format(Inz.x("ycflib.IYCFNullArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName),
-			th);
-	}
+	/**
+	 *	Get the argument Object value provided at construction, if any.
+	 *
+	 *	@return The argument object.
+	 */
+	@JSExport
+	public Object getArgValue();
 }

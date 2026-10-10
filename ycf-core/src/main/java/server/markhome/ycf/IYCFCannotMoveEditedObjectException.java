@@ -31,249 +31,260 @@ import server.markhome.ycf.Inz;
  */
 public interface IYCFCannotMoveEditedObjectException extends JSObject {
 
-	protected String localMessage = null;
+	/**
+	 *	IYCFCannotMoveEditedObjectException getSingleton()
+	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException The singleton for the exception implementation.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getSingleton();
 
-	public IYCFCannotMoveEditedObjectException(
-		String enMsg,
-		String xMsg )
-	{
-		super( enMsg );
-		this.localMessage = xMsg;
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(String enMsg, String xMsg);
 
-	public IYCFCannotMoveEditedObjectException(
-		String enMsg, String xMsg, Throwable cause) {
-			super(enMsg, cause);
-			this.localMessage = xMsg;
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(String enMsg, String xMsg, Throwable cause);
 
-	public IYCFCannotMoveEditedObjectException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg);
 
-	public IYCFCannotMoveEditedObjectException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFCannotMoveEditedObjectException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFCannotMoveEditedObjectException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	// public IYCFMustOverrideException(
-	// 	String enFieldName,
-	// 	String xFieldName,
-	// 	String enMsg,
-	// 	String xMsg )
-	// {
-	// 	super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-	// 			enFieldName,
-	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-	// 	this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-	// 			(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
-	// 			( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	// }
+	/**
+	 *	IYCFCannotMoveEditedObjectException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
 
-	public IYCFCannotMoveEditedObjectException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFCannotMoveEditedObjectException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(enFieldName, xFieldName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
-	public IYCFCannotMoveEditedObjectException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentException.FldArgMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFCannotMoveEditedObjectException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldArgMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	
-	public IYCFCannotMoveEditedObjectException()
-	{
-		super( String.format(Inz.s("ycflib.IYCFCannnotMoveEditedObjectException.default"), "").trim());
-		this.localMessage = String.format(Inz.x("ycflib.IYCFCannnotMoveEditedObjectException.default"), "").trim();
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
 
-	public IYCFCannotMoveEditedObjectException(Throwable th)
-	{
-		super( String.format(Inz.s("ycflib.IYCFCannnotMoveEditedObjectException.default"), "").trim(), th);
-		this.localMessage = String.format(Inz.x("ycflib.IYCFCannnotMoveEditedObjectException.default"), "").trim();
-	}
+	/**
+	 *	IYCFCannotMoveEditedObjectException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFCannotMoveEditedObjectException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFCannotMoveEditedObjectException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFCannotMoveEditedObjectException(
-		Class<?> throwingClass,
-		String methName)
-	{
-		super( String.format(Inz.s("ycflib.IYCFEditAlreadyOpenException.default"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFCannnotMoveEditedObjectException.default"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
-	}
+	/**
+	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
+	 *
+	 *	@return The source of the exception.
+	 */
+	@JSExport
+	public String getSource();
 
-	public IYCFCannotMoveEditedObjectException(
-		Class<?> throwingClass,
-		String methName,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFCannnotMoveEditedObjectException.default"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" )),
-			th);
-		this.localMessage = String.format(Inz.x("ycflib.IYCFCannnotMoveEditedObjectException.default"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
-	}
+	/**
+	 *	Get the English version of the exception message.
+	 *
+	 *	@return The English exception message body.
+	 */
+	@JSExport
+	public String getEnMessage();
 
-	public IYCFCannotMoveEditedObjectException(
-		String enFieldName,
-		String xFieldName,
-		String methName )
-	{
-		super( String.format(Inz.s("ycflib.IYCFCannnotMoveEditedObjectException.default"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFCannnotMoveEditedObjectException.default"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
-	}
-	public IYCFCannotMoveEditedObjectException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFCannnotMoveEditedObjectException.default"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" )),
-			th);
-		this.localMessage = String.format(Inz.x("ycflib.IYCFCannnotMoveEditedObjectException.default"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
-	}
+	/**
+	 *	Get the localized/translated version of the exception message.
+	 *
+	 *	@return The localized/translated exception message body.
+	 */
+	@JSExport
+	public String getXMessage();
 
-	@Override
-	public String getLocalizedMessage() {
-		if (localMessage != null) {
-			return localMessage;
-		}
-		else {
-			return getMessage();
-		}
-	}
+	/**
+	 *	Get the argument index provided at construction, if any.
+	 *
+	 *	@return The argument index provided at construction.
+	 */
+	@JSExport
+	public int getArgNo();
+
+	/**
+	 *	Get the argument name provided at construction, if any.
+	 *
+	 *	@return The argument name provided at construction.
+	 */
+	@JSExport
+	public String getArgName();
+
+	/**
+	 *	Get the argument Object value provided at construction, if any.
+	 *
+	 *	@return The argument object.
+	 */
+	@JSExport
+	public Object getArgValue();
 }

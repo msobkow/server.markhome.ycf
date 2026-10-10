@@ -41,7 +41,7 @@ public interface IYCFArgumentException extends JSObject {
 	 *	@return IYCFArgumentException The singleton for the exception implementation.
 	 */
 	@JSExport
-	public IYCFArgumentException getInstance(String enMsg, String xMsg);
+	public IYCFArgumentException getSingleton();
 
 	/**
 	 *	IYCFArgumentException(enMsg, xMsg)

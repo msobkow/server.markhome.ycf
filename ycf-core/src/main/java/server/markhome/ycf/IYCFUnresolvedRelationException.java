@@ -33,448 +33,260 @@ import server.markhome.ycf.Inz;
  */
 public interface IYCFUnresolvedRelationException extends JSObject {
 
-	protected String localMessage = null;
+	/**
+	 *	IYCFUnresolvedRelationException getSingleton()
+	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *
+	 *	@return IYCFUnresolvedRelationException The singleton for the exception implementation.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getSingleton();
 
-	protected String enRelnType = null;
-	protected String xRelnType = null;
+	/**
+	 *	IYCFUnresolvedRelationException(enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(String enMsg, String xMsg);
 
-	protected String enRelnName = null;
-	protected String xRelnName = null;
+	/**
+	 *	IYCFUnresolvedRelationException(enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(String enMsg, String xMsg, Throwable cause);
 
-	protected String enRelnTarget = null;
-	protected String xRelnTarget = null;
+	/**
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg);
 
-	protected Object indexKey = null;
+	/**
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFUnresolvedRelationException(
-		String enMsg,
-		String xMsg )
-	{
-		super( enMsg );
-		this.localMessage = xMsg;
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFUnresolvedRelationException(
-		String enMsg,
-		String xMsg,
-		Throwable th)
-	{
-			super(enMsg, th);
-			this.localMessage = xMsg;
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
 
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
 
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg )
-	{
-		super(String.format(Inz.s("ycflib.IYCFArgumentException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
+	 *
+	 *	@return The source of the exception.
+	 */
+	@JSExport
+	public String getSource();
 
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		int argNo,
-		String argName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFArgumentException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
-		this.localMessage = String.format(Inz.x("ycflib.IYCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				argNo,
-				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
-	}
+	/**
+	 *	Get the English version of the exception message.
+	 *
+	 *	@return The English exception message body.
+	 */
+	@JSExport
+	public String getEnMessage();
 
-	public IYCFUnresolvedRelationException()
-	{
-		super(String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.default"), ""));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.default"), "");
-	}
+	/**
+	 *	Get the localized/translated version of the exception message.
+	 *
+	 *	@return The localized/translated exception message body.
+	 */
+	@JSExport
+	public String getXMessage();
 
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName )
-	{
-		super( String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.default"),
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )));
-		this.localMessage = String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.default"),
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
-	}
+	/**
+	 *	Get the argument index provided at construction, if any.
+	 *
+	 *	@return The argument index provided at construction.
+	 */
+	@JSExport
+	public int getArgNo();
 
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.default"),
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-					th);
-		this.localMessage = String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.default"),
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
-	}
+	/**
+	 *	Get the argument name provided at construction, if any.
+	 *
+	 *	@return The argument name provided at construction.
+	 */
+	@JSExport
+	public String getArgName();
 
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		Throwable th )
-	{
-		super( String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.default"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-			th);
-		this.localMessage = String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.default"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ));
-	}
-
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName,
-		String enRelationType,
-		String xRelationType,
-		String enRelationName,
-		String xRelationName,
-		String enTargetName,
-		String xTargetName,
-		Object indexKey)
-	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					indexKey.toString(),
-					enTargetName)
-				: String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					enTargetName ));
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					indexKey.toString(),
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName);
-		enRelnType = enRelationType;
-		xRelnType = xRelationType;
-		enRelnName = enRelationName;
-		xRelnName = xRelationName;
-		enRelnTarget = enTargetName;
-		xRelnTarget = xTargetName;
-		this.indexKey = indexKey;
-	}
-
-	public IYCFUnresolvedRelationException(
-		Class<?> throwingClass,
-		String methName,
-		String enRelationType,
-		String xRelationType,
-		String enRelationName,
-		String xRelationName,
-		String enTargetName,
-		String xTargetName,
-		Object indexKey,
-		Throwable th )
-	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					indexKey.toString(),
-					enTargetName)
-				: String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					enTargetName ),
-			th);
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					indexKey.toString(),
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName);
-		enRelnType = enRelationType;
-		xRelnType = xRelationType;
-		enRelnName = enRelationName;
-		xRelnName = xRelationName;
-		enRelnTarget = enTargetName;
-		xRelnTarget = xTargetName;
-		this.indexKey = indexKey;
-	}
-
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enRelationType,
-		String xRelationType,
-		String enRelationName,
-		String xRelationName,
-		String enTargetName,
-		String xTargetName,
-		Object indexKey)
-	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					indexKey.toString(),
-					enTargetName)
-				: String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					enTargetName ));
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					indexKey.toString(),
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName);
-		enRelnType = enRelationType;
-		xRelnType = xRelationType;
-		enRelnName = enRelationName;
-		xRelnName = xRelationName;
-		enRelnTarget = enTargetName;
-		xRelnTarget = xTargetName;
-		this.indexKey = indexKey;
-	}
-
-	public IYCFUnresolvedRelationException(
-		String enFieldName,
-		String xFieldName,
-		String methName,
-		String enRelationType,
-		String xRelationType,
-		String enRelationName,
-		String xRelationName,
-		String enTargetName,
-		String xTargetName,
-		Object indexKey,
-		Throwable th)
-	{
-		super( (indexKey != null) ? String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					indexKey.toString(),
-					enTargetName)
-				: String.format(Inz.s("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					enRelationType,
-					enRelationName,
-					enTargetName ),
-			th);
-		this.localMessage = (indexKey != null) ? String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullkey"),//%1$s%2$s relation %3$s key %4%s referencing %5$s could not be resolved
-					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					indexKey.toString(),
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)
-				: String.format(Inz.x("ycflib.IYCFUnresolvedRelationException.fullnokey"),//%1$s%2$s relation %3$s referencing %4$s could not be resolved
-					((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName);
-		enRelnType = enRelationType;
-		xRelnType = xRelationType;
-		enRelnName = enRelationName;
-		xRelnName = xRelationName;
-		enRelnTarget = enTargetName;
-		xRelnTarget = xTargetName;
-		this.indexKey = indexKey;
-	}
-
-	public String getRelationType() {
-		return( enRelnType );
-	}
-	
-	public String getRelationName() {
-		return( enRelnName );
-	}
-	
-	public String getRelationTarget() {
-		return( enRelnTarget );
-	}
-
-	public String getLocalizedRelationType() {
-		return( (xRelnType != null && !xRelnType.isEmpty()) ? xRelnType : enRelnType );
-	}
-	
-	public String getLocalizedRelationName() {
-		return( (xRelnName != null && !xRelnName.isEmpty()) ? xRelnName : enRelnName );
-	}
-	
-	public String getLocalizedRelationTarget() {
-		return( (xRelnTarget != null && !xRelnTarget.isEmpty()) ? xRelnTarget : enRelnTarget );
-	}
-
-	public Object getIndexKey() {
-		return( indexKey );
-	}
-	
-	@Override
-	public String getLocalizedMessage() {
-		if (localMessage != null) {
-			return localMessage;
-		}
-		else {
-			return getMessage();
-		}
-	}
+	/**
+	 *	Get the argument Object value provided at construction, if any.
+	 *
+	 *	@return The argument object.
+	 */
+	@JSExport
+	public Object getArgValue();
 }

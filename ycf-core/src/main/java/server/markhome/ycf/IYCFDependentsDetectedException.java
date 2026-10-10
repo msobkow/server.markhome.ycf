@@ -31,236 +31,260 @@ import server.markhome.ycf.Inz;
  */
 public interface IYCFDependentsDetectedException extends IYCFRuntimeException {
 
-	protected String enRelnType = null;
-	protected String xRelnType = null;
+	/**
+	 *	IYCFDependentsDetectedException getSingleton()
+	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *
+	 *	@return IYCFDependentsDetectedException The singleton for the exception implementation.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getSingleton();
 
-	protected String enRelnName = null;
-	protected String xRelnName = null;
+	/**
+	 *	IYCFDependentsDetectedException(enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(String enMsg, String xMsg);
 
-	protected String enRelnTarget = null;
-	protected String xRelnTarget = null;
+	/**
+	 *	IYCFDependentsDetectedException(enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(String enMsg, String xMsg, Throwable cause);
 
-	protected Object indexKey = null;
+	/**
+	 *	IYCFDependentsDetectedException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg);
 
-	public IYCFDependentsDetectedException(
-		String enMsg,
-		String xMsg )
-	{
-		super( enMsg, xMsg );
-	}
+	/**
+	 *	IYCFDependentsDetectedException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFDependentsDetectedException(
-		String enMsg,
-		String xMsg,
-		Object indexKey )
-	{
-		super( enMsg, xMsg );
-		this.indexKey = indexKey;
-	}
+	/**
+	 *	IYCFDependentsDetectedException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg )
-	{
-		super( throwingClass, methName, enMsg, xMsg );
-	}
+	/**
+	 *	IYCFDependentsDetectedException(throwingClass, methName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Object indexKey )
-	{
-		super( throwingClass, methName, enMsg, xMsg );
-		this.indexKey = indexKey;
-	}
+	/**
+	 *	IYCFDependentsDetectedException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Throwable th )
-	{
-		super( throwingClass, methName, enMsg, xMsg, th );
-	}
+	/**
+	 *	IYCFDependentsDetectedException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		String enMsg,
-		String xMsg,
-		Object indexKey,
-		Throwable th )
-	{
-		super( throwingClass, methName, enMsg, xMsg, th );
-		this.indexKey = indexKey;
-	}
+	/**
+	 *	IYCFDependentsDetectedException(enFieldName, xFieldName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		Throwable th )
-	{
-		super( 
-				String.format(Inz.s("ycflib.IYCFDependentsDetectedException.sqlexcept"),
-					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-					th.getMessage()),
-				String.format(Inz.x("ycflib.IYCFDependentsDetectedException.sqlexcept"),
-					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-					th.getMessage()),
-				th);
-	}
+	/**
+	 *	IYCFDependentsDetectedException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		Object indexKey )
-	{
-		super( ((indexKey != null)
-					? String.format(Inz.s("ycflib.IYCFDependentsDetectedException.indexKey"),
-						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-						indexKey.toString())
-					: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )))),
-				((indexKey != null)
-					? String.format(Inz.x("ycflib.IYCFDependentsDetectedException.indexKey"),
-						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-						indexKey.toString())
-					: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")))));
-		this.indexKey = indexKey;
-	}
+	/**
+	 *	IYCFDependentsDetectedException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		Object indexKey,
-		Throwable th)
-	{
-		super( ((indexKey != null)
-					? String.format(Inz.s("ycflib.IYCFDependentsDetectedException.indexKey"),
-						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
-						indexKey.toString())
-					: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )))),
-				((indexKey != null)
-					? String.format(Inz.x("ycflib.IYCFDependentsDetectedException.indexKey"),
-						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-						indexKey.toString())
-					: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-						(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")))),
-				th);
-		this.indexKey = indexKey;
-	}
+	/**
+	 *	IYCFDependentsDetectedException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		String enRelationType,
-		String xRelationType,
-		String enRelationName,
-		String xRelationName,
-		String enTargetName,
-		String xTargetName,
-		Object indexKey )
-	{
-		super( ((indexKey != null) ?
-				String.format(Inz.s("ycflib.IYCFDependentsDetectedException.indexKey"),
-					(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")),
-					enRelationType, enRelationName, enTargetName, indexKey.toString())
-				: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-					(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")),
-					enRelationType, enRelationName, enTargetName)),
-			((indexKey != null) ?
-				String.format(Inz.x("ycflib.IYCFDependentsDetectedException.indexKey"),
-					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName,
-					indexKey.toString())
-				: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)));
-		enRelnType = enRelationType;
-		xRelnType = xRelationType;
-		enRelnName = enRelationName;
-		xRelnName = xRelationName;
-		enRelnTarget = enTargetName;
-		xRelnTarget = xTargetName;
-		this.indexKey = indexKey;
-	}
+	/**
+	 *	IYCFDependentsDetectedException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFDependentsDetectedException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFDependentsDetectedException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
 
-	public IYCFDependentsDetectedException(
-		Class<?> throwingClass,
-		String methName,
-		String enRelationType,
-		String xRelationType,
-		String enRelationName,
-		String xRelationName,
-		String enTargetName,
-		String xTargetName,
-		Object indexKey,
-		Throwable th )
-	{
-		super( ((indexKey != null) ?
-				String.format(Inz.s("ycflib.IYCFDependentsDetectedException.indexKey"),
-					(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")),
-					enRelationType, enRelationName, enTargetName, indexKey.toString())
-				: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-					(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")),
-					enRelationType, enRelationName, enTargetName)),
-			((indexKey != null) ?
-				String.format(Inz.x("ycflib.IYCFDependentsDetectedException.indexKey"),
-					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName,
-					indexKey.toString())
-				: String.format(Inz.s("ycflib.IYCFDependentsDetectedException.default"),
-					(throwingClass.getName() + (( methName != null && !methName.isEmpty())? ("." + methName + "()") : "")),
-					(xRelationType != null && !xRelationType.isEmpty()) ? xRelationType : enRelationType,
-					(xRelationName != null && !xRelationName.isEmpty()) ? xRelationName : enRelationName,
-					(xTargetName != null && !xTargetName.isEmpty()) ? xTargetName : enTargetName)));
-		enRelnType = enRelationType;
-		xRelnType = xRelationType;
-		enRelnName = enRelationName;
-		xRelnName = xRelationName;
-		enRelnTarget = enTargetName;
-		xRelnTarget = xTargetName;
-		this.indexKey = indexKey;
-	}
+	/**
+	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
+	 *
+	 *	@return The source of the exception.
+	 */
+	@JSExport
+	public String getSource();
 
-	public String getRelationType() {
-		return( enRelnType );
-	}
-	
-	public String getRelationName() {
-		return( enRelnName );
-	}
-	
-	public String getRelationTarget() {
-		return( enRelnTarget );
-	}
+	/**
+	 *	Get the English version of the exception message.
+	 *
+	 *	@return The English exception message body.
+	 */
+	@JSExport
+	public String getEnMessage();
 
-	public String getLocalizedRelationType() {
-		return( (xRelnType != null && !xRelnType.isEmpty()) ? xRelnType : enRelnType );
-	}
-	
-	public String getLocalizedRelationName() {
-		return( (xRelnName != null && !xRelnName.isEmpty()) ? xRelnName : enRelnName );
-	}
-	
-	public String getLocalizedRelationTarget() {
-		return( (xRelnTarget != null && !xRelnTarget.isEmpty()) ? xRelnTarget : enRelnTarget );
-	}
+	/**
+	 *	Get the localized/translated version of the exception message.
+	 *
+	 *	@return The localized/translated exception message body.
+	 */
+	@JSExport
+	public String getXMessage();
 
-	public Object getIndexKey() {
-		return( indexKey );
-	}
+	/**
+	 *	Get the argument index provided at construction, if any.
+	 *
+	 *	@return The argument index provided at construction.
+	 */
+	@JSExport
+	public int getArgNo();
+
+	/**
+	 *	Get the argument name provided at construction, if any.
+	 *
+	 *	@return The argument name provided at construction.
+	 */
+	@JSExport
+	public String getArgName();
+
+	/**
+	 *	Get the argument Object value provided at construction, if any.
+	 *
+	 *	@return The argument object.
+	 */
+	@JSExport
+	public Object getArgValue();
 }
