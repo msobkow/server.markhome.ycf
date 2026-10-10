@@ -1,0 +1,590 @@
+from __future__ import annotations
+
+import atexit
+import logging
+import os
+import re
+from collections.abc import Generator
+from functools import lru_cache
+from pathlib import Path
+from threading import Lock
+
+import wikitextprocessor
+from wikitextprocessor.dumpparser import add_default_templates
+from wikitextprocessor.interwiki import init_interwiki_map
+from wikitextprocessor.luaexec import initialize_lua
+
+from . import constants, lang, parse, utils
+from .namespaces import namespaces
+
+# Thread-local storage for per-process contexts
+_contexts: dict[int, Context] = {}
+_lock = Lock()
+
+# To print all Lua warnings & errors:
+#    DEBUG_LUA=2 python -m wikidict LOCALE --render
+DEBUG_LUA = int(os.getenv("DEBUG_LUA", "0")) > 1
+
+# Remove greedy methods we do not need
+wikitextprocessor.Wtp.debug = lambda *_, **__: None  # type: ignore[method-assign]
+wikitextprocessor.Wtp.note = lambda *_, **__: None  # type: ignore[method-assign]
+wikitextprocessor.Wtp.warning = lambda *_, **__: None  # type: ignore[method-assign]
+
+log = logging.getLogger(__name__)
+
+
+class Context:
+    def __init__(self, db: Path, locale: str, *, db_already_setup: bool = True) -> None:
+        self.snapshot = db.stem.split("-", 1)[-1]
+        self.ctx = wikitextprocessor.Wtp(
+            db,
+            extension_tags={"phonos": {"content": ["phrasing"]}},
+            lang_code=locale,
+            parser_function_aliases=constants.PARSER_FUNCTIONS_ALIASES.get(locale, {}),
+            project="wiktionary",
+            quiet=True,
+            quiet_output=not DEBUG_LUA,
+            template_override_funcs={
+                "flexion": lambda _: "",
+                "rev-flexion": lambda _: "",
+                **lang.template_overrides[locale],  # type: ignore[dict-item]
+            },
+        )
+
+        initialize_lua(self.ctx)
+
+        # Tweak SQLite behavior
+        execute = self.ctx.db_conn.execute
+        execute("PRAGMA journal_mode = WAL;")
+        execute("PRAGMA busy_timeout = 5000;")
+        execute("PRAGMA synchronous = NORMAL;")
+        execute("PRAGMA cache_size = 1000000000;")
+        execute("PRAGMA temp_store = memory;")
+
+        if db_already_setup:
+            self._cache: dict[str, str] = {}
+            self._cache_exclusions = self._get_cache_exclusions()
+        else:
+            init_interwiki_map(self.ctx)
+            add_default_templates(self.ctx)
+
+    def close(self) -> None:
+        self.ctx.close_db_conn()
+
+    def expand(self, wikitext: str, locale: str, *, skip_cache: bool = False) -> str:
+        if wikitext.startswith("{{rev-flexion"):
+            return ""
+        elif skip_cache or wikitext.startswith(self._cache_exclusions):
+            expanded = clean_html_output(self.ctx.expand(wikitext, quiet=True), locale)
+        elif not (expanded := self._cache.get(wikitext, "")):
+            expanded = clean_html_output(self.ctx.expand(wikitext, quiet=True), locale)
+            self._cache[wikitext] = expanded
+        return expanded
+
+    def set_cache_exclusions(self) -> None:
+        # sourcery skip: extract-duplicate-method
+        """Update the database to set the cacheable state of templates/modules.
+        Ones using the current word should not be cached.
+
+        We first fetch modules to exclude from the cache.
+        As a module can use the current word, but the upper call from a template will not know it, the template exclusion process is split:
+
+            1. Fetch templates using the current word, simple cases.
+            2. Fetch templates using excluded modules, complex cases.
+
+        Complex case example:
+
+            [EN] The "ms-pron" module uses the current word (so it must be excluded), and the caller template "ms-IPA" only contains `{{#invoke:ms-pron|show}}`,
+            so we need to exclude both "ms-pron" & "ms-IPA".
+        """
+        conn = self.ctx.db_conn
+
+        # Add a new column: cacheable (defaults to 1)
+        conn.executescript("""
+            BEGIN;
+            ALTER TABLE pages
+                    ADD COLUMN cacheable INTEGER NOT NULL DEFAULT 1;
+            COMMIT;
+        """)
+
+        # Modules to exclude
+        conn.execute(
+            """
+            UPDATE pages
+               SET cacheable = 0
+             WHERE namespace_id = 828
+               AND instr(body, 'getCurrentTitle') > 0
+            """
+        )
+
+        # Templates & modules to exclude, simple cases
+        conn.execute("""
+            UPDATE pages
+               SET cacheable = 0
+             WHERE cacheable != 0
+               AND namespace_id IN (10, 828)
+               AND (instr(body, 'FULLPAGENAME') > 0 OR instr(body, 'PAGENAME') > 0)
+        """)
+
+        # Templates to exclude, complex cases (in 2 steps)
+
+        # 1) Create a temporary table with patterns to exclude (i.e.: excluded modules)
+        conn.executescript("""
+            BEGIN;
+            CREATE TEMP TABLE patterns (pat TEXT PRIMARY KEY);
+            INSERT INTO patterns(pat)
+                  SELECT trim(
+                        CASE
+                            WHEN instr(title, ':') > 0 THEN substr(title, instr(title, ':') + 1)
+                            ELSE title
+                        END
+                    )
+                   FROM pages
+                  WHERE cacheable = 0
+                    AND namespace_id = 828;
+            COMMIT;
+        """)
+
+        # 2) Use the temporary table to properly set the templates "cacheable" state
+        conn.execute("""
+            UPDATE pages
+               SET cacheable = 0
+             WHERE namespace_id = 10
+               AND EXISTS (
+                    SELECT 1
+                      FROM patterns
+                     WHERE instr(pages.body, '#invoke:' || pat || '|') > 0
+                        OR instr(pages.body, '#invoke:' || pat || '}') > 0
+                        OR instr(pages.body, '#invoke:' || pat || '/') > 0
+                );
+        """)
+
+        # Handle redirections (a template redirecting to an uncachable template must also be uncacheable)
+        conn.execute("""
+            UPDATE pages
+               SET cacheable = 0
+             WHERE cacheable = 1
+               AND namespace_id = 10
+               AND redirect_to IS NOT NULL
+               AND redirect_to <> ''
+               AND EXISTS (
+                    SELECT 1
+                      FROM pages AS target
+                     WHERE target.cacheable = 0
+                       AND target.namespace_id = 10
+                       AND target.title = pages.redirect_to
+                   )
+        """)
+
+        # Finally, create the partial covering index to speed-up read queries
+        conn.execute("""
+            CREATE INDEX idx_pages_cacheable0_title
+                      ON pages(title)
+                   WHERE cacheable = 0
+        """)
+        conn.execute("ANALYZE")
+        conn.commit()
+
+    def _get_cache_exclusions(self) -> tuple[str, ...]:
+        """Templates/Modules using the current word should not be cached."""
+        query = "SELECT title FROM pages WHERE cacheable = 0"
+        return (
+            "{{FULLPAGENAME",
+            "{{PAGENAME",
+            *(
+                f"{{{{{page[0].split(':', 1)[1]}"  # `Template:foo` → `{{foo`
+                for page in self.ctx.db_conn.execute(query).fetchall()
+            ),
+        )
+
+    def translate_requires(self, current_value: str, new_value: str) -> None:
+        """Translate Lua inline module imports.
+
+        Example with the JA dictionary:
+            - `require "Module:xxx"` → `require "モジュール:xxx"`
+            - `require("Module:xxx")` → `require("モジュール:xxx")`
+            - `loadData("Module:xxx")` → `loadData("モジュール:xxx")`
+        """
+        search = f'"{current_value}:'
+        replace = f'"{new_value}:'
+        like = f"%{search}%"
+        query = "UPDATE pages SET body = REPLACE(body, ?, ?) WHERE namespace_id = 828 AND body LIKE ?"
+        self.ctx.db_conn.execute(query, (search, replace, like))
+        self.ctx.db_conn.commit()
+
+    def cleanup_modules(self, pattern: str, repl: str) -> None:
+        """Clean-up modules names, and redirections."""
+        self.ctx.db_conn.execute(f"""
+            UPDATE pages
+               SET title = REPLACE(title, "{pattern}", "{repl}"),
+                   redirect_to = REPLACE(redirect_to, "{pattern}", "{repl}")
+             WHERE namespace_id = 828
+        """)
+        self.ctx.db_conn.commit()
+
+    def cleanup_templates(self, pattern: str, repl: str) -> None:
+        """Clean-up template names, and redirections."""
+        self.ctx.db_conn.execute(f"""
+            UPDATE pages
+               SET title = REPLACE(title, "{pattern}", "{repl}"),
+                   redirect_to = REPLACE(redirect_to, "{pattern}", "{repl}")
+             WHERE namespace_id = 10
+        """)
+        self.ctx.db_conn.commit()
+
+    def fetch_words(self) -> Generator[tuple[str, str]]:
+        query = "SELECT title, body FROM pages WHERE namespace_id = 0 AND redirect_to IS NULL"
+        yield from self.ctx.db_conn.execute(query)
+
+    def fetch_redirections(self) -> Generator[tuple[str, str]]:
+        query = "SELECT title, redirect_to FROM pages WHERE namespace_id = 0 AND redirect_to IS NOT NULL"
+        yield from self.ctx.db_conn.execute(query)
+
+    def get_and_clean_errors(self) -> list[str]:
+        everything = self.ctx.to_return()
+        errors = [error["msg"] for error in everything["errors"]] + [
+            error["msg"] for error in everything["wiki_notices"]
+        ]
+        self.ctx.errors.clear()
+        return errors
+
+    def get_word(self, title: str) -> str:
+        query = "SELECT body FROM pages WHERE namespace_id = 0 AND title = ?"
+        return str(self.ctx.db_conn.execute(query, (title,)).fetchone()[0])
+
+    def get_word_count(self) -> int:
+        query = "SELECT count(*) FROM pages WHERE namespace_id = 0"
+        return int(self.ctx.db_conn.execute(query).fetchone()[0])
+
+    def new_page(self, title: str, namespace_id: int, body: str | None, redirect_to: str | None) -> None:
+        model = "Scribunto" if namespace_id == 828 else "wikitext"
+        self.ctx.add_page(title, namespace_id, body=body, model=model, redirect_to=redirect_to)
+
+    def new_word(self, word: str) -> None:
+        self.ctx.start_page(word)
+
+
+def get_ctx() -> Context:
+    pid = os.getpid()
+    try:
+        return _contexts[pid]
+    except KeyError as exc:
+        msg = f"Context not initialized for process {pid}. Call init() before using the context."
+        raise RuntimeError(msg) from exc
+
+
+def setup_modules_db(locale: str, *, db_already_setup: bool = True) -> bool:
+    lang_src, _ = utils.guess_locales(locale, use_log=False)
+    source_dir = parse.get_source_dir(lang_src)
+    if not (input_file := parse.get_latest_dump_file(source_dir)):
+        print("No dump found. Run with --download first ... ")
+        return False
+
+    snapshot = input_file.stem[6:14]
+    assert len(snapshot) == 8 and snapshot.isdigit(), repr(snapshot)
+    db_path = parse.get_output_file(source_dir, snapshot)
+    db_path.parent.mkdir(exist_ok=True)
+    init(db_path, lang_src, db_already_setup=db_already_setup)
+    return True
+
+
+def init(db: Path, locale: str, *, db_already_setup: bool = True) -> None:
+    if (pid := os.getpid()) in _contexts:
+        return
+
+    with _lock:
+        _contexts[pid] = Context(db, locale, db_already_setup=db_already_setup)
+        atexit.register(lambda: close_ctx(pid))
+
+
+def close_ctx(pid: int | None = None) -> None:
+    with _lock:
+        if ctx := _contexts.pop(pid or os.getpid(), None):
+            ctx.close()
+
+
+def reset(locale: str, *, db_already_setup: bool = True) -> bool:
+    close_ctx()
+    return setup_modules_db(locale, db_already_setup=db_already_setup)
+
+
+def get_then_clear_errors() -> list[str]:
+    return get_ctx().get_and_clean_errors()
+
+
+def get_word(title: str) -> str:
+    return get_ctx().get_word(title)
+
+
+def get_word_count() -> int:
+    return get_ctx().get_word_count()
+
+
+def new_page(title: str, namespace_id: int, body: str | None, redirect_to: str | None) -> None:
+    get_ctx().new_page(title, namespace_id, body, redirect_to)
+
+
+def new_word(word: str) -> None:
+    get_ctx().new_word(word)
+
+
+def expand(wikitext: str, locale: str, *, skip_cache: bool = False) -> str:
+    ctx = get_ctx()
+    return ctx.expand(wikitext, locale, skip_cache=skip_cache)
+
+
+def adapt_templates(locale: str) -> None:
+    this_ctx = get_ctx()
+
+    ctx = this_ctx.ctx
+
+    for template, adapter in lang.template_adapters[locale].items():
+        if not (page := ctx.get_page(template)):
+            log.error("Module/Template not found in the database: %r", template)
+            continue
+
+        assert page.body  # For Mypy
+
+        if (new_body := adapter(page.body)) == page.body:
+            log.info("Module/Template body unchanged: %r", template)
+            continue
+
+        ctx.add_page(
+            template,
+            page.namespace_id,
+            body=new_body,
+            model=page.model,
+            need_pre_expand=page.need_pre_expand,
+            redirect_to=page.redirect_to,
+        )
+
+    match locale:
+        case "ja":
+            from .lang.ja import module_trans
+
+            this_ctx.translate_requires("Module", module_trans)
+        case "jbo":
+            from .lang.jbo import template_trans
+
+            this_ctx.cleanup_templates(template_trans, "Template:")
+            this_ctx.cleanup_templates(template_trans.replace("'", "&#039;"), "Template:")
+        case "ko":
+            from .lang.ko import module_trans
+
+            this_ctx.translate_requires("Module", module_trans)
+        case "la":
+            from .lang.la import module_trans
+
+            this_ctx.cleanup_modules(f"{module_trans}:", "")
+        case "mg":
+            this_ctx.cleanup_templates("Modèle:", "")
+
+    this_ctx.set_cache_exclusions()
+
+
+def all_namespaces(locale: str) -> str:
+    all_namespaces_ = set()
+    for namespace in namespaces[locale] + namespaces["en"]:
+        all_namespaces_.add(namespace)
+        all_namespaces_.add(namespace.lower())
+    return "|".join(iter(all_namespaces_))
+
+
+@lru_cache(maxsize=256)
+def _get_file_namespace_re(locale: str) -> re.Pattern[str]:
+    return re.compile(
+        # Courtesy of Casimir et Hippolyte & Wiktor Stribiżew from https://stackoverflow.com/q/79006887/1117028
+        rf"""
+        # Match [[
+        \[\[
+
+        # Namespace followed by :
+        (?:{all_namespaces(locale)}):
+
+        # Match any chars other than [ and ], or any ] that is not immediately followed with another ], or a [
+        # that is not immediately followed with [ or one or more digits + ]
+        [^][]*(?:](?!])[^][]*|\[(?!\[|\d+\])[^][]*)*
+
+        # Match zero or more occurrences of either [+digit(s)+], or strings between [[ and ]] and then any chars
+        # other than [ and ], or any ] that is not immediately followed with another ], or a [ that is not immediately
+        # followed with [ or one or more digits + ]
+        (?:(?:\[\d+\]|\[\[[^][]*(?:](?!])[^][]*|\[(?!\[)[^][]*)*\]\])[^][]*(?:](?!])[^][]*|\[(?!\[|\d+\])[^][]*)*)*
+
+        # Match ]]
+        ]]
+        """,
+        flags=re.VERBOSE,
+    )
+
+
+RE_COMMENTS = re.compile(r"<!--[\s\S]*?-->")
+RE_REFERENCES = re.compile(r"<references[^>]++>[\s\S]*?</references>")
+RE_REF_COLON = re.compile(r"<ref:[^>]++>++")
+RE_REF_SELF_CLOSE = re.compile(r"<ref[^/>]++/>")
+RE_REF_BLOCK = re.compile(r"<+ref[^>]*/?>[\s\S]*?(?:</\s*ref[^>]*>|$)")
+
+
+def clean_html_input(code: str, locale: str) -> str:
+    r"""
+    >>> clean_html_input("[[Fichier:Blason ville fr Petit-Bersac 24.svg|vignette|120px|'''Base''' d’or ''(sens héraldique)'']][[something|else]]", "fr")
+    '[[something|else]]'
+    >>> clean_html_input("[[File:Sarcoscypha_coccinea,_Salles-la-Source_(Matthieu_Gauvain).JPG|vignette|Pézize écarlate]][[something|else]]", "en")
+    '[[something|else]]'
+    >>> clean_html_input("[[File:1864 Guernesey 8 Doubles.jpg|thumb|Pièce de 8 doubles (île de [[Guernesey]], 1864).]][[something|else]]", "en")
+    '[[something|else]]'
+    >>> clean_html_input("[[fil:ISO 7010 E002 new.svg|thumb|right|160px|piktogram nødudgang]][[something|else]]", "da")
+    '[[something|else]]'
+    >>> clean_html_input("[[Catégorie:Localités d’Afrique du Sud en français]][[something|else]]", "fr")
+    '[[something|else]]'
+    >>> clean_html_input("[[Archivo:Striped_Woodpecker.jpg|thumb|[1] macho.]][[something|else]]", "es")
+    '[[something|else]]'
+    >>> clean_html_input("[[Archivo:Mezquita de Córdoba - Celosía 006.JPG|thumb|[1]]][[something|else]]", "es")
+    '[[something|else]]'
+    >>> clean_html_input("[[Archivo:Diagrama bicicleta.svg|400px|miniaturadeimagen|'''Partes de una bicicleta:'''<br>\n[[asiento]] o [[sillín]], [[cuadro]]{{-sub|8}}, [[potencia]], [[puño]]{{-sub|4}}, [[cuerno]], [[manubrio]], [[telescopio]], [[horquilla]], [[amortiguador]], [[frenos]], [[tijera]], [[rueda]], [[rayos]], [[buje]], [[llanta]], [[cubierta]], [[válvula]], [[pedal]], [[viela]], [[cambio]], [[plato]]{{-sub|5}} o [[estrella]], [[piñón]], [[cadena]], [[tija]], [[tubo de asiento]], [[vaina]].]]\n\n[[something|else]]", "es")
+    '\n\n[[something|else]]'
+    >>> clean_html_input("[[File:Karwats.jpg|thumb|A scourge ''(noun {{senseno|en|whip}})'' [[exhibit#Verb|exhibited]] in a [[museum#Noun|museum]].]][[something|else]]", "en")
+    '[[something|else]]'
+    >>> clean_html_input("[[w:Burattino|Burattino]]", "it")
+    '[[w:Burattino|Burattino]]'
+    >>> clean_html_input("[[en:propedeutici]]", "it")
+    '[[en:propedeutici]]'
+
+    >>> clean_html_input("<!-- {{sco}} -->", "fr")
+    ''
+    >>> clean_html_input("<!--<i>sco</i> -->", "fr")
+    ''
+    >>> clean_html_input("<!--\nsco\n-->", "it")
+    ''
+
+    >>> clean_html_input("* {{IPA|en|/pɹoʊ/<q:obsolete><ref:{{R:Critical Pronouncing Dictionary|section=principles|page=37}}>}}", "en")
+    '* {{IPA|en|/pɹoʊ/<q:obsolete>}}'
+
+    >>> clean_html_input("<ref name=oed/>Modelled<ref>Gerhard</ref> English<ref name=oed>Press.</ref>", "en")
+    'Modelled English'
+    >>> clean_html_input('From {{uder|en|la|Augeas}} {{suffix|en||an}}. {{w|Augeas}} is a figure in Greek mythology whose stables were never cleaned until {{w|Hercules}} was given the task of cleaning them.<ref name="AT">\n''Ariadne’s Thread: A Guide to International Tales Found in Classical Literature'' by William F. Hansen (2002; [http://www.cornellpress.cornell.edu/cup_detail.taf?ti_id=3674 Cornell University Press]; {{ISBN|9780801475726}}, 9780801436703), [http://books.google.co.uk/books?id=ezDlXl7gP9oC&pg=PA160&dq=%22Augean+stables%22&ei=ZAtOSoPJIY6-yQTn9ezvAg page 160]<br>  ''Herakles Cleans the Augean Stables''<br>  One of the best-known stories attached to Herakles tells how in one day he removed the dung from King Augeias’s cattle yard, which had not been cleaned in years.</ref>', "en")
+    'From {{uder|en|la|Augeas}} {{suffix|en||an}}. {{w|Augeas}} is a figure in Greek mythology whose stables were never cleaned until {{w|Hercules}} was given the task of cleaning them.'
+    >>> clean_html_input("<ref>{{Import:CFC}}</ref>", "en")
+    ''
+    >>> clean_html_input("<ref>{{Import:CFC}}</ref>bla bla bla <ref>{{Import:CFC}}</ref>", "en")
+    'bla bla bla '
+    >>> clean_html_input("<ref>{{Lit-Pfeifer: Etymologisches Wörterbuch|A=8}}, Seite 1551, Eintrag „Wein“<br />siehe auch: {{Literatur | Online=zitiert nach {{GBS|uEQtBgAAQBAJ|PA76|Hervorhebung=Wein}} | Autor=Corinna Leschber| Titel=„Wein“ und „Öl“ in ihren mediterranen Bezügen, Etymologie und Wortgeschichte | Verlag=Frank & Timme GmbH | Ort= | Jahr=2015 | Seiten=75–81 | Band=Band 24 von Forum: Rumänien, Culinaria balcanica, herausgegeben von Thede Kahl, Peter Mario Kreuter, Christina Vogel | ISBN=9783732901388}}.", "en")
+    ''
+    >>> clean_html_input('<ref name="CFC" />', "en")
+    ''
+    >>> clean_html_input('<ref name="CFC">{{Import:CFC}}</ref>', "en")
+    ''
+    >>> clean_html_input('<ref name="CFC">{{CFC\\n|foo}}</ref>', "en")
+    ''
+    >>> clean_html_input("<ref>D'après ''Dictionnaire du tapissier : critique et historique de l’ameublement français, depuis les temps anciens jusqu’à nos jours'', par J. Deville, page 32 ({{Gallica|http://gallica.bnf.fr/ark:/12148/bpt6k55042642/f71.image}})</ref>", "en")
+    ''
+    >>> clean_html_input("<ref:{{R:fr:TLFi}}<<name:tlfi>>>", "en")
+    ''
+    >>> clean_html_input("<ref>", "en")
+    ''
+    >>> clean_html_input("</ref>", "en")
+    ''
+    >>> clean_html_input('<ref name="Marshall 2001"><sup>he</sup></ref>', "en")
+    ''
+    >>> clean_html_input('a<references></references>b', "fr")
+    'ab'
+    >>> clean_html_input('a<references>xcv</references>b', "fr")
+    'ab'
+
+    >>> clean_html_input("# {{lb|en|<<transitive>> or (obsolete) <<reflexive>>}} to [[ask]] politely, to say [[please]]", "en")
+    '# {{lb|en|<<transitive>> or (obsolete) <<reflexive>>}} to [[ask]] politely, to say [[please]]'
+    """
+
+    # [[File:...|...]] → ''
+    code = _get_file_namespace_re(locale).sub("", code)
+
+    # HTML comments (multiline supported)
+    # <!-- foo --> → ''
+    code = RE_COMMENTS.sub("", code)
+
+    # <references>...</references> → ''
+    code = RE_REFERENCES.sub("", code)
+
+    # <ref:...> → ''
+    code = RE_REF_COLON.sub("", code)
+
+    # <ref name="CFC"/> → ''
+    code = RE_REF_SELF_CLOSE.sub("", code)
+
+    # <ref>foo → ''
+    # <ref>foo</ref> → ''
+    # <ref name="CFC">{{Import:CFC}}</ref> → ''
+    # <ref name="CFC"><tag>...</tag></ref> → ''
+    code = RE_REF_BLOCK.sub(lambda m: m[0] if m[0].startswith("<<") else "", code)
+
+    # <ref> → ''
+    # </ref> → ''
+    if "<ref>" in code or "</ref>" in code:
+        code = code.replace("<ref>", "").replace("</ref>", "")
+
+    return code
+
+
+RE_INTER_PROJECT = re.compile(r'<span class="interProject[^>]++>[^<]*+</span>')
+RE_NBSP_LINK = re.compile(r"&nbsp;\[\[:[^\]]++\]\]")
+RE_NBSP_SUP = re.compile(r"&nbsp;<sup[^>]*+>→&nbsp;\w++</sup>")
+RE_NOWIKI = re.compile(r"<nowiki[^>]++>")
+RE_SPAN_ITALIC = re.compile(r'<span class="(?:ib-content|label)[^>]++>([^<]*+)</span>')
+RE_ETYTREE = re.compile(r'<div class="etytree[^>]*+>.*?</ul>', flags=re.DOTALL)
+RE_STRIP_TAGS = re.compile(r"</?(?:a|bdi|cite|div|em|li|ol|p|span|strong|templatestyles|ul)[^>]*+>")
+RE_CLEAN_ATTRS = re.compile(r"<(b|dl|i|small|sub|sup)\s++[^>]*+>")
+
+
+def clean_html_output(html: str, locale: str) -> str:
+    """
+    >>> clean_html_output('<span class="ib-brac">(</span><span class="ib-content">masculí</span><span class="ib-brac">)</span>', "ca")  # AFI
+    '(<i>masculí</i>)'
+
+    >>> clean_html_output('<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p><span class="form-of-definition use-with-mention"><a href="/wiki/Appendix:Glossary#abbreviation" title="Appendix:Glossary">Abbreviation</a> of <span class="form-of-definition-link"><i class="Latn mention" lang="en"><a href="/wiki/Acre#English" title="Acre">Acre</a></i></span></span>: a <a href="/wiki/state" title="state">state</a> of <span class="Latn" lang="en"><a href="/wiki/Brazil#English" title="Brazil"><b some="attr">Brazil</a></b></span>\\n</p></div>', "en")
+    'Abbreviation of <i>Acre</i>: a state of <b>Brazil</b>'
+    >>> clean_html_output('<span class="interProject">[[w:Acanthis (mythology)|Wikipedia ]]</span>', "en")  # Acanthis
+    ''
+    >>> clean_html_output('<em title=Grabowski></em>', "eo")  # kaskedo
+    ''
+    >>> clean_html_output('<templatestyles src="definición impropia/styles.css" />', "eo")  # -acho
+    ''
+    >>> clean_html_output('&nbsp;[[:en:Special:Search/volley|<sup class="dewikttm">→&nbsp;en</sup>]][[Kategorie:Übersetzungen (Englisch)]]', "de")  # hüpfen
+    ''
+    >>> clean_html_output('&nbsp;<sup>→&nbsp;en</sup>', "de")  # hüpfen
+    ''
+    >>> clean_html_output('&nbsp;<sup style="color:slategray;">→&nbsp;en</sup>', "de")  # hüpfen
+    ''
+    >>> clean_html_output('<nowiki />', "da")  # ABC
+    ''
+    >>> clean_html_output("Possibly from Pictish <small>[Term?]</small>", "en")  # Dull
+    'Possibly from Pictish'
+    >>> clean_html_output('<templatestyles src="Module:etymon/styles.css" /><div class="etytree NavFrame" data-etytree-height="8" data-etytree-width="2"><div class="NavHead"><div>Etymology tree</div></div><div class="NavContent"><div class="etytree-body"><div class="etytree-branch-group"><div class="etytree-branch"><div class="etytree-block"><span class="etyl">English</span> <span class="etytree-term"><i class="Latn mention" lang="en">[[:astonish#English|astonish]]</i></span></div><span class="etytree-branch-left"></span></div><div class="etytree-branch"><div class="etytree-block"><span class="etyl">Proto-Indo-European</span> <span class="etytree-term"><i class="Latn mention" lang="ine-pro">[[:Reconstruction&#58;Proto-Indo-European&#47;-mn̥|&#42;-mn̥]]</i></span></div><span class="etytree-connector-vertical"></span><div class="etytree-block"><span class="etyl">Proto-Indo-European</span> <span class="etytree-term"><i class="Latn mention" lang="ine-pro">[[:Reconstruction&#58;Proto-Indo-European&#47;-mn̥tom|&#42;-mn̥tom]]</i></span></div><span class="etytree-connector-vertical"></span><div class="etytree-block"><span class="etyl">Proto-Italic</span> <span class="etytree-term"><i class="Latn mention" lang="itc-pro">[[:Reconstruction&#58;Proto-Italic&#47;-mentom|&#42;-mentom]]</i></span></div><span class="etytree-connector-vertical"></span><div class="etytree-block"><span class="etyl">Latin</span> <span class="etytree-term"><i class="Latn mention nowrap" lang="la">[[:-mentum#Latin|-mentum]]</i></span></div><span class="etytree-connector-vertical"></span><div class="etytree-block"><span class="etyl">Old French</span> <span class="etytree-term"><i class="Latn mention nowrap" lang="fro">[[:-ment#Old&#95;French&#58;&#95;nominal|-ment]]</i></span><span class="etytree-label-container"><span class="etytree-label">[[Appendix:Glossary#loanword|<abbr title="loanword">bor.</abbr>]]</span></span></div><span class="etytree-connector-vertical"></span><div class="etytree-block"><span class="etyl">Middle English</span> <span class="etytree-term"><i class="Latn mention nowrap" lang="enm">[[:-ment#Middle&#95;English|-ment]]</i></span></div><span class="etytree-connector-vertical"></span><div class="etytree-block"><span class="etyl">English</span> <span class="etytree-term"><i class="Latn mention nowrap" lang="en">[[:-ment#English|-ment]]</i></span></div><span class="etytree-branch-right"></span></div></div><span class="etytree-connector-vertical"></span><div class="etytree-block"><span class="etyl">English</span> <span class="etytree-term"><i class="Latn mention" lang="en"><strong class="selflink">astonishment</strong></i></span></div></div></div></div><ul class="etymonid" data-ety-tree-json="{ &quot;children&quot; : [ { &quot;terms&quot; : [ { &quot;children&quot; : [ ], &quot;lang_name&quot; : &quot;English&quot;, &quot;term&quot; : &quot;astonish&quot;, &quot;status&quot; : &quot;missing&quot;, &quot;lang&quot; : &quot;en&quot; }, { &quot;children&quot; : [ { &quot;terms&quot; : [ { &quot;children&quot; : [ { &quot;keyword_abbrev&quot; : &quot;bor.&quot;, &quot;keyword_label&quot; : &quot;[[Appendix:Glossary#loanword|Borrowed]] from&quot;, &quot;terms&quot; : [ { &quot;id&quot; : &quot;nominal&quot;, &quot;children&quot; : [ { &quot;terms&quot; : [ { &quot;children&quot; : [ { &quot;terms&quot; : [ { &quot;children&quot; : [ { &quot;terms&quot; : [ { &quot;children&quot; : [ { &quot;terms&quot; : [ { &quot;children&quot; : [ ], &quot;lang_name&quot; : &quot;Proto-Indo-European&quot;, &quot;term&quot; : &quot;*-mn̥&quot;, &quot;status&quot; : &quot;missing&quot;, &quot;lang&quot; : &quot;ine-pro&quot; } ], &quot;keyword_label&quot; : &quot;From&quot;, &quot;keyword&quot; : &quot;from&quot; } ], &quot;lang_name&quot; : &quot;Proto-Indo-European&quot;, &quot;term&quot; : &quot;*-mn̥tom&quot;, &quot;status&quot; : &quot;inline&quot;, &quot;lang&quot; : &quot;ine-pro&quot; } ], &quot;keyword_label&quot; : &quot;[[Appendix:Glossary#inherited|Inherited]] from&quot;, &quot;keyword&quot; : &quot;inherited&quot; } ], &quot;lang_name&quot; : &quot;Proto-Italic&quot;, &quot;term&quot; : &quot;*-mentom&quot;, &quot;status&quot; : &quot;inline&quot;, &quot;lang&quot; : &quot;itc-pro&quot; } ], &quot;keyword_label&quot; : &quot;[[Appendix:Glossary#inherited|Inherited]] from&quot;, &quot;keyword&quot; : &quot;inherited&quot; } ], &quot;lang_name&quot; : &quot;Latin&quot;, &quot;term&quot; : &quot;-mentum&quot;, &quot;status&quot; : &quot;ok&quot;, &quot;lang&quot; : &quot;la&quot; } ], &quot;keyword_label&quot; : &quot;[[Appendix:Glossary#inherited|Inherited]] from&quot;, &quot;keyword&quot; : &quot;inherited&quot; } ], &quot;status&quot; : &quot;ok&quot;, &quot;lang_name&quot; : &quot;Old French&quot;, &quot;term&quot; : &quot;-ment&quot;, &quot;lang&quot; : &quot;fro&quot; } ], &quot;keyword&quot; : &quot;bor&quot; } ], &quot;lang_name&quot; : &quot;Middle English&quot;, &quot;term&quot; : &quot;-ment&quot;, &quot;status&quot; : &quot;ok&quot;, &quot;lang&quot; : &quot;enm&quot; } ], &quot;keyword_label&quot; : &quot;[[Appendix:Glossary#inherited|Inherited]] from&quot;, &quot;keyword&quot; : &quot;inherited&quot; } ], &quot;lang_name&quot; : &quot;English&quot;, &quot;term&quot; : &quot;-ment&quot;, &quot;status&quot; : &quot;ok&quot;, &quot;lang&quot; : &quot;en&quot; } ], &quot;keyword_label&quot; : &quot;From&quot;, &quot;is_group&quot; : true, &quot;keyword&quot; : &quot;affix&quot; } ], &quot;lang_name&quot; : &quot;English&quot;, &quot;term&quot; : &quot;astonishment&quot;, &quot;status&quot; : &quot;ok&quot;, &quot;lang&quot; : &quot;en&quot; }" data-lang="en" data-title="astonishment"></ul>From <i class="Latn mention" lang="en">[[:astonish#English|astonish]]</i> + <i class="Latn mention nowrap" lang="en">[[:-ment#English|-ment]]</i>.[[Category:English terms suffixed with -ment|ASTONISHMENT]][[Category:English entries referencing missing etymons|ASTONISHMENT]][[Category:Pages with etymon|ASTONISHMENT]][[Category:English entries with etymon|ASTONISHMENT]][[Category:Pages with etymology trees|ASTONISHMENT]][[Category:English entries with etymology trees|ASTONISHMENT]][[Category:English entries with etymology texts|ASTONISHMENT]][[Category:Pages using etymon with no ID|ASTONISHMENT]]', "en") # astonishment
+    'From <i>[[:astonish#English|astonish]]</i> + <i>[[:-ment#English|-ment]]</i>.'
+    """
+    # Wipe out inter project links
+    html = RE_INTER_PROJECT.sub("", html)
+    html = RE_NBSP_LINK.sub("", html)
+    html = RE_NBSP_SUP.sub("", html)
+
+    # Purge
+    if " <small>[" in html:
+        html = html.replace(" <small>[script needed]</small>", "").replace(" <small>[Term?]</small>", "")
+
+    # Remove nowiki tags
+    html = RE_NOWIKI.sub("", html)
+
+    # Apply italic on labels
+    html = RE_SPAN_ITALIC.sub(r"<i>\1</i>", html)
+
+    # Remove etymology tree
+    html = RE_ETYTREE.sub("", html)
+
+    # Remove those tags
+    html = RE_STRIP_TAGS.sub("", html)
+    if "<hr>" in html:
+        html = html.replace("<hr>", "<br/>")
+
+    # Clean-up attributes from those tags
+    html = RE_CLEAN_ATTRS.sub(r"<\1>", html)
+
+    # Remove unwanted categories
+    return clean_html_input(html, locale).strip()
