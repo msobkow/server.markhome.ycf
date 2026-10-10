@@ -34,134 +34,260 @@ import java.util.*;
  */
 public interface IYCFArgumentException extends JSObject {
 
-	protected String localMessage = null;
+	/**
+	 *	IYCFArgumentException getSingleton()
+	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *
+	 *	@return IYCFArgumentException The singleton for the exception implementation.
+	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enMsg, String xMsg);
 
 	/**
-	 *	YCFArgumentException(enMsg, xMsg)
+	 *	IYCFArgumentException(enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enMsg, String xMsg);
 
 	/**
-	 *	YCFArgumentException(enMsg, xMsg, th)
+	 *	IYCFArgumentException(enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
-	 *	@param th Root cause thrown by code
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	YCFArgumentException(throwingClass, methName, enMsg, xMsg)
+	 *	IYCFArgumentException(throwingClass, methName, enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg);
 
 	/**
-	 *	YCFArgumentException(throwingClass, methName, enMsg, xMsg, th)
+	 *	IYCFArgumentException(throwingClass, methName, enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
-	 *	@param th Root cause thrown by code
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	YCFArgumentException(throwingClass, methName, argNo, argName, enMsg, xMsg)
+	 *	IYCFArgumentException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
 
 	/**
-	 *	YCFArgumentException(throwingClass, methName, argNo, argName, enMsg, xMsg, th)
+	 *	IYCFArgumentException(throwingClass, methName, enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
-	 *	@param th Root cause thrown by code
-	 */
-
-	/**
-	 *	YCFArgumentException(enFieldName, xFieldName, enMsg, xMsg)
-	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *	@param cause Root cause thrown by code
 	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param enMsg Text message body
-	 *	@param xMsg Translated text message body
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	YCFArgumentException(enFieldName, xFieldName, methName, enMsg, xMsg)
-	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *	IYCFArgumentException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName The method name that detected the issue
-	 *	@param enMsg Text message body
-	 *	@param xMsg Translated text message body
-	 */
-
-	/**
-	 *	YCFArgumentException(enFieldName, xFieldName, methName, enMsg, xMsg, th)
-	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
 	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName The method name that detected the issue
-	 *	@param enMsg Text message body
-	 *	@param xMsg Translated text message body
-	 *	@param th Root cause thrown by code
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
 
 	/**
-	 *	YCFArgumentException(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg)
-	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *	IYCFArgumentException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName The method name that detected the issue
-	 *	@param argNo The offset or index of the argument
-	 *	@param argName The name of the argument
-	 *	@param enMsg Text message body
-	 *	@param xMsg Translated text message body
-	 */
-
-	/**
-	 *	YCFArgumentException(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg, th)
-	 *		Construct an argument exception with the provided English and NLS-translated message bodies being thrown in regards to the specified English and translated field names.
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
 	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName The method name that detected the issue
-	 *	@param argNo The offset or index of the argument
-	 *	@param argName The name of the argument
-	 *	@param enMsg Text message body
-	 *	@param xMsg Translated text message body
-	 *	@param th Root cause thrown by code
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
 	 */
+	@JSExport
+	public IYCFArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
 
 	/**
-	 *	Get the localized/translated version of the exception message
+	 *	IYCFArgumentException(enFieldName, xFieldName, enMsg, xMsg)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
+
+	/**
+	 *	IYCFArgumentException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
+
+	/**
+	 *	IYCFArgumentException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param enMsg Text message body
+	 *	@param xMsg Translated text message body
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
+
+	/**
+	 *	IYCFArgumentException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
+
+	/**
+	 *	IYCFArgumentException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *		Construct an argument exception with the default formatted message for the situation.
+	 *
+	 *	@param enFieldName Field name having the issue
+	 *	@param xFieldName Translated field name having the issue
+	 *	@param argNo Argument number or index
+	 *	@param argName Name of the argument with/causing the exception to be thrown
+	 *	@param argValue The value causing the issue
+	 *	@param cause Root cause thrown by code
+	 *
+	 *	@return IYCFArgumentException An exception instance with the specified messages.
+	 */
+	@JSExport
+	public IYCFArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
+
+	/**
+	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
+	 *
+	 *	@return The source of the exception.
+	 */
+	@JSExport
+	public String getSource();
+
+	/**
+	 *	Get the English version of the exception message.
+	 *
+	 *	@return The English exception message body.
+	 */
+	@JSExport
+	public String getEnMessage();
+
+	/**
+	 *	Get the localized/translated version of the exception message.
 	 *
 	 *	@return The localized/translated exception message body.
 	 */
+	@JSExport
+	public String getXMessage();
+
+	/**
+	 *	Get the argument index provided at construction, if any.
+	 *
+	 *	@return The argument index provided at construction.
+	 */
+	@JSExport
+	public int getArgNo();
+
+	/**
+	 *	Get the argument name provided at construction, if any.
+	 *
+	 *	@return The argument name provided at construction.
+	 */
+	@JSExport
+	public String getArgName();
+
+	/**
+	 *	Get the argument Object value provided at construction, if any.
+	 *
+	 *	@return The argument object.
+	 */
+	@JSExport
+	public Object getArgValue();
 }
