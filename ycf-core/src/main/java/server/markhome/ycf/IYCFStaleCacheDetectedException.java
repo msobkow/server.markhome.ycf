@@ -29,7 +29,7 @@ import server.markhome.ycf.Inz;
 /**
  * IYCFStaleCacheDetectedException is thrown when a cache or the objects in the cache have become stale and need to be refreshed from persistent storage before proceeding.
  */
-public interface IYCFStaleCacheDetectedException extends JSObject {
+public interface IYCFStaleCacheDetectedException extends IYCFRuntimeException {
 
 	/**
 	 *	IYCFStaleCacheDetectedException getSingleton()
@@ -239,52 +239,4 @@ public interface IYCFStaleCacheDetectedException extends JSObject {
 	 */
 	@JSExport
 	public IYCFStaleCacheDetectedException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, Throwable cause);
-
-	/**
-	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
-	 *
-	 *	@return The source of the exception.
-	 */
-	@JSExport
-	public String getSource();
-
-	/**
-	 *	Get the English version of the exception message.
-	 *
-	 *	@return The English exception message body.
-	 */
-	@JSExport
-	public String getEnMessage();
-
-	/**
-	 *	Get the localized/translated version of the exception message.
-	 *
-	 *	@return The localized/translated exception message body.
-	 */
-	@JSExport
-	public String getXMessage();
-
-	/**
-	 *	Get the argument index provided at construction, if any.
-	 *
-	 *	@return The argument index provided at construction.
-	 */
-	@JSExport
-	public int getArgNo();
-
-	/**
-	 *	Get the argument name provided at construction, if any.
-	 *
-	 *	@return The argument name provided at construction.
-	 */
-	@JSExport
-	public String getArgName();
-
-	/**
-	 *	Get the argument Object value provided at construction, if any.
-	 *
-	 *	@return The argument object.
-	 */
-	@JSExport
-	public Object getArgValue();
 }

@@ -31,7 +31,7 @@ import server.markhome.ycf.Inz;
 /**
  * You can not delete an instance that has not been created yet.
  */
-public interface IYCFCannotDeleteNewInstanceException extends JSObject {
+public interface IYCFCannotDeleteNewInstanceException extends IYCFRuntimeException {
 
 	/**
 	 *	IYCFCannotDeleteNewInstanceException getSingleton()
@@ -241,52 +241,4 @@ public interface IYCFCannotDeleteNewInstanceException extends JSObject {
 	 */
 	@JSExport
 	public IYCFCannotDeleteNewInstanceException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, Throwable cause);
-
-	/**
-	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
-	 *
-	 *	@return The source of the exception.
-	 */
-	@JSExport
-	public String getSource();
-
-	/**
-	 *	Get the English version of the exception message.
-	 *
-	 *	@return The English exception message body.
-	 */
-	@JSExport
-	public String getEnMessage();
-
-	/**
-	 *	Get the localized/translated version of the exception message.
-	 *
-	 *	@return The localized/translated exception message body.
-	 */
-	@JSExport
-	public String getXMessage();
-
-	/**
-	 *	Get the argument index provided at construction, if any.
-	 *
-	 *	@return The argument index provided at construction.
-	 */
-	@JSExport
-	public int getArgNo();
-
-	/**
-	 *	Get the argument name provided at construction, if any.
-	 *
-	 *	@return The argument name provided at construction.
-	 */
-	@JSExport
-	public String getArgName();
-
-	/**
-	 *	Get the argument Object value provided at construction, if any.
-	 *
-	 *	@return The argument object.
-	 */
-	@JSExport
-	public Object getArgValue();
 }

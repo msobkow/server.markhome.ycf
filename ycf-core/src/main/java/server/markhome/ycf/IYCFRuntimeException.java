@@ -288,5 +288,5 @@ public interface IYCFRuntimeException extends JSObject {
 	 *	@return The argument object.
 	 */
 	@JSExport
-	public Object getArgValue();
+	public Object getArgObj();
 }

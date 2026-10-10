@@ -32,7 +32,7 @@ import java.util.*;
  * 
  * There is a rich set of constructors for the class, with variations that accept the class object for the caller and a method name, and versions that accept nationalized field names and method names.
  */
-public interface IYCFArgumentException extends JSObject {
+public interface IYCFArgumentException extends IYCFRuntimeException {
 
 	/**
 	 *	IYCFArgumentException getSingleton()
