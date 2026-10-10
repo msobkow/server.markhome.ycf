@@ -97,21 +97,21 @@ public interface IYCFMustOverrideException extends JSObject {
 	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFMustOverrideException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
+	 *	IYCFMustOverrideException(throwingClass, methName, argNo, argName, argObj, enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
+	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, String enMsg, String xMsg);
 
 	/**
 	 *	IYCFMustOverrideException(throwingClass, methName, enMsg, xMsg)
@@ -121,7 +121,7 @@ public interface IYCFMustOverrideException extends JSObject {
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *	@param cause Root cause thrown by code
@@ -129,38 +129,38 @@ public interface IYCFMustOverrideException extends JSObject {
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
+	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFMustOverrideException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *	IYCFMustOverrideException(throwingClass, methName, xFieldName, argNo, argName, argObj)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
+	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj);
 
 	/**
-	 *	IYCFMustOverrideException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *	IYCFMustOverrideException(throwingClass, methName, argNo, argName, argObj, cause)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param cause Root cause thrown by code
 	 *
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
+	public IYCFMustOverrideException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Throwable cause);
 
 	/**
 	 *	IYCFMustOverrideException(enFieldName, xFieldName, enMsg, xMsg)
@@ -177,31 +177,31 @@ public interface IYCFMustOverrideException extends JSObject {
 	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
 	/**
-	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argObj, enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
+	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, String enMsg, String xMsg);
 
 	/**
-	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argObj, enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *	@param cause Root cause thrown by code
@@ -209,38 +209,38 @@ public interface IYCFMustOverrideException extends JSObject {
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
+	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argObj)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
+	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj);
 
 	/**
-	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *	IYCFMustOverrideException(enFieldName, xFieldName, argNo, argName, argObj, cause)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param cause Root cause thrown by code
 	 *
 	 *	@return IYCFMustOverrideException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
+	public IYCFMustOverrideException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, Throwable cause);
 
 	/**
 	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)

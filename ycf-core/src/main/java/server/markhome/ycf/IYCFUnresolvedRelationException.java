@@ -97,21 +97,21 @@ public interface IYCFUnresolvedRelationException extends JSObject {
 	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFUnresolvedRelationException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, argNo, argName, argObj, enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, String enMsg, String xMsg);
 
 	/**
 	 *	IYCFUnresolvedRelationException(throwingClass, methName, enMsg, xMsg)
@@ -121,7 +121,7 @@ public interface IYCFUnresolvedRelationException extends JSObject {
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *	@param cause Root cause thrown by code
@@ -129,38 +129,38 @@ public interface IYCFUnresolvedRelationException extends JSObject {
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFUnresolvedRelationException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, xFieldName, argNo, argName, argObj)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj);
 
 	/**
-	 *	IYCFUnresolvedRelationException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *	IYCFUnresolvedRelationException(throwingClass, methName, argNo, argName, argObj, cause)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param cause Root cause thrown by code
 	 *
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
+	public IYCFUnresolvedRelationException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Throwable cause);
 
 	/**
 	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, enMsg, xMsg)
@@ -177,31 +177,31 @@ public interface IYCFUnresolvedRelationException extends JSObject {
 	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
 	/**
-	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argObj, enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, String enMsg, String xMsg);
 
 	/**
-	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argObj, enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *	@param cause Root cause thrown by code
@@ -209,38 +209,38 @@ public interface IYCFUnresolvedRelationException extends JSObject {
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argObj)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj);
 
 	/**
-	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *	IYCFUnresolvedRelationException(enFieldName, xFieldName, argNo, argName, argObj, cause)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param cause Root cause thrown by code
 	 *
 	 *	@return IYCFUnresolvedRelationException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
+	public IYCFUnresolvedRelationException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, Throwable cause);
 
 	/**
 	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)

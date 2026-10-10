@@ -140,13 +140,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argValue, short maxValue);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -155,14 +155,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argValue, short maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -171,13 +171,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argValue, int maxValue);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -186,45 +186,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argValue, int maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argValue, long maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argValue, long maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -233,13 +202,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argValue, float maxValue);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -248,45 +217,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argValue, float maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argValue, double maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argValue, double maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -295,13 +233,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argValue, LocalDate maxValue);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -310,45 +248,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argValue, LocalDate maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argValue, LocalTime maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argValue, LocalTime maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -357,13 +264,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime maxValue);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -372,45 +279,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argValue, String maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argValue, String maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -419,13 +295,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal maxValue);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -434,31 +310,155 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate maxValue, Throwable cause);
 
 	/**
-	 *	IYCFArgumentOverflowException(throwingClass, methName, argNo, argName, argValue, maxValue, cause)
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal maxValue, Throwable cause);
+
+	/**
+	 *	IYCFArgumentOverflowException(throwingClass, methName, argNo, argName, argObj, maxValue, cause)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Root cause thrown by code
 	 *
 	 *	@return IYCFArgumentOverflowException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Object maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Object maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -468,13 +468,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argValue, short maxValue);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -484,47 +484,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argValue, short maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argValue, int maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argValue, int maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -534,13 +501,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argValue, long maxValue);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -550,47 +517,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argValue, long maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argValue, float maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argValue, float maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -600,13 +534,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argValue, double maxValue);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -616,47 +550,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argValue, double maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argValue, LocalDate maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argValue, LocalDate maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -666,13 +567,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argValue, LocalTime maxValue);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -682,47 +583,14 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argValue, LocalTime maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argValue, LocalDateTime maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -732,13 +600,13 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argValue, String maxValue);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -748,63 +616,195 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argValue, String maxValue, Throwable cause);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal maxValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argValue Value which caused the exception
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param maxValue Maximum limit enforced by the exception
 	 *	@param cause Throwable which caused the exception
 	 *
 	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argValue, BigDecimal maxValue, Throwable cause);
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentOverflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentOverflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal maxValue, Throwable cause);
 
 	/**
 	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)

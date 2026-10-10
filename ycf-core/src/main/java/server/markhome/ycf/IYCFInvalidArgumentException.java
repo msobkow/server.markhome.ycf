@@ -96,21 +96,21 @@ public interface IYCFInvalidArgumentException extends IYCFArgumentException {
 	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFInvalidArgumentException(throwingClass, methName, argNo, argName, argValue, enMsg, xMsg)
+	 *	IYCFInvalidArgumentException(throwingClass, methName, argNo, argName, argObj, enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
+	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, String enMsg, String xMsg);
 
 	/**
 	 *	IYCFInvalidArgumentException(throwingClass, methName, enMsg, xMsg)
@@ -120,7 +120,7 @@ public interface IYCFInvalidArgumentException extends IYCFArgumentException {
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *	@param cause Root cause thrown by code
@@ -128,38 +128,38 @@ public interface IYCFInvalidArgumentException extends IYCFArgumentException {
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
+	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFInvalidArgumentException(throwingClass, methName, xFieldName, argNo, argName, argValue)
+	 *	IYCFInvalidArgumentException(throwingClass, methName, xFieldName, argNo, argName, argObj)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue);
+	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj);
 
 	/**
-	 *	IYCFInvalidArgumentException(throwingClass, methName, argNo, argName, argValue, cause)
+	 *	IYCFInvalidArgumentException(throwingClass, methName, argNo, argName, argObj, cause)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param throwingClass The class throwing the exception
 	 *	@param methName Method name which is throwing the exception; include a "-variant" distinguishing sub-tag if the method has overloaded implementations and signatures.
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param cause Root cause thrown by code
 	 *
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argValue, Throwable cause);
+	public IYCFInvalidArgumentException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Throwable cause);
 
 	/**
 	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, enMsg, xMsg)
@@ -176,31 +176,31 @@ public interface IYCFInvalidArgumentException extends IYCFArgumentException {
 	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
 	/**
-	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argObj, enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg);
+	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, String enMsg, String xMsg);
 
 	/**
-	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argValue, enMsg, xMsg, cause)
+	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argObj, enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *	@param cause Root cause thrown by code
@@ -208,38 +208,38 @@ public interface IYCFInvalidArgumentException extends IYCFArgumentException {
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, String enMsg, String xMsg, Throwable cause);
+	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, String enMsg, String xMsg, Throwable cause);
 
 	/**
-	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argValue)
+	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argObj)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue);
+	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj);
 
 	/**
-	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argValue, cause)
+	 *	IYCFInvalidArgumentException(enFieldName, xFieldName, argNo, argName, argObj, cause)
 	 *		Construct an argument exception with the default formatted message for the situation.
 	 *
 	 *	@param enFieldName Field name having the issue
 	 *	@param xFieldName Translated field name having the issue
 	 *	@param argNo Argument number or index
 	 *	@param argName Name of the argument with/causing the exception to be thrown
-	 *	@param argValue The value causing the issue
+	 *	@param argObj The object (typically a PKey, Key, or Buff instance) causing the issue
 	 *	@param cause Root cause thrown by code
 	 *
 	 *	@return IYCFInvalidArgumentException An exception instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argValue, Throwable cause);
+	public IYCFInvalidArgumentException getInstance(String enFieldName, String xFieldName, int argNo, String argName, Object argObj, Throwable cause);
 
 	/**
 	 *	Get the source of the exception (either the field name and possible argument number and name, or the class and method with possible argument number and name.)
