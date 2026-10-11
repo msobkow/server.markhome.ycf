@@ -36,7 +36,7 @@ public interface IYCFArgumentException extends IYCFRuntimeException {
 
 	/**
 	 *	IYCFArgumentException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
 	 *
 	 *	@return IYCFArgumentException The singleton for the exception implementation.
 	 */

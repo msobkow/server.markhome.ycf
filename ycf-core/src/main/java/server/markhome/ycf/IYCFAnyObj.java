@@ -35,6 +35,15 @@ import java.util.*;
 public interface IYCFAnyObj extends JSObject {
 
 	/**
+	 *	IYCFAnyObj getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFAnyObj The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFAnyObj getSingleton();
+
+	/**
 	 *	Get the operating system user login name running the application process.
 	 *
 	 *	@return String Operating system user login name running the application process, treated as case-sensitive by the application code.

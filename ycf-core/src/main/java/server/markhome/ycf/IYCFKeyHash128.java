@@ -20,7 +20,6 @@
 
 package server.markhome.ycf;
 
-
 import org.teavm.jso.JSExport;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
@@ -36,9 +35,20 @@ import java.util.Set;
 
 /**
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> implements Serializable {
+
+	/**
+	 *	IYCFKeyHash128 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFKeyHash128 The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFKeyHash128 getSingleton();
+
   static final long serialVersionUID = 202608160340L;
   protected byte[] bytes;
 
@@ -65,12 +75,12 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> implemen
 
   @Override
   @SuppressWarnings("unchecked")
-  public int compareTo(IIYCFKeyHash128 o) {
-    int result = compare((IIYCFKeyHash128) this, o);
+  public int compareTo(IYCFKeyHash128 o) {
+    int result = compare((IYCFKeyHash128) this, o);
     return result;
   }
 
-  static public int compareOrdered(IIYCFKeyHash128 h1, IIYCFKeyHash128 h2) {
+  static public int compareOrdered(IYCFKeyHash128 h1, IYCFKeyHash128 h2) {
     if (h1 == null) {
       if (h2 == null) {
         return 0;
@@ -138,11 +148,11 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> implemen
     return h;
   }
 
-  public static Comparator<IIYCFKeyHash128> getComparator() {
+  public static Comparator<IYCFKeyHash128> getComparator() {
 
-    return new Comparator<IIYCFKeyHash128>() {
+    return new Comparator<IYCFKeyHash128>() {
       @Override
-      public int compare(IIYCFKeyHash128 a, IIYCFKeyHash128 b) {
+      public int compare(IYCFKeyHash128 a, IYCFKeyHash128 b) {
         return compareOrdered(a, b);
       }
     };
@@ -162,42 +172,42 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> implemen
     super(anId);
   }
 
-  public IYCFKeyHash128(IIYCFKeyHash128 otherKey) {
+  public IYCFKeyHash128(IYCFKeyHash128 otherKey) {
 	bytes = new byte[HASH_LENGTH];
 	if(otherKey != null) {
 		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
 	}
   }
 
-  public IYCFKeyHash128(IIYCFKeyHash160 k) {
+  public IYCFKeyHash128(IYCFKeyHash160 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public IYCFKeyHash128(IIYCFKeyHash224 k) {
+  public IYCFKeyHash128(IYCFKeyHash224 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public IYCFKeyHash128(IIYCFKeyHash256 k) {
+  public IYCFKeyHash128(IYCFKeyHash256 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public IYCFKeyHash128(IIYCFKeyHash384 k) {
+  public IYCFKeyHash128(IYCFKeyHash384 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public IYCFKeyHash128(IIYCFKeyHash512 k) {
+  public IYCFKeyHash128(IYCFKeyHash512 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
@@ -301,10 +311,10 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> implemen
     return new IYCFKeyHash128(0);
   }
 
-  public static IYCFKeyHash128 hash(IIYCFKeyHash128... payload) {
+  public static IYCFKeyHash128 hash(IYCFKeyHash128... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (IIYCFKeyHash128 k : payload) {
+      for (IYCFKeyHash128 k : payload) {
         md.update(k.getBytes());
       }
       return new IYCFKeyHash128(md.digest());

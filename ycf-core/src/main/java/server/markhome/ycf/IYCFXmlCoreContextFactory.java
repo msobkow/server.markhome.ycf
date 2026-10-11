@@ -26,20 +26,32 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
-import server.markhome.ycf.IIYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 
 /**
  *	An XML Core Context Factory instantiates new instances
  *	derived from XmlCoreContext. 
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public interface IYCFXmlCoreContextFactory extends JSObject {
+
+	/**
+	 *	IYCFXmlCoreContextFactory getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFXmlCoreContextFactory getSingleton();
 
 	/**
 	 *	Get the application processing logger.
 	 *
 	 *	@return	The application processing Log4J Logger.
 	 */
-	public IIYCFMessageLog getLog();
+	public IYCFMessageLog getLog();
 
 	/**
 	 *	Copy an XML Core Context.
@@ -57,12 +69,12 @@ public interface IYCFXmlCoreContextFactory extends JSObject {
 	 *	Construct a "root" XML Core Context instance.
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
-	 *	@param	log	IIYCFMessageLog to use, if null, use parser's logger.
+	 *	@param	log	IYCFMessageLog to use, if null, use parser's logger.
 	 *	@param	handler	The XmlCoreElementHandler which will be processing the doc root.
 	 */
 	public IYCFXmlCoreContext newXmlCoreContext(
 		IYCFXmlCoreParser coreParser,
-		IIYCFMessageLog jLogger,
+		IYCFMessageLog jLogger,
 		IYCFXmlCoreElementHandler elementHandler );
 
 }

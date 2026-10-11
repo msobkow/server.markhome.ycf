@@ -30,9 +30,20 @@ import java.io.*;
 import java.util.*;
 
 /**
- *	Implement the OmfMessageLogInterface over a Log4J Logger.
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFConsoleMessageLog extends IIYCFMessageLog {
+public interface IYCFConsoleMessageLog extends IYCFMessageLog {
+
+	/**
+	 *	IYCFConsoleMessageLog getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFConsoleMessageLog The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFConsoleMessageLog getSingleton();
 
 	/**
 	 *	Handle for the current file output stream.

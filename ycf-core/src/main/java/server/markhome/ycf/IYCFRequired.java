@@ -27,10 +27,21 @@ import org.teavm.jso.JSProperty;
 import java.util.*;
 
 /**
- * IIYCFOptional is the base interface used to specify the accessors used to manipulate optional values.
- * @author msobkow
+ * IYCFRequired is the base interface used to specify the accessors used to manipulate not-null values.
+ *
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IIYCFRequired extends JSObject {
+public interface IYCFRequired extends JSObject {
+
+	/**
+	 *	IYCFRequired getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFRequired getSingleton();
 
 	/**
 	 *	Is this value null?

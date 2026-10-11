@@ -26,7 +26,21 @@ import org.teavm.jso.JSProperty;
 
 import java.io.*;
 
-public interface IYCFCachedMessageLog implements IIYCFMessageLog {
+/**
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
+ */
+public interface IYCFCachedMessageLog implements IYCFMessageLog {
+
+	/**
+	 *	IYCFCachedMessageLog getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFCachedMessageLog The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFCachedMessageLog getSingleton();
 
 	private StringBuilder cacheContents = new StringBuilder();
 	private int		   	indent = 0;

@@ -26,7 +26,7 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
-import server.markhome.ycf.IIYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -36,6 +36,9 @@ import org.xml.sax.SAXException;
  *	<p>
  *	Each element parse context has a map by QName, resolving to
  *	XmlCoreElementParser instances.
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public abstract interface IYCFXmlCoreElementHandler extends JSObject {
 
@@ -73,9 +76,9 @@ public abstract interface IYCFXmlCoreElementHandler extends JSObject {
 	 *
 	 *	@return	Logger
 	 */
-	public IIYCFMessageLog getLog() {
+	public IYCFMessageLog getLog() {
 		IYCFXmlCoreContext context = ( parser != null ) ? parser.getCurContext() : null;
-		IIYCFMessageLog retval = ( context != null ) ? context.getLog() : null;
+		IYCFMessageLog retval = ( context != null ) ? context.getLog() : null;
 		if( retval == null ) {
 			if( parser != null ) {
 				retval = parser.getLog();

@@ -36,8 +36,20 @@ import java.io.PrintStream;
  *	messages.
  *	<p>
  *	All methods of the interface are expected to be synchronized.
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IIYCFMessageLog extends JSObject {
+public interface IYCFMessageLog extends JSObject {
+
+	/**
+	 *	IYCFMessageLog getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFMessageLog getSingleton();
 
 	/**
 	 *	Get an PrintStream that wraps this log

@@ -27,9 +27,19 @@ import org.teavm.jso.JSProperty;
 /**
  * IYCFOptKeyHash160 extends IYCFKeyHash160 with the appropriate behavior for the isNull() and setNull() method signatures.
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFOptKeyHash160 extends IYCFKeyHash160 implements IIYCFOptional {
+public interface IYCFOptKeyHash160 extends IYCFKeyHash160 implements IYCFOptional {
+
+	/**
+	 *	IYCFOptKeyHash160 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFOptKeyHash160  getSingleton();
 
 	/**
 	 *	Make this value null.

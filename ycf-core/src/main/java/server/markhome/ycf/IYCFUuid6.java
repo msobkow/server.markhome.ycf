@@ -54,10 +54,20 @@ import java.util.Arrays;
  *       | "a" | "b" | "c" | "d" | "e" | "f"
  *       | "A" | "B" | "C" | "D" | "E" | "F"
  * }</pre></blockquote>
- * 
- * @author msobkow
+ *
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public interface IYCFUuid6 extends JSObject implements java.io.Serializable, Comparable<IYCFUuid6> {
+
+	/**
+	 *	IYCFUuid6 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFUuid6 getSingleton();
 
     /*
      * The random number generator used by this class to create random

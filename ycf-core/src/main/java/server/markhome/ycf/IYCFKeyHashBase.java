@@ -40,7 +40,8 @@ import java.util.Comparator;
  * attributes, so the static class data defined here is used as the thread synchronization coordinator, rather than attributes of the specialization classes. To
  * be fair, whether is even an issue really depends on what the JDK and JVM fine-print processing rules say about such specific cases.
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public abstract interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> implements Comparator<T>, Comparable<T> {
 

@@ -37,20 +37,31 @@ import java.util.Set;
 
 /**
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public interface IYCFKeyHash512 extends IYCFKeyHashBase<IYCFKeyHash512> implements Serializable {
+
+	/**
+	 *	IYCFKeyHash512 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFKeyHash512 The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFKeyHash512 getSingleton();
+
   static final long serialVersionUID = 202608160345L;
   protected byte[] bytes;
 
   @Override
   @SuppressWarnings("unchecked")
-  public int compareTo(IIYCFKeyHash512 o) {
-    int result = compare((IIYCFKeyHash512) this, o);
+  public int compareTo(IYCFKeyHash512 o) {
+    int result = compare((IYCFKeyHash512) this, o);
     return result;
   }
 
-  static public int compareOrdered(IIYCFKeyHash512 h1, IIYCFKeyHash512 h2) {
+  static public int compareOrdered(IYCFKeyHash512 h1, IYCFKeyHash512 h2) {
     if (h1 == null) {
       if (h2 == null) {
         return 0;
@@ -139,11 +150,11 @@ public interface IYCFKeyHash512 extends IYCFKeyHashBase<IYCFKeyHash512> implemen
     return h;
   }
 
-  public static Comparator<IIYCFKeyHash512> getComparator() {
+  public static Comparator<IYCFKeyHash512> getComparator() {
 
-    return new Comparator<IIYCFKeyHash512>() {
+    return new Comparator<IYCFKeyHash512>() {
       @Override
-      public int compare(IIYCFKeyHash512 a, IIYCFKeyHash512 b) {
+      public int compare(IYCFKeyHash512 a, IYCFKeyHash512 b) {
         return compareOrdered(a, b);
       }
     };
@@ -164,7 +175,7 @@ public interface IYCFKeyHash512 extends IYCFKeyHashBase<IYCFKeyHash512> implemen
     super(anId);
   }
 
-  public IYCFKeyHash512(IIYCFKeyHash512 otherKey) {
+  public IYCFKeyHash512(IYCFKeyHash512 otherKey) {
 	bytes = new byte[HASH_LENGTH];
 	if(otherKey != null) {
 		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
@@ -269,10 +280,10 @@ public interface IYCFKeyHash512 extends IYCFKeyHashBase<IYCFKeyHash512> implemen
     return new IYCFKeyHash512(0);
   }
 
-  public static IYCFKeyHash512 hash(IIYCFKeyHash512... payload) {
+  public static IYCFKeyHash512 hash(IYCFKeyHash512... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (IIYCFKeyHash512 k : payload) {
+      for (IYCFKeyHash512 k : payload) {
         md.update(k.getBytes());
       }
       return new IYCFKeyHash512(md.digest());

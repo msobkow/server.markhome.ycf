@@ -28,7 +28,25 @@ import java.util.*;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public final interface IYCFLibEntry extends JSObject {
+/**
+ *
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
+ */
+public interface IYCFLibEntry extends JSObject {
+
+	/**
+	 *	IYCFLibEntry getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate for the method name.
+	 *
+	 *	<tt>public final static IYCFLibEntry getYCFLibEntrySingleton()</tt>
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFLibEntry getSingleton();
 
 	/**
 	 *	The OIDs of the interfaces and objects.
@@ -284,26 +302,6 @@ public final interface IYCFLibEntry extends JSObject {
 	 */
 	@JSExport
 	public static IYCFLibEntry getInstance() { return(new YCFLibEntry()); }
-
-	/**
-	 *	Get the singleton.
-	 *
-	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
-	 *
-	 *	<tt>public final static YCFLibEntry getIYCFLibEntrySingleton()</tt>
-	 *
-	 *	@return Return the library singleton. Always returns the same instance after the first invocation unless reset(true) is invoked.
-	 */
-	@JSExport
-	public static IYCFLibEntry getSingleton() {
-		YCFLibEntry retval = singleton.get();
-		if( retval == null ) {
-			retval = new YCFLibEntry();
-			singleton.compareAndSet(null, retval);
-			retval = singleton.get();
-		}
-		return(retval);
-	}
 
 	/**
 	 *	Get an instance. Because this is a singleton, getInstance() always returns null, as it just invokes YCFLibEntry() under the hood.

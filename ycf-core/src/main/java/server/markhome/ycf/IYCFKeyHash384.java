@@ -37,20 +37,31 @@ import java.util.Set;
 
 /**
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public interface IYCFKeyHash384 extends IYCFKeyHashBase<IYCFKeyHash384> implements Serializable {
+
+	/**
+	 *	IYCFKeyHash384 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFKeyHash384 The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getSingleton();
+
   static final long serialVersionUID = 202608160344L;
   protected byte[] bytes;
 
   @Override
   @SuppressWarnings("unchecked")
-  public int compareTo(IIYCFKeyHash384 o) {
-    int result = compare((IIYCFKeyHash384) this, o);
+  public int compareTo(IYCFKeyHash384 o) {
+    int result = compare((IYCFKeyHash384) this, o);
     return result;
   }
 
-  static public int compareOrdered(IIYCFKeyHash384 h1, IIYCFKeyHash384 h2) {
+  static public int compareOrdered(IYCFKeyHash384 h1, IYCFKeyHash384 h2) {
     if (h1 == null) {
       if (h2 == null) {
         return 0;
@@ -139,11 +150,11 @@ public interface IYCFKeyHash384 extends IYCFKeyHashBase<IYCFKeyHash384> implemen
     return h;
   }
 
-  public static Comparator<IIYCFKeyHash384> getComparator() {
+  public static Comparator<IYCFKeyHash384> getComparator() {
 
-    return new Comparator<IIYCFKeyHash384>() {
+    return new Comparator<IYCFKeyHash384>() {
       @Override
-      public int compare(IIYCFKeyHash384 a, IIYCFKeyHash384 b) {
+      public int compare(IYCFKeyHash384 a, IYCFKeyHash384 b) {
         return compareOrdered(a, b);
       }
     };
@@ -164,14 +175,14 @@ public interface IYCFKeyHash384 extends IYCFKeyHashBase<IYCFKeyHash384> implemen
     super(anId);
   }
 
-  public IYCFKeyHash384(IIYCFKeyHash384 otherKey) {
+  public IYCFKeyHash384(IYCFKeyHash384 otherKey) {
 	bytes = new byte[HASH_LENGTH];
 	if(otherKey != null) {
 		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
 	}
   }
 
-  public IYCFKeyHash384(IIYCFKeyHash512 otherKey) {
+  public IYCFKeyHash384(IYCFKeyHash512 otherKey) {
     super();
     if (otherKey == null) {
       bytes = new byte[HASH_LENGTH];
@@ -280,10 +291,10 @@ public interface IYCFKeyHash384 extends IYCFKeyHashBase<IYCFKeyHash384> implemen
     return new IYCFKeyHash384(0);
   }
 
-  public static IYCFKeyHash384 hash(IIYCFKeyHash384... payload) {
+  public static IYCFKeyHash384 hash(IYCFKeyHash384... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (IIYCFKeyHash384 k : payload) {
+      for (IYCFKeyHash384 k : payload) {
         md.update(k.getBytes());
       }
       return new IYCFKeyHash384(md.digest());

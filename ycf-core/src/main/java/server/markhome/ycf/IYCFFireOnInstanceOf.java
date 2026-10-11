@@ -24,7 +24,21 @@ import org.teavm.jso.JSExport;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
 
+/**
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
+ */
 public interface IYCFFireOnInstanceOf extends JSObject {
+
+	/**
+	 *	IYCFFireOnInstanceOf getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFFireOnInstanceOf The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFFireOnInstanceOf getSingleton();
 	
 	protected Class<?> instOf = null;
 
@@ -47,7 +61,7 @@ public interface IYCFFireOnInstanceOf extends JSObject {
         return( instOf );
     }
 
-    public boolean isInstanceOf( IIYCFAnyObj obj ) {
+    public boolean isInstanceOf( IYCFAnyObj obj ) {
     	if( obj == null ) {
     		return( false );
     	}
@@ -59,7 +73,7 @@ public interface IYCFFireOnInstanceOf extends JSObject {
     	return( instOf.isInstance( obj ) );
     }
 
-    public void onInstanceOf( IIYCFAnyObj obj ) {
+    public void onInstanceOf( IYCFAnyObj obj ) {
         final String S_ProcName = "onInstanceOf";
         if( obj == null ) {
             return;
@@ -68,7 +82,7 @@ public interface IYCFFireOnInstanceOf extends JSObject {
         	S_ProcName );
     }
 
-    public final void fireOnInstanceOf( IIYCFAnyObj obj ) {
+    public final void fireOnInstanceOf( IYCFAnyObj obj ) {
     	if( obj == null ) {
     		return;
     	}

@@ -31,8 +31,20 @@ import java.text.StringCharacterIterator;
 /**
  *	The XmlCoreIso8859Encoder converts native strings and characters
  *	to HTML/XML escaped text.
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public interface IYCFXmlCoreIso8859Encoder extends JSObject {
+
+	/**
+	 *	IYCFXmlCoreIso8859Encoder getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFXmlCoreIso8859Encoder getSingleton();
 
 	protected char		ch;
 	protected byte		len;

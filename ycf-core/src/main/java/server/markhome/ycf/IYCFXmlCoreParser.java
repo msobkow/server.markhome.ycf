@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import server.markhome.ycf.IIYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 
 /**
  *	An OmxParser is an abstract Xerces-J DefaultHandler.
@@ -44,6 +44,9 @@ import server.markhome.ycf.IIYCFMessageLog;
  *	code published under Apache License 2.0.
  *
  *	@see	http://xerces.apache.org/
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public abstract interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory
 {
@@ -84,7 +87,7 @@ public abstract interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory
 	 */
 	private boolean secureProcessingEnabled = DEFAULT_SECURE_PROCESSING;
 
-	private IIYCFMessageLog log = null;
+	private IYCFMessageLog log = null;
 
 	/**
 	 *	The current document locator of the parse.
@@ -165,7 +168,7 @@ public abstract interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory
 	 *
 	 *	@param	jlog - Log4J log
 	 */
-	public IYCFXmlCoreParser( IIYCFMessageLog jlog ) {
+	public IYCFXmlCoreParser( IYCFMessageLog jlog ) {
 		assert jlog != null
 			: "jlog (arg 1) is null";
 		log = jlog;
@@ -225,7 +228,7 @@ public abstract interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory
 	 *
 	 *	@return	The Log4J log 
 	 */
-	public IIYCFMessageLog getLog() {
+	public IYCFMessageLog getLog() {
 		return( log );
 	}
 	
@@ -234,7 +237,7 @@ public abstract interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory
 	 *
 	 *	@param	jlog - The log to use
 	 */
-	public void setLog( IIYCFMessageLog jlog ) {
+	public void setLog( IYCFMessageLog jlog ) {
 		assert jlog != null
 			: "jlog (arg 1) is null";
 		log = jlog;
@@ -389,7 +392,7 @@ public abstract interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory
 	 */
 	public IYCFXmlCoreContext newXmlCoreContext(
 		IYCFXmlCoreParser coreParser,
-		IIYCFMessageLog jlog,
+		IYCFMessageLog jlog,
 		IYCFXmlCoreElementHandler elementHandler )
 	{
 		IYCFXmlCoreContext retval;

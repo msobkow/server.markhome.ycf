@@ -29,9 +29,20 @@ import java.net.UnknownHostException;
 
 /**
  * The IYCFHostAddr is a packed address for either IPV4 or IPV6 addresses, with indicators and detectors for which is which.
+ *
+ * @since 2026
  * @author msobkow
  */
 public final interface IYCFHostAddr extends JSObject {
+
+	/**
+	 *	IYCFHostAddr getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFHostAddr The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFHostAddr getSingleton();
     public static final int IPV6_LENGTH = 16;
     public static final int IPV4_LENGTH = 4;
     public static final int IPV4_PAD = IPV6_LENGTH - IPV4_LENGTH;

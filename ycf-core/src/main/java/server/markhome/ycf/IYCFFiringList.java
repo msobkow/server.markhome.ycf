@@ -26,13 +26,27 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
-public interface IYCFFiringList extends JSObject
-{
+/**
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
+ */
+public interface IYCFFiringList extends JSObject {
+
+	/**
+	 *	IYCFFiringList getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFFiringList The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFFiringList getSingleton();
+
     public IYCFFiringList() {
     	super();
     }
 
-    public void fireOnInstanceOf( IIYCFAnyObj obj ) {
+    public void fireOnInstanceOf( IYCFAnyObj obj ) {
     	if( obj == null ) {
     		return;
     	}

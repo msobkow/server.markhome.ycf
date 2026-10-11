@@ -27,9 +27,19 @@ import org.teavm.jso.JSProperty;
 /**
  * IYCFReqKeyHash256 extends IYCFKeyHash256 with the appropriate behavior for the isNull() and setNull() method signatures.
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFReqKeyHash256 extends IYCFKeyHash256 implements IIYCFRequired {
+public interface IYCFReqKeyHash256 extends IYCFKeyHash256 implements IYCFRequired {
+
+	/**
+	 *	IYCFReqKeyHash256 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFReqKeyHash256 getSingleton();
 
 	/**
 	 *	Is this value null?

@@ -33,13 +33,25 @@ import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
-import server.markhome.ycf.v3_1.ycflib.MIYCFArgumentUnderflowException;
-import server.markhome.ycf.v3_1.ycflib.MIYCFNullArgumentException;
+import server.markhome.ycf.v3_1.ycflib.IYCFArgumentUnderflowException;
+import server.markhome.ycf.v3_1.ycflib.IYCFNullArgumentException;
 
 /**
- * MIYCFXmlUtil provides a wide variety of XML field parsers and formatters, which are also used for JSON data streaming. The XML String methods need to be redone to use a proper XML mapping library/package.
+ * IYCFXmlUtil provides a wide variety of XML field parsers and formatters, which are also used for JSON data streaming. The XML String methods need to be redone to use a proper XML mapping library/package.
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface MIYCFXmlUtil extends JSObject {
+public interface IYCFXmlUtil extends JSObject {
+
+	/**
+	 *	IYCFXmlUtil getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFXmlUtil getSingleton();
 
 	public final static Calendar localCalendar = new GregorianCalendar();
 	public final static int localTZOffsetMillis = localCalendar.get( Calendar.ZONE_OFFSET );
@@ -62,7 +74,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static LocalDate parseDate( String enFieldName, String xFieldName, String value ) {
 		final String S_ProcName = "parseDate";
 		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"enFieldName" );
@@ -87,7 +99,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static LocalTime parseTime( String enFieldName, String xFieldName, String value ) {
 		final String S_ProcName = "parseTime";
 		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"enFieldName" );
@@ -113,7 +125,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static LocalDateTime parseTimestamp( String enFieldName, String xFieldName, String value ) {
 		final String S_ProcName="parseTimestamp";
 		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"enFieldName" );
@@ -140,7 +152,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static LocalDate parseTZDate( String enFieldName, String xFieldName, String value ) {
 		final String S_ProcName = "parseTZDate";
 		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"enFieldName" );
@@ -166,7 +178,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static LocalTime parseTZTime( String enFieldName, String xFieldName, String value ) {
 		final String S_ProcName = "parseTZTime";
 		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"enFieldName" );
@@ -191,7 +203,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static LocalDateTime parseTZTimestamp( String enFieldName, String xFieldName, String value ) {
 		final String S_ProcName = "parseTZTimestamp";
 		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"enFieldName" );
@@ -220,7 +232,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatBlob( byte[] val ) {
 		final String S_ProcName = "formatBlob";
 		if( val == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"val" );
@@ -248,7 +260,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatUInt16( int val ) {
 		final String S_ProcName = "formatUInt16";
 		if( val < 0 ) {
-			throw new MIYCFArgumentUnderflowException( MIYCFXmlUtil.interface,
+			throw new IYCFArgumentUnderflowException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"val",
@@ -267,7 +279,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatUInt64( BigDecimal val ) {
 		final String S_ProcName = "formatUInt64";
 		if( val == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"val" );
@@ -292,7 +304,7 @@ public interface MIYCFXmlUtil extends JSObject {
 		final String S_ProcName = "formatNumber";
 		final DecimalFormat fmt = new DecimalFormat( "#########################################################################################################################################################################################################################################################################################################################################0.#########################################################################################################################################################################################################################################################################################################################################" );
 		if( val == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"val" );
@@ -304,7 +316,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatXmlString( String str ) {
 		final String S_ProcName = "formatXmlString";
 		if( str == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"str" );
@@ -317,7 +329,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatXmlStringWhitespacePreserve( String str ) {
 		final String S_ProcName = "formatXmlStringWhitespacePreserve";
 		if( str == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"str" );
@@ -330,7 +342,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatDate( LocalDate cal ) {
 		final String S_ProcName = "formatDate";
 		if( cal == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 				S_ProcName,
 				1,
 				"cal" );
@@ -343,7 +355,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatTime( LocalTime cal ) {
 		final String S_ProcName = "formatTime";
 		if( cal == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"cal" );
@@ -356,7 +368,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatTimestamp( LocalDateTime cal ) {
 		final String S_ProcName = "formatTimestamp";
 		if( cal == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName, 
 					1,
 					"cal" );
@@ -369,7 +381,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatTZDate( LocalDate cal ) {
 		final String S_ProcName = "formatTZDate";
 		if( cal == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"cal" );
@@ -382,7 +394,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatTZTime( LocalTime cal ) {
 		final String S_ProcName = "formatTZTime";
 		if( cal == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"cal" );
@@ -395,7 +407,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatTZTimestamp( LocalDateTime cal ) {
 		final String S_ProcName = "formatTZTimestamp";
 		if( cal == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"cal" );
@@ -408,7 +420,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatUuid( UUID val ) {
 		final String S_ProcName = "formatUuid";
 		if( val == null ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"val" );
@@ -424,7 +436,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredBoolean( String separator, String attrName, boolean val ) {
 		final String S_ProcName = "formatRequiredBoolean";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -436,7 +448,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredBlob( String separator, String attrName, byte[] val ) {
 		final String S_ProcName = "formatRequiredBlob";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -448,7 +460,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredInt16( String separator, String attrName, short val ) {
 		final String S_ProcName = "formatRequiredInt16";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -460,7 +472,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredInt32( String separator, String attrName, int val ) {
 		final String S_ProcName = "formatRequiredInt32";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -472,7 +484,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredInt64( String separator, String attrName, long val ) {
 		final String S_ProcName = "formatRequiredInt64";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -484,7 +496,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredUInt16( String separator, String attrName, int val ) {
 		final String S_ProcName = "formatRequiredUInt16";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -496,7 +508,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredUInt32( String separator, String attrName, long val ) {
 		final String S_ProcName = "formatRequiredUInt32";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -508,7 +520,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredUInt64( String separator, String attrName, BigDecimal val ) {
 		final String S_ProcName = "formatRequiredUInt64";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -520,7 +532,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredFloat( String separator, String attrName, float val ) {
 		final String S_ProcName = "formatRequiredFloat";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -532,7 +544,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredDouble( String separator, String attrName, double val ) {
 		final String S_ProcName = "formatRequiredDouble";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -544,7 +556,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredNumber( String separator, String attrName, BigDecimal val ) {
 		final String S_ProcName = "formatRequiredNumber";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -556,7 +568,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredXmlString( String separator, String attrName, String str ) {
 		final String S_ProcName = "formatRequiredXmlString";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -568,7 +580,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredDate( String separator, String attrName, LocalDate cal ) {
 		final String S_ProcName = "formatRequiredDate";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -580,7 +592,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredTime( String separator, String attrName, LocalTime cal ) {
 		final String S_ProcName = "formatRequiredTime";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -592,7 +604,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredTimestamp( String separator, String attrName, LocalDateTime cal ) {
 		final String S_ProcName = "formatRequiredTimestamp";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -604,7 +616,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredTZDate( String separator, String attrName, LocalDate cal ) {
 		final String S_ProcName = "formatRequiredTZDate";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -616,7 +628,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredTZTime( String separator, String attrName, LocalTime cal ) {
 		final String S_ProcName = "formatRequiredTZTime";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -628,7 +640,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredTZTimestamp( String separator, String attrName, LocalDateTime cal ) {
 		final String S_ProcName = "formatRequiredTZTimestamp";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -640,7 +652,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatRequiredUuid( String separator, String attrName, UUID val ) {
 		final String S_ProcName = "formatRequiredUuid";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -656,7 +668,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalBoolean( String separator, String attrName, Boolean val ) {
 		final String S_ProcName = "formatOptionalBoolean";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -674,7 +686,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalBlob( String separator, String attrName, byte[] val ) {
 		final String S_ProcName = "formatOptionalBlob";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -692,7 +704,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalInt16( String separator, String attrName, Short val ) {
 		final String S_ProcName = "formatOptionalInt16";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -710,7 +722,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalInt32( String separator, String attrName, Integer val ) {
 		final String S_ProcName = "formatOptionalInt32";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -728,7 +740,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalInt64( String separator, String attrName, Long val ) {
 		final String S_ProcName = "formatOptionalInt64";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -746,7 +758,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalUInt16( String separator, String attrName, Integer val ) {
 		final String S_ProcName = "formatOptionalUInt16";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -764,7 +776,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalUInt32( String separator, String attrName, Long val ) {
 		final String S_ProcName = "formatOptionalUInt32";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -782,7 +794,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalUInt64( String separator, String attrName, BigDecimal val ) {
 		final String S_ProcName = "formatOptionalUInt64";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -800,7 +812,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalFloat( String separator, String attrName, Float val ) {
 		final String S_ProcName = "formatOptionalFloat";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -818,7 +830,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalDouble( String separator, String attrName, Double val ) {
 		final String S_ProcName = "formatOptionalDouble";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -836,7 +848,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalNumber( String separator, String attrName, BigDecimal val ) {
 		final String S_ProcName = "formatOptionalNumber";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -854,7 +866,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalXmlString( String separator, String attrName, String str ) {
 		final String S_ProcName = "formatOptionalXmlString";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -872,7 +884,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalDate( String separator, String attrName, LocalDate cal ) {
 		final String S_ProcName = "formatOptionalDate";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -890,7 +902,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalTime( String separator, String attrName, LocalTime cal ) {
 		final String S_ProcName = "formatOptionalTime";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -908,7 +920,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalTimestamp( String separator, String attrName, LocalDateTime cal ) {
 		final String S_ProcName = "formatOptionalTimestamp";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -926,7 +938,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalTZDate( String separator, String attrName, LocalDate cal ) {
 		final String S_ProcName = "formatOptionalTZDate";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -944,7 +956,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalTZTime( String separator, String attrName, LocalTime cal ) {
 		final String S_ProcName = "formatOptionalTZTime";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -962,7 +974,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalTZTimestamp( String separator, String attrName, LocalDateTime cal ) {
 		final String S_ProcName = "formatOptionalTZTimestamp";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );
@@ -980,7 +992,7 @@ public interface MIYCFXmlUtil extends JSObject {
 	public static String formatOptionalUuid( String separator, String attrName, UUID val ) {
 		final String S_ProcName = "formatOptionalUuid";
 		if( ( attrName == null ) || ( attrName.length() <= 0 ) ) {
-			throw new MIYCFNullArgumentException( MIYCFXmlUtil.interface,
+			throw new IYCFNullArgumentException( IYCFXmlUtil.interface,
 					S_ProcName,
 					1,
 					"attrName" );

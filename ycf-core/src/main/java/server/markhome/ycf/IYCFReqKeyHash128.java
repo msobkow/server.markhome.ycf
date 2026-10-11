@@ -29,9 +29,19 @@ import java.util.*;
 /**
  * IYCFReqKeyHash128 extends IYCFKeyHash128 with the appropriate behavior for the isNull() and setNull() method signatures.
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFReqKeyHash128 extends IYCFKeyHash128 implements IIYCFRequired {
+public interface IYCFReqKeyHash128 extends IYCFKeyHash128 implements IYCFRequired {
+
+	/**
+	 *	IYCFReqKeyHash128 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFReqKeyHash128 getSingleton();
 
 	/**
 	 *	Is this value null?

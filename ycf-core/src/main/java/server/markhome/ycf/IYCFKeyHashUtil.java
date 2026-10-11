@@ -26,7 +26,21 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
+/**
+ *
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
+ */
 public interface IYCFKeyHashUtil extends JSObject {
+
+	/**
+	 *	IYCFKeyHashUtil getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFKeyHashUtil The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFKeyHashUtil getSingleton();
 
 	public final static TimeZone tzUTC = TimeZone.getTimeZone( "GMT+0000" );
 	public final static Calendar localCalendar = new GregorianCalendar();

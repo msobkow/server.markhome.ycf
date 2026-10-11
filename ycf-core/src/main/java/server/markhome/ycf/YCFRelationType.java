@@ -27,10 +27,10 @@ import org.teavm.jso.JSProperty;
 import java.util.*;
 
 import server.markhome.mycf.v3_1.ycflib.Inz;
-import server.markhome.mycf.v3_1.ycflib.YCFXmlUtil;
+import server.markhome.mycf.v3_1.ycflib.IYCFXmlUtil;
 
 /**
- * The YCFRelationType defines the common relationship types found in a generic business ERD model.
+ * The IYCFRelationType defines the common relationship types found in a generic business ERD model.
  * 
  * Note that Container-Component, Parent-Child, and Master-Detail are NOT identical relationships.
  * For example, there can only be one Container relationship from a Component to it's document Container,
@@ -44,15 +44,28 @@ import server.markhome.mycf.v3_1.ycflib.YCFXmlUtil;
  * formats, so the JSON data stream looks like it is comprised of XML data which has just had it's structural
  * details changed.
  * 
- * @see YCFXmlUtil
+ * @see IYCFXmlUtil
  * 
  * The Lookup relationship is special; it implies that the target does not allow deletion and has to be pre-loaded and cached by the client and middleware.
  * You can add new lookups, but you can't delete them. It also doesn't block deletion of the object which defines the relationship.
  * 
  * The Unknown relationship does not do cascading deletes, but nor does it block deletion of the object which defines the relationship.
+ *
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 @SuppressWarnings("unused")
-public enum YCFRelationType {
+public enum YCFRelationType implements JSOBject {
+
+	/**
+	 *	YCFRelationType getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public YCFRelationType getSingleton();
+
     Container("N", "Container", "ycflib.YCFRelationType.Container"),
     Component("P", "Component", "ycflib.YCFRelationType.Component"),
     Parent( "P", "Parent", "ycflib.YCFRelationType.Parent"),

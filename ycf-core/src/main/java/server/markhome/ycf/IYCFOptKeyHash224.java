@@ -28,9 +28,19 @@ import java.util.*;
 /**
  * IYCFOptKeyHash224 extends IYCFKeyHash224 with the appropriate behavior for the isNull() and setNull() method signatures.
  *
- * @author msobkow
+ *	@since 2026
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFOptKeyHash224 extends IYCFKeyHash224 implements IIYCFOptional {
+public interface IYCFOptKeyHash224 extends IYCFKeyHash224 implements IYCFOptional {
+
+	/**
+	 *	IYCFOptKeyHash224 getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFOptKeyHash224  getSingleton();
 
 	/**
 	 *	Make this value null.

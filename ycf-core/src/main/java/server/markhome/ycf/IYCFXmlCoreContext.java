@@ -27,14 +27,26 @@ import org.teavm.jso.JSProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-import server.markhome.ycf.IIYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 
 /**
  *	An XML Core Context is a processing stack entry pushed
  *	at the start of each element or document and popped
  *	at the end of their processing.
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public interface IYCFXmlCoreContext extends JSObject {
+
+	/**
+	 *	IYCFXmlCoreContext getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 */
+	@JSExport
+	public IYCFXmlCoreContext getSingleton();
 
 	/**
 	 *	Context stack chain.
@@ -60,7 +72,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *	<p>
 	 *	Programmer debug and trace messages should go to <tt>debuglog</tt>.
 	 */
-	private IIYCFMessageLog log = null;
+	private IYCFMessageLog log = null;
 
 	/**
 	 *	The XML Core Parser which owns this processing Context.
@@ -113,7 +125,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 */
 	public IYCFXmlCoreContext(
 		IYCFXmlCoreParser coreParser,
-		IIYCFMessageLog jlog,
+		IYCFMessageLog jlog,
 		IYCFXmlCoreElementHandler elementHandler )
 	{
 		assert coreParser != null : "coreParser (arg 1) is null";
@@ -211,7 +223,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *
 	 *	@return	Log4J log
 	 */
-	public IIYCFMessageLog getLog() {
+	public IYCFMessageLog getLog() {
 		if( log != null ) {
 			return( log );
 		}
@@ -226,7 +238,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *
 	 *	@param	jlog	The log to use for runtime processing messages
 	 */
-	public void setLog( IIYCFMessageLog jlog ) {
+	public void setLog( IYCFMessageLog jlog ) {
 		log = jlog;
 	}
 

@@ -28,586 +28,109 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.Format;
 
+/**
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
+ */
 public interface IYCFBigDecimalUtil extends JSObject {
 
+	/**
+	 *	IYCFBigDecimalUtil getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFBigDecimalUtil The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFBigDecimalUtil getSingleton();
+
+	/**
+	 *	The maximum number of digits supported is 31, in keeping with database NUMBER limitations from the majority of vendors.
+	 */
 	public final static int MAX_DIGITS = 31;
+
+	/**
+	 *	There must be at least a one's digit, so only 30 digits precision can be specified.
+	 */
 	public final static int MAX_PRECISION = 30;
 	
 	final static String S_Hashes = "###############################";
 	final static String S_Zeroes = "0000000000000000000000000000000";
 	final static String S_Nines =  "9999999999999999999999999999999";
 
-	public static Format getNumberFormat( String enFieldName, String xFieldName, int argDigits, int argPrecis ) {
-		final String S_ProcName = "getNumberFormat";
+	/**
+	 *	Get a Format object for a number with the specified field name, translated field name, number of digits, and precision.
+	 *
+	 *	@param String enFieldName The English field name
+	 *	@param String xFieldName The translated field name
+	 *	@param int argDigits The maximum number of digits to display
+	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
+	 */
+	@JSExport
+	public Format getNumberFormat( String enFieldName, String xFieldName, int argDigits, int argPrecis );
 
-		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new IYCFNullArgumentException( IYCFBigDecimalUtil.interface,
-				S_ProcName,
-				1,
-				"enFieldName" );
-		}
+	/**
+	 *	Get a Format object for a number with the specified field name, translated field name, number of digits, and precision.
+	 *
+	 *	@param Class<?> clazz The class formatting the number
+	 *	@param int argDigits The maximum number of digits to display
+	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
+	 */
+	@JSExport
+	public static Format getNumberFormat( Class<?> clazz, int argDigits, int argPrecis );
 
-		if( argDigits < 1 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				1 );
-		}
-		else if( argDigits > MAX_DIGITS ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				MAX_DIGITS );
-		}
+	/**
+	 *	Get the absolute minimum value for a number with the specified field name, translated field name, number of digits, and precision.
+	 *
+	 *	@param String enFieldName The English field name
+	 *	@param String xFieldName The translated field name
+	 *	@param int argDigits The maximum number of digits to display
+	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
+	 */
+	@JSExport
+	public BigDecimal getAbsoluteMinValue( String enFieldName, String xFieldName, int argDigits, int argPrecis );
 
-		if( argPrecis < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				0 );
-		}
-		else if( argPrecis > MAX_PRECISION ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				MAX_PRECISION );
-		}
+	/**
+	 *	Get the absolute maximum value for a number with the specified field name, translated field name, number of digits, and precision.
+	 *
+	 *	@param String enFieldName The English field name
+	 *	@param String xFieldName The translated field name
+	 *	@param int argDigits The maximum number of digits to display
+	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
+	 */
+	@JSExport
+	public BigDecimal getAbsoluteMaxValue( String enFieldName, String xFieldName, int argDigits, int argPrecis );
 
-		if( argPrecis >= argDigits ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				argDigits - 1 );
-		}
+	/**
+	 *	Coerce a BigDecimal value to a number with the specified field name, translated field name, number of digits, and precision.
+	 *
+	 *	@param String enFieldName The English field name
+	 *	@param String xFieldName The translated field name
+	 *	@param int argDigits The maximum number of digits to display
+	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
+	 */
+	@JSExport
+	public BigDecimal coerce( String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value );
 
-		int integerDigits = argDigits - argPrecis;
-		
-		String usePrefixHash = S_Hashes.substring( 0, integerDigits - 1 );
-		
-		String useSuffix;
-		if( argPrecis > 0 ) {
-			useSuffix = "." + S_Zeroes.substring( 0, argPrecis );
-		}
-		else {
-			useSuffix = "";
-		}
-		
-		Format numberFormat = new DecimalFormat(
-			usePrefixHash + "0" + useSuffix + ";-" + usePrefixHash + "0" + useSuffix );
-		
-		return( numberFormat );
-	}
+	/**
+	 *	Parse a BigDecimal value string into a number with the specified field name, translated field name, number of digits, and precision.
+	 *
+	 *	@param String enFieldName The English field name
+	 *	@param String xFieldName The translated field name
+	 *	@param int argDigits The maximum number of digits to display
+	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
+	 */
+	@JSExport
+	public BigDecimal parse( String enFieldName, String xFieldName, int argDigits, int argPrecis, String value );
 
-	public static Format getNumberFormat( Class<?> clazz, int argDigits, int argPrecis ) {
-		final String S_ProcName = "getNumberFormat";
-
-		if( ( clazz == null ) ) {
-			throw new IYCFNullArgumentException( IYCFBigDecimalUtil.interface,
-				S_ProcName,
-				1,
-				"clazz" );
-		}
-
-		if( argDigits < 1 ) {
-			throw new IYCFArgumentUnderflowException( clazz,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				1 );
-		}
-		else if( argDigits > MAX_DIGITS ) {
-			throw new IYCFArgumentOverflowException( clazz,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				MAX_DIGITS );
-		}
-
-		if( argPrecis < 0 ) {
-			throw new IYCFArgumentUnderflowException( clazz,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				0 );
-		}
-		else if( argPrecis > MAX_PRECISION ) {
-			throw new IYCFArgumentOverflowException( clazz,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				MAX_PRECISION );
-		}
-
-		if( argPrecis >= argDigits ) {
-			throw new IYCFArgumentOverflowException( clazz,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				argDigits - 1 );
-		}
-
-		int integerDigits = argDigits - argPrecis;
-		
-		String usePrefixHash = S_Hashes.substring( 0, integerDigits - 1 );
-		
-		String useSuffix;
-		if( argPrecis > 0 ) {
-			useSuffix = "." + S_Zeroes.substring( 0, argPrecis );
-		}
-		else {
-			useSuffix = "";
-		}
-		
-		Format numberFormat = new DecimalFormat(
-			usePrefixHash + "0" + useSuffix + ";-" + usePrefixHash + "0" + useSuffix );
-		
-		return( numberFormat );
-	}
-
-	public static BigDecimal getAbsoluteMinValue( String enFieldName, String xFieldName, int argDigits, int argPrecis ) {
-		final String S_ProcName = "getAbsoluteMinValue";
-
-		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new IYCFNullArgumentException( IYCFBigDecimalUtil.interface,
-				S_ProcName,
-				1,
-				"enFieldName" );
-		}
-
-		if( argDigits < 1 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				1 );
-		}
-		else if( argDigits > MAX_DIGITS ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				MAX_DIGITS );
-		}
-
-		if( argPrecis < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				0 );
-		}
-		else if( argPrecis > MAX_PRECISION ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				MAX_PRECISION );
-		}
-
-		if( argPrecis >= argDigits ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				argDigits - 1 );
-		}
-
-		int integerDigits = argDigits - argPrecis;
-
-		String strval;
-		if( argPrecis == 0 ) {
-			strval = "-" + S_Nines.substring( 0, integerDigits );
-		}
-		else {
-			strval = "-" + S_Nines.substring( 0, integerDigits ) + "." + S_Nines.substring( 0, argPrecis );
-		}
-		
-		BigDecimal absoluteMinValue = new BigDecimal( strval );
-		
-		return( absoluteMinValue );
-	}
-
-	public static BigDecimal getAbsoluteMaxValue( String enFieldName, String xFieldName, int argDigits, int argPrecis ) {
-		final String S_ProcName = "getAbsoluteMaxValue";
-
-		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new IYCFNullArgumentException( IYCFBigDecimalUtil.interface,
-				S_ProcName,
-				1,
-				"enFieldName" );
-		}
-
-		if( argDigits < 1 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				1 );
-		}
-		else if( argDigits > MAX_DIGITS ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				MAX_DIGITS );
-		}
-
-		if( argPrecis < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				0 );
-		}
-		else if( argPrecis > MAX_PRECISION ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				MAX_PRECISION );
-		}
-
-		if( argPrecis >= argDigits ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				argDigits - 1 );
-		}
-
-		int integerDigits = argDigits - argPrecis;
-
-		String strval;
-		if( argPrecis == 0 ) {
-			strval = S_Nines.substring( 0, integerDigits );
-		}
-		else {
-			strval = S_Nines.substring( 0, integerDigits ) + "." + S_Nines.substring( 0, argPrecis );
-		}
-		
-		BigDecimal absoluteMaxValue = new BigDecimal( strval );
-		
-		return( absoluteMaxValue );
-	}
-
-	public static BigDecimal coerce( String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value ) {
-		final String S_ProcName = "coerce";
-
-		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new IYCFNullArgumentException( IYCFBigDecimalUtil.interface,
-				S_ProcName,
-				1,
-				"enFieldName" );
-		}
-
-		if( value == null ) {
-			throw new IYCFNullArgumentException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value" );
-		}
-		
-		if( argDigits < 1 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				1 );
-		}
-		else if( argDigits > MAX_DIGITS ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				MAX_DIGITS );
-		}
-
-		if( argPrecis < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				0 );
-		}
-		else if( argPrecis > MAX_PRECISION ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				MAX_PRECISION );
-		}
-
-		if( argPrecis >= argDigits ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				argDigits - 1 );
-		}
-
-		BigDecimal minValue = getAbsoluteMinValue( enFieldName, xFieldName, argDigits, argPrecis );
-		if( value.compareTo( minValue ) < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value",
-				value,
-				minValue );
-		}
-		
-		BigDecimal maxValue = getAbsoluteMaxValue( enFieldName, xFieldName, argDigits, argPrecis );
-		if( value.compareTo( maxValue ) > 0 ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value",
-				value,
-				maxValue );
-		}
-
-		String coercedString = getNumberFormat( enFieldName, xFieldName, argDigits, argPrecis ).format( value );
-		
-		BigDecimal coercedValue = new BigDecimal( coercedString );
-		
-		return( coercedValue );
-	}
-
-	public static BigDecimal parse( String enFieldName, String xFieldName, int argDigits, int argPrecis, String value ) {
-		final String S_ProcName = "parse";
-
-		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new IYCFNullArgumentException( IYCFBigDecimalUtil.interface,
-				S_ProcName,
-				1,
-				"enFieldName" );
-		}
-
-		if( ( value == null ) || ( value.length() <= 0 ) ) {
-			return( null );
-		}
-		
-		if( argDigits < 1 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				1 );
-		}
-		else if( argDigits > MAX_DIGITS ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				MAX_DIGITS );
-		}
-
-		if( argPrecis < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				0 );
-		}
-		else if( argPrecis > MAX_PRECISION ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				MAX_PRECISION );
-		}
-
-		if( argPrecis >= argDigits ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				argDigits - 1 );
-		}
-		
-		BigDecimal rawValue = new BigDecimal( value );
-		BigDecimal minValue = getAbsoluteMinValue( enFieldName, xFieldName, argDigits, argPrecis );
-		BigDecimal maxValue = getAbsoluteMaxValue( enFieldName, xFieldName, argDigits, argPrecis );
-
-		if( rawValue.compareTo( minValue ) < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value",
-				rawValue,
-				minValue );
-		}
-		
-		if( rawValue.compareTo( maxValue ) > 0 ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value",
-				rawValue,
-				maxValue );
-		}
-
-		String coercedString = getNumberFormat( enFieldName, xFieldName, argDigits, argPrecis ).format( rawValue );
-		
-		BigDecimal coercedValue = new BigDecimal( coercedString );
-		
-		return( coercedValue );
-	}
-
-	public static String format( String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value ) {
-		final String S_ProcName = "format";
-
-		if( ( enFieldName == null ) || ( enFieldName.length() <= 0 ) ) {
-			throw new IYCFNullArgumentException( IYCFBigDecimalUtil.interface,
-				S_ProcName,
-				1,
-				"enFieldName" );
-		}
-
-		if( value == null ) {
-			throw new IYCFNullArgumentException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value" );
-		}
-		
-		if( argDigits < 1 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				1 );
-		}
-		else if( argDigits > MAX_DIGITS ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				3,
-				"argDigits",
-				argDigits,
-				MAX_DIGITS );
-		}
-
-		if( argPrecis < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				0 );
-		}
-		else if( argPrecis > MAX_PRECISION ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				MAX_PRECISION );
-		}
-
-		if( argPrecis >= argDigits ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				4,
-				"argPrecis",
-				argPrecis,
-				argDigits - 1 );
-		}
-
-		BigDecimal minValue = getAbsoluteMinValue( enFieldName, xFieldName, argDigits, argPrecis );
-		if( value.compareTo( minValue ) < 0 ) {
-			throw new IYCFArgumentUnderflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value",
-				value,
-				minValue );
-		}
-		
-		BigDecimal maxValue = getAbsoluteMaxValue( enFieldName, xFieldName, argDigits, argPrecis );
-		if( value.compareTo( maxValue ) > 0 ) {
-			throw new IYCFArgumentOverflowException( enFieldName,
-				xFieldName,
-				S_ProcName,
-				5,
-				"value",
-				value,
-				maxValue );
-		}
-
-		String coercedString = getNumberFormat( enFieldName, xFieldName, argDigits, argPrecis ).format( value );
-		
-		return( coercedString );
-	}
+	/**
+	 *	Format BigDecimal value into a string with the specified field name, translated field name, number of digits, and precision.
+	 *
+	 *	@param String enFieldName The English field name
+	 *	@param String xFieldName The translated field name
+	 *	@param int argDigits The maximum number of digits to display
+	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
+	 */
+	@JSExport
+	public String format( String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value );
 }

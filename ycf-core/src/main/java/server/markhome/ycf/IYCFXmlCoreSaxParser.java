@@ -32,7 +32,7 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import server.markhome.ycf.IIYCFMessageLog;
+import server.markhome.ycf.IYCFMessageLog;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
@@ -42,6 +42,9 @@ import server.markhome.ycf.IYCFNullArgumentException;
 /**
  *	An XmlCoreSaxParser is an abstract JAXP DefaultHandler
  *	specialized for SAX2 parsing. 
+ *
+ *	@since 2016
+ *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
 public abstract interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 
@@ -67,7 +70,7 @@ public abstract interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 	 *
 	 *	@param	jLogger - Log4J Logger
 	 */
-	public IYCFXmlCoreSaxParser( IIYCFMessageLog jLogger ) {
+	public IYCFXmlCoreSaxParser( IYCFMessageLog jLogger ) {
 		super( jLogger );
 	}
 
