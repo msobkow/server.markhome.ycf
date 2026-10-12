@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Base class for IYCF database key hashes.
+ * Base interface for IYCF key hashes, which expects to be extended as specific implementation.
  *
  * This foundation class provides essential support for n-digit hashes, usually based on the sizes of commmon hash algorithms like SHA-256, SHA-512, etc. It
  * includes methods for byte manipulation, comparison, and static initialization of hash buffers. It is designed to be extended by specific hash
@@ -43,7 +43,16 @@ import java.util.Comparator;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public abstract interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> implements Comparator<T>, Comparable<T> {
+public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> implements Comparator<T>, Comparable<T> {
+
+	/**
+	 *	IYCFKeyHashBase<T> getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFKeyHashBase<T> The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFKeyHashBase<T> getSingleton();
 
 	static final String hexDigits = "0123456789abcdef";
 	static final int UUID6_INDEX = 0;

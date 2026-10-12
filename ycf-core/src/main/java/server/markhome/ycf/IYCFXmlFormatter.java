@@ -42,16 +42,16 @@ import server.markhome.ycf.v3_1.ycflib.IYCFNullArgumentException;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFXmlUtil extends JSObject {
+public interface IYCFXmlFormatter extends JSObject {
 
 	/**
-	 *	IYCFXmlUtil getSingleton()
+	 *	IYCFXmlFormatter getSingleton()
 	 *		Get the singleton instance that provides the getInstance() and service method implementations.
 	 *
 	 *	@return The singleton instance that provides the getInstance() and service method implementations.
 	 */
 	@JSExport
-	public IYCFXmlUtil getSingleton();
+	public IYCFXmlFormatter getSingleton();
 
 	public final static Calendar localCalendar = new GregorianCalendar();
 	public final static int localTZOffsetMillis = localCalendar.get( Calendar.ZONE_OFFSET );

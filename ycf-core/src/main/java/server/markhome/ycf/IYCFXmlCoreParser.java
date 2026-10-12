@@ -48,8 +48,16 @@ import server.markhome.ycf.IYCFMessageLog;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public abstract interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory
-{
+public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
+
+	/**
+	 *	IYCFXmlCoreParser getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFXmlCoreParser The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFXmlCoreParser getSingleton();
 
 //	Constants
 

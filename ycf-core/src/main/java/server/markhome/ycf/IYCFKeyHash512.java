@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ *	IYCFKeyHash512 implements a 512-bit key hash using a HASHALGO algorithm.
  *
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)

@@ -58,7 +58,7 @@ import java.util.Arrays;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFUuid6 extends JSObject implements java.io.Serializable, Comparable<IYCFUuid6> {
+public interface IYCFUuid6 extends JSObject {
 
 	/**
 	 *	IYCFUuid6 getSingleton()

@@ -25,6 +25,7 @@ import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
 
 /**
+ *	IYCFFireOnInstanceOf Fires when an instance of the class specified at construction is detected by the <tt>onInstanceOf(value)</tt> method.
  *
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)

@@ -29,6 +29,7 @@ import java.text.DecimalFormat;
 import java.text.Format;
 
 /**
+ *	IYCFBigDecimalUtil defines the service methods which are used to instantiate, parse, clone, and prepare a BigDecimal value for marshalling/unmarshalling as a byte array.
  *
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)

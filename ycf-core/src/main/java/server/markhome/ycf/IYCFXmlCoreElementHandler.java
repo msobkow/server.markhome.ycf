@@ -40,7 +40,16 @@ import org.xml.sax.SAXException;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public abstract interface IYCFXmlCoreElementHandler extends JSObject {
+public interface IYCFXmlCoreElementHandler extends JSObject {
+
+	/**
+	 *	IYCFXmlCoreElementHandler getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFXmlCoreElementHandler The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFXmlCoreElementHandler getSingleton();
 
 	/**
 	 *	The XML Core Parser which owns this Element Handler.

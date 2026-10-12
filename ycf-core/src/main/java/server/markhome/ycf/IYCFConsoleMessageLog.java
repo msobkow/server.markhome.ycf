@@ -30,6 +30,7 @@ import java.io.*;
 import java.util.*;
 
 /**
+ *	The IYCFConsoleMessageLog interface typicially is constructed over a message log instance, providing a console display of the log in question.  If the default constructor is used or a null log is specified, the system message log is used.
  *
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)

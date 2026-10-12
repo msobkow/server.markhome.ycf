@@ -27,6 +27,7 @@ import org.teavm.jso.JSProperty;
 import java.io.*;
 
 /**
+ *	The IYCFCachedMessageLog gets a copy of a message log with a cache between the log service and the application code.  If constructed with an IYCFMessageLog argument, it is over the specified log. If by default constructor, it is for the system message log and output stream.
  *
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)

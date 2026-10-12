@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ *	IYCFKeyHash160 implements a 160-bit key hash using a HASHALGO algorithm.
  *
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)

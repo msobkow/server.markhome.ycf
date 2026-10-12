@@ -27,6 +27,7 @@ import org.teavm.jso.JSProperty;
 import java.util.*;
 
 /**
+ *	Get a list of instance classes that should be fired upon when detected.  The list is evaluated in the order that entries were added, so be careful to add sub-class entries before their superclass entry.
  *
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)

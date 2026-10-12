@@ -46,7 +46,16 @@ import server.markhome.ycf.IYCFNullArgumentException;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public abstract interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
+public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
+
+	/**
+	 *	IYCFXmlCoreSaxParser getSingleton()
+	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFXmlCoreSaxParser The singleton for the implementation.
+	 */
+	@JSExport
+	public IYCFXmlCoreSaxParser getSingleton();
 
 //	Instance Attributes
 

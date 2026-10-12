@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ *	IYCFKeyHash224 implements a 224-bit key hash using a HASHALGO algorithm.
  *
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
@@ -51,6 +52,7 @@ public interface IYCFKeyHash224 extends IYCFKeyHashBase<IYCFKeyHash224> implemen
 	 */
 	@JSExport
 	public IYCFKeyHash224 getSingleton();
+
   static final long serialVersionUID = 202608160342L;
   protected byte[] bytes;
 

@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ *	IYCFKeyHash128 implements a 128-bit key hash using a HASHALGO algorithm.
  *
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
