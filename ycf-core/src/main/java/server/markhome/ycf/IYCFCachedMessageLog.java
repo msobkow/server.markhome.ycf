@@ -43,64 +43,356 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 	@JSExport
 	public IYCFCachedMessageLog getSingleton();
 
+	private IYCFMessageLog log = null;
 	private StringBuilder cacheContents = new StringBuilder();
-	private int		   	indent = 0;
+	private int indent = 0;
 	
 	/**
-	 *	Default constructor.
+	 *	public IYCFCachedMessageLog getInstance()
+	 *		@return default instance.
 	 */
-	public IYCFCachedMessageLog() {
-		indent = 0;
+	@JSExport
+	public IYCFCachedMessageLog getInstance() {
+		return(new YCFCachedMessageLog());
 	}
 
+	/**
+	 *	Get the log being cached.
+	 *
+	 *	@return The log being cached.
+	 */
+	@JSExport
+	public IYCFMessageLog getLog() {
+		return(this.log.get());
+	}
+
+	/**
+	 *	Set the log to be cached.
+	 *
+	 *	@param value The log to be cached.
+	 *
+	 *	@return The log now being cached.
+	 */
+	@JSExport
+	public IYCFMessageLog setLog(IYCFMessageLog expected, IYCFMessageLog value) {
+		if(this.log.get() == expected) {
+			this.log.get().set(expected,value);
+		}
+	}
+
+	/**
+	 *	Clear the log's cache.
+	 */
+	@JSExport
 	public void clearCache() {
-		cacheContents.setLength( 0 );
+		IYCFMessageLog lg = log.get();
+		if( lg != null) {
+			lg.getLog().setLength( 0 );
+		}
 	}
 
+	/**
+	 *	Get the contents of the cache.
+	 *
+	 *	@return String Contents of the cache.
+	 */
+	@JSExport
 	public String getCacheContents() {
-		return( cacheContents.toString() );
+		return(this.cacheContents.toString());
 	}
-	
+
+	/**
+	 *	Get the message log indent level.
+	 *
+	 *	@return int The message log indent level.
+	 */
+	@JSExport
 	public int getMessageLogIndent() {
-		return( indent );
+		return(this.log.get().getMessageLogIndent());
 	}
-	
-	public synchronized void dedent() {
+
+	/**
+	 *	Set the message log indent level to the value specified.
+	 *
+	 *	@param value The message log indent level to set
+	 *
+	 *	@return The new message log indent level
+	 */
+	@JSExport
+	public int setMessageLogIndent(int expected, int value) {
+		this.log.get().getMessageLogIndent().set(expected, value);
+		return(this.log.get().getMessageLogIndent());
+	}
+
+	/**
+	 *	Reduce the message log indent level.
+	 *
+	 *	@return int The new message log indent level.
+	 */
+	@JSExport
+	public int dedent() {
+		int indent = this.indent.get();
 		if( indent > 0 ) {
 			indent --;
 		}
 		else {
 			indent = 0;
 		}
+		this.indent.set(this.indent.get(), indent);
+		return(this.indent.get());
 	}
-	
-	public synchronized void indent() {
-		indent ++;
-	}
-	
-	public synchronized void message( String msg ) {
 
-		if( msg == null ) {
+	/**
+	 *	Increase the message log indent level.
+	 *
+	 *	@return int The new message log indent level.
+	 */
+	@JSExport
+	public void indent() {
+		int indent = this.indent.get();
+		indent ++;
+		this.indent.set(this.indent.get(), indent);
+		return(this.indent.get());
+	}
+
+	/**
+	 *	Log an abort, specifying the optional message and return value to be logged.
+	 *
+	 *	@param retval The optional value to be logged for return.
+	 *	@param msg The optional message to be logged.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String abort(int retval, String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+			msg = "";
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append(String.format(IInz.x("abort"), (retval == null) ? "void" : retval, msg)); // "ABORT: returning retval - msg"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log a graceful exit, specifying an optional message and return value to be logged.
+	 *
+	 *	@param retval The optional value to be logged for return.
+	 *	@param msg The optional message to be logged.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String exit(Integer retval, String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+			msg = "";
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExit"), (retval == null) ? "void" : retval)); // "NORMAL EXIT: returning %1$d" : String.format(IInz.x("normalExitWithMessage"), (retval == null) ? "void" : retval, msg)); // "NORMAL EXIT: returning %1$d - %2$s"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log a graceful exit, specifying an optional message to be logged and a return value of 0.
+	 *
+	 *	@param msg The optional message to be logged.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String exit(String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+			msg = "";
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitZero"))); // "NORMAL EXIT: returning 0" : String.format(IInz.x("normalExitZeroWithMessage"), msg)); // "NORMAL EXIT: returning 0 - %2$s"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log a graceful exit, specifying an optional message to be logged and a return value of -1.
+	 *
+	 *	@param msg The optional message to be logged.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String exitMinusOne(String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+			msg = "";
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitMinusOne"))); // "NORMAL EXIT: returning -1" : String.format(IInz.x("normalExitMinusOneWithMessage"), msg)); // "NORMAL EXIT: returning -1 - %2$s"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log a graceful exit, specifying an optional message to be logged and a return value of 1.
+	 *
+	 *	@param msg The optional message to be logged.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String exitPlusOne(String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+			msg = "";
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitPlusOne"))); // "NORMAL EXIT: returning 1" : String.format(IInz.x("normalExitPlusOneWithMessage"), msg)); // "NORMAL EXIT: returning 1 - %2$s"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log the specified message as an error.
+	 *
+	 *	@param msg The message to be logged as an error, may be null, in which case nothing gets written as requested.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String error(String msg) {
+		if(msg == null || msg.isEmpty()) {
 			return;
 		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append(IInz.x("error"))); // "ERROR: %1$s"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
 
-		int			i;
-		for( i = ( ( cacheContents.length() <= 0 ) ? 1 : 0 ); i < indent; i ++ ) {
-			cacheContents.append( "\t" );
+	/**
+	 *	Log the specified message as fatal.
+	 *
+	 *	@param msg The message to be logged as fatal, may be null, in which case nothing gets written as requested.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String fatal(String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
 		}
-		cacheContents.append( msg );
-		if( ! msg.endsWith( "\n" ) ) {
-			cacheContents.append( "\n" );
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
 		}
+		this.cacheContents.get().append(IInz.x("fatal"))); // "FATAL: %1$s"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log the specified message.
+	 *
+	 *	@param msg The message to be logged, may be null, in which case nothing gets written as requested.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String message(String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log the specified message as a warning.
+	 *
+	 *	@param msg The message to be logged as a warning, may be null, in which case nothing gets written as requested.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String warning(String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
+			sb.append( "\t" );
+		}
+		this.cacheContents.get().append(IInz.x("warning"))); // "WARN: %1$s"
+		this.cacheContents.get().append(msg);
+		if(! msg.endsWith( "\n" )) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
 	}
 
 //	OLD API's that need to go away
 
 	public PrintStream getPrintStream() {
-		return( null );
+		return(null);
 	}
 
-	public void openLogFile( String fileName )
+	public void openLogFile(String fileName)
 		throws FileNotFoundException
 	{
 		// Do-nothing stub; cached message logs don't write to files

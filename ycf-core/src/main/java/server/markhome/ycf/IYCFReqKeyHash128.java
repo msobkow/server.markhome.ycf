@@ -44,6 +44,15 @@ public interface IYCFReqKeyHash128 extends IYCFKeyHash128 implements IYCFRequire
 	public IYCFReqKeyHash128 getSingleton();
 
 	/**
+	 *	IYCFReqKeyHash128 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFReqKeyHash128 getInstance();
+
+	/**
 	 *	Is this value null?
 	 *
 	 *	@throws IYCFInvalidStateException if the superinterface implementation of isNull() returns true.

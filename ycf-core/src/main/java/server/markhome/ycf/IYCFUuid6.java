@@ -69,6 +69,15 @@ public interface IYCFUuid6 extends JSObject {
 	@JSExport
 	public IYCFUuid6 getSingleton();
 
+	/**
+	 *	IYCFUuid6 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFUuid6 getInstance();
+
     /*
      * The random number generator used by this class to create random
      * based UUIDs. In a holder class to defer initialization until needed.

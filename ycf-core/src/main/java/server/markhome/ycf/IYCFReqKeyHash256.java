@@ -42,6 +42,15 @@ public interface IYCFReqKeyHash256 extends IYCFKeyHash256 implements IYCFRequire
 	public IYCFReqKeyHash256 getSingleton();
 
 	/**
+	 *	IYCFReqKeyHash256 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFReqKeyHash256 getInstance();
+
+	/**
 	 *	Is this value null?
 	 *
 	 *	@throws IYCFInvalidStateException if the superinterface implementation of isNull() returns true.

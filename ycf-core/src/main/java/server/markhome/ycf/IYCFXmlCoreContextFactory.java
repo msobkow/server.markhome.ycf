@@ -44,14 +44,9 @@ public interface IYCFXmlCoreContextFactory extends JSObject {
 	 *	@return The singleton instance that provides the getInstance() and service method implementations.
 	 */
 	@JSExport
-	public IYCFXmlCoreContextFactory getSingleton();
-
-	/**
-	 *	Get the application processing logger.
-	 *
-	 *	@return	The application processing Log4J Logger.
-	 */
-	public IYCFMessageLog getLog();
+	public IYCFXmlCoreContextFactory getSingleton() {
+		return(YCFXmlCoreContextFactory_getSingleton());
+	}
 
 	/**
 	 *	Copy an XML Core Context.
@@ -60,10 +55,17 @@ public interface IYCFXmlCoreContextFactory extends JSObject {
 	 *	@param	qName	The QName of the element about to be processed.
 	 *	@param	handler	The XmlCoreElementHandler which will be used for processing.
 	 */
-	public IYCFXmlCoreContext newXmlCoreContext(
+	public IYCFXmlCoreContext YCFXmlCoreContextFactory_getInstance(
 		IYCFXmlCoreContext src,
 		String qName,
 		IYCFXmlCoreElementHandler handler );
+
+	/**
+	 *	Get the application processing logger.
+	 *
+	 *	@return	The application processing Log4J Logger.
+	 */
+	public IYCFMessageLog getLog();
 
 	/**
 	 *	Construct a "root" XML Core Context instance.

@@ -44,6 +44,15 @@ public interface IYCFOptKeyHash512 extends IYCFKeyHash512 implements IYCFOptiona
 	public IYCFOptKeyHash512  getSingleton();
 
 	/**
+	 *	IYCFOptKeyHash512 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFOptKeyHash512 getInstance();
+
+	/**
 	 *	Make this value null.
 	 *
 	 *	@throws IYCFNullArgumentException

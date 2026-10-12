@@ -35,7 +35,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public interface IYCFMtReference extends JSObject {
 
-	protected final static IYCFMtReference<IYCFMtReference> singleton = IYCFMtReference<IYCFMtRefence>.getSingleton().getInstance(null);
+	protected final static IYCFMtReference<IYCFMtReference> YCFMtReference_singleton = IYCFMtReference<IYCFMtRefence>.getSingleton().getInstance(null);
 
 	/**
 	 *	IYCFMtReference getSingleton()
@@ -64,11 +64,11 @@ public interface IYCFMtReference extends JSObject {
 	 */
 	@JSExport
 	public static IYCFMtReference YCFMtReference_getSingleton() {
-		IYCFMtRefernce sgl = singleton.get();
+		IYCFMtRefernce sgl = YCFMtReference_singleton.get();
 		if(sgl == null) {
 			sgl = new YCFMtReference(null);
-			singleton.set(null, sgl);
-			sgl = singleton.get();
+			YCFMtReference_singleton.set(null, sgl);
+			sgl = YCFMtReference_singleton.get();
 		}
 		return(sgl);
 	}
@@ -130,38 +130,31 @@ public interface IYCFMtReference extends JSObject {
 	public static final String YCF_LIB_VERSION = IYCFEntry.getLibVersion();
 
 	/**
-	 *	Implementations must be a singleton, returning the same instance over and over after initialization. How this is achieved may vary.
+	 *	Default constructor is over a null instance of the specified class.
 	 *
-	 *	<tt>protected final static singleton = IYCFMtReference<IYCFMtReference>.getSingleton().getInstance(null);</tt>
-	 */
-	protected final static IYCFMtReference<IYCFMtReference> singleton = IYCFMtReference<IYCFMtReference>.getSingleton().getInstance(null);
-
-	/**
-	 *	Default constructor is protected so that only a singleton can be created.
-	 *
-	 *	<tt>public static IYCFMtReference getInstance(Class<?> clazz){ }</tt>
+	 *	<tt>public static IYCFMtReference<?> getInstance(Class<?> clazz){ }</tt>
 	 */
 	@JSExport
 	public IYCFMtReference<?> getInstance(Class<?> clazz) { return(IYCFMtReference<clazz>.getSingleton().getInstance(null)); }
 
 	/**
-	 *	Get an instance. Because this is a singleton, getInstance() always returns null, as it just invokes YCFMtReference() under the hood.
+	 *	Get an instance.
 	 *
 	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
 	 *
-	 *	<tt>public final static YCFMtReference getIYCFMtReferenceInstance()</tt>
+	 *	<tt>public final static YCFMtReference<?> YCFMtReference_getInstance(Class<?> clazz)</tt>
 	 *
 	 *	@return The instance, if any. Always returns null.
 	 */
 	@JSExport
-	public static IYCFMtReference<?> getInstance(Class<?> clazz) { new YCFMtReference<clazz>.getClass()(); }
+	public static IYCFMtReference<?> YCFMtReference_getInstance(Class<?> clazz) { new YCFMtReference<clazz>.getClass()(); }
 
 	/**
 	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
 	 *
 	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
 	 *
-	 *	<tt>public static boolean execIYCFMtReferenceLibReset(boolean yesReally)</tt>
+	 *	<tt>public static boolean YCFMtReference_libReset(boolean yesReally)</tt>
 	 *
 	 *	@param	yesReally Are you sure you want to reset the value?
 	 */
@@ -173,22 +166,36 @@ public interface IYCFMtReference extends JSObject {
 	 *
 	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
 	 *
-	 *	<tt>public static boolean execIYCFMtReferenceLibReset(boolean yesReally)</tt>
+	 *	<tt>public static boolean YCFMtReference_libReset(boolean yesReally)</tt>
 	 *
 	 *	@param	yesReally Are you sure you want to reset the value?
 	 */
 	@JSExport
-	public static boolean YCFMtReference.libReset(boolean yesReally) {
-		IYCFMtReference sgl = singleton.get();
+	public boolean libReset(boolean yesReally) {
+		return(YFCFMtReference_libReset(yesReally));
+	}
+
+	/**
+	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
+	 *
+	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
+	 *
+	 *	<tt>public static boolean YCFMtReference_libReset(boolean yesReally)</tt>
+	 *
+	 *	@param	yesReally Are you sure you want to reset the value?
+	 */
+	@JSExport
+	public static boolean YCFMtReference_libReset(boolean yesReally) {
+		IYCFMtReference sgl = YCFMtReference_singleton.get();
 		boolean retval;
 		if (sgl == null || yesReally) {
 			retval = false;
 
 			if (yesReally && sgl != null) {
-				singleton.compareAndSet(sgl, null);
+				YCFMtReference_singleton.compareAndSet(sgl, null);
 			}
 
-			sgl = getIYCFMtReferenceSingleton();
+			sgl = YCFMtReference_singleton.get();
 			assert sgl != null: "Singleton must not be null after initialization";
 
 			retval = true;
@@ -207,7 +214,21 @@ public interface IYCFMtReference extends JSObject {
 	 *	@return True if the library was reinitialized, false if the code detected that the library has not been used since the last reinitialization.
 	 */
 	@JSExport
-	public static boolean YCFMtReference.libReset() { return(libReset(false)); }
+	public boolean libReset() {
+		return(YCFMtReference_libReset(false));
+	}
+
+	/**
+	 *	Reset the singleton and any other data caches after an application reload or other package or executable reloading event.
+	 *
+	 *	Invokes libReset(false) under the hood.
+	 *
+	 *	@return True if the library was reinitialized, false if the code detected that the library has not been used since the last reinitialization.
+	 */
+	@JSExport
+	public static boolean YCFMtReference_libReset() {
+		return(YCFMtReference_libReset(false));
+	}
 
 	/**
 	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
@@ -217,7 +238,21 @@ public interface IYCFMtReference extends JSObject {
 	 *	@return	True if the singleton was reset, false if the singleton was set and yesReally was false.
 	 */
 	@JSExport
-	public static boolean YCFMtReference.resetLib(boolean yesReally) { return(YCFMtReference.libReset(yesReally)); }
+	public boolean resetLib(boolean yesReally) {
+		return(YCFMtReference_resetLib(yesReally));
+	}
+
+	/**
+	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
+	 *
+	 *	@param	yesReally Are you sure you want to reset the value?
+	 *
+	 *	@return	True if the singleton was reset, false if the singleton was set and yesReally was false.
+	 */
+	@JSExport
+	public static boolean YCFMtReference_resetLib(boolean yesReally) {
+		return(YCFMtReference_libReset(yesReally));
+	}
 
 	/**
 	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
@@ -225,7 +260,19 @@ public interface IYCFMtReference extends JSObject {
 	 *	@return	True if the value was reset, false if the singleton was already initialized.
 	 */
 	@JSExport
-	public static boolean YCFMtReference.resetLib() { return(YCFMtReference.libReset(false)); }
+	public boolean resetLib() {
+		return(YCFMtReference_resetLib());
+	}
+
+	/**
+	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
+	 *
+	 *	@return	True if the value was reset, false if the singleton was already initialized.
+	 */
+	@JSExport
+	public static boolean YCFMtReference_resetLib() {
+		return(YCFMtReference_libReset(false));
+	}
 
 	/**
 	 *	Get the parent's public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -233,7 +280,19 @@ public interface IYCFMtReference extends JSObject {
 	 *	@return The parent's public resource name used for named resource resolution.
 	 */
 	@JSExport
-	public static String getParentLibName() { return(IYCFMtReference.YCF_LIB_PARENT_NAME); }
+	public String YCFMtReference_getParentLibName() {
+		return(YCFMtReference_getParentLibName());
+	}
+
+	/**
+	 *	Get the parent's public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
+	 *
+	 *	@return The parent's public resource name used for named resource resolution.
+	 */
+	@JSExport
+	public static String YCFMtReference_getParentLibName() {
+		return(IYCFMtReference.YCF_LIB_PARENT_NAME);
+	}
 
 	/**
 	 *	Get name public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -241,7 +300,19 @@ public interface IYCFMtReference extends JSObject {
 	 *	@return The name of this package used for public naming resolution.
 	 */
 	@JSExport
-	public static String getParentLibVersion() { return(IYCFMtReference.YCF_LIB_PARENT_VERSION); }
+	public String getParentLibVersion() {
+		return(IYCFMtReference.YCF_LIB_PARENT_VERSION);
+	}
+
+	/**
+	 *	Get name public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
+	 *
+	 *	@return The name of this package used for public naming resolution.
+	 */
+	@JSExport
+	public static String YCFMtReference_getParentLibVersion() {
+		return(IYCFMtReference.YCF_LIB_PARENT_VERSION);
+	}
 
 	/**
 	 *	Get the public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -249,7 +320,9 @@ public interface IYCFMtReference extends JSObject {
 	 *	@return The name of this package used for public naming resolution.
 	 */
 	@JSExport
-	public static String getLibName() { return(IYCFMtReference.YCF_LIB_NAME); }
+	public static String getLibName() {
+		return(YCFMtReference_getLibName());
+	}
 
 	/**
 	 *	Get the public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
@@ -257,7 +330,29 @@ public interface IYCFMtReference extends JSObject {
 	 *	@return The name of this package used for public naming resolution.
 	 */
 	@JSExport
-	public static String getLibVersion() { return(IYCFMtReference.YCF_LIB_VERSION); }
+	public static String YCFMtReference_getLibName() {
+		return(IYCFMtReference.YCF_LIB_NAME);
+	}
+
+	/**
+	 *	Get the public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
+	 *
+	 *	@return The name of this package used for public naming resolution.
+	 */
+	@JSExport
+	public String getLibVersion() {
+		return(IYCFMtReference.getLibVersion());
+	}
+
+	/**
+	 *	Get the public resource name of this library or package, used in searches to resolve the package for runtimes or compilation and test.
+	 *
+	 *	@return The name of this package used for public naming resolution.
+	 */
+	@JSExport
+	public static String YCFMtReference_getLibVersion() {
+		return(IYCFMtReference.YCF_LIB_VERSION);
+	}
 
 	/**
 	 *	The default main does nothing.

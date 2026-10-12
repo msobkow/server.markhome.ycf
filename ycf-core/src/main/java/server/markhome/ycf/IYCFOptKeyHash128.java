@@ -45,6 +45,15 @@ public interface IYCFOptKeyHash128 extends IYCFKeyHash128 implements IYCFOptiona
 	public IYCFOptKeyHash128  getSingleton();
 
 	/**
+	 *	IYCFOptKeyHash128 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFOptKeyHash128 getInstance();
+
+	/**
 	 *	Make this value null.
 	 *
 	 *	@throws IYCFNullArgumentException

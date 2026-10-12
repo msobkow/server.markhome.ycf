@@ -44,6 +44,15 @@ public interface IYCFOptional extends JSObject {
 	public IYCFOptional getSingleton();
 
 	/**
+	 *	IYCFOptional getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFOptional getInstance();
+
+	/**
 	 *	Is this value null?
 	 *	@return true if the value is null, otherwise false
 	 */

@@ -42,6 +42,15 @@ public interface IYCFOptKeyHash160 extends IYCFKeyHash160 implements IYCFOptiona
 	public IYCFOptKeyHash160  getSingleton();
 
 	/**
+	 *	IYCFOptKeyHash160 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFOptKeyHash160 getInstance();
+
+	/**
 	 *	Make this value null.
 	 *
 	 *	@throws IYCFNullArgumentException

@@ -44,6 +44,15 @@ public interface IYCFReqKeyHash224 extends IYCFKeyHash224 implements IYCFRequire
 	public IYCFReqKeyHash224 getSingleton();
 
 	/**
+	 *	IYCFReqKeyHash224 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public IYCFReqKeyHash224 getInstance();
+
+	/**
 	 *	Is this value null?
 	 *
 	 *	@throws IYCFInvalidStateException if the superinterface implementation of isNull() returns true.
