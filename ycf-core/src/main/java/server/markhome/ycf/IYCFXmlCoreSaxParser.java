@@ -79,8 +79,8 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 	 *
 	 *	@param	jLogger - Log4J Logger
 	 */
-	public IYCFXmlCoreSaxParser( IYCFMessageLog jLogger ) {
-		super( jLogger );
+	public IYCFXmlCoreSaxParser(IYCFMessageLog jLogger) {
+		super(jLogger);
 	}
 
 //	Accessors: API
@@ -89,7 +89,7 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 	 *	Get the API implemented.
 	 */
 	public String getAPI() {
-		return( API_SAX );
+		return(API_SAX);
 	}
 	
 	/**
@@ -106,26 +106,26 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
         	assert saxParser == null : "saxParser already exists";
 
         	SAXParserFactory spf = SAXParserFactory.newInstance();
-			spf.setNamespaceAware( true );
-			spf.setXIncludeAware( false );
-			//spf.setSchema( schema );
-			// spf.setValidating( true );
-			spf.setFeature( XMLConstants.FEATURE_SECURE_PROCESSING, false );
-    		// spf.setFeature( "http://xml.org/sax/features/validation", true );
-    		// spf.setFeature( "http://apache.org/xml/features/validation/schema", true );
-    		// spf.setFeature( "http://apache.org/xml/features/validation/schema/normalized-value", true );
+			spf.setNamespaceAware(true);
+			spf.setXIncludeAware(false);
+			//spf.setSchema(schema);
+			// spf.setValidating(true);
+			spf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false);
+    		// spf.setFeature("http://xml.org/sax/features/validation", true);
+    		// spf.setFeature("http://apache.org/xml/features/validation/schema", true);
+    		// spf.setFeature("http://apache.org/xml/features/validation/schema/normalized-value", true);
 			
 			// Create a SAXParser
 			SAXParser sp = spf.newSAXParser();
-	    	sp.setProperty( "http://java.sun.com/xml/jaxp/properties/schemaLanguage",
-	    		"http://www.w3.org/2001/XMLSchema" );
-	    	// sp.setProperty( "http://apache.org/xml/properties/internal/grammar-pool", getGrammarPool() );
+	    	sp.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage",
+	    		"http://www.w3.org/2001/XMLSchema");
+	    	// sp.setProperty("http://apache.org/xml/properties/internal/grammar-pool", getGrammarPool());
 			
 	    	XMLReader reader = sp.getXMLReader();
-    		// reader.setFeature( "http://xml.org/sax/features/validation", true );
-    		// reader.setFeature( "http://apache.org/xml/features/validation/schema", true );
-    		// reader.setFeature( "http://apache.org/xml/features/validation/schema/normalized-value", true );
-	    	// reader.setProperty( "http://apache.org/xml/properties/internal/grammar-pool", getGrammarPool() );
+    		// reader.setFeature("http://xml.org/sax/features/validation", true);
+    		// reader.setFeature("http://apache.org/xml/features/validation/schema", true);
+    		// reader.setFeature("http://apache.org/xml/features/validation/schema/normalized-value", true);
+	    	// reader.setProperty("http://apache.org/xml/properties/internal/grammar-pool", getGrammarPool());
 
 	    	saxParser = sp;
         }
@@ -135,22 +135,22 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
         catch (SAXException e) {
         	Exception nested;
     		nested = e.getException();
-    		if( nested == null ) {
+    		if(nested == null) {
     			nested = e;
     		}
-    		if( getLog() != null ) {
-    			getLog().message( "IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    		if(getLog() != null) {
+    			getLog().message("IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
     		else {
-    			System.err.append( "IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append("IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
         }
         catch (Exception e) {
-        	if( getLog() != null ) {
-        		getLog().message( "IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+        	if(getLog() != null) {
+        		getLog().message("IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n");
         	}
         	else {
-	    		System.err.append( "IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+	    		System.err.append("IYCFXmlCoreSaxParser.initParser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n");
 	    	}
         }
     }
@@ -160,13 +160,13 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 	 *
 	 *	@param	uri - The URI for the document to parse.
 	 */
-	protected void parse( String uri ) {
-		assert ( uri != null ) && ( uri.length() > 0 ) : "uri (parm 1) is null or empty";
+	protected void parse(String uri) {
+		assert (uri != null) && (uri.length() > 0) : "uri (parm 1) is null or empty";
 		assert saxParser != null : "Parser must be initialized first";
 
         try {
     		saxParser.reset();
-    		saxParser.parse( uri, this );
+    		saxParser.parse(uri, this);
         }
         catch (SAXParseException e) {
             // ignore
@@ -174,30 +174,30 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
         catch (SAXException e) {
         	Exception nested;
     		nested = e.getException();
-    		if( nested == null ) {
+    		if(nested == null) {
     			nested = e;
     		}
-    		if( getLog() != null ) {
-    			getLog().message( "IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    		if(getLog() != null) {
+    			getLog().message("IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
     		else {
-    			System.err.append( "ERROR: IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append("ERROR: IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
         }
-		catch( FileNotFoundException e ) {
-			if( getLog() != null ) {
-				getLog().message( "IYCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n" );
+		catch(FileNotFoundException e) {
+			if(getLog() != null) {
+				getLog().message("IYCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n");
 			}
 			else {
-				System.err.append( "ERROR: IYCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n" );
+				System.err.append("ERROR: IYCFXmlCoreSaxParser.parse() Could not find file \"" + uri + "\"\n");
 			}
 		}
 		catch (Exception e) {
-			if( getLog() != null ) {
-				getLog().message( "IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+			if(getLog() != null) {
+				getLog().message("IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n");
 			}
 			else {
-				System.err.append( "ERROR: IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+				System.err.append("ERROR: IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n");
 			}
 		}
 	}
@@ -212,17 +212,17 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 	 *
 	 *	@param	str The string contents to be parsed.
 	 */
-	public void parseStringContents( String str ) {
+	public void parseStringContents(String str) {
 		final String S_ProcName = "parseStringContents";
-		if( str == null ) {
-			throw new IYCFNullArgumentException( getClass(),
+		if(str == null) {
+			throw new IYCFNullArgumentException(getClass(),
 				S_ProcName,
 				1,
-				"str" );
+				"str");
 		}
 		byte bytes[] = str.getBytes();
-		InputStream instream = new ByteArrayInputStream( bytes );
-		parse( instream );
+		InputStream instream = new ByteArrayInputStream(bytes);
+		parse(instream);
 	}
 	
 	/**
@@ -230,46 +230,46 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 	 *
 	 *	@param	input - The InputStream for the document to parse.
 	 */
-	protected void parse( InputStream inputStream ) {
+	protected void parse(InputStream inputStream) {
 		assert inputStream != null : "inputStream (arg 1) is null";
 		assert saxParser != null : "Parser must be initialized first";
 
         try {
     		saxParser.reset();
-    		saxParser.parse( inputStream, this );
+    		saxParser.parse(inputStream, this);
         }
         catch (SAXParseException e) {
         	Exception nested;
     		nested = e.getException();
-    		if( nested == null ) {
+    		if(nested == null) {
     			nested = e;
     		}
-    		if( getLog() != null ) {
-    			getLog().message( "IYCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    		if(getLog() != null) {
+    			getLog().message("IYCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
     		else {
-    			System.err.append( "ERROR: IYCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append("ERROR: IYCFXmlCoreSaxParser.parse() Ignored SAXParseException exception " + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
         }
         catch (SAXException e) {
         	Exception nested;
     		nested = e.getException();
-    		if( nested == null ) {
+    		if(nested == null) {
     			nested = e;
     		}
-    		if( getLog() != null ) {
-    			getLog().message( "IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    		if(getLog() != null) {
+    			getLog().message("IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
     		else {
-    			System.err.append( "ERROR: IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n" );
+    			System.err.append("ERROR: IYCFXmlCoreSaxParser.parse() Ignored exception " + getFormattedNearLocation() + nested.getClass().getName() + " " + nested.getMessage() + "\n");
     		}
         }
 		catch (Exception e) {
-			if( getLog() != null ) {
-				getLog().message( "IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+			if(getLog() != null) {
+				getLog().message("IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n");
 			}
 			else {
-				System.err.append( "ERROR: IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n" );
+				System.err.append("ERROR: IYCFXmlCoreSaxParser.parser() Ignored exception " + getFormattedNearLocation() + e.getClass().getName() + " " + e.getMessage() + "\n");
 			}
 		}
 	}

@@ -30,7 +30,7 @@ import org.teavm.jso.JSProperty;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFReqKeyHash256 extends IYCFKeyHash256 implements IYCFRequired {
+public interface IYCFReqKeyHash256 extends IYCFKeyHash256 {
 
 	/**
 	 *	IYCFReqKeyHash256 getSingleton()

@@ -39,56 +39,105 @@ public interface IYCFFireOnInstanceOf extends JSObject {
 	 *	@return IYCFFireOnInstanceOf The singleton for the implementation.
 	 */
 	@JSExport
-	public IYCFFireOnInstanceOf getSingleton();
-	
-	protected Class<?> instOf = null;
+	public static IYCFFireOnInstanceOf getSingleton();
 
-    public IYCFFireOnInstanceOf() {
-    	setInstanceOf( Object.class );
-    }
+	/**
+	 *	IYCFFireOnInstanceOf YCFFireOnInstanceOf_getInstance()
+	 *		Get an instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFFireOnInstanceOf An instance for the implementation.
+	 */
+	@JSExport
+	public static IYCFFireOnInstanceOf YCFFireOnInstanceOf_getInstance();
 
-    public void setInstanceOf(Class<?> value) {
-    	final String S_ProcName = "setInstanceOf";
-        if( value == null ) {
-            throw new IYCFNullArgumentException( getClass(),
-                S_ProcName,
-                1,
-                "value" );
-        }
-        instOf = value;
-    }
+	/**
+	 *	IYCFFireOnInstanceOf getInstance()
+	 *		Get an instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFFireOnInstanceOf An instance for the implementation.
+	 */
+	@JSExport
+	public IYCFFireOnInstanceOf getInstance();
 
-	public Class<?> getInstanceOf() {
-        return( instOf );
-    }
+	/**
+	 *	void YCFFireOnInstanceOf_setInstanceOf(Class<?> value)
+	 *		Set a class template for the kind of instances to detect for firing.
+	 *
+	 *	@param Class<?> value Fire when an instance of the class is detected.
+	 */
+	@JSExport
+	public static void YCFFireOnInstanceOf_setInstanceOf(IYCFFireOnInstanceOf jthis, Class<?> value);
 
-    public boolean isInstanceOf( IYCFAnyObj obj ) {
-    	if( obj == null ) {
-    		return( false );
-    	}
+	/**
+	 *	void setInstanceOf(Class<?> value)
+	 *		Set a class template for the kind of instances to detect for firing.
+	 *
+	 *	@param Class<?> value Fire when an instance of the class is detected.
+	 */
+	@JSExport
+	public void setInstanceOf(Class<?> value);
 
-    	if( instOf == null ) {
-    		return( false );
-    	}
+	/**
+	 *	Class<?> YCFFireOnInstanceOf_getInstanceOf()
+	 *		Get the class template for the kind of instances to detect for firing.
+	 *
+	 *	@return Class<?> value Fire when an instance of the class is detected.
+	 */
+	@JSExport
+	public static Class<?> YCFFireOnInstanceOf_getInstanceOf(IYCFFireOnInstanceOf jthis);
 
-    	return( instOf.isInstance( obj ) );
-    }
+	/**
+	 *	Class<?> getInstanceOf()
+	 *		Get the class template for the kind of instances to detect for firing.
+	 *
+	 *	@return Class<?> value Fire when an instance of the class is detected.
+	 */
+	@JSExport
+	public Class<?> getInstanceOf();
 
-    public void onInstanceOf( IYCFAnyObj obj ) {
-        final String S_ProcName = "onInstanceOf";
-        if( obj == null ) {
-            return;
-        }
-        throw new IYCFNotImplementedYetException( getClass(),
-        	S_ProcName );
-    }
+	/**
+	 *	boolean YCFFireOnInstanceOf_isInstanceOf()
+	 *		Is the argument instance of the class associated with this firing entry?
+	 *
+	 *	@return True if the argument is an instance of the class associated with this firing entry, otherwise false.
+	 */
+	@JSExport
+	public static boolean YCFFireOnInstanceOf_isInstanceOf(IYCFFireOnInstanceOf jthis, IYCFAnyObj obj);
 
-    public final void fireOnInstanceOf( IYCFAnyObj obj ) {
-    	if( obj == null ) {
-    		return;
-    	}
-        if( isInstanceOf( obj ) ) {
-            onInstanceOf( obj );
-        }
-    }
+	/**
+	 *	boolean isInstanceOf()
+	 *		Is the argument instance of the class associated with this firing entry?
+	 *
+	 *	@return True if the argument is an instance of the class associated with this firing entry, otherwise false.
+	 */
+	@JSExport
+	public boolean isInstanceOf(IYCFAnyObj obj);
+
+	/**
+	 *	YCFFireOnInstanceOf_onInstanceOf(jthis, obj)
+	 *		This method is invoked if the argument obj is an instance of the correct class and not null.
+	 */
+	@JSExport
+	public static void YCFFireOnInstanceOf_onInstanceOf(IYCFFireOnInstanceOf jthis, IYCFAnyObj obj);
+
+	/**
+	 *	onInstanceOf(obj)
+	 *		This method is invoked if the argument obj is an instance of the correct class and not null.
+	 */
+	@JSExport
+	public void onInstanceOf(IYCFAnyObj obj);
+
+	/**
+	 *	YCFFireOnInstanceOf_fireOnInstanceOf(jthis, obj)
+	 *		Invokes YCFFireOnInstanceOf_onInstanceOf(jthis, obj) if obj is an instance of the correct class and not null.
+	 */
+	@JSExport
+	public static void YCFFireOnInstanceOf_onInstanceOf(IYCFFireOnInstanceOf jthis, IYCFAnyObj obj);
+
+	/**
+	 *	fireOnInstanceOf(obj)
+	 *		Invokes YCFFireOnInstanceOf_onInstanceOf(jthis, obj) if obj is an instance of the correct class and not null.
+	 */
+	@JSExport
+	public void onInstanceOf(IYCFAnyObj obj);
 }

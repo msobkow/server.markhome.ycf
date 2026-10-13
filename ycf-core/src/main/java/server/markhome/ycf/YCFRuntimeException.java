@@ -37,9 +37,9 @@ public class YCFRuntimeException extends RuntimeException {
 
 	public YCFRuntimeException(
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( enMsg );
+		super(enMsg);
 		this.localMessage = xMsg;
 	}
 
@@ -56,14 +56,14 @@ public class YCFRuntimeException extends RuntimeException {
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.TcmnMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFRuntimeException(
@@ -71,15 +71,15 @@ public class YCFRuntimeException extends RuntimeException {
 		String methName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
-				th );
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.TcmnMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFRuntimeException(
@@ -88,18 +88,18 @@ public class YCFRuntimeException extends RuntimeException {
 		int argNo,
 		String argName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.TcmnArgMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: ""));
 	}
 
 	public YCFRuntimeException(
@@ -109,33 +109,33 @@ public class YCFRuntimeException extends RuntimeException {
 		String argName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.TcmnArgMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
-				th );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: ""));
 	}
 
 	public YCFRuntimeException(
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.FldMsg"),
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.FldMsg"),
 				enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.FldMsg"),
 				(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: ""));
 	}
 
 	public YCFRuntimeException(
@@ -143,14 +143,14 @@ public class YCFRuntimeException extends RuntimeException {
 		String xFieldName,
 		String methName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.FldMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.FldMsg"),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFRuntimeException(
@@ -159,15 +159,15 @@ public class YCFRuntimeException extends RuntimeException {
 		String methName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.FldMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.FldMsg"),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFRuntimeException(
@@ -177,18 +177,18 @@ public class YCFRuntimeException extends RuntimeException {
 		int argNo,
 		String argName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
 		super(String.format(Inz.s("ycflib.YCFRuntimeException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFRuntimeException(
@@ -199,19 +199,19 @@ public class YCFRuntimeException extends RuntimeException {
 		String argName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFRuntimeException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+		super(String.format(Inz.s("ycflib.YCFRuntimeException.FldArgMsg"),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFRuntimeException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + (( methName != null && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName) + ((methName != null && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				argNo,
 				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	@Override

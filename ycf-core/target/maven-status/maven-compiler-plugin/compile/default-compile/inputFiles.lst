@@ -16,6 +16,7 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFConsoleMessageLog.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFDataNotFoundException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFDbException.java
+/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFDbUtil.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFDependentsDetectedException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFEditAlreadyOpenException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFEmptyArgumentException.java
@@ -31,9 +32,9 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFKeyHash384.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFKeyHash512.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFKeyHashBase.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFKeyHashUtil.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFLibEntry.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFMessageLog.java
+/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFMtReference.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFMustOverrideException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFNotImplementedYetException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFNotSupportedException.java
@@ -47,7 +48,6 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFOptional.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFPermissionDeniedException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFPrimaryKeyNotNewException.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFRelationType.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFReqKeyHash128.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFReqKeyHash160.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFReqKeyHash224.java
@@ -69,7 +69,7 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFXmlCoreIso8859Encoder.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFXmlCoreParser.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFXmlCoreSaxParser.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFXmlUtil.java
+/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFXmlFormatter.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/Inz.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/InzEntry.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/InzLang.java
@@ -136,4 +136,4 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFXmlCoreIso8859Encoder.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFXmlCoreParser.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFXmlCoreSaxParser.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFXmlUtil.java
+/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFXmlFormatter.java

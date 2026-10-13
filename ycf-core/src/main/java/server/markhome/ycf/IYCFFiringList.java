@@ -26,6 +26,8 @@ import org.teavm.jso.JSProperty;
 
 import java.util.*;
 
+import server.markhome.ycf.IYCFFireOnInstanceOf;
+
 /**
  *	Get a list of instance classes that should be fired upon when detected.  The list is evaluated in the order that entries were added, so be careful to add sub-class entries before their superclass entry.
  *
@@ -41,25 +43,83 @@ public interface IYCFFiringList extends JSObject {
 	 *	@return IYCFFiringList The singleton for the implementation.
 	 */
 	@JSExport
-	public IYCFFiringList getSingleton();
+	public static IYCFFiringList getSingleton(Class<?> clazz);
 
-    public IYCFFiringList() {
-    	super();
-    }
+	/**
+	 *	IYCFFiringList getInstance()
+	 *		Get an instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFFiringList An instance implementing the interface.
+	 */
+	@JSExport
+	public static IYCFFiringList YCFFiringList_getInstance();
 
-    public void fireOnInstanceOf( IYCFAnyObj obj ) {
-    	if( obj == null ) {
-    		return;
-    	}
-    	if( ! isEmpty() ) {
-	    	IYCFFireOnInstanceOf curToFire;
-	    	Iterator<IYCFFireOnInstanceOf> iterToFire = iterator();
-	    	while( iterToFire.hasNext() ) {
-	    		curToFire = iterToFire.next();
-	    		if( curToFire != null ) {
-	    			curToFire.fireOnInstanceOf( obj );
-	    		}
-	    	}
-    	}
-    }
+	/**
+	 *	IYCFFiringList getInstance()
+	 *		Get an instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFFiringList An instance implementing the interface.
+	 */
+	@JSExport
+	public IYCFFiringList getInstance();
+
+	/**
+	 *	fireOnInstanceOf(obj)
+	 *		Fire the obj trigger when obj matches their pattern.  Needs to be overloaded by application implementations.
+	 */
+	@JSExport
+	public static void YCFFiringList_fireOnInstanceOf(IYCFFiringList jthis, IYCFAnyObj obj);
+
+	/**
+	 *	fireOnInstanceOf(obj)
+	 *		Fire list of triggers when obj matches their pattern.  Needs to be overloaded by application implementations.
+	 *
+	 *	@param obj The object to check for a matching class and fire upon when a match occurs.
+	 */
+	@JSExport
+	public void fireOnInstanceOf(IYCFAnyObj obj);
+
+	/**
+	 *	Get the firing item registered for the specified class from this list, if any.
+	 *
+	 *	@param jthis Reference to the instance to be evaluated.
+	 *	@param clazz The class to be scanned for.
+	 *
+	 *	@return IYCFFireOnInstanceOf The firing instance registed for the class if any, null otherwise.
+	 */
+	@JSExport
+	public static IYCFFireOnInstanceOf YCFFiringList_find(IYCFFiringList jthis, Class<?> clazz);
+
+	/**
+	 *	Get the firing item registered for the specified class from this list, if any.
+	 *
+	 *	@param clazz The class to be scanned for.
+	 *
+	 *	@return IYCFFireOnInstanceOf The firing instance registed for the class if any, null otherwise.
+	 */
+	@JSExport
+	public IYCFFireOnInstanceOf find(Class<?> clazz);
+
+	/**
+	 *	Add a firing item to be registered for the specified class to this list, if the class is not already present.
+	 *
+	 *	@param jthis Reference to the instance to be evaluated.
+	 *	@param clazz The class to be scanned for.
+	 *	@param value The firing item to trigger.
+	 *
+	 *	@return IYCFFireOnInstanceOf The firing instance previously registed for the class if any, otherwise value.
+	 */
+	@JSExport
+	public static IYCFFireOnInstanceOf YCFFiringList_add(IYCFFiringList jthis, Class<?> clazz, IYCFFireOnInstanceOf value);
+
+	/**
+	 *	Add a firing item to be registered for the specified class to this list, if the class is not already present.
+	 *
+	 *	@param clazz The class to be scanned for.
+	 *	@param value The firing item to trigger.
+	 *
+	 *	@return IYCFFireOnInstanceOf The firing instance previously registed for the class if any, otherwise value.
+	 */
+	@JSExport
+	public IYCFFireOnInstanceOf add(Class<?> clazz, IYCFFireOnInstanceOf value);
 }

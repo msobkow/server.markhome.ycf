@@ -68,7 +68,7 @@ public interface IYCFBigDecimalUtil extends JSObject {
 	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
 	 */
 	@JSExport
-	public Format getNumberFormat( String enFieldName, String xFieldName, int argDigits, int argPrecis );
+	public Format getNumberFormat(String enFieldName, String xFieldName, int argDigits, int argPrecis);
 
 	/**
 	 *	Get a Format object for a number with the specified field name, translated field name, number of digits, and precision.
@@ -78,7 +78,7 @@ public interface IYCFBigDecimalUtil extends JSObject {
 	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
 	 */
 	@JSExport
-	public static Format getNumberFormat( Class<?> clazz, int argDigits, int argPrecis );
+	public static Format getNumberFormat(Class<?> clazz, int argDigits, int argPrecis);
 
 	/**
 	 *	Get the absolute minimum value for a number with the specified field name, translated field name, number of digits, and precision.
@@ -89,7 +89,7 @@ public interface IYCFBigDecimalUtil extends JSObject {
 	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
 	 */
 	@JSExport
-	public BigDecimal getAbsoluteMinValue( String enFieldName, String xFieldName, int argDigits, int argPrecis );
+	public BigDecimal getAbsoluteMinValue(String enFieldName, String xFieldName, int argDigits, int argPrecis);
 
 	/**
 	 *	Get the absolute maximum value for a number with the specified field name, translated field name, number of digits, and precision.
@@ -100,7 +100,7 @@ public interface IYCFBigDecimalUtil extends JSObject {
 	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
 	 */
 	@JSExport
-	public BigDecimal getAbsoluteMaxValue( String enFieldName, String xFieldName, int argDigits, int argPrecis );
+	public BigDecimal getAbsoluteMaxValue(String enFieldName, String xFieldName, int argDigits, int argPrecis);
 
 	/**
 	 *	Coerce a BigDecimal value to a number with the specified field name, translated field name, number of digits, and precision.
@@ -111,7 +111,7 @@ public interface IYCFBigDecimalUtil extends JSObject {
 	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
 	 */
 	@JSExport
-	public BigDecimal coerce( String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value );
+	public BigDecimal coerce(String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value);
 
 	/**
 	 *	Parse a BigDecimal value string into a number with the specified field name, translated field name, number of digits, and precision.
@@ -122,7 +122,7 @@ public interface IYCFBigDecimalUtil extends JSObject {
 	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
 	 */
 	@JSExport
-	public BigDecimal parse( String enFieldName, String xFieldName, int argDigits, int argPrecis, String value );
+	public BigDecimal parse(String enFieldName, String xFieldName, int argDigits, int argPrecis, String value);
 
 	/**
 	 *	Format BigDecimal value into a string with the specified field name, translated field name, number of digits, and precision.
@@ -133,5 +133,5 @@ public interface IYCFBigDecimalUtil extends JSObject {
 	 *	@param int argPrecis The number of digits to show after the decimal point, or if negative, as zeroes before the decimal point.
 	 */
 	@JSExport
-	public String format( String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value );
+	public String format(String enFieldName, String xFieldName, int argDigits, int argPrecis, BigDecimal value);
 }

@@ -68,7 +68,7 @@ public enum YCFRelationType implements JSOBject {
 
     Container("N", "Container", "ycflib.YCFRelationType.Container"),
     Component("P", "Component", "ycflib.YCFRelationType.Component"),
-    Parent( "P", "Parent", "ycflib.YCFRelationType.Parent"),
+    Parent("P", "Parent", "ycflib.YCFRelationType.Parent"),
     Child("C", "Child", "ycflib.YCFRelationType.Child"),
     Master("M", "Master", "ycflib.YCFRelationType.Master"),
     Detail("D", "Detail", "ycflib.YCFRelationType.Detail"),

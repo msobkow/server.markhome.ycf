@@ -94,7 +94,7 @@ public final class YCFLibEntry implements IYCFLibEntry {
 	@JSExport
 	public final static YCFLibEntry getYCFLibEntrySingleton() {
 		YCFLibEntry retval = singleton.get();
-		if( retval == null ) {
+		if(retval == null) {
 			retval = new YCFLibEntry();
 			singleton.compareAndSet(null, retval);
 			retval = singleton.get();

@@ -40,19 +40,19 @@ implements IYCFMessageLog {
 	}
 
 	public void clearCache() {
-		cacheContents.setLength( 0 );
+		cacheContents.setLength(0);
 	}
 
 	public String getCacheContents() {
-		return( cacheContents.toString() );
+		return(cacheContents.toString());
 	}
 	
 	public int getMessageLogIndent() {
-		return( indent );
+		return(indent);
 	}
 	
 	public synchronized void dedent() {
-		if( indent > 0 ) {
+		if(indent > 0) {
 			indent --;
 		}
 		else {
@@ -64,29 +64,29 @@ implements IYCFMessageLog {
 		indent ++;
 	}
 	
-	public synchronized void message( String msg ) {
+	public synchronized void message(String msg) {
 
-		if( msg == null ) {
+		if(msg == null) {
 			return;
 		}
 
 		int			i;
-		for( i = ( ( cacheContents.length() <= 0 ) ? 1 : 0 ); i < indent; i ++ ) {
-			cacheContents.append( "\t" );
+		for(i = ((cacheContents.length() <= 0) ? 1 : 0); i < indent; i ++) {
+			cacheContents.append("\t");
 		}
-		cacheContents.append( msg );
-		if( ! msg.endsWith( "\n" ) ) {
-			cacheContents.append( "\n" );
+		cacheContents.append(msg);
+		if(! msg.endsWith("\n")) {
+			cacheContents.append("\n");
 		}
 	}
 
 //	OLD API's that need to go away
 
 	public PrintStream getPrintStream() {
-		return( null );
+		return(null);
 	}
 
-	public void openLogFile( String fileName )
+	public void openLogFile(String fileName)
 		throws FileNotFoundException
 	{
 		// Do-nothing stub; cached message logs don't write to files

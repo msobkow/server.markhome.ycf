@@ -29,51 +29,51 @@ public class YCFFireOnInstanceOf {
 	protected Class<?> instOf = null;
 
     public YCFFireOnInstanceOf() {
-    	setInstanceOf( Object.class );
+    	setInstanceOf(Object.class);
     }
 
     public void setInstanceOf(Class<?> value) {
     	final String S_ProcName = "setInstanceOf";
-        if( value == null ) {
-            throw new YCFNullArgumentException( getClass(),
+        if(value == null) {
+            throw new YCFNullArgumentException(getClass(),
                 S_ProcName,
                 1,
-                "value" );
+                "value");
         }
         instOf = value;
     }
 
 	public Class<?> getInstanceOf() {
-        return( instOf );
+        return(instOf);
     }
 
-    public boolean isInstanceOf( IYCFAnyObj obj ) {
-    	if( obj == null ) {
-    		return( false );
+    public boolean isInstanceOf(IYCFAnyObj obj) {
+    	if(obj == null) {
+    		return(false);
     	}
 
-    	if( instOf == null ) {
-    		return( false );
+    	if(instOf == null) {
+    		return(false);
     	}
 
-    	return( instOf.isInstance( obj ) );
+    	return(instOf.isInstance(obj));
     }
 
-    public void onInstanceOf( IYCFAnyObj obj ) {
+    public void onInstanceOf(IYCFAnyObj obj) {
         final String S_ProcName = "onInstanceOf";
-        if( obj == null ) {
+        if(obj == null) {
             return;
         }
-        throw new YCFNotImplementedYetException( getClass(),
-        	S_ProcName );
+        throw new YCFNotImplementedYetException(getClass(),
+        	S_ProcName);
     }
 
-    public final void fireOnInstanceOf( IYCFAnyObj obj ) {
-    	if( obj == null ) {
+    public final void fireOnInstanceOf(IYCFAnyObj obj) {
+    	if(obj == null) {
     		return;
     	}
-        if( isInstanceOf( obj ) ) {
-            onInstanceOf( obj );
+        if(isInstanceOf(obj)) {
+            onInstanceOf(obj);
         }
     }
 }

@@ -169,7 +169,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current object named objName with the specified qualifyingClass.
 	 */
 	@JSExport
-	public IYCFAnyObj getNamedObject( Class<?> qualifyingClass, String objName );
+	public IYCFAnyObj getNamedObject(Class<?> qualifyingClass, String objName);
 
 	/**
 	 *	Get the current object named objName from the current generation definition making no presumptions about the qualifyingClass. Will change between invocations as the threads of this process bind to different data sets.
@@ -177,7 +177,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current object named objName with an indeterminate qualifyingClass.
 	 */
 	@JSExport
-	public IYCFAnyObj getNamedObject( String objName );
+	public IYCFAnyObj getNamedObject(String objName);
 
 	/**
 	 *	Get the object qualifier for the specified qualifying class from the engine. Will change between invocations as the threads of this process bind to different data sets.
@@ -185,7 +185,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current object qualifier for the specified qualifyingClass.
 	 */
 	@JSExport
-	public IYCFAnyObj getObjQualifier( Class<?> qualifyingClass );
+	public IYCFAnyObj getObjQualifier(Class<?> qualifyingClass);
 
 	/**
 	 *	Get the current login name for the operating system. Not expected to change between invocations, but might if this program spawns threads owned by different user ids.

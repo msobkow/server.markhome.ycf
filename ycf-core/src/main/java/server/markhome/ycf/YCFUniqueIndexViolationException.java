@@ -38,9 +38,9 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 
 	public YCFUniqueIndexViolationException(
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( enMsg );
+		super(enMsg);
 		this.localMessage = xMsg;
 	}
 
@@ -57,14 +57,14 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )));
+		super(String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -72,15 +72,15 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		String methName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" )),
-				th );
+		super(String.format(Inz.s("ycflib.YCFArgumentException.TcmnMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -89,18 +89,18 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		int argNo,
 		String argName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: ""));
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -110,33 +110,33 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		String argName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.TcmnArgMsg"),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ),
-				th );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.TcmnArgMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: ""));
 	}
 
 	public YCFUniqueIndexViolationException(
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
 				enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) ));
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
 				(xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg	: "" ) );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg	: ""));
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -144,14 +144,14 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		String xFieldName,
 		String methName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
+				enFieldName + (((methName != null) && !methName.isEmpty()) ? "." + methName + "()"	: ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -160,15 +160,15 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		String methName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
-				enFieldName + ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldMsg"),
+				enFieldName + (((methName != null) && !methName.isEmpty()) ? "." + methName + "()"	: ""),
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -178,18 +178,18 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		int argNo,
 		String argName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
 		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ));
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")));
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -200,47 +200,47 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		String argName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
-				enFieldName + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+		super(String.format(Inz.s("ycflib.YCFArgumentException.FldArgMsg"),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( enMsg != null ) && ( enMsg.length() > 0 ) ) ? enMsg : "" ) ),
-				th );
+				(((enMsg != null) && (enMsg.length() > 0)) ? enMsg : "")),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFArgumentException.FldArgMsg"),
-				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+				((xFieldName != null && !xFieldName.isEmpty()) ? xFieldName : enFieldName)	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				argNo,
 				argName,
-				( ( ( xMsg != null ) && ( xMsg.length() > 0 ) ) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : "") );
+				(((xMsg != null) && (xMsg.length() > 0)) ? xMsg : (enMsg != null && enMsg.length() > 0) ? enMsg : ""));
 	}
 
 	public YCFUniqueIndexViolationException()
 	{
-		super(String.format(Inz.s("ycflib.YCFUniqueIndexViolation.default"), "" ).trim());
-		this.localMessage = String.format(Inz.x("ycflib.YCFUniqueIndexViolation.default"), "" ).trim();
+		super(String.format(Inz.s("ycflib.YCFUniqueIndexViolation.default"), "").trim());
+		this.localMessage = String.format(Inz.x("ycflib.YCFUniqueIndexViolation.default"), "").trim();
 	}
 
 	public YCFUniqueIndexViolationException(
 		Class<?> throwingClass,
-		String methName )
+		String methName)
 	{
 		super(String.format(Inz.s("ycflib.YCFUniqueIndexViolation.default"),
-				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim());
+				throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")).trim());
 		this.localMessage = String.format(Inz.x("ycflib.YCFUniqueIndexViolation.default"),
-				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim();
+				throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")).trim();
 	}
 
 	public YCFUniqueIndexViolationException(
 		Class<?> throwingClass,
 		String methName,
-		Throwable th )
+		Throwable th)
 	{
 		super(String.format(Inz.s("ycflib.YCFUniqueIndexViolation.default"),
-				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim(),
-				th );
+				throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")).trim(),
+				th);
 		this.localMessage = String.format(Inz.x("ycflib.YCFUniqueIndexViolation.default"),
-				throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )).trim();
+				throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")).trim();
 	}
 
 	public YCFUniqueIndexViolationException(
@@ -248,21 +248,21 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		String methName,
 		String enArgIndexName,
 		String xArgIndexName,
-		Object argKey )
+		Object argKey)
 	{
-		super( (argKey != null) ? String.format(Inz.s("ycflib.YCFUniqueIndexViolation.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+		super((argKey != null) ? String.format(Inz.s("ycflib.YCFUniqueIndexViolation.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					enArgIndexName,
 					argKey.toString())
 				: String.format(Inz.s("ycflib.YCFUniqueIndexViolation.index"),//%1$s Detected violation of unique index %2$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					enArgIndexName));
 		this.localMessage = (argKey != null) ? String.format(Inz.x("ycflib.YCFUniqueIndexViolation.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName,
 					argKey.toString())
 				: String.format(Inz.x("ycflib.YCFUniqueIndexViolation.index"),//%1$s Detected violation of unique index %2$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName);
 		this.indexKey = argKey;
 	}
@@ -273,27 +273,27 @@ public class YCFUniqueIndexViolationException extends IllegalStateException {
 		String enArgIndexName,
 		String xArgIndexName,
 		Object argKey,
-		Throwable th )
+		Throwable th)
 	{
-		super( (argKey != null) ? String.format(Inz.s("ycflib.YCFUniqueIndexViolation.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+		super((argKey != null) ? String.format(Inz.s("ycflib.YCFUniqueIndexViolation.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					enArgIndexName,
 					argKey.toString())
 				: String.format(Inz.s("ycflib.YCFUniqueIndexViolation.index"),//%1$s Detected violation of unique index %2$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					enArgIndexName));
 		this.localMessage = (argKey != null) ? String.format(Inz.x("ycflib.YCFUniqueIndexViolation.indexkey"),//%1$s Detected violation of unique index %2$s for key %3$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName,
 					argKey.toString())
 				: String.format(Inz.x("ycflib.YCFUniqueIndexViolation.index"),//%1$s Detected violation of unique index %2$s
-					throwingClass.getName() + (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+					throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 					(xArgIndexName != null && !xArgIndexName.isEmpty()) ? xArgIndexName : enArgIndexName);
 		this.indexKey = argKey;
 	}
 
 	public Object getIndexKey() {
-		return( indexKey );
+		return(indexKey);
 	}
 
 	@Override

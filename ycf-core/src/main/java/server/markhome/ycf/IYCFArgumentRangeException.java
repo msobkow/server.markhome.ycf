@@ -52,7 +52,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enMsg, String xMsg );
+	public IYCFArgumentRangeException getInstance(String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages.
@@ -64,7 +64,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enMsg, String xMsg, Throwable cause);
+	public IYCFArgumentRangeException getInstance(String enMsg, String xMsg, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -77,7 +77,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -91,7 +91,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -104,7 +104,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String enMsg, String xMsg );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -118,7 +118,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -133,7 +133,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg, Throwable cause );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -149,40 +149,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue, short maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue, short maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue, int maxValue );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue, short maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -199,7 +166,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue, int maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue, short maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -215,40 +182,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue, long maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue, long maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue, float maxValue );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue, int maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -265,7 +199,73 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue, float maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue, int maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue, long maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue, long maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue, float maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue, float maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -281,7 +281,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue, double maxValue );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue, double maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -298,7 +298,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue, double maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue, double maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -314,40 +314,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -364,7 +331,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -380,40 +347,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue, String maxValue );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -430,7 +364,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue, String maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -446,7 +380,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -463,7 +397,73 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue, String maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue, String maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages.
@@ -546,7 +546,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue, short maxValue );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue, short maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -564,7 +564,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue, short maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue, short maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -581,42 +581,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue, int maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue, int maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue, long maxValue );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue, int maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -634,7 +599,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue, long maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue, int maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -651,42 +616,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue, float maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue, float maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue, double maxValue );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue, long maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -704,7 +634,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue, double maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue, long maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -721,42 +651,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue, float maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -774,7 +669,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue, float maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -791,42 +686,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param maxValue Maximum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue, String maxValue );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue, double maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -844,7 +704,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue, String maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue, double maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -861,7 +721,7 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -879,7 +739,147 @@ public interface IYCFArgumentRangeException extends IYCFArgumentException {
 	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue, Throwable cause );
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, LocalDate maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, LocalTime maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, LocalDateTime maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue, String maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue, String maxValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param maxValue Maximum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentRangeException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentRangeException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, BigDecimal maxValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.

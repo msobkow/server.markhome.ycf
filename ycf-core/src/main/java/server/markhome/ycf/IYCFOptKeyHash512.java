@@ -32,7 +32,7 @@ import java.util.*;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFOptKeyHash512 extends IYCFKeyHash512 implements IYCFOptional {
+public interface IYCFOptKeyHash512 extends IYCFKeyHash512 {
 
 	/**
 	 *	IYCFOptKeyHash512 getSingleton()
@@ -60,8 +60,8 @@ public interface IYCFOptKeyHash512 extends IYCFKeyHash512 implements IYCFOptiona
 	@Override
 	public void setNull() {
 		byte[] ba = getBytes();
-		if (ba != null ) {
-			for( int i = 0; i < ba.length; i++ ) {
+		if (ba != null) {
+			for(int i = 0; i < ba.length; i++) {
 				ba[i] = 0;
 			}
 		}

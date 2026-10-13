@@ -43,11 +43,11 @@ public interface IYCFDbUtil extends JSObject {
 	@JSExport
 	public IYCFDbUtil getSingleton();
 
-	protected final static IYCFMtReference<TimeZone> tzUTC = IYCFMtReference<TimeZone>.getSingleton().getInstance(TimeZone.getTimeZone("GMT+0000"));
-	protected final static IYCFMtReference<Calendar> localCalendar = IYCFMtReference<Calendar>.getSingleton().getInstance(new GregorianCalendar());
-	protected final static IYCFMtReference<int> localTZOffsetMillis = IYCFMtReference<int>.getSingleton().getInstance(localCalendar.get().get(Calendar.ZONE_OFFSET));
-	protected final static IYCFMtReference<int> dbServerTZOffsetMillis = IYCFMtReference<int>.getSingleton().getInstance(localTZOffsetMillis.get());
-	protected final static IYCFMtReference<TimeZone> dbServerTimeZone = IYCFMtReference<TimeZone>.getSingleton().getInstance((TimeZone)null);
+	//protected final static IYCFMtReference<TimeZone> tzUTC = IYCFMtReference<TimeZone>.getSingleton().getInstance(TimeZone.getTimeZone("GMT+0000"));
+	//protected final static IYCFMtReference<Calendar> localCalendar = IYCFMtReference<Calendar>.getSingleton().getInstance(new GregorianCalendar());
+	//protected final static IYCFMtReference<int> localTZOffsetMillis = IYCFMtReference<int>.getSingleton().getInstance(localCalendar.get().get(Calendar.ZONE_OFFSET));
+	//protected final static IYCFMtReference<int> dbServerTZOffsetMillis = IYCFMtReference<int>.getSingleton().getInstance(localTZOffsetMillis.get());
+	//protected final static IYCFMtReference<TimeZone> dbServerTimeZone = IYCFMtReference<TimeZone>.getSingleton().getInstance((TimeZone)null);
 
 	/**
 	 *	Get the database server's timezone offset in milliseconds.
@@ -114,14 +114,14 @@ public interface IYCFDbUtil extends JSObject {
 			int hours = absMinutes / 60;
 			StringBuilder buff = new StringBuilder();
 			Formatter fmt = new Formatter(buff);
-			if( minutesOnly < 0 ) {
-				buff.append( "GMT-" );
+			if(minutesOnly < 0) {
+				buff.append("GMT-");
 			}
 			else {
-				buff.append( "GMT+" );
+				buff.append("GMT+");
 			}
-			fmt.format( "%1$02d", hours );
-			fmt.format( "%1$02d", minutes );
+			fmt.format("%1$02d", hours);
+			fmt.format("%1$02d", minutes);
 			dbServerTimeZone.set(dbServerTimeZone.get(), TimeZone.getTimeZone(buff.toString()));
 			fmt.close();
 		}
@@ -182,7 +182,7 @@ public interface IYCFDbUtil extends JSObject {
 			return(null);
 		}
 		Calendar cal = Calendar.getInstance(getDbServerTimeZone());
-		cal.setTimeInMillis( value.getTimeInMillis() );
+		cal.setTimeInMillis(value.getTimeInMillis());
 		return(cal);
 	}
 
@@ -206,14 +206,14 @@ public interface IYCFDbUtil extends JSObject {
 	 *	@return UTC adjusted Calendar instance.
 	 */
 	@JSExport
-	public static Calendar YCFDbUtil_getUTCCalendar(Calendar value) {
-		if(value == null) {
-			return(null);
-		}
-		Calendar cal = Calendar.getInstance( tzUTC );
-		cal.setTimeInMillis( value.getTimeInMillis() );
-		return( cal );
-	}
+	public static Calendar YCFDbUtil_getUTCCalendar(Calendar value);// {
+//		if(value == null) {
+//			return(null);
+//		}
+//		Calendar cal = Calendar.getInstance(tzUTC);
+//		cal.setTimeInMillis(value.getTimeInMillis());
+//		return(cal);
+//	}
 
 	/**
 	 *	Get a UTC adjusted LocalDate instance.
@@ -223,9 +223,9 @@ public interface IYCFDbUtil extends JSObject {
 	 *	@return UTC adjusted LocalDate instance.
 	 */
 	@JSExport
-	public LocalDate getUTCLocalDate(LocalDate value) {
-		return(YCFDbUtil_getUTCLocalDate(LocalDate value));
-	}
+	public LocalDate getUTCLocalDate(LocalDate value);// {
+//		return(YCFDbUtil_getUTCLocalDate(LocalDate value));
+//	}
 
 	/**
 	 *	Get a UTC adjusted LocalDate instance.
@@ -244,14 +244,14 @@ public interface IYCFDbUtil extends JSObject {
 		return(cal);
 	}
 
-	public static LocalDate YCFDbUtil_setUTCLocalDate(LocalDate expected, LocalDate value) {
-		if(value == null) {
-			return(null);
-		}
-		LocalDate cal = LocalDate.getInstance(tzUTC);
-		cal.setTimeInMillis(value.getTimeInMillis());
-		return(cal);
-	}
+	public static LocalDate YCFDbUtil_setUTCLocalDate(LocalDate expected, LocalDate value);// {
+//		if(value == null) {
+//			return(null);
+//		}
+//		LocalDate cal = LocalDate.getInstance(tzUTC);
+//		cal.setTimeInMillis(value.getTimeInMillis());
+//		return(cal);
+//	}
 
 	public static LocalTime YCFDbUtil_getDbServerLocalTime(LocalTime value) {
 		if(value == null) {
@@ -262,30 +262,30 @@ public interface IYCFDbUtil extends JSObject {
 		return(cal);
 	}
 
-	public static LocalTime YCFDbUtil_getUTCLocalTime(LocalTime value) {
-		if(value == null) {
-			return(null);
-		}
-		LocalTime cal = LocalTime.getInstance( tzUTC );
-		cal.setTimeInMillis( value.getTimeInMillis() );
-		return( cal );
-	}
+	public static LocalTime YCFDbUtil_getUTCLocalTime(LocalTime value);// {
+//		if(value == null) {
+//			return(null);
+//		}
+//		LocalTime cal = LocalTime.getInstance(tzUTC);
+//		cal.setTimeInMillis(value.getTimeInMillis());
+//		return(cal);
+//	}
 
 	public static LocalDateTime YCFDbUtil_getDbServerLocalDateTime(LocalDateTime value) {
 		if(value == null) {
-			return( null );
+			return(null);
 		}
 		LocalDateTime cal = LocalDateTime.getInstance(getDbServerTimeZone());
 		cal.setTimeInMillis(value.getTimeInMillis());
 		return(cal);
 	}
 
-	public static LocalDateTime YCFDbUtil_getUTCLocalDateTime(LocalDateTime value) {
-		if(value == null) {
-			return(null);
-		}
-		LocalDateTime cal = LocalDateTime.getInstance(tzUTC);
-		cal.setTimeInMillis(value.getTimeInMillis());
-		return(cal);
-	}
+	public static LocalDateTime YCFDbUtil_getUTCLocalDateTime(LocalDateTime value);// {
+//		if(value == null) {
+//			return(null);
+//		}
+//		LocalDateTime cal = LocalDateTime.getInstance(tzUTC);
+//		cal.setTimeInMillis(value.getTimeInMillis());
+//		return(cal);
+//	}
 }

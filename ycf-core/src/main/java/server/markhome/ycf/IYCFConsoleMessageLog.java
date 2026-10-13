@@ -47,34 +47,26 @@ public interface IYCFConsoleMessageLog extends IYCFMessageLog {
 	public IYCFConsoleMessageLog getSingleton();
 
 	/**
-	 *	Handle for the current file output stream.
+	 *	IYCFConsoleMessageLog getInstance()
+	 *		Get a default instance that provides the getInstance() and service method implementations.
+	 *
+	 *	@return IYCFConsoleMessageLog A default instance.
 	 */
-	private PrintStream	logFile = null;
+	@JSExport
+	public IYCFConsoleMessageLog getInstance();
 
-	/**
-	 *	What is the current indent level for logging?
-	 */
-	private int		   	indent = 0;
-	
-	/**
-	 *	Default constructor.
-	 */
-	public IYCFConsoleMessageLog() {
-		indent = 0;
-	}
-	
 	/**
 	 *	Get the current log indent level.
 	 */
 	public int getMessageLogIndent() {
-		return( indent );
+		return(indent);
 	}
 	
 	/**
 	 *	Indent the logging messages another level
 	 */
 	public synchronized void dedent() {
-		if( indent > 0 ) {
+		if(indent > 0) {
 			indent --;
 		}
 		else {
@@ -93,7 +85,7 @@ public interface IYCFConsoleMessageLog extends IYCFMessageLog {
 	 *	Get an PrintStream that wraps this log
 	 */
 	public PrintStream getPrintStream() {
-		return( logFile );
+		return(logFile);
 	}
 	
 	/**
@@ -101,36 +93,36 @@ public interface IYCFConsoleMessageLog extends IYCFMessageLog {
 	 *
 	 *	@param		msg		String
 	 */
-	public synchronized void message( String msg ) {
+	public synchronized void message(String msg) {
 
-		if( msg == null ) {
+		if(msg == null) {
 			return;
 		}
 
 		StringBuilder buff = new StringBuilder();
 
 		Calendar cal = Calendar.getInstance();
-		String stamp = String.format( "%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL ", cal );
-		buff.append( stamp );
+		String stamp = String.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL ", cal);
+		buff.append(stamp);
 
 		int			i;
-		for( i = 0; i < indent; i ++ ) {
-			buff.append( "\t" );
+		for(i = 0; i < indent; i ++) {
+			buff.append("\t");
 		}
-		buff.append( msg );
-		if( ! msg.endsWith( "\n" ) ) {
-			buff.append( "\n" );
+		buff.append(msg);
+		if(! msg.endsWith("\n")) {
+			buff.append("\n");
 		}
 
 		boolean wroteSomewhere = false;
 
-		if( logFile != null ) {
-			logFile.append( buff.toString() );
+		if(logFile != null) {
+			logFile.append(buff.toString());
 			logFile.flush();
 		}
 
-		if( ! wroteSomewhere ) {
-			System.out.append( buff.toString() );
+		if(! wroteSomewhere) {
+			System.out.append(buff.toString());
 			System.out.flush();
 		}
 	}
@@ -142,19 +134,19 @@ public interface IYCFConsoleMessageLog extends IYCFMessageLog {
 	 *
 	 *	@param	fileName	The name of the file to open as a log.
 	 */
-	public void openLogFile( String fileName )
+	public void openLogFile(String fileName)
 		throws FileNotFoundException
 	{
-		assert ( fileName != null ) && ( fileName.length() > 0 ) : "File name must be specified";
+		assert (fileName != null) && (fileName.length() > 0) : "File name must be specified";
 		assert logFile == null : "Log file is already open";
-		logFile = new PrintStream( fileName );
+		logFile = new PrintStream(fileName);
 	}
 	
 	/**
 	 *	Close the log file.
 	 */
 	public void closeLogFile() {
-		if( logFile != null ) {
+		if(logFile != null) {
 			PrintStream old = logFile;
 			logFile = null;
 			

@@ -28,15 +28,166 @@ import java.util.*;
 
 /**
  *  IInzEffectiveLangCode callbacks implementing this interface are registered with IInz to allow different user presentation layers to wire a current-session-language type hook based on the APIs for the presentation layer, instead of making assumptions or imposing restrictions on how such callbacks are registered.
+ *	<p>
+ *	All methods of the interface are expected to be synchronized through the use of the IYCFMt interfaces and their implementations.
  * 
  *  @see IInz
  */
 public interface IInzEffectiveLangCode extends JSObject {
 
+	/**
+	 *	The singleton for the interface is a protected final static. If this is not allowed by JDK 25, then the specification will be moved to the implementation and all references to it moved along with it.
+	 *	<p>
+	 *	Note that as a protected or private attribute, it is not exported nor published as a property.
+	 */
+	protected final static IYCFMtReference<IInzEffectiveLangCode> InzEffectiveLangCode_singleton = new IYCFMtReference<>(null);
+
+	/**
+	 *	Get the singleton that implements the getInstance() and service methods.
+	 *
+	 *	@return IInzEffectiveLangCode The singleton for the interface.
+	 */
+	@JSExport
+	public static IInzEffectiveLangCode getSingleton() {
+		IInzEffectiveLangCode retval = InzEffectiveLangCode_singleton.get();
+		if(retval == null) {
+			retval = new InzEffectiveLangCode();
+			InzEffectiveLangCode_singleton.set(null, retval);
+			retval = InzEffectiveLangCode_singleton.get();
+		}
+		return(retval);
+	}
+
+	/**
+	 *	Get an instance that implements the service methods of the interface.
+	 *
+	 *	@return IInzEffectiveLangCode An instance of the interface.
+	 */
+	@JSExport
+	public static IInzEffectiveLangCode InzEffectiveLangCode_getInstance() {
+		IInzEffectiveLangCode retval = new InzEffectiveLangCode();
+		return(retval);
+	}
+
+	/**
+	 *	Get an instance that implements the service methods of the interface.
+	 *
+	 *	@return IInzEffectiveLangCode An instance of the interface.
+	 */
+	@JSExport
+	public IInzEffectiveLangCode getInstance();
+
     /**
-     * Get the current effective language id for NLS translation.
-     * @return
+     * Get the effective language code for NLS translation.
+	 *
+     * @return String The current effective language code.
      */
 	@JSProperty
     public String getEffectiveLangCode();
+
+    /**
+     * Set the effective language code for NLS translation.
+	 *
+     * @param String expected The current effective language code.
+     * @param String value The language code to apply.
+	 *
+     * @return String The new effective language code.
+     */
+	@JSProperty
+    public String setEffectiveLangCode(String expected, String value);
+
+    /**
+     * Get the effective language name for NLS translation.
+	 *
+     * @return String The current effective language name.
+     */
+	@JSProperty
+    public String getEffectiveLangName();
+
+    /**
+     * Set the effective language name for NLS translation.
+	 *
+     * @param String expected The current effective language name.
+     * @param String value The language name to apply.
+	 *
+     * @return String The new effective language name.
+     */
+	@JSProperty
+    public String setEffectiveLangName(String expected, String value);
+
+    /**
+     * Get the effective language description for NLS translation.
+	 *
+     * @return String The current effective language description.
+     */
+	@JSProperty
+    public String getEffectiveLangDescription();
+
+    /**
+     * Set the effective language description for NLS translation.
+	 *
+     * @param String expected The current effective language description.
+     * @param String value The language description to apply.
+	 *
+     * @return String The new effective language description.
+     */
+	@JSProperty
+    public String setEffectiveLangDescription(String expected, String value);
+
+    /**
+     * Get the effective translated language code for NLS translation.
+	 *
+     * @return String The current effective translated language code.
+     */
+	@JSProperty
+    public String getEffectiveXLangCode();
+
+    /**
+     * Set the effective translated language code for NLS translation.
+	 *
+     * @param String expected The current effective translated language code.
+     * @param String value The language code to apply.
+	 *
+     * @return String The new effective translated language code.
+     */
+	@JSProperty
+    public String setEffectiveXLangCode(String expected, String value);
+
+    /**
+     * Get the effective translated language name for NLS translation.
+	 *
+     * @return String The current effective translated language name.
+     */
+	@JSProperty
+    public String getEffectiveXLangName();
+
+    /**
+     * Set the effective translated language name for NLS translation.
+	 *
+     * @param String expected The current effective translated language name.
+     * @param String value The language name to apply.
+	 *
+     * @return String The new effective translated language name.
+     */
+	@JSProperty
+    public String setEffectiveXLangName(String expected, String value);
+
+    /**
+     * Get the effective translated language description for NLS translation.
+	 *
+     * @return String The current effective translated language description.
+     */
+	@JSProperty
+    public String getEffectiveXLangDescription();
+
+    /**
+     * Set the effective translated language description for NLS translation.
+	 *
+     * @param String expected The current effective translated language description.
+     * @param String value The language description to apply.
+	 *
+     * @return String The new effective translated language description.
+     */
+	@JSProperty
+    public String setEffectiveXLangDescription(String expected, String value);
 }

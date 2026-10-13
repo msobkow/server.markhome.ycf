@@ -50,14 +50,14 @@ public final interface IYCFHostAddr extends JSObject {
 
     private static boolean addrHeaderInitialized = false;
     private static byte[] addrHeader = new byte[IPV6_LENGTH];
-    static {
-        for (int i = 0; i < IPV4_LENGTH; i++) {
-            addrHeader[i] = 0;
-        }
-        for (int i = IPV4_LENGTH; i < IPV6_LENGTH; i++) {
-            addrHeader[i] = -1;
-        }
-    }
+//    static {
+//        for (int i = 0; i < IPV4_LENGTH; i++) {
+//            addrHeader[i] = 0;
+//        }
+//        for (int i = IPV4_LENGTH; i < IPV6_LENGTH; i++) {
+//            addrHeader[i] = -1;
+//        }
+//    }
 
     /**
      * Is the address header initialized?
@@ -79,11 +79,16 @@ public final interface IYCFHostAddr extends JSObject {
 
         if (!addrHeaderInitialized) {
             for (int i = IPV4_LENGTH; i < IPV6_LENGTH; i++) {
-                if (addrHeader[i] != -1) {
+                if (addrHeader[i] != -1 && addrHeader[i] != 0) {
                     addrHeaderInitialized = true;
                     break;
                 }
             }
+			if (!addrHeaderInitialized) {
+            	for (int i = IPV4_LENGTH; i < IPV6_LENGTH; i++) {
+               		addrHeader[i] = -1;
+				}
+			}
         }
 
         return addrHeaderInitialized;

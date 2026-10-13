@@ -28,67 +28,67 @@ import java.util.*;
 
 public class YCFKeyHashUtil {
 
-	public final static TimeZone tzUTC = TimeZone.getTimeZone( "GMT+0000" );
+	public final static TimeZone tzUTC = TimeZone.getTimeZone("GMT+0000");
 	public final static Calendar localCalendar = new GregorianCalendar();
-	public final static int localTZOffsetMillis = localCalendar.get( Calendar.ZONE_OFFSET );
+	public final static int localTZOffsetMillis = localCalendar.get(Calendar.ZONE_OFFSET);
 	public static int dbServerTZOffsetMillis = localTZOffsetMillis;
 	public static TimeZone dbServerTimeZone = null;
 
 	public static int getDbServerTZOffsetMillis() {
-		return( dbServerTZOffsetMillis );
+		return(dbServerTZOffsetMillis);
 	}
 	
-	public static void setDbServerTZOffsetMillis( int value ) {
+	public static void setDbServerTZOffsetMillis(int value) {
 		dbServerTZOffsetMillis = value;
 		dbServerTimeZone = null;
 	}
 
 	public static TimeZone getDbServerTimeZone() {
-		if( dbServerTimeZone == null ) {
+		if(dbServerTimeZone == null) {
 			int secondsOnly = dbServerTZOffsetMillis / 1000;
 			int minutesOnly = secondsOnly / 60;
-			int absMinutes = ( minutesOnly < 0 ) ? ( 0 - minutesOnly ) : minutesOnly;
+			int absMinutes = (minutesOnly < 0) ? (0 - minutesOnly) : minutesOnly;
 			int minutes = absMinutes % 60;
 			int hours = absMinutes / 60;
 			StringBuilder buff = new StringBuilder();
-			Formatter fmt = new Formatter( buff );
-			if( minutesOnly < 0 ) {
-				buff.append( "GMT-" );
+			Formatter fmt = new Formatter(buff);
+			if(minutesOnly < 0) {
+				buff.append("GMT-");
 			}
 			else {
-				buff.append( "GMT+" );
+				buff.append("GMT+");
 			}
-			fmt.format( "%1$02d", hours );
-			fmt.format( "%1$02d", minutes );
-			dbServerTimeZone = TimeZone.getTimeZone( buff.toString() );
+			fmt.format("%1$02d", hours);
+			fmt.format("%1$02d", minutes);
+			dbServerTimeZone = TimeZone.getTimeZone(buff.toString());
 			fmt.close();
 		}
-		return( dbServerTimeZone );
+		return(dbServerTimeZone);
 	}
 	
-	public static void setDbServerTimeZone( TimeZone tz ) {
-		if( tz == null ) {
-			throw new IllegalArgumentException( "TimeZone tz is null" );
+	public static void setDbServerTimeZone(TimeZone tz) {
+		if(tz == null) {
+			throw new IllegalArgumentException("TimeZone tz is null");
 		}
 		dbServerTimeZone = tz;
 		dbServerTZOffsetMillis = tz.getRawOffset();
 	}
 
-	public static Calendar getDbServerCalendar( Calendar value ) {
-		if( value == null ) {
-			return( null );
+	public static Calendar getDbServerCalendar(Calendar value) {
+		if(value == null) {
+			return(null);
 		}
-		Calendar cal = Calendar.getInstance( getDbServerTimeZone() );
-		cal.setTimeInMillis( value.getTimeInMillis() );
-		return( cal );
+		Calendar cal = Calendar.getInstance(getDbServerTimeZone());
+		cal.setTimeInMillis(value.getTimeInMillis());
+		return(cal);
 	}
 
-	public static Calendar getUTCCalendar( Calendar value ) {
-		if( value == null ) {
-			return( null );
+	public static Calendar getUTCCalendar(Calendar value) {
+		if(value == null) {
+			return(null);
 		}
-		Calendar cal = Calendar.getInstance( tzUTC );
-		cal.setTimeInMillis( value.getTimeInMillis() );
-		return( cal );
+		Calendar cal = Calendar.getInstance(tzUTC);
+		cal.setTimeInMillis(value.getTimeInMillis());
+		return(cal);
 	}
 }

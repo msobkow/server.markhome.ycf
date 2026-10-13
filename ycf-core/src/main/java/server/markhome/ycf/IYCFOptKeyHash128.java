@@ -33,7 +33,7 @@ import java.util.*;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFOptKeyHash128 extends IYCFKeyHash128 implements IYCFOptional {
+public interface IYCFOptKeyHash128 extends IYCFKeyHash128 {
 
 	/**
 	 *	IYCFOptKeyHash128 getSingleton()
@@ -61,8 +61,8 @@ public interface IYCFOptKeyHash128 extends IYCFKeyHash128 implements IYCFOptiona
 	@Override
 	public void setNull() {
 		byte[] ba = getBytes();
-		if (ba != null ) {
-			for( int i = 0; i < ba.length; i++ ) {
+		if (ba != null) {
+			for(int i = 0; i < ba.length; i++) {
 				ba[i] = 0;
 			}
 		}

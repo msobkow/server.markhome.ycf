@@ -30,12 +30,12 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 /**
- *	MessageLog implementations support indented application messaging.
+ *	IYCFMessageLog implementations support indented application messaging.
  *	A given log implementation might also implement the ErrorLog interface,
  *	allowing it to display an interleaved mix of application and error
  *	messages.
  *	<p>
- *	All methods of the interface are expected to be synchronized.
+ *	All methods of the interface are expected to be synchronized through the use of the IYCFMt interfaces and their implementations.
  *
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
@@ -74,14 +74,14 @@ public interface IYCFMessageLog extends JSObject {
 	/**
 	 *	Log an application message.
 	 */
-	public void message( String msg );
+	public void message(String msg);
 	
 	/**
 	 *	Open the specified file for logging
 	 *
 	 *	@param	fileName	The name of the file to open as a log.
 	 */
-	public void openLogFile( String fileName )
+	public void openLogFile(String fileName)
 		throws FileNotFoundException;
 	
 	/**

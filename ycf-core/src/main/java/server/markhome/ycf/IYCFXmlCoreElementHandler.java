@@ -72,10 +72,10 @@ public interface IYCFXmlCoreElementHandler extends JSObject {
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
 	 */
-	public IYCFXmlCoreElementHandler( IYCFXmlCoreParser coreParser ) {
+	public IYCFXmlCoreElementHandler(IYCFXmlCoreParser coreParser) {
 		assert coreParser != null : "coreParser (arg 1) is null";
-		// Deprecated by Log4J 2 debugLogger.setLevel( Level.INFO );
-		setParser( coreParser );
+		// Deprecated by Log4J 2 debugLogger.setLevel(Level.INFO);
+		setParser(coreParser);
 	}
 
 //	Accessors: Logger
@@ -86,14 +86,14 @@ public interface IYCFXmlCoreElementHandler extends JSObject {
 	 *	@return	Logger
 	 */
 	public IYCFMessageLog getLog() {
-		IYCFXmlCoreContext context = ( parser != null ) ? parser.getCurContext() : null;
-		IYCFMessageLog retval = ( context != null ) ? context.getLog() : null;
-		if( retval == null ) {
-			if( parser != null ) {
+		IYCFXmlCoreContext context = (parser != null) ? parser.getCurContext() : null;
+		IYCFMessageLog retval = (context != null) ? context.getLog() : null;
+		if(retval == null) {
+			if(parser != null) {
 				retval = parser.getLog();
 			}
 		}
-		return( retval );
+		return(retval);
 	}
 
 //	Accessors: Parser
@@ -104,7 +104,7 @@ public interface IYCFXmlCoreElementHandler extends JSObject {
 	 *	@return	The XML Core Parser which owns this element handler.
 	 */
 	public IYCFXmlCoreParser getParser() {
-		return( parser );
+		return(parser);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public interface IYCFXmlCoreElementHandler extends JSObject {
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
 	 */
-	protected void setParser( IYCFXmlCoreParser coreParser ) {
+	protected void setParser(IYCFXmlCoreParser coreParser) {
 		assert coreParser != null : "coreParser (arg 1) is null";
 		parser = coreParser;
 	}
@@ -126,11 +126,11 @@ public interface IYCFXmlCoreElementHandler extends JSObject {
 	 *	@param	qName	The QName to map to the handler
 	 *	@param	handler	The XmlCoreElementHandler to process the element events.
 	 */
-	public void addElementHandler( String qName, IYCFXmlCoreElementHandler handler ) {
+	public void addElementHandler(String qName, IYCFXmlCoreElementHandler handler) {
 		assert qName != null && qName.length() > 0 : "qName (arg 1) is null or empty";
 		assert handler != null : "handler (arg 2) is null";
-		assert ! elementHandler.containsKey( qName ) : "Duplicate qName=\"" + qName + "\" in elementHandler map";
-		elementHandler.put( new String( qName ), handler );
+		assert ! elementHandler.containsKey(qName) : "Duplicate qName=\"" + qName + "\" in elementHandler map";
+		elementHandler.put(new String(qName), handler);
 	}
 
 	/**
@@ -139,9 +139,9 @@ public interface IYCFXmlCoreElementHandler extends JSObject {
 	 *	@param	qName	The QName used to locate the handler.
 	 *	@return	The XmlCoreElementHandler mapped to the specified name or null.
 	 */
-	public IYCFXmlCoreElementHandler getElementHandler( String qName ) {
-		IYCFXmlCoreElementHandler retval = (IYCFXmlCoreElementHandler)elementHandler.get( qName );
-		return( retval );
+	public IYCFXmlCoreElementHandler getElementHandler(String qName) {
+		IYCFXmlCoreElementHandler retval = (IYCFXmlCoreElementHandler)elementHandler.get(qName);
+		return(retval);
 	}
 
 //	Element Event Handlers
@@ -171,7 +171,7 @@ public interface IYCFXmlCoreElementHandler extends JSObject {
 		String		uri,
 		String		localName,
 		String		qName,
-		Attributes	attrs )
+		Attributes	attrs)
 	throws SAXException;
 
 

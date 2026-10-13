@@ -40,8 +40,8 @@ public class YCFOptKeyHash224 extends YCFKeyHash224 implements IYCFOptional, IYC
 	@Override
 	public void setNull() {
 		byte[] ba = getBytes();
-		if (ba != null ) {
-			for( int i = 0; i < ba.length; i++ ) {
+		if (ba != null) {
+			for(int i = 0; i < ba.length; i++) {
 				ba[i] = 0;
 			}
 		}

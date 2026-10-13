@@ -36,7 +36,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 
 	public YCFInvalidStateException(
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
 		super(enMsg, xMsg);
 	}
@@ -53,7 +53,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 //		Class<?> throwingClass,
 //		String methName,
 //		String enMsg,
-//		String xMsg )
+//		String xMsg)
 //	{
 //		super(throwingClass, methName, enMsg, xMsg);
 //	}
@@ -63,7 +63,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 //		String methName,
 //		String enMsg,
 //		String xMsg,
-//		Throwable th )
+//		Throwable th)
 //	{
 //		super(throwingClass, methName, enMsg, xMsg, th);
 //	}
@@ -74,7 +74,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 	 	int argNo,
 	 	String argName,
 	 	String enMsg,
-	 	String xMsg )
+	 	String xMsg)
 	{
 	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg);
 	}
@@ -86,7 +86,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 	 	String argName,
 	 	String enMsg,
 	 	String xMsg,
-	 	Throwable th )
+	 	Throwable th)
 	{
 	 	super(throwingClass, methName, argNo, argName, enMsg, xMsg, th);
 	}
@@ -95,7 +95,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 		String enFieldName,
 		String xFieldName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
 		super(enFieldName, xFieldName, enMsg, xMsg);
 	}
@@ -105,7 +105,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 //		String xFieldName,
 //		String methName,
 //		String enMsg,
-//		String xMsg )
+//		String xMsg)
 //	{
 //		super(enFieldName, xFieldName, methName, enMsg, xMsg);
 //	}
@@ -116,7 +116,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 //		String methName,
 //		String enMsg,
 //		String xMsg,
-//		Throwable th )
+//		Throwable th)
 //	{
 //		super(enFieldName, xFieldName, methName, enMsg, xMsg, th);
 //	}
@@ -128,7 +128,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 	 	int argNo,
 	 	String argName,
 	 	String enMsg,
-		String xMsg )
+		String xMsg)
 	{
 	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg);
 	}
@@ -141,7 +141,7 @@ public class YCFInvalidStateException extends YCFArgumentException {
 	 	String argName,
 	 	String enMsg,
 	 	String xMsg,
-	 	Throwable th )
+	 	Throwable th)
 	{
 	 	super(enFieldName, xFieldName, methName, argNo, argName, enMsg, xMsg, th);
 	}
@@ -152,13 +152,13 @@ public class YCFInvalidStateException extends YCFArgumentException {
 		Class<?> throwingClass,
 		String methName,
 		String enReason,
-		String xReason )
+		String xReason)
 	{
 		super(String.format(Inz.s("ycflib.YCFInvalidStateException.TcmnMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+				throwingClass.getName()	+ (((methName != null) && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				enReason),
 			String.format(Inz.x("ycflib.YCFInvalidStateException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				xReason));
 	}
 
@@ -167,13 +167,13 @@ public class YCFInvalidStateException extends YCFArgumentException {
 		String methName,
 		String enReason,
 		String xReason,
-		Throwable th )
+		Throwable th)
 	{
 		super(String.format(Inz.s("ycflib.YCFInvalidStateException.TcmnMsg"),
-				throwingClass.getName()	+ ( ( ( methName != null ) && !methName.isEmpty()) ? "." + methName + "()" : "" ),
+				throwingClass.getName()	+ (((methName != null) && !methName.isEmpty()) ? "." + methName + "()" : ""),
 				enReason),
 		String.format(Inz.x("ycflib.YCFInvalidStateException.TcmnMsg"),
-				throwingClass.getName()	+ (( methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" ),
+				throwingClass.getName()	+ ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : ""),
 				xReason),
 			th);
 	}
@@ -183,13 +183,13 @@ public class YCFInvalidStateException extends YCFArgumentException {
 		String xFieldName,
 		String methName,
 		String enReason,
-		String xReason )
+		String xReason)
 	{
 		super(String.format(Inz.s("ycflib.YCFInvalidStateException.FldMsg"),
-				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()"	: ""),
 				enReason),
 		String.format(Inz.x("ycflib.YCFInvalidStateException.FldMsg"),
-				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()"	: ""),
 				xReason));
 	}
 
@@ -199,14 +199,14 @@ public class YCFInvalidStateException extends YCFArgumentException {
 		String methName,
 		String enReason,
 		String xReason,
-		Throwable th )
+		Throwable th)
 	{
 		super(String.format(Inz.s("ycflib.YCFInvalidStateException.FldMsg"),
-				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()"	: ""),
 				enReason),
 		String.format(Inz.x("ycflib.YCFInvalidStateException.FldMsg"),
-				enFieldName + ( ( methName != null && !methName.isEmpty()) ? "." + methName + "()"	: "" ),
+				enFieldName + ((methName != null && !methName.isEmpty()) ? "." + methName + "()"	: ""),
 				xReason),
-				th );
+				th);
 	}
 }

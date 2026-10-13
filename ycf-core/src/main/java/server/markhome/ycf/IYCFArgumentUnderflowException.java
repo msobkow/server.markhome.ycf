@@ -52,7 +52,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enMsg, String xMsg );
+	public IYCFArgumentUnderflowException getInstance(String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages.
@@ -64,7 +64,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enMsg, String xMsg, Throwable cause);
+	public IYCFArgumentUnderflowException getInstance(String enMsg, String xMsg, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -77,7 +77,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -91,7 +91,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -104,7 +104,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String enMsg, String xMsg );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -118,7 +118,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, String enMsg, String xMsg);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -133,7 +133,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, String enMsg, String xMsg, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, String enMsg, String xMsg, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -148,38 +148,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -195,7 +164,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, short argObj, short minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -210,38 +179,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue);
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -257,7 +195,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, int argObj, int minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -266,12 +204,13 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param minValue Minimum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue);
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -287,7 +226,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, long argObj, long minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -302,38 +241,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue);
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -349,7 +257,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, float argObj, float minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -358,44 +266,12 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@param methName Method name
 	 *	@param argNo Argument number
 	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
 	 *	@param minValue Minimum limit enforced by the exception
 	 *
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue);
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -411,7 +287,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, double argObj, double minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -426,53 +302,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Object minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param throwingClass The class throwing the exception
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Object minValue);
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -488,7 +318,177 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Object minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, String argObj, String minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Object minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Object minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param throwingClass The class throwing the exception
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(Class<?> throwingClass, String methName, int argNo, String argName, Object argObj, Object minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -504,40 +504,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -554,7 +521,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, short argObj, short minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -570,40 +537,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue);
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -620,7 +554,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, int argObj, int minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -636,40 +570,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue);
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -686,7 +587,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, long argObj, long minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -702,40 +603,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue);
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -752,7 +620,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, float argObj, float minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -768,40 +636,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue);
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *	@param cause Throwable which caused the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue, Throwable cause );
-
-	/**
-	 *	Get an exception instance with the default message for the situation.
-	 *
-	 *	@param enFieldName English field name
-	 *	@param xFieldName Translated field name
-	 *	@param methName Method name
-	 *	@param argNo Argument number
-	 *	@param argName Argument name
-	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
-	 *	@param minValue Minimum limit enforced by the exception
-	 *
-	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
-	 */
-	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue);
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue);
 
 	/**
 	 *	Get an exception instance with the default message for the situation.
@@ -818,7 +653,172 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, double argObj, double minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDate argObj, LocalDate minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalTime argObj, LocalTime minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, LocalDateTime argObj, LocalDateTime minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, String argObj, String minValue, Throwable cause);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue);
+
+	/**
+	 *	Get an exception instance with the default message for the situation.
+	 *
+	 *	@param enFieldName English field name
+	 *	@param xFieldName Translated field name
+	 *	@param methName Method name
+	 *	@param argNo Argument number
+	 *	@param argName Argument name
+	 *	@param argObj The object (typically a PKey, Key, Buff, or Obj instance) causing the exception
+	 *	@param minValue Minimum limit enforced by the exception
+	 *	@param cause Throwable which caused the exception
+	 *
+	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
+	 */
+	@JSExport
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, BigDecimal argObj, BigDecimal minValue, Throwable cause);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -834,7 +834,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, Object argObj, Object minValue);
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, Object argObj, Object minValue);
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages and source.
@@ -851,7 +851,7 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return IYCFArgumentUnderflowException A new instance with the specified messages and source.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getInstance( String enFieldName, String xFieldName, String methName, int argNo, String argName, Object argObj, Object minValue, Throwable cause );
+	public IYCFArgumentUnderflowException getInstance(String enFieldName, String xFieldName, String methName, int argNo, String argName, Object argObj, Object minValue, Throwable cause);
 
 	/**
 	 *	Get the argument minimum Object value provided at construction, if any.

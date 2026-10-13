@@ -58,7 +58,7 @@ public interface IYCFXmlCoreContextFactory extends JSObject {
 	public IYCFXmlCoreContext YCFXmlCoreContextFactory_getInstance(
 		IYCFXmlCoreContext src,
 		String qName,
-		IYCFXmlCoreElementHandler handler );
+		IYCFXmlCoreElementHandler handler);
 
 	/**
 	 *	Get the application processing logger.
@@ -77,6 +77,6 @@ public interface IYCFXmlCoreContextFactory extends JSObject {
 	public IYCFXmlCoreContext newXmlCoreContext(
 		IYCFXmlCoreParser coreParser,
 		IYCFMessageLog jLogger,
-		IYCFXmlCoreElementHandler elementHandler );
+		IYCFXmlCoreElementHandler elementHandler);
 
 }

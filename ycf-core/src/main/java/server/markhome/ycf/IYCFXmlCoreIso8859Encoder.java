@@ -64,13 +64,13 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 	 *	@param		ic	The integer character code to encode.
 	 *	@returns	The "&amp;#9999;" escape sequence for the character code.
 	 */
-	public static String xmlEscape( int ic ) {
-		if( ( ic < 0 ) || ( ic > 65536 ) ) {
-			throw new AssertionError( "Character code " + Integer.toString( ic ) + " not in range 0..65536" );
+	public static String xmlEscape(int ic) {
+		if((ic < 0) || (ic > 65536)) {
+			throw new AssertionError("Character code " + Integer.toString(ic) + " not in range 0..65536");
 		}
 
-		String retval = new String( "&#" + Integer.toString( ic ) + ";" );
-		return( retval );
+		String retval = new String("&#" + Integer.toString(ic) + ";");
+		return(retval);
 	}
 
 	/**
@@ -79,10 +79,10 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 	 *	@param		c	The character to encode.
 	 *	@returns	The "&amp;#9999;" escape sequence for the character code.
 	 */
-	public static String xmlEscape( char c ) {
+	public static String xmlEscape(char c) {
 		int ic = (int)c;
-		String retval = xmlEscape( ic );
-		return( retval );
+		String retval = xmlEscape(ic);
+		return(retval);
 	}
 
 	/**
@@ -94,21 +94,21 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 	 *	@param		ic	The integer character code to encode.
 	 *	@returns	The most readable XML encoding of the character available.
 	 */
-	public static String xmlString( int ic ) {
-		if( ToXml == null ) {
+	public static String xmlString(int ic) {
+		if(ToXml == null) {
 			init();
 		}
 
 		String retval;
 
-		if( ( ic >= 0 ) && ( ic <= 0377 ) ) {
+		if((ic >= 0) && (ic <= 0377)) {
 			retval = ToXml[ic].map;
 		}
 		else {
-			retval = xmlEscape( ic );
+			retval = xmlEscape(ic);
 		}
 
-		return( retval );
+		return(retval);
 	}
 
 
@@ -121,10 +121,10 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 	 *	@param		c	The character to encode.
 	 *	@returns	The most readable XML encoding of the character available.
 	 */
-	public static String xmlString( char c ) {
+	public static String xmlString(char c) {
 		int ic = (int)c;
-		String retval = xmlString( ic );
-		return( retval );
+		String retval = xmlString(ic);
+		return(retval);
 	}
 
 
@@ -141,43 +141,43 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 	 *	@param	str		The string to be encoded.
 	 *	@returns	The XML/HTML encoded version of the string.
 	 */
-	public static String xmlBodyString( String str ) {
+	public static String xmlBodyString(String str) {
 		
-		if( str == null ) {
-			return( null );
+		if(str == null) {
+			return(null);
 		}
 
 		StringBuffer retval = new StringBuffer();
 
-		if( str != null ) {
+		if(str != null) {
 			int len = str.length();
-			if( len > 0 ) {
+			if(len > 0) {
 				char cur = '\0';
 				int idx = 0;
-				StringCharacterIterator	cursor = new StringCharacterIterator( str );
+				StringCharacterIterator	cursor = new StringCharacterIterator(str);
 
-				retval.ensureCapacity( 2 * len );
+				retval.ensureCapacity(2 * len);
 
 				idx = 0;
 				cur = cursor.current();
 
-				while( idx < len ) {
+				while(idx < len) {
 
-					if( idx > 0 ) {
+					if(idx > 0) {
 						cur = cursor.next();
 					}
 					idx ++;
 
-					switch( cur ) {
-						case '\"':	retval.append( cur );	break;
-						case '\'':	retval.append( cur );	break;
-						default:	retval.append( xmlString( cur ) );	break;
+					switch(cur) {
+						case '\"':	retval.append(cur);	break;
+						case '\'':	retval.append(cur);	break;
+						default:	retval.append(xmlString(cur));	break;
 					}
 				}
 			}
 		}
 
-		return( retval.toString() );
+		return(retval.toString());
 	}
 
 	/**
@@ -189,39 +189,39 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 	 *	@param	str		The string to be encoded.
 	 *	@returns	The XML/HTML encoded version of the string.
 	 */
-	public static String xmlAttrString( String str ) {
+	public static String xmlAttrString(String str) {
 		
-		if( str == null ) {
-			return( null );
+		if(str == null) {
+			return(null);
 		}
 
 		StringBuffer			retval = new StringBuffer();
 
-		if( str != null ) {
+		if(str != null) {
 			int len = str.length();
-			if( len > 0 ) {
+			if(len > 0) {
 				char cur = '\0';
 				int idx = 0;
-				StringCharacterIterator	cursor = new StringCharacterIterator( str );
+				StringCharacterIterator	cursor = new StringCharacterIterator(str);
 
-				retval.ensureCapacity( 2 * len );
+				retval.ensureCapacity(2 * len);
 
 				idx = 0;
 				cur = cursor.current();
 
-				while( idx < len ) {
+				while(idx < len) {
 
-					if( idx > 0 ) {
+					if(idx > 0) {
 						cur = cursor.next();
 					}
 					idx ++;
 
-					retval.append( xmlString( cur ) );
+					retval.append(xmlString(cur));
 				}
 			}
 		}
 
-		return( retval.toString() );
+		return(retval.toString());
 	}
 
 
@@ -236,93 +236,93 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 	 *	@param	str		The string to be encoded.
 	 *	@returns	The XML/HTML encoded version of the string.
 	 */
-	public static String xmlEscapeString( String str ) {
+	public static String xmlEscapeString(String str) {
 		
-		if( str == null ) {
-			return( null );
+		if(str == null) {
+			return(null);
 		}
 
 		StringBuffer retval = new StringBuffer();
 
-		if( str != null ) {
+		if(str != null) {
 			int len = str.length();
-			if( len > 0 ) {
+			if(len > 0) {
 				char cur = '\0';
 				boolean handleEscape = false;
 				int idx = 0;
-				StringCharacterIterator	cursor = new StringCharacterIterator( str );
+				StringCharacterIterator	cursor = new StringCharacterIterator(str);
 
-				retval.ensureCapacity( 2 * len );
+				retval.ensureCapacity(2 * len);
 
 				idx = 0;
 				cur = cursor.current();
 
-				while( idx < len ) {
+				while(idx < len) {
 
-					if( idx > 0 ) {
+					if(idx > 0) {
 						cur = cursor.next();
 					}
 					idx ++;
 
-					if( handleEscape ) {
-						switch( cur ) {
+					if(handleEscape) {
+						switch(cur) {
 							case '\\':
 								handleEscape = false;
-								retval.append( '\\' );
+								retval.append('\\');
 								continue;
 							case '\"':
 								handleEscape = false;
-								retval.append( "&quot;" );
+								retval.append("&quot;");
 								continue;
 							case '\'':
 								handleEscape = false;
-								retval.append( "&squot;" );
+								retval.append("&squot;");
 								continue;
 							case 'b':
 								handleEscape = false;
-								retval.append( '\b' );
+								retval.append('\b');
 								continue;
 							case 'f':
 								handleEscape = false;
-								retval.append( '\f' );
+								retval.append('\f');
 								continue;
 							case 'n':
 								handleEscape = false;
-								retval.append( '\n' );
+								retval.append('\n');
 								continue;
 							case 'r':
 								handleEscape = false;
-								retval.append( '\r' );
+								retval.append('\r');
 								continue;
 							case 't':
 								handleEscape = false;
-								retval.append( '\t' );
+								retval.append('\t');
 								continue;
 							default:
 								handleEscape = false;
-								retval.append( xmlString( '\\' ) );
+								retval.append(xmlString('\\'));
 								// Not special, so we want normal XML encoding of the character
 								break;
 						}
 					}
 
-					if( cur == '\\' ) {
+					if(cur == '\\') {
 						handleEscape = true;
 						continue;
 					}
 
-					retval.append( xmlString( cur ) );
+					retval.append(xmlString(cur));
 				}
 
-				if( handleEscape ) {
+				if(handleEscape) {
 					// Dangling backslash
 					handleEscape = false;
-					retval.append( xmlString( '\\' ) );
+					retval.append(xmlString('\\'));
 				}
 			}
 		}
 
-		return( retval.toString() );
+		return(retval.toString());
 	}
 
 	public static void release() {
@@ -331,8 +331,8 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 
 	public static void init() {
 
-		if( ToXml != null ) {
-			// throw new AssertionError( "OmxIso8859Xml already initialized!" );
+		if(ToXml != null) {
+			// throw new AssertionError("OmxIso8859Xml already initialized!");
 			return;
 		}
 
@@ -341,7 +341,7 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 
 		ToXml = new IYCFXmlCoreIso8859Encoder[256];
 
-		for( idx = 0x00; idx <= 0xFF; idx++ ) {
+		for(idx = 0x00; idx <= 0xFF; idx++) {
 			ToXml[idx] = new IYCFXmlCoreIso8859Encoder();
 			ToXml[idx].ch = (char)idx;
 			ToXml[idx].len = 0;
@@ -350,49 +350,49 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 		
 		/* XML does not allow NUL chars, so we use spaces */
 		/* ISO 8859-1 Character Codes 0..15 */
-		ToXml[0x00].map = new String( " " );
-		ToXml[0x01].map = xmlEscape( 0x01 );
-		ToXml[0x02].map = xmlEscape( 0x02 );
-		ToXml[0x03].map = xmlEscape( 0x03 );
-		ToXml[0x04].map = xmlEscape( 0x04 );
-		ToXml[0x05].map = xmlEscape( 0x05 );
-		ToXml[0x06].map = xmlEscape( 0x06 );
-		ToXml[0x07].map = xmlEscape( 0x07 );
-		ToXml[0x08].map = xmlEscape( 0x08 );
+		ToXml[0x00].map = new String(" ");
+		ToXml[0x01].map = xmlEscape(0x01);
+		ToXml[0x02].map = xmlEscape(0x02);
+		ToXml[0x03].map = xmlEscape(0x03);
+		ToXml[0x04].map = xmlEscape(0x04);
+		ToXml[0x05].map = xmlEscape(0x05);
+		ToXml[0x06].map = xmlEscape(0x06);
+		ToXml[0x07].map = xmlEscape(0x07);
+		ToXml[0x08].map = xmlEscape(0x08);
 		// { 0x09, 1, { 0x09, 0x00 } },
 		// { 0x0A, 1, { 0x0A, 0x00 } },
-		ToXml[0x0B].map = xmlEscape( 0x0B );
-		ToXml[0x0C].map = xmlEscape( 0x0C );
+		ToXml[0x0B].map = xmlEscape(0x0B);
+		ToXml[0x0C].map = xmlEscape(0x0C);
 		// { 0x0D, 1, { 0x0D, 0x00 } },
-		ToXml[0x0E].map = xmlEscape( 0x0E );
-		ToXml[0x0F].map = xmlEscape( 0x0F );
+		ToXml[0x0E].map = xmlEscape(0x0E);
+		ToXml[0x0F].map = xmlEscape(0x0F);
 
 		/* ISO 8859-1 Character Codes 16..31 */
-		ToXml[0x10].map = xmlEscape( 0x10 );
-		ToXml[0x11].map = xmlEscape( 0x11 );
-		ToXml[0x12].map = xmlEscape( 0x12 );
-		ToXml[0x13].map = xmlEscape( 0x13 );
-		ToXml[0x14].map = xmlEscape( 0x14 );
-		ToXml[0x15].map = xmlEscape( 0x15 );
-		ToXml[0x16].map = xmlEscape( 0x16 );
-		ToXml[0x17].map = xmlEscape( 0x17 );
-		ToXml[0x18].map = xmlEscape( 0x18 );
-		ToXml[0x19].map = xmlEscape( 0x19 );
-		ToXml[0x1A].map = xmlEscape( 0x1A );
-		ToXml[0x1B].map = xmlEscape( 0x1B );
-		ToXml[0x1C].map = xmlEscape( 0x1C );
-		ToXml[0x1D].map = xmlEscape( 0x1D );
-		ToXml[0x1E].map = xmlEscape( 0x1E );
-		ToXml[0x1F].map = xmlEscape( 0x1F );
+		ToXml[0x10].map = xmlEscape(0x10);
+		ToXml[0x11].map = xmlEscape(0x11);
+		ToXml[0x12].map = xmlEscape(0x12);
+		ToXml[0x13].map = xmlEscape(0x13);
+		ToXml[0x14].map = xmlEscape(0x14);
+		ToXml[0x15].map = xmlEscape(0x15);
+		ToXml[0x16].map = xmlEscape(0x16);
+		ToXml[0x17].map = xmlEscape(0x17);
+		ToXml[0x18].map = xmlEscape(0x18);
+		ToXml[0x19].map = xmlEscape(0x19);
+		ToXml[0x1A].map = xmlEscape(0x1A);
+		ToXml[0x1B].map = xmlEscape(0x1B);
+		ToXml[0x1C].map = xmlEscape(0x1C);
+		ToXml[0x1D].map = xmlEscape(0x1D);
+		ToXml[0x1E].map = xmlEscape(0x1E);
+		ToXml[0x1F].map = xmlEscape(0x1F);
 
 		/* ISO 8859-1 Character Codes 32..47 */
 		// { 0x20, 1, { 0x20, 0x00 } },
 		// { 0x21, 1, { 0x21, 0x00 } },
-		ToXml[0x22].map = new String( "&quot;" );
+		ToXml[0x22].map = new String("&quot;");
 		// { 0x23, 1, { 0x23, 0x00 } },
 		// { 0x24, 1, { 0x24, 0x00 } },
 		// { 0x25, 1, { 0x25, 0x00 } },
-		ToXml[0x26].map = new String( "&amp;" );
+		ToXml[0x26].map = new String("&amp;");
 		// { 0x27, 1, { 0x27, 0x00 } },
 		// { 0x28, 1, { 0x28, 0x00 } },
 		//	{ 0x29, 1, { 0x29, 0x00 } },
@@ -416,9 +416,9 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 		//	{ 0x39, 1, { 0x39, 0x00 } },
 		//	{ 0x3A, 1, { 0x3A, 0x00 } },
 		//	{ 0x3B, 1, { 0x3B, 0x00 } },
-		ToXml[0x3C].map = new String( "&lt;" );
+		ToXml[0x3C].map = new String("&lt;");
 		//	{ 0x3D, 1, { 0x3D, 0x00 } },
-		ToXml[0x3E].map = new String( "&gt;" );
+		ToXml[0x3E].map = new String("&gt;");
 		//	{ 0x3F, 1, { 0x3F, 0x00 } },
 
 		/* ISO 8859-1 Character Codes 64..79 */
@@ -491,14 +491,14 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 		//	{ 0x7C, 1, { 0x7C, 0x00 } },
 		//	{ 0x7D, 1, { 0x7D, 0x00 } },
 		//	{ 0x7E, 1, { 0x7E, 0x00 } },
-		ToXml[0x7F].map = xmlEscape( 0x7F );
+		ToXml[0x7F].map = xmlEscape(0x7F);
 
 //		Initialize remaining ASCII7 string maps
 
-		for( idx = 0; idx <= 0x7F; idx ++ ) {
-			if( ToXml[idx].map == null ) {
+		for(idx = 0; idx <= 0x7F; idx ++) {
+			if(ToXml[idx].map == null) {
 				ca[0] = (char)idx;
-				ToXml[idx].map = new String( ca );
+				ToXml[idx].map = new String(ca);
 			}
 		}
 
@@ -511,19 +511,19 @@ public interface IYCFXmlCoreIso8859Encoder extends JSObject {
 		 *	of extended characters.  Rather than try to isolate
 		 *	which, we'll just use numeric character codes instead.
 		 */
-		for( idx = 0x80; idx <= 0xFF; idx ++ ) {
-			ToXml[idx].map = xmlEscape( idx );
+		for(idx = 0x80; idx <= 0xFF; idx ++) {
+			ToXml[idx].map = xmlEscape(idx);
 		}
 
 //		Initialize the mapping lengths
 
-		for( idx = 0; idx <= 0xFF; idx ++ ) {
-			if( ToXml[idx].map == null ) {
-				throw new AssertionError( "ToXml map entry " + Integer.toString( idx ) + " corrupt!" );
+		for(idx = 0; idx <= 0xFF; idx ++) {
+			if(ToXml[idx].map == null) {
+				throw new AssertionError("ToXml map entry " + Integer.toString(idx) + " corrupt!");
 			}
 			ToXml[idx].len = (byte)ToXml[idx].map.length();
-			if( ToXml[idx].len <= 0 ) {
-				throw new AssertionError( "ToXml map entry " + Integer.toString( idx ) + " is empty!" );
+			if(ToXml[idx].len <= 0) {
+				throw new AssertionError("ToXml map entry " + Integer.toString(idx) + " is empty!");
 			}
 		}
 	}

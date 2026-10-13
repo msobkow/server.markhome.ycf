@@ -125,39 +125,39 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	// private static XMLGrammarPoolImpl grammarPool = new XMLGrammarPoolImpl();
 	
 	// public static XMLGrammarPool getGrammarPool() {
-	// 	return( grammarPool );
+	// 	return(grammarPool);
 	// }
 
-	// public static Grammar addToGrammarPool( String name, InputStream input ) {
+	// public static Grammar addToGrammarPool(String name, InputStream input) {
 	// 	assert grammarPool != null;
 		
 	// 	XMLGrammarPreparser preparser = new XMLGrammarPreparser();
-	// 	preparser.setGrammarPool( grammarPool );
-	// 	preparser.registerPreparser( XMLGrammarDescription.XML_SCHEMA, null );
+	// 	preparser.setGrammarPool(grammarPool);
+	// 	preparser.registerPreparser(XMLGrammarDescription.XML_SCHEMA, null);
 	// 	Grammar grammar;
-    //     XMLInputSource inputSource = new XMLInputSource( "parseGrammar", name, name, input, "UTF-8" );
+    //     XMLInputSource inputSource = new XMLInputSource("parseGrammar", name, name, input, "UTF-8");
     //     try {
-    //     	grammar = preparser.preparseGrammar( XMLGrammarDescription.XML_SCHEMA, inputSource );
+    //     	grammar = preparser.preparseGrammar(XMLGrammarDescription.XML_SCHEMA, inputSource);
     //     }
-    //     catch( IOException e ) {
+    //     catch(IOException e) {
     //     	grammar = null;
     //     }
     //     try {
     //     	input.close();
     //     }
-    //     catch( IOException e ) {
+    //     catch(IOException e) {
     //     }
-    //     if( grammar != null ) {
-    //     	Grammar existingGrammar = grammarPool.retrieveGrammar( grammar.getGrammarDescription() );
-    //     	if( existingGrammar != null ) {
+    //     if(grammar != null) {
+    //     	Grammar existingGrammar = grammarPool.retrieveGrammar(grammar.getGrammarDescription());
+    //     	if(existingGrammar != null) {
     //     		grammar = existingGrammar;
     //     	}
     //     	else {
-    //     		grammarPool.putGrammar( grammar );
+    //     		grammarPool.putGrammar(grammar);
     //     	}
     //     }
 		
-	// 	return( grammar );
+	// 	return(grammar);
 	// }
 
 //	Constructors
@@ -176,7 +176,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *
 	 *	@param	jlog - Log4J log
 	 */
-	public IYCFXmlCoreParser( IYCFMessageLog jlog ) {
+	public IYCFXmlCoreParser(IYCFMessageLog jlog) {
 		assert jlog != null
 			: "jlog (arg 1) is null";
 		log = jlog;
@@ -197,7 +197,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return	True if XInclude processing is enabled. 
 	 */
 	public boolean isXIncludeAware() {
-		return( xIncludeAware );
+		return(xIncludeAware);
 	}
 	
 	/**
@@ -205,7 +205,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *
 	 *	@param	flag - True to enable, false to disable
 	 */
-	public void setXIncludeAware( boolean flag ) {
+	public void setXIncludeAware(boolean flag) {
 		xIncludeAware = flag;
 	}
 
@@ -217,7 +217,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return	True if secure processing is enabled. 
 	 */
 	public boolean isSecureProcessingEnabled() {
-		return( secureProcessingEnabled );
+		return(secureProcessingEnabled);
 	}
 	
 	/**
@@ -225,7 +225,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *
 	 *	@param	flag - True to enable, false to disable
 	 */
-	public void setSecureProcessingEnabled( boolean flag ) {
+	public void setSecureProcessingEnabled(boolean flag) {
 		secureProcessingEnabled = flag;
 	}
 
@@ -237,7 +237,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return	The Log4J log 
 	 */
 	public IYCFMessageLog getLog() {
-		return( log );
+		return(log);
 	}
 	
 	/**
@@ -245,7 +245,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *
 	 *	@param	jlog - The log to use
 	 */
-	public void setLog( IYCFMessageLog jlog ) {
+	public void setLog(IYCFMessageLog jlog) {
 		assert jlog != null
 			: "jlog (arg 1) is null";
 		log = jlog;
@@ -259,7 +259,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return	The root element handler
 	 */
 	public IYCFXmlCoreElementHandler getRootElementHandler() {
-		return( rootElementHandler );
+		return(rootElementHandler);
 	}
 	
 	/**
@@ -267,7 +267,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *
 	 *	@param	handler	The root element handler to use.
 	 */
-	protected void setRootElementHandler( IYCFXmlCoreElementHandler handler ) {
+	protected void setRootElementHandler(IYCFXmlCoreElementHandler handler) {
 		assert handler != null : "handler (arg 1) is null";
 		rootElementHandler = handler;
 	}
@@ -283,49 +283,49 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return	The current document locator if any.
 	 */
 	public Locator getDocumentLocator() {
-		return( documentLocator );
+		return(documentLocator);
 	}
 
 	public String getLocationInfo() {
 		Locator locator = getDocumentLocator();
 		StringBuffer buff = new StringBuffer();
-		if( locator != null ) {
+		if(locator != null) {
 	
 			String shortName = null;
 			String docName = locator.getSystemId();
-			if( docName != null ) {
-				int lastSlash = docName.lastIndexOf( '/' );
-				if( ( lastSlash >= 0 ) && ( lastSlash != docName.length() ) ) {
-					shortName = new String( docName.substring( lastSlash + 1 ) );
+			if(docName != null) {
+				int lastSlash = docName.lastIndexOf('/');
+				if((lastSlash >= 0) && (lastSlash != docName.length())) {
+					shortName = new String(docName.substring(lastSlash + 1));
 				}
 			}
 			
-			if( shortName == null ) {
+			if(shortName == null) {
 				docName = locator.getPublicId();
-				if( docName != null ) {
-					int lastSlash = docName.lastIndexOf( '/' );
-					if( ( lastSlash >= 0 ) && ( lastSlash != docName.length() ) ) {
-						shortName = new String( docName.substring( lastSlash + 1 ) );
+				if(docName != null) {
+					int lastSlash = docName.lastIndexOf('/');
+					if((lastSlash >= 0) && (lastSlash != docName.length())) {
+						shortName = new String(docName.substring(lastSlash + 1));
 					}
 				}
 			}
 			
-			if( shortName != null ) {
-				buff.append( shortName );
+			if(shortName != null) {
+				buff.append(shortName);
 			}
 			
 			int line = locator.getLineNumber();
-			if( line >= 0 ) {
-				buff.append( "[" + line );
+			if(line >= 0) {
+				buff.append("[" + line);
 				int col = locator.getColumnNumber();
-				if( col >= 0 ) {
-					buff.append( "," + col );
+				if(col >= 0) {
+					buff.append("," + col);
 				}
-				buff.append( "]" );
+				buff.append("]");
 			}
-			buff.append( " " );
+			buff.append(" ");
 		}
-		return( buff.toString() );
+		return(buff.toString());
 	}
 
 //	Accessors: CurContext
@@ -337,12 +337,12 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return	The top element handler on the stack.
 	 */
 	public IYCFXmlCoreContext getCurContext() {
-		if( contextStack.isEmpty() ) {
-			return( null );
+		if(contextStack.isEmpty()) {
+			return(null);
 		}
 		
-		IYCFXmlCoreContext curContext = (IYCFXmlCoreContext)( contextStack.getLast() );
-		return( curContext );
+		IYCFXmlCoreContext curContext = (IYCFXmlCoreContext)(contextStack.getLast());
+		return(curContext);
 	}
 
 //	Accessors: XmlCoreContextFactory
@@ -353,7 +353,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return	The context factory to use.
 	 */
 	public IYCFXmlCoreContextFactory getXmlCoreContextFactory() {
-		return( xmlCoreContextFactory );
+		return(xmlCoreContextFactory);
 	}
 
 	/**
@@ -361,7 +361,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *
 	 *	@param	factory	The context factory to use.	
 	 */
-	public void setXmlCoreContextFactory( IYCFXmlCoreContextFactory factory ) {
+	public void setXmlCoreContextFactory(IYCFXmlCoreContextFactory factory) {
 		assert factory != null : "factory (arg 1) is null";
 		xmlCoreContextFactory = factory;
 	}
@@ -378,17 +378,17 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	public IYCFXmlCoreContext newXmlCoreContext(
 		IYCFXmlCoreContext src,
 		String qName,
-		IYCFXmlCoreElementHandler handler )
+		IYCFXmlCoreElementHandler handler)
 	{
 		IYCFXmlCoreContext retval;
-		if( ( xmlCoreContextFactory != null ) && ( xmlCoreContextFactory != this ) ) {
-			retval = xmlCoreContextFactory.newXmlCoreContext( src, qName, handler );
+		if((xmlCoreContextFactory != null) && (xmlCoreContextFactory != this)) {
+			retval = xmlCoreContextFactory.newXmlCoreContext(src, qName, handler);
 		}
 		else {
-			retval = new IYCFXmlCoreContext( src, qName, handler );
+			retval = new IYCFXmlCoreContext(src, qName, handler);
 		}
 		
-		return( retval );
+		return(retval);
 	}
 
 	/**
@@ -401,16 +401,16 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	public IYCFXmlCoreContext newXmlCoreContext(
 		IYCFXmlCoreParser coreParser,
 		IYCFMessageLog jlog,
-		IYCFXmlCoreElementHandler elementHandler )
+		IYCFXmlCoreElementHandler elementHandler)
 	{
 		IYCFXmlCoreContext retval;
-		if( ( xmlCoreContextFactory != null ) && ( xmlCoreContextFactory != this ) ) {
-			retval = xmlCoreContextFactory.newXmlCoreContext( coreParser, jlog, elementHandler );
+		if((xmlCoreContextFactory != null) && (xmlCoreContextFactory != this)) {
+			retval = xmlCoreContextFactory.newXmlCoreContext(coreParser, jlog, elementHandler);
 		}
 		else {
-			retval = new IYCFXmlCoreContext( coreParser, jlog, elementHandler );
+			retval = new IYCFXmlCoreContext(coreParser, jlog, elementHandler);
 		}
-		return( retval );
+		return(retval);
 	}
 
 //	ErrorHandler Interface
@@ -418,45 +418,45 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	/**
 	 *	Handle a warning.
 	 */
-	public void warning( SAXParseException ex )
+	public void warning(SAXParseException ex)
 		throws SAXException
 	{
-		String fmt = formatMessage( ex );
-		if( log != null ) {
-			log.message( "WARN:  " + fmt );
+		String fmt = formatMessage(ex);
+		if(log != null) {
+			log.message("WARN:  " + fmt);
 		}
 		else {
-			System.err.append( "WARN:  " + fmt + "\n" );
+			System.err.append("WARN:  " + fmt + "\n");
 		}
 	}
 
 	/**
 	 *	Handle an error.
 	 */
-	public void error( SAXParseException ex )
+	public void error(SAXParseException ex)
 		throws SAXException
 	{
-		String fmt = formatMessage( ex );
-		if( log != null ) {
-			log.message( "ERROR: " + fmt );
+		String fmt = formatMessage(ex);
+		if(log != null) {
+			log.message("ERROR: " + fmt);
 		}
 		else {
-			System.err.append( "ERROR: " + fmt + "\n" );
+			System.err.append("ERROR: " + fmt + "\n");
 		}
 	}
 
 	/**
 	 *	Handle a fatal error.
 	 */
-	public void fatalError( SAXParseException ex )
+	public void fatalError(SAXParseException ex)
 		throws SAXException
 	{
-		String fmt = formatMessage( ex );
-		if( log != null ) {
-			log.message( "FATAL: " + fmt );
+		String fmt = formatMessage(ex);
+		if(log != null) {
+			log.message("FATAL: " + fmt);
 		}
 		else {
-			System.err.append( "FATAL: " + fmt + "\n" );
+			System.err.append("FATAL: " + fmt + "\n");
 		}
 	}
 
@@ -467,7 +467,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *
 	 *	@return	The formatted error stack.
 	 */
-	protected String formatMessage( SAXParseException ex ) {
+	protected String formatMessage(SAXParseException ex) {
 		StringBuffer buff = new StringBuffer();
 
 		String systemId = ex.getSystemId();
@@ -476,18 +476,18 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
             if (index != -1) {
                 systemId = systemId.substring(index + 1);
             }
-            buff.append( systemId );
+            buff.append(systemId);
         }
 
-        buff.append( '[' );
-        buff.append( ex.getLineNumber() );
-        buff.append( ',');
-        buff.append( ex.getColumnNumber() );
-        buff.append( "]: " );
-        buff.append( ex.getMessage() );
-        buff.append( '\n' );
+        buff.append('[');
+        buff.append(ex.getLineNumber());
+        buff.append(',');
+        buff.append(ex.getColumnNumber());
+        buff.append("]: ");
+        buff.append(ex.getMessage());
+        buff.append('\n');
 
-        return( buff.toString() );
+        return(buff.toString());
     }
 
 //	ContentHandler Interface
@@ -500,8 +500,8 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
      *	@param	locator an object that can return the location of
      *			any SAX document event
      */
-    public void setDocumentLocator( Locator locator ) {
-    	super.setDocumentLocator( locator );
+    public void setDocumentLocator(Locator locator) {
+    	super.setDocumentLocator(locator);
     	assert locator != null : "locator (arg 1) is null";
     	documentLocator = locator;
     }
@@ -516,28 +516,28 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	public String getFormattedNearLocation() {
 		String retval;
 		Locator loc = getDocumentLocator();
-		if( loc != null ) {
+		if(loc != null) {
 			String sysid = loc.getSystemId();
-			if( sysid == null ) {
+			if(sysid == null) {
 				sysid = "";
 			}
 			int lineno = loc.getLineNumber();
 			int colno = loc.getColumnNumber();
 			retval = "near "
 				+ sysid
-				+ ( ( lineno > 0 )
-					? "[" + Integer.toString( lineno )
-							+ ( ( colno > 0 )
-									? "." + Integer.toString( colno )
-									: "" )
+				+ ((lineno > 0)
+					? "[" + Integer.toString(lineno)
+							+ ((colno > 0)
+									? "." + Integer.toString(colno)
+									: "")
 							+ "]"
-					: "" )
+					: "")
 				+ " ";
 		}
 		else {
 			retval = "";
 		}
-		return( retval );
+		return(retval);
 	}
 
 
@@ -569,39 +569,39 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
     	String		uri,
     	String		localName,
 		String		qName,
-		Attributes	attrs )
+		Attributes	attrs)
 	throws SAXException
 	{
     	IYCFXmlCoreContext curContext;
-    	if( contextStack.isEmpty() ) {
+    	if(contextStack.isEmpty()) {
     		IYCFXmlCoreElementHandler rootHandler = getRootElementHandler();
     		assert rootHandler != null;
-    		IYCFXmlCoreContext rootContext = new IYCFXmlCoreContext( this, getLog(), rootHandler );
-    		contextStack.addLast( rootContext );
+    		IYCFXmlCoreContext rootContext = new IYCFXmlCoreContext(this, getLog(), rootHandler);
+    		contextStack.addLast(rootContext);
     	}
 
 		IYCFXmlCoreContext prev = (IYCFXmlCoreContext)contextStack.getLast();
-		if( prev == null ) {
-			throw new RuntimeException( "ContextStack.top is a null value" );
+		if(prev == null) {
+			throw new RuntimeException("ContextStack.top is a null value");
 		}
 
 		IYCFXmlCoreElementHandler prevHandler = prev.getElementHandler();
-		if( prevHandler == null ) {
-			throw new RuntimeException( "ContextStack.top.ElementHandler is null" );
+		if(prevHandler == null) {
+			throw new RuntimeException("ContextStack.top.ElementHandler is null");
 		}
 
-		IYCFXmlCoreElementHandler curHandler = prevHandler.getElementHandler( qName );
-		if( curHandler == null ) {
-			throw new RuntimeException( "ContextStack.top.ElementHandler<"
-				+ prevHandler.getClass().getSimpleName() + ">.getElementHandler( \""
-				+ qName + "\" ) has no such mapping" );
+		IYCFXmlCoreElementHandler curHandler = prevHandler.getElementHandler(qName);
+		if(curHandler == null) {
+			throw new RuntimeException("ContextStack.top.ElementHandler<"
+				+ prevHandler.getClass().getSimpleName() + ">.getElementHandler(\""
+				+ qName + "\") has no such mapping");
 		}
 
-    	curContext = new IYCFXmlCoreContext( prev, qName, curHandler );
+    	curContext = new IYCFXmlCoreContext(prev, qName, curHandler);
 
-    	contextStack.addLast( curContext );
+    	contextStack.addLast(curContext);
 
-    	curHandler.startElement( uri, localName, qName, attrs );
+    	curHandler.startElement(uri, localName, qName, attrs);
 	}
 
 
@@ -634,7 +634,7 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
     	IYCFXmlCoreElementHandler curHandler = curContext.getElementHandler();
 
     	try {
-    		curHandler.endElement( uri, localName, qName );
+    		curHandler.endElement(uri, localName, qName);
     	}
     	finally {
     		contextStack.removeLast();
@@ -657,14 +657,14 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
      *	@throws	org.xml.sax.SAXException any SAX exception, possibly
      *			wrapping another exception
      */
-    public final void characters( char ch[], int start, int length )
+    public final void characters(char ch[], int start, int length)
 	throws SAXException
 	{
-    	if( ( ch == null ) || ( length <= 0 ) ) {
+    	if((ch == null) || (length <= 0)) {
     		return;
     	}
 
-    	getCurContext().appendElementText( ch, start, length );
+    	getCurContext().appendElementText(ch, start, length);
 	}
 
 //	Protected Methods
@@ -676,48 +676,48 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
      *
      *	@return	The specified buffer to enable functional chaining.
      */
-    public StringBuffer appendLocatorInformation( StringBuffer buff ) {
+    public StringBuffer appendLocatorInformation(StringBuffer buff) {
 
     	assert buff != null: "buff (arg 1) is null";
     	
     	Locator locator = getDocumentLocator();
-    	if( locator != null ) {
+    	if(locator != null) {
 
     		String shortName = null;
     		String docName = locator.getSystemId();
-    		if( docName != null ) {
-    			int lastSlash = docName.lastIndexOf( '/' );
-    			if( ( lastSlash >= 0 ) && ( lastSlash != docName.length() ) ) {
-    				shortName = new String( docName.substring( lastSlash + 1 ) );
+    		if(docName != null) {
+    			int lastSlash = docName.lastIndexOf('/');
+    			if((lastSlash >= 0) && (lastSlash != docName.length())) {
+    				shortName = new String(docName.substring(lastSlash + 1));
     			}
     		}
     		
-    		if( shortName == null ) {
+    		if(shortName == null) {
     			docName = locator.getPublicId();
-    			if( docName != null ) {
-	    			int lastSlash = docName.lastIndexOf( '/' );
-	    			if( ( lastSlash >= 0 ) && ( lastSlash != docName.length() ) ) {
-	    				shortName = new String( docName.substring( lastSlash + 1 ) );
+    			if(docName != null) {
+	    			int lastSlash = docName.lastIndexOf('/');
+	    			if((lastSlash >= 0) && (lastSlash != docName.length())) {
+	    				shortName = new String(docName.substring(lastSlash + 1));
 	    			}
     			}
     		}
     		
-    		if( shortName != null ) {
-				buff.append( shortName );
+    		if(shortName != null) {
+				buff.append(shortName);
     		}
     		
     		int line = locator.getLineNumber();
-    		if( line >= 0 ) {
-    			buff.append( "[" + line );
+    		if(line >= 0) {
+    			buff.append("[" + line);
 //    			int col = locator.getColumnNumber();
-//    			if( col >= 0 ) {
-//    				buff.append( "," + col );
+//    			if(col >= 0) {
+//    				buff.append("," + col);
 //    			}
-    			buff.append( "]" );
+    			buff.append("]");
     		}
     	}
     	
-    	return( buff );
+    	return(buff);
 	}
 
 	/**
@@ -738,13 +738,13 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 //	 *
 //	 *	@param	uri - The URI for the document to parse.
 //	 */
-//	public abstract void parse( String uri );
+//	public abstract void parse(String uri);
 //
 //	/**
 //	 *	Parse the specified Stream
 //	 *
 //	 *	@param	input - The InputStream for the document to parse.
 //	 */
-//	public abstract void parse( InputStream inputStream );
+//	public abstract void parse(InputStream inputStream);
 
 }

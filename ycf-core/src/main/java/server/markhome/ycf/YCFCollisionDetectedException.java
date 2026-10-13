@@ -35,18 +35,18 @@ public class YCFCollisionDetectedException extends YCFRuntimeException {
 
 	public YCFCollisionDetectedException(
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( enMsg, xMsg );
+		super(enMsg, xMsg);
 	}
 
 	public YCFCollisionDetectedException(
 		Class<?> throwingClass,
 		String methName,
 		String enMsg,
-		String xMsg )
+		String xMsg)
 	{
-		super( throwingClass, methName, enMsg, xMsg );
+		super(throwingClass, methName, enMsg, xMsg);
 	}
 
 	public YCFCollisionDetectedException(
@@ -54,22 +54,22 @@ public class YCFCollisionDetectedException extends YCFRuntimeException {
 		String methName,
 		String enMsg,
 		String xMsg,
-		Throwable th )
+		Throwable th)
 	{
-		super( throwingClass, methName,  enMsg, xMsg, th );
+		super(throwingClass, methName,  enMsg, xMsg, th);
 	}
 
 	public YCFCollisionDetectedException(
 		Class<?> throwingClass,
 		String methName,
-		Object argKey )
+		Object argKey)
 	{
-		super( ((argKey != null)
+		super(((argKey != null)
 					? String.format(Inz.s("ycflib.YCFCollisionDetectedException.pkey"),
-						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )),
+						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")),
 						argKey.toString())
 					: String.format(Inz.s("ycflib.YCFCollisionDetectedException.default"),
-						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "" )))),
+						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")))),
 				((argKey != null)
 					? String.format(Inz.x("ycflib.YCFCollisionDetectedException.pkey"),
 						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")),
@@ -83,9 +83,9 @@ public class YCFCollisionDetectedException extends YCFRuntimeException {
 		Class<?> throwingClass,
 		String methName,
 		Object argKey,
-		Throwable th )
+		Throwable th)
 	{
-		super( ((argKey != null)
+		super(((argKey != null)
 					? String.format(Inz.s("ycflib.YCFCollisionDetectedException.pkey"),
 						(throwingClass.getName() + ((methName != null && !methName.isEmpty()) ? ("." + methName + "()") : "")),
 						argKey.toString())
@@ -102,6 +102,6 @@ public class YCFCollisionDetectedException extends YCFRuntimeException {
 	}
 
 	public Object getIndexKey() {
-		return( indexKey );
+		return(indexKey);
 	}
 }

@@ -51,7 +51,7 @@ public interface YCFXmlCoreContextFactory {
 	public YCFXmlCoreContext newXmlCoreContext(
 		YCFXmlCoreContext src,
 		String qName,
-		YCFXmlCoreElementHandler handler );
+		YCFXmlCoreElementHandler handler);
 
 	/**
 	 *	Construct a "root" XML Core Context instance.
@@ -63,6 +63,6 @@ public interface YCFXmlCoreContextFactory {
 	public YCFXmlCoreContext newXmlCoreContext(
 		YCFXmlCoreParser coreParser,
 		IYCFMessageLog jLogger,
-		YCFXmlCoreElementHandler elementHandler );
+		YCFXmlCoreElementHandler elementHandler);
 
 }

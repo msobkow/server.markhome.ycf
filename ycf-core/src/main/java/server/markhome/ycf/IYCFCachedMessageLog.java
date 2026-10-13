@@ -32,7 +32,7 @@ import java.io.*;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFCachedMessageLog implements IYCFMessageLog {
+public interface IYCFCachedMessageLog extends IYCFMessageLog {
 
 	/**
 	 *	IYCFCachedMessageLog getSingleton()
@@ -86,8 +86,8 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 	@JSExport
 	public void clearCache() {
 		IYCFMessageLog lg = log.get();
-		if( lg != null) {
-			lg.getLog().setLength( 0 );
+		if(lg != null) {
+			lg.getLog().setLength(0);
 		}
 	}
 
@@ -132,7 +132,7 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 	@JSExport
 	public int dedent() {
 		int indent = this.indent.get();
-		if( indent > 0 ) {
+		if(indent > 0) {
 			indent --;
 		}
 		else {
@@ -171,12 +171,12 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
 		this.cacheContents.get().append(String.format(IInz.x("abort"), (retval == null) ? "void" : retval, msg)); // "ABORT: returning retval - msg"
 		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -198,12 +198,12 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
-		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExit"), (retval == null) ? "void" : retval)); // "NORMAL EXIT: returning %1$d" : String.format(IInz.x("normalExitWithMessage"), (retval == null) ? "void" : retval, msg)); // "NORMAL EXIT: returning %1$d - %2$s"
-		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExit"), (retval == null) ? "void" : retval) : // "NORMAL EXIT: returning %1$d"
+			String.format(IInz.x("normalExitWithMessage"), (retval == null) ? "void" : retval, msg)); // "NORMAL EXIT: returning %1$d - %2$s"
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -224,12 +224,12 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
-		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitZero"))); // "NORMAL EXIT: returning 0" : String.format(IInz.x("normalExitZeroWithMessage"), msg)); // "NORMAL EXIT: returning 0 - %2$s"
-		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitZero")) : // "NORMAL EXIT: returning 0"
+			String.format(IInz.x("normalExitZeroWithMessage"), msg)); // "NORMAL EXIT: returning 0 - %2$s"
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -250,12 +250,12 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
-		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitMinusOne"))); // "NORMAL EXIT: returning -1" : String.format(IInz.x("normalExitMinusOneWithMessage"), msg)); // "NORMAL EXIT: returning -1 - %2$s"
-		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitMinusOne")) : // "NORMAL EXIT: returning -1"
+			String.format(IInz.x("normalExitMinusOneWithMessage"), msg)); // "NORMAL EXIT: returning -1 - %2$s"
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -276,12 +276,12 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
-		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitPlusOne"))); // "NORMAL EXIT: returning 1" : String.format(IInz.x("normalExitPlusOneWithMessage"), msg)); // "NORMAL EXIT: returning 1 - %2$s"
-		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		this.cacheContents.get().append((msg == null || msg.isEmpty()) ? String.format(IInz.x("normalExitPlusOne")) : // "NORMAL EXIT: returning 1"
+			String.format(IInz.x("normalExitPlusOneWithMessage"), msg)); // "NORMAL EXIT: returning 1 - %2$s"
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -290,7 +290,7 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 	/**
 	 *	Log the specified message as an error.
 	 *
-	 *	@param msg The message to be logged as an error, may be null, in which case nothing gets written as requested.
+	 *	@param msg The message to be logged as an error may be null, in which case nothing gets written as requested.
 	 *
 	 *	@return String The new contents of the cache.
 	 */
@@ -301,12 +301,35 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
-		this.cacheContents.get().append(IInz.x("error"))); // "ERROR: %1$s"
-		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		this.cacheContents.get().append(String.format(IInz.x("error"), msg)); // "ERROR: %1$s"
+		if(! msg.endsWith("\n")) {
+			this.cacheContents.get().append("\n");
+		}
+		return(this.cacheContents.get());
+	}
+
+	/**
+	 *	Log the specified message as informational.
+	 *
+	 *	@param msg The message to be logged as null may be null, in which case nothing gets written as requested.
+	 *
+	 *	@return String The new contents of the cache.
+	 */
+	@JSExport
+	public String info(String msg) {
+		if(msg == null || msg.isEmpty()) {
+			return;
+		}
+		int i;
+		StringBuilder sb = new StringBuilder();
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
+		}
+		this.cacheContents.get().append(String.format(IInz.x("info"), msg)); // "INFO: %1$s"
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -326,12 +349,11 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
-		this.cacheContents.get().append(IInz.x("fatal"))); // "FATAL: %1$s"
-		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		this.cacheContents.get().append(String.format(IInz.x("fatal"), msg)); // "FATAL: %1$s"
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -351,11 +373,11 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
 		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());
@@ -375,12 +397,11 @@ public interface IYCFCachedMessageLog implements IYCFMessageLog {
 		}
 		int i;
 		StringBuilder sb = new StringBuilder();
-		for(i = ( ( this.cacheContents.get().length() <= 0 ) ? 1 : 0 ); i < this.indent; i ++) {
-			sb.append( "\t" );
+		for(i = ((this.cacheContents.get().length() <= 0) ? 1 : 0); i < this.indent; i ++) {
+			sb.append("\t");
 		}
-		this.cacheContents.get().append(IInz.x("warning"))); // "WARN: %1$s"
-		this.cacheContents.get().append(msg);
-		if(! msg.endsWith( "\n" )) {
+		this.cacheContents.get().append(IInz.x("warning"), msg); // "WARN: %1$s"
+		if(! msg.endsWith("\n")) {
 			this.cacheContents.get().append("\n");
 		}
 		return(this.cacheContents.get());

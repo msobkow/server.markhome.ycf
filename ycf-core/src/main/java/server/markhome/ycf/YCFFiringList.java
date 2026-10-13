@@ -33,17 +33,17 @@ extends ArrayList<YCFFireOnInstanceOf>
     	super();
     }
 
-    public void fireOnInstanceOf( IYCFAnyObj obj ) {
-    	if( obj == null ) {
+    public void fireOnInstanceOf(IYCFAnyObj obj) {
+    	if(obj == null) {
     		return;
     	}
-    	if( ! isEmpty() ) {
+    	if(! isEmpty()) {
 	    	YCFFireOnInstanceOf curToFire;
 	    	Iterator<YCFFireOnInstanceOf> iterToFire = iterator();
-	    	while( iterToFire.hasNext() ) {
+	    	while(iterToFire.hasNext()) {
 	    		curToFire = iterToFire.next();
-	    		if( curToFire != null ) {
-	    			curToFire.fireOnInstanceOf( obj );
+	    		if(curToFire != null) {
+	    			curToFire.fireOnInstanceOf(obj);
 	    		}
 	    	}
     	}

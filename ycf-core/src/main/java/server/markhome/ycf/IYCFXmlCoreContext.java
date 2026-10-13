@@ -103,17 +103,17 @@ public interface IYCFXmlCoreContext extends JSObject {
 	public IYCFXmlCoreContext(
 		IYCFXmlCoreContext src,
 		String qName,
-		IYCFXmlCoreElementHandler handler )
+		IYCFXmlCoreElementHandler handler)
 	{
 		assert src != null : "src (arg 1) is null";
 
 		prevContext = src;
-		setElementHandler( src.getElementHandler() );
-		setLog( src.getLog() );
-		setParser( src.getParser() );
-		setQNameElementHandler( qName, handler );
+		setElementHandler(src.getElementHandler());
+		setLog(src.getLog());
+		setParser(src.getParser());
+		setQNameElementHandler(qName, handler);
 
-//		debuglog.setLevel( Level.INFO );
+//		debuglog.setLevel(Level.INFO);
 	}
 
 	/**
@@ -126,23 +126,23 @@ public interface IYCFXmlCoreContext extends JSObject {
 	public IYCFXmlCoreContext(
 		IYCFXmlCoreParser coreParser,
 		IYCFMessageLog jlog,
-		IYCFXmlCoreElementHandler elementHandler )
+		IYCFXmlCoreElementHandler elementHandler)
 	{
 		assert coreParser != null : "coreParser (arg 1) is null";
 		assert elementHandler != null : "elementHandler (arg 3) is null";
 		
 		prevContext = null;
 		
-		setParser( coreParser );
+		setParser(coreParser);
 		
-		if( jlog != null ) {
-			setLog( jlog );
+		if(jlog != null) {
+			setLog(jlog);
 		}
 		else {
-			setLog( coreParser.getLog() );
+			setLog(coreParser.getLog());
 		}
 
-		setQNameElementHandler( ".", elementHandler );
+		setQNameElementHandler(".", elementHandler);
 	}
 
 //	Accessors: PrevContext
@@ -154,7 +154,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *			the bottom of the stack.
 	 */
 	public IYCFXmlCoreContext getPrevContext() {
-		return( prevContext );
+		return(prevContext);
 	}
 
 //	Accessors: ValueMap
@@ -166,9 +166,9 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *
 	 *	@return	True if there is a mapping for the name.
 	 */
-	public boolean hasNamedValue( String key ) {
-		boolean retval = valueMap.containsKey( key );
-		return( retval );
+	public boolean hasNamedValue(String key) {
+		boolean retval = valueMap.containsKey(key);
+		return(retval);
 	}
 	
 	/**
@@ -177,9 +177,9 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *	@param	name	The name of the object
 	 *	@return	The object associated with the name or null.
 	 */
-	public Object getNamedValue( String key ) {
-		Object retval = valueMap.get( key );
-		return( retval );
+	public Object getNamedValue(String key) {
+		Object retval = valueMap.get(key);
+		return(retval);
 	}
 	
 	/**
@@ -190,9 +190,9 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *
 	 *	@return	The object previously associated with the name or null
 	 */
-	public Object putNamedValue( String key, Object value ) {
-		Object retval = valueMap.put( key, value );
-		return( retval );
+	public Object putNamedValue(String key, Object value) {
+		Object retval = valueMap.put(key, value);
+		return(retval);
 	}
 
 //	Accessors: Parser
@@ -203,7 +203,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *	@return	The XML Core Parser which owns this element handler.
 	 */
 	public IYCFXmlCoreParser getParser() {
-		return( parser );
+		return(parser);
 	}
 
 	/**
@@ -211,7 +211,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *
 	 *	@param	coreParser	The parser which owns this instance.
 	 */
-	protected void setParser( IYCFXmlCoreParser coreParser ) {
+	protected void setParser(IYCFXmlCoreParser coreParser) {
 		assert coreParser != null : "coreParser (arg 1) is null";
 		parser = coreParser;
 	}
@@ -224,13 +224,13 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *	@return	Log4J log
 	 */
 	public IYCFMessageLog getLog() {
-		if( log != null ) {
-			return( log );
+		if(log != null) {
+			return(log);
 		}
-		if( parser != null ) {
-			return( parser.getLog() );
+		if(parser != null) {
+			return(parser.getLog());
 		}
-		return( null );
+		return(null);
 	}
 
 	/**
@@ -238,7 +238,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *
 	 *	@param	jlog	The log to use for runtime processing messages
 	 */
-	public void setLog( IYCFMessageLog jlog ) {
+	public void setLog(IYCFMessageLog jlog) {
 		log = jlog;
 	}
 
@@ -250,14 +250,14 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 * 	@return	The element text collected so far.
 	 */
 	public String getElementText() {
-		return( elementText.toString() );
+		return(elementText.toString());
 	}
 
 	/**
 	 *	Append a character segment to the element text.
 	 */
-	public void appendElementText( char ch[], int start, int length ) {
-		elementText.append( ch, start, length );
+	public void appendElementText(char ch[], int start, int length) {
+		elementText.append(ch, start, length);
 	}
 
 //	Accessors: ElementHandler
@@ -268,7 +268,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *	@return	The element handler selected for processing the current element.
 	 */
 	public IYCFXmlCoreElementHandler getElementHandler() {
-		return( elementHandler );
+		return(elementHandler);
 	}
 
 	/**
@@ -276,7 +276,7 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *
 	 *	@param	handler	The XmlCoreElementHandler selected to process the element.
 	 */
-	protected void setElementHandler( IYCFXmlCoreElementHandler handler ) {
+	protected void setElementHandler(IYCFXmlCoreElementHandler handler) {
 		assert handler != null : "handler (arg 1) is null";
 		elementHandler = handler;
 	}
@@ -287,11 +287,11 @@ public interface IYCFXmlCoreContext extends JSObject {
 	 *	@param	qName	The QName of the element or document being processed.
 	 *	@param	handler	The XmlCoreElementHandler selected to process the element.
 	 */
-	public void setQNameElementHandler( String qName, IYCFXmlCoreElementHandler handler ) {
+	public void setQNameElementHandler(String qName, IYCFXmlCoreElementHandler handler) {
 		assert elementQName == null : "Element context QName has already been set";
 		assert qName != null && qName.length() > 0 : "qName (arg 1) is null or empty";
 		assert handler != null : "handler (arg 2) is null";
 		elementHandler = handler;
-		elementQName = new String( qName );
+		elementQName = new String(qName);
 	}
 }

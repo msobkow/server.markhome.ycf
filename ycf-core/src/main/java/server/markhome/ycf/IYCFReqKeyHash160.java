@@ -32,7 +32,7 @@ import java.util.*;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFReqKeyHash160 extends IYCFKeyHash160 implements IYCFRequired {
+public interface IYCFReqKeyHash160 extends IYCFKeyHash160 {
 
 	/**
 	 *	IYCFReqKeyHash160 getSingleton()
