@@ -41,7 +41,7 @@ import java.util.Set;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFKeyHash384 extends IYCFKeyHashBase<IYCFKeyHash384> implements Serializable {
+public interface IYCFKeyHash384 extends IYCFKeyHashBase<IYCFKeyHash384> {
 
 	/**
 	 *	IYCFKeyHash384 getSingleton()
@@ -50,352 +50,783 @@ public interface IYCFKeyHash384 extends IYCFKeyHashBase<IYCFKeyHash384> implemen
 	 *	@return IYCFKeyHash384 The singleton for the implementation.
 	 */
 	@JSExport
-	public IYCFKeyHash384 getSingleton();
+	public static IYCFKeyHash384 getSingleton();
 
-  static final long serialVersionUID = 202608160344L;
-  protected byte[] bytes;
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return IYCFKeyHash384 The instance implementation.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance();
 
-  @Override
-  @SuppressWarnings("unchecked")
-  public int compareTo(IYCFKeyHash384 o) {
-    int result = compare((IYCFKeyHash384) this, o);
-    return result;
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance()
+	 *		Get an instance that provides the service method implementations.
+	 *
+	 *	@return IYCFKeyHash384 The instance implementation.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance();
 
-  static public int compareOrdered(IYCFKeyHash384 h1, IYCFKeyHash384 h2) {
-    if (h1 == null) {
-      if (h2 == null) {
-        return 0;
-      }
-      else {
-        return -1;
-      }
-    }
-    else {
-      if (h2 == null) {
-        return 1;
-      }
-      else {
-        for (int i = 0; i < HASH_LENGTH; i++) {
-          int v1 = h1.getBytes()[i] + 256;
-          int v2 = h2.getBytes()[i] + 256;
-          if (v1 < v2) return -1;
-          if (v1 > v2) return 1;
-        }
-      }
-    }
-    return 0;
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(i)
+	 *		Get an instance that provides the service method implementations with a generated value.
+	 *
+	 *	@param Dummy integer parameter to indicate a key value should be generated.
+	 *
+	 *	@return IYCFKeyHash384 The instance implementation with a generated value.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(int i);
 
-  @Override
-  public int getHashLength() {
-    return HASH_LENGTH;
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance(i)
+	 *		Get an instance that provides the service method implementations with a generated value.
+	 *
+	 *	@param Dummy integer parameter to indicate a key value should be generated.
+	 *
+	 *	@return IYCFKeyHash384 The instance implementation with a generated value.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(int i);
 
-  @Override
-  public int getHashLengthString() {
-    return HASH_LENGTH_STRING;
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(s)
+	 *		Get an instance that provides the service method implementations with a generated value.
+	 *
+	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash384_getHashLengthString() characters long.
+	 *
+	 *	@return An instance which may be a null if the string s is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(String s);
 
-  @Override
-  public String getHashAlgo() {
-    return HASH_ALGO;
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance()
+	 *		Get an instance that provides the service method implementations with a generated value.
+	 *
+	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash384_getHashLengthString() characters long.
+	 *
+	 *	@return An instance which may be a null if the string s is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(String s);
 
-  static MessageDigest[] m = null;
-  @Override
-  protected MessageDigest[] getM() {
-    return m;
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(a)
+	 *		Get an instance using the specified byte array as an initializer for the hash data.
+	 *
+	 *	@param a The byte array to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the byte array a is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(byte[] a);
 
-  @Override
-  public void initStatics() {
-    if (m != null) {
-      return;
-    }
-    super.initStatics();
-    try {
-      m = new MessageDigest[CONCURRENT_DIGESTS];
-      for (int i = 0; i < CONCURRENT_DIGESTS; i++) {
-        m[i] = MessageDigest.getInstance(HASH_ALGO);
-      }
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-  
-  public static byte[] sbytesFromHex(String string) {
-    if (string == null) {
-      // allowed
-    }
-    else if (string.length() > HASH_LENGTH * 2) {
-      throw new IllegalArgumentException("string length is " + string.length() + ".  Must be <= " + HASH_LENGTH * 2 + ".  string is '" + string + "'.");
-    }
-    byte[] b = new byte[HASH_LENGTH];
-    if (string == null) {
-      return b;
-    }
+	/**
+	 *	IYCFKeyHash384 getInstance(a)
+	 *		Get an instance using the specified byte array as an initializer for the hash data.
+	 *
+	 *	@param a The byte array to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the byte array a is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(byte[] a);
 
-    int n = string.length();
-    for (int i = 0; i < n - 1; i += 2) {
-      b[i / 2] = (byte) ((Character.digit(string.charAt(i), 16) << 4) + Character.digit(string.charAt(i + 1), 16));
-    }
-    return b;
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(IYCFKeyHash128 k);
 
-  public static IYCFKeyHash384 fromHex(String string) {
-    byte[] b = sbytesFromHex(string);
-    IYCFKeyHash384 h = new IYCFKeyHash384();
-    h.bytes = b;
-    return h;
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(IYCFKeyHash128 k);
 
-  public static Comparator<IYCFKeyHash384> getComparator() {
+	/**
+	 *	IYCFKeyHash384 getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(IYCFKeyHash160 k);
 
-    return new Comparator<IYCFKeyHash384>() {
-      @Override
-      public int compare(IYCFKeyHash384 a, IYCFKeyHash384 b) {
-        return compareOrdered(a, b);
-      }
-    };
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(IYCFKeyHash160 k);
 
-  public IYCFKeyHash384() {
-    super();
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(IYCFKeyHash224 k);
 
-  /**
-   * This is the hex code of the underlying ID. THIS IS NOT A HASHING FUNCTION.
-   */
-  public IYCFKeyHash384(String hexId) {
-    super(hexId);
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(IYCFKeyHash224 k);
 
-  public IYCFKeyHash384(byte[] anId) {
-    super(anId);
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(IYCFKeyHash256 k);
 
-  public IYCFKeyHash384(IYCFKeyHash384 otherKey) {
-	bytes = new byte[HASH_LENGTH];
-	if(otherKey != null) {
-		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
-	}
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(IYCFKeyHash256 k);
 
-  public IYCFKeyHash384(IYCFKeyHash512 otherKey) {
-    super();
-    if (otherKey == null) {
-      bytes = new byte[HASH_LENGTH];
-      return;
-    }
-    byte[] _newId = new byte[HASH_LENGTH];
-    System.arraycopy(otherKey.getBytes(), 0, _newId, 0, HASH_LENGTH);
-    this.bytes = _newId;
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(IYCFKeyHash384 k);
 
-  public static IYCFKeyHash384 fromInt(int v) {
-    IYCFKeyHash384 h = nullGet();
-    h.bytes[3] = (byte) (v & 0xFF);
-    h.bytes[2] = (byte) ((v >> 8) & 0xFF);
-    h.bytes[1] = (byte) ((v >> 16) & 0xFF);
-    h.bytes[0] = (byte) ((v >> 24) & 0xFF);
-    return h;
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(IYCFKeyHash384 k);
 
-  public IYCFKeyHash384(int notUsed) {
-    super(notUsed);
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(IYCFKeyHash512 k);
 
-  public static final boolean isNull(IYCFKeyHash384 anId) {
-    return anId == null || anId.isNull();
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_getInstance(IYCFKeyHash512 k);
 
-  @Override
-  public byte[] getBytes() {
-    return bytes;
-  }
+	/**
+	 *	IYCFKeyHash384 getInstance(k)
+	 *		Get an instance using the specified key as an initializer for the hash data.
+	 *
+	 *	@param k The key to use to initialize the hash data.
+	 *
+	 *	@return An instance which may be a null if the key k is null.
+	 */
+	@JSExport
+	public IYCFKeyHash384 getInstance(IYCFKeyHash384 k);
 
-  /**
-   * Get a new hash object with the key set to all 0s
-   */
-  static public IYCFKeyHash384 nullGet() {
-    IYCFKeyHash384 k = new IYCFKeyHash384(new byte[HASH_LENGTH]);
-    return k;
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_fromInt(i)
+	 *		Get an instance that uses the integer i to initialize the first 4 bytes of the key data.
+	 *
+	 *	@return IYCFKeyHash384 An instance that uses the integer i to initialize the first 4 bytes of the key data.
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_fromInt(int i);
 
-  static public String getNullString() {
-    return "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-  }
+	/**
+	 *	IYCFKeyHash384 fromInt(i)
+	 *		Get an instance that uses the integer i to initialize the first 4 bytes of the key data.
+	 *
+	 *	@return IYCFKeyHash384 An instance that uses the integer i to initialize the first 4 bytes of the key data.
+	 */
+	@JSExport
+	public IYCFKeyHash384 fromInt(int i);
 
-  /**
-   * We want KeyHashXX to be immutable so this method shouldn't even exist;
-   * however it is necessary for JPA. This is the only time it should be used.
-   *
-   * @param newBytes to be copied from.
-   */
-  @Override
-  public void setBytes(byte[] newBytes) {
-    if (newBytes == null) {
-      throw new NullPointerException("newBytes must not be null.");
-    }
-    if (newBytes.length != HASH_LENGTH) {
-      throw new IllegalArgumentException("newBytes must be of length " + HASH_LENGTH + ".");
-    }
-    bytes = newBytes.clone();
-  }
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_nullGet()
+	 *		Get a null instance.
+	 *
+	 *	@return IYCFKeyHash384 A null instance
+	 */
+	@JSExport
+	public static IYCFKeyHash384 YCFKeyHash384_nullGet();
 
-  /** Copy into existing key */
-  @Override
-  public void setBytes(byte[] newBytes, int offset,  int length) {
-      System.arraycopy(newBytes, offset, bytes, 0, Math.min(HASH_LENGTH,length));
-  }
+	/**
+	 *	IYCFKeyHash384 nullGet()
+	 *		Get a null instance.
+	 *
+	 *	@return IYCFKeyHash384 A null instance.
+	 */
+	@JSExport
+	public IYCFKeyHash384 nullGet();
 
-  public static IYCFKeyHash384 hash(String text) {
-    if (text != null) {
-      try {
-        MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-        byte[] buf = text.getBytes("UTF-8");
-        md.update(buf);
+	/**
+	 *	String YCFKeyHash384_nullString()
+	 *		Get a null value string.
+	 *
+	 *	@return String The null value string.
+	 */
+	@JSExport
+	public static String YCFKeyHash384_nullString();
 
-        return new IYCFKeyHash384(md.digest());
-      }
-      catch (Exception ex) {
-      }
-    }
-    return new IYCFKeyHash384(0);
-  }
+	/**
+	 *	String nullString()
+	 *		Get the null value string.
+	 *
+	 *	@return  String the null value string.
+	 */
+	@JSExport
+	public String nullString();
 
-  public static IYCFKeyHash384 hash(byte[] payload) {
-    try {
-      MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      md.update(payload);
+	/**
+	 *	int YCFKeyHash384_getHashLength()
+	 *		Get the length of the hash value.
+	 *
+	 *	@return The length of hashed values (size of the byte arrays.)
+	 */
+	@JSExport
+  	public static int YCFKeyHash384_getHashLength();
 
-      return new IYCFKeyHash384(md.digest());
-    }
-    catch (Exception ex) {
-    }
-    return new IYCFKeyHash384(0);
-  }
+	/**
+	 *	int getHashLength()
+	 *		Get the length of the hash value.
+	 *
+	 *	@return The length of hashed values (size of the byte arrays.)
+	 */
+	@JSExport
+  	public int getHashLength();
 
-  public static IYCFKeyHash384 hash(byte[]... payload) {
-    try {
-      MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (byte[] bs : payload) {
-        md.update(bs);
-      }
+	/**
+	 *	int YCFKeyHash384_getHashLengthString()
+	 *		Get the length of the hash value string form.
+	 *
+	 *	@return The length of hashed value strings.
+	 */
+	@JSExport
+  	public static int YCFKeyHash384_getHashLengthString();
 
-      return new IYCFKeyHash384(md.digest());
-    }
-    catch (Exception ex) {
-    }
-    return new IYCFKeyHash384(0);
-  }
+	/**
+	 *	int getHashLengthString()
+	 *		Get the length of the hash value string form.
+	 *
+	 *	@return The length of hashed value strings.
+	 */
+	@JSExport
+  	public int getHashLengthString();
 
-  public static IYCFKeyHash384 hash(IYCFKeyHash384... payload) {
-    try {
-      MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (IYCFKeyHash384 k : payload) {
-        md.update(k.getBytes());
-      }
-      return new IYCFKeyHash384(md.digest());
-    }
-    catch (Exception ex) {
-    }
-    return new IYCFKeyHash384(0);
-  }
+	/**
+	 *	String YCFKeyHash384_getHashAlgo()
+	 *		Get the name of the hash algorithm used.
+	 *
+	 *	@return The name of the hash algorithm used.
+	 */
+	@JSExport
+  	public static String YCFKeyHash384_getHashAlgo();
 
-  public static IYCFKeyHash384 hash(int[] payload) {
-    try {
-      MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (int x : payload) {
-        md.update((byte) ((x >>> 24) & 255));
-        md.update((byte) ((x >>> 16) & 255));
-        md.update((byte) ((x >>> 8) & 255));
-        md.update((byte) (x & 255));
-      }
+	/**
+	 *	String getHashAlgo()
+	 *		Get the name of the hash algorithm used.
+	 *
+	 *	@return The name of the hash algorithm used.
+	 */
+	@JSExport
+  	public String getHashAlgo();
 
-      return new IYCFKeyHash384(md.digest());
-    }
-    catch (Exception ex) {
-    }
-    return new IYCFKeyHash384(0);
-  }
+	/**
+	 *	MessageDigest[] YCFKeyHash384_getM()
+	 *		Get the message digest array.
+	 *
+	 *	@return The message digest array.
+	 */
+	@JSExport
+  	public static MessageDigest[] YCFKeyHash384_getM();
 
-  @Override
-  public IYCFKeyHash384 deepClone() {
-    return new IYCFKeyHash384(this);
-  }
+	/**
+	 *	MessageDigest[] getM()
+	 *		Get the message digest array.
+	 *
+	 *	@return The message digest array.
+	 */
+	@JSExport
+  	public MessageDigest[] getM();
 
-  static public IYCFKeyHash384 fromHexQuick(String string) {
-    if (string == null) {
-      return null;
-    }
-    if (string.length() != HASH_LENGTH * 2) {
-      return null;
-    }
-    for (int i = 0; i < string.length(); i++) {
-      try {
-        if (Character.digit(string.charAt(i), 16) < 0) {
-          return null;
-        }
-      }
-      catch (Exception e) {
-        return null;
-      }
+	/**
+	 *	int YCFKeyHash384_compare()
+	 *		Compare two instances.
+	 *
+	 *	@return less than zero if A is less than B, greater than zero if A is greater than B, otherwise zero.
+	 */
+	@JSExport
+  	public static int YCFKeyHash384_compare(IYCFKeyHash384 a, IYCFKeyHash384 b);
 
-    }
-    try {
-      return fromHex(string);
-    }
-    catch (Exception e) {
-      return null;
-    }
-  }
+	/**
+	 *	int compare(b)
+	 *		Compare an instance.
+	 *
+	 *	@return less than zero if this is less than B, greater than zero if this is greater than B, otherwise zero.
+	 */
+	@JSExport
+  	public int compare(IYCFKeyHash384 b);
 
-  public static final IYCFKeyHash384[] toIYCFKeyHash384(String[] ids) {
-    if (ids == null) {
-      return null;
-    }
-    if (ids.length == 0) {
-      return new IYCFKeyHash384[0];
-    }
-    IYCFKeyHash384[] r = new IYCFKeyHash384[ids.length];
-    for (int i = 0; i < ids.length; i++) {
-      r[i] = new IYCFKeyHash384(ids[i]);
-    }
-    return r;
-  }
+	/**
+	 *	int YCFKeyHash384_compareOrdered()
+	 *		Compare two instances.
+	 *
+	 *	@return less than zero if A is less than B, greater than zero if A is greater than B, otherwise zero.
+	 */
+	@JSExport
+  	public static int YCFKeyHash384_compareOrdered(IYCFKeyHash384 a, IYCFKeyHash384 b);
 
-  public static final List<IYCFKeyHash384> toIYCFKeyHash384List(String[] ids) {
+	/**
+	 *	int compareOrdered()
+	 *		Compare two instances.
+	 *
+	 *	@return less than zero if this is less than B, greater than zero if this is greater than B, otherwise zero.
+	 */
+	@JSExport
+  	public int compareOrdered(IYCFKeyHash384 b);
 
-    if (ids == null) {
-      return null;
-    }
-    if (ids.length == 0) {
-      return Collections.emptyList();
-    }
-    List<IYCFKeyHash384> r = new ArrayList<IYCFKeyHash384>(ids.length);
-    for (int i = 0; i < ids.length; i++) {
-      r.add(new IYCFKeyHash384(ids[i]));
-    }
-    return r;
+	/**
+	 *	void YCFKeyHash384_initStatics()
+	 *		Initialize the statics.
+	 */
+	@JSExport
+  	public static void YCFKeyHash384_initStatics();
 
-  }
+	/**
+	 *	byte[] YCFKeyHash384_sbytesFromHex(s)
+	 *		Calculate a hash byte array from a hexadecimal string.
+	 *
+	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash384_getHashLengthString() characters long.
+	 *
+	 *	@return A byte array or null if the string s is null.
+	 */
+	@JSExport
+  	public static byte[] YCFKeyHash384_sbytesFromHex(String s);
 
-  public static final Set<IYCFKeyHash384> toIYCFKeyHash384Set(String[] ids) {
+	/**
+	 *	byte[] sbytesFromHex(s)
+	 *		Calculate a hash byte array from a hexadecimal string.
+	 *
+	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash384_getHashLengthString() characters long.
+	 *
+	 *	@return A byte array or null if the string s is null.
+	 */
+	@JSExport
+  	public byte[] sbytesFromHex(String s);
 
-    if (ids == null) {
-      return null;
-    }
-    if (ids.length == 0) {
-      return Collections.emptySet();
-    }
-    Set<IYCFKeyHash384> r = new HashSet<IYCFKeyHash384>(ids.length);
-    for (int i = 0; i < ids.length; i++) {
-      r.add(new IYCFKeyHash384(ids[i]));
-    }
-    return r;
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_fromHex(s)
+	 *		Create an instance from a hexadecimal string.
+	 *
+	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash384_getHashLengthString() characters long.
+	 *
+	 *	@return An instance or null.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_fromHex(String s);
 
-  }
+	/**
+	 *	IYCFKeyHash384 fromHex(s)
+	 *		Create an instance from a hexadecimal string.
+	 *
+	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash384_getHashLengthString() characters long.
+	 *
+	 *	@return An instance or null.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 fromHex(String s);
+
+	/**
+	 *	Comparator<IYCFKeyHash384> YCFKeyHash384_getComparator()
+	 *		Get a Comparator instance for the keys.
+	 *
+	 *	@return A Comparator for the key instances.
+	 */
+	@JSExport
+	public static Comparator<IYCFKeyHash384> YCFKeyHash384_getComparator();
+
+	/**
+	 *	Comparator<IYCFKeyHash384> getComparator()
+	 *		Get a Comparator instance for the keys.
+	 *
+	 *	@return A Comparator for the key instances.
+	 */
+	@JSExport
+	public Comparator<IYCFKeyHash384> getComparator();
+
+	/**
+	 *	byte[] YCFKeyHash384_getBytes(k)
+	 *		Get the byte array for key value k.
+	 *
+	 *	@param k The key value to be evaluated.
+	 *
+	 *	@return The byte array for key value k, or null if k is null.
+	 */
+	@JSExport
+	public static byte[] YCFKeyHash384_getBytes(IYCFKeyHash384 k);
+
+	/**
+	 *	byte[] getBytes()
+	 *		Get the byte array for this key.
+	 *
+	 *	@return The byte array for this key.
+	 */
+	@JSExport
+	public byte[] getBytes();
+
+	/**
+	 *	void YCFKeyHash384_setBytes(k, a)
+	 *		Set the byte array for key value k to a copy of the byte array a. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *
+	 *	@param k The key value to be updated.
+	 *	@param a The byte array to use for the update.  If it is null, then k's key data is set to zeroes.
+	 */
+	@JSExport
+	public static void YCFKeyHash384_setBytes(IYCFKeyHash384 k, byte[] a);
+
+	/**
+	 *	void setBytes(a)
+	 *		Set the byte array for the key to a copy of the byte array a. If a is null, set the key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *
+	 *	@param a The byte array to use for the update.  If it is null, then the key data is set to zeroes.
+	 */
+	@JSExport
+	public void setBytes(byte[] a);
+
+	/**
+	 *	void YCFKeyHash384_setBytes(k, a, o, l)
+	 *		Set the byte array for key value k to a copy of the byte array a starting at the offset o for the length l. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *
+	 *	@param k The key value to be updated.
+	 *	@param a The byte array to use for the update.  If it is null, then k's key data is set to zeroes.
+	 *	@param o The offset into the array a
+	 *	@param l The number of bytes to copy from array a
+	 */
+	@JSExport
+	public static void YCFKeyHash384_setBytes(IYCFKeyHash384 k, byte[] a, int o, int l);
+
+	/**
+	 *	void setBytes(a, o, l)
+	 *		Set the byte array for the key to a copy of the byte array a starting at the offset o for the length l. If a is null, set the key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *
+	 *	@param a The byte array to use for the update.  If it is null, then the key data is set to zeroes.
+	 *	@param o The offset into the array a
+	 *	@param l The number of bytes to copy from array a
+	 */
+	@JSExport
+	public void setBytes(byte[] a, int o, int l);
+
+	/**
+	 *	boolean YCFKeyHash384_isNull(k)
+	 *		Is the key k null valued?
+	 *
+	 *	@return True if k is null or null valued, otherwise false.
+	 */
+	@JSExport
+  	public static boolean YCFKeyHash384_isNull(IYCFKeyHash384 k);
+
+	/**
+	 *	boolean isNull()
+	 *		Is this key null valued?
+	 *
+	 *	@return True if this key is null valued, otherwise false.
+	 */
+	@JSExport
+  	public boolean isNull();
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_hash(s)
+	 *		Create an instance by hashing the string s.
+	 *
+	 *	@param s The string to be hashed.
+	 *
+	 *	@return An instance or null if s is null.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_hash(String s);
+
+	/**
+	 *	IYCFKeyHash384 hash(s)
+	 *		Create an instance by hashing the string s.
+	 *
+	 *	@param s The string to be hashed.
+	 *
+	 *	@return An instance or null if s is null.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 hash(String s);
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_hash(a)
+	 *		Create an instance by hashing the byte array a.
+	 *
+	 *	@param a The byte array to be hashed.
+	 *
+	 *	@return An instance or null if a is null.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_hash(byte[] a);
+
+	/**
+	 *	IYCFKeyHash384 hash(a)
+	 *		Create an instance by hashing the byte array a.
+	 *
+	 *	@param a The byte array to be hashed.
+	 *
+	 *	@return An instance or null if a is null.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 hash(byte[] a);
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_hash(a...)
+	 *		Create an instance by hashing the byte arrays a and ....
+	 *
+	 *	@param a... The byte arrays to be hashed.
+	 *
+	 *	@return An instance or null if a is null and no other arrays are specified.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_hash(byte[]... a);
+
+	/**
+	 *	IYCFKeyHash384 hash(a...)
+	 *		Create an instance by hashing the byte arrays a and ....
+	 *
+	 *	@param a... The byte arrays to be hashed.
+	 *
+	 *	@return An instance or null if a is null and no other arrays are specified.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 hash(byte[]... a);
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_hash(k...)
+	 *		Create an instance by hashing the keys k and ....
+	 *
+	 *	@param k... The keys to be hashed.
+	 *
+	 *	@return An instance or null if k is null and no other keys are specified.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_hash(IYCFKeyHash384... k);
+
+	/**
+	 *	IYCFKeyHash384 hash(k...)
+	 *		Create an instance by hashing the keys k and ....
+	 *
+	 *	@param k... The keys to be hashed.
+	 *
+	 *	@return An instance or null if k is null and no other keys are specified.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 hash(IYCFKeyHash384... k);
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_hash(i...)
+	 *		Create an instance by hashing the integers i and ....
+	 *
+	 *	@param k... The integers to be hashed.
+	 *
+	 *	@return An instance.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_hash(int... k);
+
+	/**
+	 *	IYCFKeyHash384 hash(i...)
+	 *		Create an instance by hashing the integers i and ....
+	 *
+	 *	@param i... The integers to be hashed.
+	 *
+	 *	@return An instance.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 hash(int... i);
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_hash(a...)
+	 *		Create an instance by hashing the integer arrays a and ....
+	 *
+	 *	@param a... The integer arrays to be hashed.
+	 *
+	 *	@return An instance, or null if a is null and no other arrays are specified.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_hash(int[]... a);
+
+	/**
+	 *	IYCFKeyHash384 hash(a...)
+	 *		Create an instance by hashing the integer arrays a and ....
+	 *
+	 *	@param a... The integer arrays to be hashed.
+	 *
+	 *	@return An instance, or null if a is null and no other arrays are specified.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 hash(int[]... a);
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_deepClone(k)
+	 *		Create an instance by deep cloning the key data for k.
+	 *
+	 *	@param k The key value to clone.
+	 *
+	 *	@return An instance, or null if k is null.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_deepClone(IYCFKeyHash384 k);
+
+	/**
+	 *	IYCFKeyHash384 deepClone()
+	 *		Create an instance by deep cloning this key's data.
+	 *
+	 *	@return An instance cloned from this one.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 deepClone();
+
+	/**
+	 *	IYCFKeyHash384 YCFKeyHash384_fromHexQuick(s)
+	 *		Create an instance by converting String s from hexadecimal.
+	 *
+	 *	@param s The hexadecimal string to convert.
+	 *
+	 *	@return An instance, or null if s is null.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384 YCFKeyHash384_fromHexQuick(String s);
+
+	/**
+	 *	IYCFKeyHash384 fromHexQuick(s)
+	 *		Create an instance by converting String s from hexadecimal.
+	 *
+	 *	@param s The hexadecimal string to convert.
+	 *
+	 *	@return An instance, or null if s is null.
+	 */
+	@JSExport
+  	public IYCFKeyHash384 fromHexQuick(String s);
+
+	/**
+	 *	IYCFKeyHash384[] YCFKeyHash384_toKeyHashes(a)
+	 *		Create an array of instances from an array of hexadecimal strings.
+	 *
+	 *	@param a The array of hexadecimal strings to convert.
+	 *
+	 *	@return An array of instances, or null if a was null.
+	 */
+	@JSExport
+  	public static IYCFKeyHash384[] YCFKeyHash384_toKeyHashes(String[] a);
+
+	/**
+	 *	IYCFKeyHash384[] toKeyHashes(a)
+	 *		Create an array of instances from an array of hexadecimal strings.
+	 *
+	 *	@param a The array of hexadecimal strings to convert.
+	 *
+	 *	@return An array of instances, or null if a was null.
+	 */
+	@JSExport
+  	public IYCFKeyHash384[] toKeyHashes(String[] a);
+
+	/**
+	 *	List<IYCFKeyHash384> YCFKeyHash384_toKeyHashesList(a)
+	 *		Create a list of instances from an array of hexadecimal strings.
+	 *
+	 *	@param a The array of hexadecimal strings to convert.
+	 *
+	 *	@return A list of instances, or null if a was null.
+	 */
+	@JSExport
+  	public static List<IYCFKeyHash384> YCFKeyHash384_toKeyHashesList(String[] a);
+
+	/**
+	 *	List<IYCFKeyHash384> toKeyHashesList(a)
+	 *		Create a list of instances from an array of hexadecimal strings.
+	 *
+	 *	@param a The array of hexadecimal strings to convert.
+	 *
+	 *	@return A list of instances, or null if a was null.
+	 */
+	@JSExport
+  	public List<IYCFKeyHash384> toKeyHashesList(String[] a);
+
+	/**
+	 *	Set<IYCFKeyHash384> YCFKeyHash384_toKeyHashesSet(a)
+	 *		Create a set of instances from an array of hexadecimal strings.
+	 *
+	 *	@param a The array of hexadecimal strings to convert.
+	 *
+	 *	@return A set of instances, or null if a was null.
+	 */
+	@JSExport
+  	public static Set<IYCFKeyHash384> YCFKeyHash384_toKeyHashesSet(String[] a);
+
+	/**
+	 *	Set<IYCFKeyHash384> toKeyHashesSet(a)
+	 *		Create a set of instances from an array of hexadecimal strings.
+	 *
+	 *	@param a The array of hexadecimal strings to convert.
+	 *
+	 *	@return A set of instances, or null if a was null.
+	 */
+	@JSExport
+  	public Set<IYCFKeyHash384> toKeyHashesSet(String[] a);
 }
