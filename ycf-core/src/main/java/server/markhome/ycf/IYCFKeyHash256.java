@@ -388,24 +388,6 @@ public interface IYCFKeyHash256 extends IYCFKeyHashBase<IYCFKeyHash256> {
   	public String getHashAlgo();
 
 	/**
-	 *	MessageDigest[] YCFKeyHash256_getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public static MessageDigest[] YCFKeyHash256_getM();
-
-	/**
-	 *	MessageDigest[] getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public MessageDigest[] getM();
-
-	/**
 	 *	int YCFKeyHash256_compare()
 	 *		Compare two instances.
 	 *

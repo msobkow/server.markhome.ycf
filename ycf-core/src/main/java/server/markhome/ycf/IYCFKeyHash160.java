@@ -389,24 +389,6 @@ public interface IYCFKeyHash160 extends IYCFKeyHashBase<IYCFKeyHash160> {
   	public String getHashAlgo();
 
 	/**
-	 *	MessageDigest[] YCFKeyHash160_getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public static MessageDigest[] YCFKeyHash160_getM();
-
-	/**
-	 *	MessageDigest[] getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public MessageDigest[] getM();
-
-	/**
 	 *	int YCFKeyHash160_compare()
 	 *		Compare two instances.
 	 *

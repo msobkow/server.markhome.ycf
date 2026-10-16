@@ -388,24 +388,6 @@ public interface IYCFKeyHash512 extends IYCFKeyHashBase<IYCFKeyHash512> {
   	public String getHashAlgo();
 
 	/**
-	 *	MessageDigest[] YCFKeyHash512_getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public static MessageDigest[] YCFKeyHash512_getM();
-
-	/**
-	 *	MessageDigest[] getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public MessageDigest[] getM();
-
-	/**
 	 *	int YCFKeyHash512_compare()
 	 *		Compare two instances.
 	 *

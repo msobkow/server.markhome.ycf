@@ -389,24 +389,6 @@ public interface IYCFKeyHash224 extends IYCFKeyHashBase<IYCFKeyHash224> {
   	public String getHashAlgo();
 
 	/**
-	 *	MessageDigest[] YCFKeyHash224_getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public static MessageDigest[] YCFKeyHash224_getM();
-
-	/**
-	 *	MessageDigest[] getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public MessageDigest[] getM();
-
-	/**
 	 *	int YCFKeyHash224_compare()
 	 *		Compare two instances.
 	 *

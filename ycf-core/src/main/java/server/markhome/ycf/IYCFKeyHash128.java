@@ -386,24 +386,6 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
   	public String getHashAlgo();
 
 	/**
-	 *	MessageDigest[] YCFKeyHash128_getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public static MessageDigest[] YCFKeyHash128_getM();
-
-	/**
-	 *	MessageDigest[] getM()
-	 *		Get the message digest array.
-	 *
-	 *	@return The message digest array.
-	 */
-	@JSExport
-  	public MessageDigest[] getM();
-
-	/**
 	 *	int YCFKeyHash128_compare()
 	 *		Compare two instances.
 	 *
