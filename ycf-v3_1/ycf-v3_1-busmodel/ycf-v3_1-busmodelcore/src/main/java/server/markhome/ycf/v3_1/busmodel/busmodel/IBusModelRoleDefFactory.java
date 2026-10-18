@@ -1,0 +1,215 @@
+
+// Description: Java JPA Factory interface for RoleDef.
+
+/*
+ *	server.markhome.ycf.BusModel
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Yorkton Code Fractal BusModel 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Yorkton Code Fractal BusModel.
+ *	
+ *	Yorkton Code Fractal BusModel is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Yorkton Code Fractal BusModel is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Yorkton Code Fractal BusModel is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Yorkton Code Fractal BusModel.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.ycf.v3_1.busmodel.busmodel;
+
+import java.lang.reflect.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.util.*;
+import org.apache.commons.codec.binaryYCFCore64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.ycf.*;
+import server.markhome.ycf.dbutil.*;
+
+import server.markhome.ycf.v3_1.busmodel.busmodelprotobj.*;
+
+/*
+ *	IBusModelRoleDefFactory interface for RoleDef
+ */
+public interface IBusModelRoleDefFactory extends IBusModelProtRoleDefFactory
+{
+
+	/**
+	 *	Allocate a primary history key for RoleDef instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	IBusModelRoleDefHPKey newHPKey();
+
+	/**
+	 *	Allocate a protected primary history key for RoleDef instances from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	IBusModelProtRoleDefHPKey asProtected(IBusModelRoleDefHPKey src);
+
+	/**
+	 *	Allocate a public primary history key for RoleDef instances from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	IBusModelPubRoleDefHPKey asPublic(IBusModelRoleDefHPKey src);
+
+	/**
+	 *	Allocate a UNameIdx key over RoleDef instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelRoleDefByUNameIdxKey newByUNameIdxKey();
+
+	/**
+	 *	Allocate a protected UNameIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtRoleDefByUNameIdxKey asProtected(IBusModelRoleDefByUNameIdxKey src);
+
+	/**
+	 *	Allocate a public UNameIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubRoleDefByUNameIdxKey asPublic(IBusModelRoleDefByUNameIdxKey src);
+
+	/**
+	 *	Allocate a ScopeIdx key over RoleDef instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelRoleDefByScopeIdxKey newByScopeIdxKey();
+
+	/**
+	 *	Allocate a protected ScopeIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtRoleDefByScopeIdxKey asProtected(IBusModelRoleDefByScopeIdxKey src);
+
+	/**
+	 *	Allocate a public ScopeIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubRoleDefByScopeIdxKey asPublic(IBusModelRoleDefByScopeIdxKey src);
+
+	/**
+	 *	Allocate a DefSchemaIdx key over RoleDef instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelRoleDefByDefSchemaIdxKey newByDefSchemaIdxKey();
+
+	/**
+	 *	Allocate a protected DefSchemaIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtRoleDefByDefSchemaIdxKey asProtected(IBusModelRoleDefByDefSchemaIdxKey src);
+
+	/**
+	 *	Allocate a public DefSchemaIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubRoleDefByDefSchemaIdxKey asPublic(IBusModelRoleDefByDefSchemaIdxKey src);
+
+	/**
+	 *	Allocate a UDefIdx key over RoleDef instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelRoleDefByUDefIdxKey newByUDefIdxKey();
+
+	/**
+	 *	Allocate a protected UDefIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtRoleDefByUDefIdxKey asProtected(IBusModelRoleDefByUDefIdxKey src);
+
+	/**
+	 *	Allocate a public UDefIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubRoleDefByUDefIdxKey asPublic(IBusModelRoleDefByUDefIdxKey src);
+
+	/**
+	 *	Allocate a RoleDef interface implementation.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelRoleDef newRec();
+
+	/**
+	 *	Allocate a protected RoleDef interface from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtRoleDef asProtected(IBusModelRoleDef src);
+
+	/**
+	 *	Allocate a public RoleDef interface from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubRoleDef asPublic(IBusModelRoleDef src);
+
+	/**
+	 *	Allocate a RoleDef history interface implementation.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelRoleDefH newHRec();
+
+	/**
+	 *	Allocate a protected RoleDef history interface implementation from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtRoleDefH asProtected(IBusModelRoleDefH src);
+
+	/**
+	 *	Allocate a public RoleDef history interface implementation from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubRoleDefH asPublic(IBusModelRoleDefH src);
+
+}

@@ -1,0 +1,35 @@
+mv busmodel-appsetup ycf-v3_1-busmodelappsetup
+mv busmodel-appsetupfx ycf-v3_1-busmodelappsetupfx
+mv busmodel-core ycf-v3_1-busmodelcore
+mv busmodel-javafx ycf-v3_1-busmodeljavafx
+mv busmodel-jpa ycf-v3_1-busmodeljpa
+mv busmodel-jpatest ycf-v3_1-busmodeljpatest
+mv busmodel-prot ycf-v3_1-busmodelprot
+mv busmodel-pub ycf-v3_1-busmodelpub
+mv busmodel-ram ycf-v3_1-busmodelram
+mv busmodel-ramtest ycf-v3_1-busmodelramtest
+mv busmodel-rust ycf-v3_1-busmodelrust
+mv busmodel-saxloader ycf-v3_1-busmodelsaxloader
+mv busmodel-saxramldr ycf-v3_1-busmodelsaxramldr
+cp -R cfbam-appsetup/* ycf-v3_1-busmodelappsetup/
+cp -R cfbam-appsetupfx/* ycf-v3_1-busmodelappsetupfx/
+cp -R cfbam-base/* ycf-v3_1-busmodelbase/
+cp -R cfbam-javafx/* ycf-v3_1-busmodeljavafx/
+cp -R cfbam-jpa/* ycf-v3_1-busmodeljpa/
+cp -R cfbam-jpatest/* ycf-v3_1-busmodeljpatest/
+cp -R cfbam-prot/* ycf-v3_1-busmodelprot/
+cp -R cfbam-pub/* ycf-v3_1-busmodelpub/
+cp -R cfbam-ram/* ycf-v3_1-busmodelram/
+cp -R cfbam-ramtest/* ycf-v3_1-busmodelramtest/
+cp -R cfbam-rust/* ycf-v3_1-busmodelrust/
+cp -R cfbam-saxloader/* ycf-v3_1-busmodelsaxloader/
+cp -R cfbam-saxramldr/* ycf-v3_1-busmodelsaxramldr/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-appsetup/* ycf-v3_1-busmodelappsetup/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-appsetupfx/* ycf-v3_1-busmodelappsetupfx/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-core/* ycf-v3_1-busmodelcore/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-jpa/* ycf-v3_1-busmodeljpa/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-jpatest/* ycf-v3_1-busmodeljpatest/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-prot/* ycf-v3_1-busmodelprot/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-pub/* ycf-v3_1-busmodelpub/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-ram/* ycf-v3_1-busmodelram/
+cp -R server.markhome.ycf.v3_1.busmodel-busmodel-ramtest/* ycf-v3_1-busmodelramtest/

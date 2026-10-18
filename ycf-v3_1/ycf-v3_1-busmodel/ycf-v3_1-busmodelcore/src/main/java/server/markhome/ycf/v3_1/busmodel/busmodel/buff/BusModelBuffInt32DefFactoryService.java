@@ -1,0 +1,164 @@
+
+// Description: Java 25 Factory service implementation for Int32Def buffers
+
+/*
+ *	server.markhome.ycf.BusModel
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Yorkton Code Fractal BusModel 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Yorkton Code Fractal BusModel.
+ *	
+ *	Yorkton Code Fractal BusModel is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Yorkton Code Fractal BusModel is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Yorkton Code Fractal BusModel is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Yorkton Code Fractal BusModel.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.ycf.v3_1.busmodel.busmodel.buff;
+
+import java.lang.reflect.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binaryYCFCore64;
+import org.apache.commons.text.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import server.markhome.ycf.*;
+import server.markhome.ycf.dbutil.*;
+import server.markhome.ycf.YCFXmlUtil;
+import server.markhome.ycf.v3_1.secure.securepub.*;
+import server.markhome.ycf.v3_1.intnet.intnetpub.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelpub.*;
+import server.markhome.ycf.v3_1.secure.securepubobj.*;
+import server.markhome.ycf.v3_1.intnet.intnetpubobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelpubobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelprot.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelprotobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodel.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelobj.*;
+
+/*
+ *	Java 25 Factory service implementation for Int32Def buffers.
+ */
+@Service("busmodel31BuffInt32DefFactoryService")
+public class BusModelBuffInt32DefFactoryService
+	implements IBusModelInt32DefFactory
+{
+	public BusModelBuffInt32DefFactoryService() {
+	}
+
+	@Override
+	public IBusModelInt32Def newRec() {
+		IBusModelInt32Def rec =
+			new BusModelBuffInt32Def();
+		return( rec );
+	}
+
+	public BusModelBuffInt32Def ensureRec(IBusModelInt32Def rec) {
+		if( rec == null ) {
+			return( null );
+		}
+		else if (rec instanceof BusModelBuffInt32Def) {
+			return ((BusModelBuffInt32Def)rec);
+		}
+		else {	
+			switch (rec.getClassCode()) {
+				case IBusModelInt32Def.CLASS_CODE: {
+					BusModelBuffInt32Def mapped = new BusModelBuffInt32Def();
+					mapped.set(rec);
+					return(mapped); }
+				case IBusModelInt32Type.CLASS_CODE: {
+					BusModelBuffInt32Type mapped = new BusModelBuffInt32Type();
+					mapped.set((IBusModelInt32Type)rec);
+					return(mapped); }
+				case IBusModelId32Gen.CLASS_CODE: {
+					BusModelBuffId32Gen mapped = new BusModelBuffId32Gen();
+					mapped.set((IBusModelId32Gen)rec);
+					return(mapped); }
+				case IBusModelInt32Col.CLASS_CODE: {
+					BusModelBuffInt32Col mapped = new BusModelBuffInt32Col();
+					mapped.set((IBusModelInt32Col)rec);
+					return(mapped); }
+				default:
+					throw new YCFUnsupportedClassException(getClass(), "ensureRec",
+						"Unsupported class code " + rec.getClassCode() + " is not a derivative of BusModelInt32Def",
+						"Unsupported class code " + rec.getClassCode() + " is not a derivative of BusModelInt32Def");
+			}
+		}
+	}
+
+	@Override
+	public IBusModelInt32DefH newHRec() {
+		IBusModelInt32DefH hrec =
+			new BusModelBuffInt32DefH();
+		return( hrec );
+	}
+
+	public BusModelBuffInt32DefH ensureHRec(IBusModelInt32DefH hrec) {
+		if( hrec == null ) {
+			return( null );
+		}
+		else if (hrec instanceof BusModelBuffInt32DefH) {
+			return ((BusModelBuffInt32DefH)hrec);
+		}
+		else {	
+			switch (hrec.getClassCode()) {
+				case IBusModelInt32Def.CLASS_CODE: {
+					BusModelBuffInt32DefH mapped = new BusModelBuffInt32DefH();
+					mapped.set(hrec);
+					return(mapped); }
+				case IBusModelInt32Type.CLASS_CODE: {
+					BusModelBuffInt32TypeH mapped = new BusModelBuffInt32TypeH();
+					mapped.set((IBusModelInt32TypeH)hrec);
+					return(mapped); }
+				case IBusModelId32Gen.CLASS_CODE: {
+					BusModelBuffId32GenH mapped = new BusModelBuffId32GenH();
+					mapped.set((IBusModelId32GenH)hrec);
+					return(mapped); }
+				case IBusModelInt32Col.CLASS_CODE: {
+					BusModelBuffInt32ColH mapped = new BusModelBuffInt32ColH();
+					mapped.set((IBusModelInt32ColH)hrec);
+					return(mapped); }
+				default:
+					throw new YCFUnsupportedClassException(getClass(), "ensureHRec",
+						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of BusModelInt32Def",
+						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of BusModelInt32Def");
+			}
+		}
+	}
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<YCFSecure
+		xmlns="http://ycf.markhome.server/ycf/v3_1/xsd/intnet-structured.xsd"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xsi:schemaLocation="http://ycf.markhome.server/ycf/v3_1/xsd/intnet-structured.xsd http://ycf.markhome.server/ycf/v3_1/xsd/intnet-structured.xsd" >
+	<Cluster FullDomName="system" Description="system">
+		<SecGroup Name="ClusterAdmin" IsVisible="true">
+			<SecGroupMember User="system" />
+		</SecGroup>
+		<SecGroup Name="IntNetAdmin" IsVisible="true">
+			<SecGroupInclude SubGroup="ClusterAdmin" />
+		</SecGroup>
+		<SecGroup Name="IntNetReader" IsVisible="true">
+			<SecGroupInclude SubGroup="IntNetAdmin" />
+		</SecGroup>
+		<SecGroup Name="IntNetCreator" IsVisible="true">
+			<SecGroupInclude SubGroup="IntNetAdmin" />
+		</SecGroup>
+		<SecGroup Name="IntNetUpdater" IsVisible="true">
+			<SecGroupInclude SubGroup="IntNetAdmin" />
+		</SecGroup>
+		<SecGroup Name="IntNetDeleter" IsVisible="true">
+			<SecGroupInclude SubGroup="IntNetAdmin" />
+		</SecGroup>
+		<SecGroup Name="SecureAdmin" IsVisible="true">
+			<SecGroupInclude SubGroup="ClusterAdmin" />
+		</SecGroup>
+		<SecGroup Name="SecureReader" IsVisible="true">
+			<SecGroupInclude SubGroup="SecureAdmin" />
+		</SecGroup>
+		<SecGroup Name="SecureCreator" IsVisible="true">
+			<SecGroupInclude SubGroup="SecureAdmin" />
+		</SecGroup>
+		<SecGroup Name="SecureUpdater" IsVisible="true">
+			<SecGroupInclude SubGroup="SecureAdmin" />
+		</SecGroup>
+		<SecGroup Name="SecureDeleter" IsVisible="true">
+			<SecGroupInclude SubGroup="SecureAdmin" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureDeleter" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureDeleter" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureDeleter" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="SecureDeleter" />
+		</SecGroup>
+	</Cluster>
+</YCFSecure>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="IntNet31PU" transaction-type="RESOURCE_LOCAL">
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaLicense</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaMajorVersion</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaMajorVersionH</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaMimeType</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaMimeTypeH</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaMinorVersion</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaMinorVersionH</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaSubProject</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaSubProjectH</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaTld</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaTldH</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaTopDomain</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaTopDomainH</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaTopProject</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaTopProjectH</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaURLProtocol</class>
+        <class>server.markhome.ycf.v3_1.intnet.intnet.jpa.IntNetJpaURLProtocolH</class>
+        <properties>
+            <!-- Example properties, adjust for your DBMS -->
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SpringJtaPlatform"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/intnet31"/>
+            <property name="jakarta.persistence.jdbc.user" value="youruser"/>
+            <property name="jakarta.persistence.jdbc.password" value="yourpassword"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

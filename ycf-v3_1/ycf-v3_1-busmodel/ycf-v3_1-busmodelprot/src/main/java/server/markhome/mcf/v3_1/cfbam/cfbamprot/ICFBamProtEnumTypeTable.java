@@ -1,0 +1,734 @@
+
+// Description: Java 25 protlic DbIO interface for EnumType.
+
+/*
+ *	server.markhome.mcf.CFBam
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Mark's Code Fractal CFBam 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Mark's Code Fractal CFBam.
+ *	
+ *	Mark's Code Fractal CFBam is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Mark's Code Fractal CFBam is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Mark's Code Fractal CFBam is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Mark's Code Fractal CFBam.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.mcf.v3_1.cfbam.cfbamprot;
+
+import java.lang.reflect.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.keyhash.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
+import server.markhome.mcf.v3_1.cfint.cfintpub.*;
+import server.markhome.mcf.v3_1.cfbam.cfbampub.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
+import server.markhome.mcf.v3_1.cfint.cfintpubobj.*;
+import server.markhome.mcf.v3_1.cfbam.cfbampubobj.*;
+import server.markhome.mcf.v3_1.cfbam.cfbamprotobj.*;
+
+/*
+ *	CFBamProtEnumTypeTable protlic database interface for EnumType has CodeVis Public, meaning that any user interface or referencing schema can access it.
+ */
+public interface ICFBamProtEnumTypeTable
+extends ICFBamProtEnumDefTable,
+	ICFBamPubEnumTypeTable
+{
+	public static final String TABLE_NAME = "EnumType";
+
+	/**
+	 *	Create the instance in the database, and update the specified record
+	 *	with the assigned primary key.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	rec	The instance interface to be created.
+	 */
+	public ICFBamProtEnumType protcreateEnumType( ICFSecPubAuthorization Authorization,
+		ICFBamProtEnumType rec );
+
+	/**
+	 *	Create the instance in the database, and update the specified record
+	 *	with the assigned primary key.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	rec	The instance interface to be created.
+	 */
+	public ICFBamProtEnumType protcreateEnumType( ICFSecPubAuthorization Authorization,
+		ICFBamPubEnumType rec );
+
+
+	/**
+	 *	Update the instance in the database, and update the specified record
+	 *	with any calculated changes imposed by the associated stored procedure.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	rec	The instance interface to be updated
+	 */
+	public ICFBamProtEnumType protupdateEnumType( ICFSecPubAuthorization Authorization,
+		ICFBamProtEnumType rec );
+
+	/**
+	 *	Update the instance in the database, and update the specified record
+	 *	with any calculated changes imposed by the associated stored procedure.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	rec	The instance interface to be updated
+	 */
+	public ICFBamProtEnumType protupdateEnumType( ICFSecPubAuthorization Authorization,
+		ICFBamPubEnumType rec );
+
+
+	/**
+	 *	Delete the instance from the database.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	rec	The instance interface to be deleted.
+	 */
+	public void protdeleteEnumType( ICFSecPubAuthorization Authorization,
+		ICFBamProtEnumType rec );
+	/**
+	 *	Delete the EnumType instances identified by the key SchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	SchemaDefId	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeBySchemaIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 argSchemaDefId );
+
+	/**
+	 *	Delete the EnumType instances identified by the key SchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeBySchemaIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtEnumTypeBySchemaIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key SchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeBySchemaIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubEnumTypeBySchemaIdxKey argKey );
+	/**
+	 *	Delete the EnumType instance identified by the primary key.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The primary key identifying the instance to be deleted.
+	 */
+	public void protdeleteEnumTypeByIdIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key UNameIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	Name	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeByUNameIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 argScopeId,
+		String argName );
+
+	/**
+	 *	Delete the EnumType instances identified by the key UNameIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByUNameIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtValueByUNameIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key UNameIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByUNameIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubValueByUNameIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key ScopeIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeByScopeIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 argScopeId );
+
+	/**
+	 *	Delete the EnumType instances identified by the key ScopeIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByScopeIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtValueByScopeIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key ScopeIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByScopeIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubValueByScopeIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key DefSchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	DefSchemaId	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeByDefSchemaIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 argDefSchemaId );
+
+	/**
+	 *	Delete the EnumType instances identified by the key DefSchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByDefSchemaIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtValueByDefSchemaIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key DefSchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByDefSchemaIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubValueByDefSchemaIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key PrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	PrevId	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeByPrevIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 argPrevId );
+
+	/**
+	 *	Delete the EnumType instances identified by the key PrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByPrevIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtValueByPrevIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key PrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByPrevIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubValueByPrevIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key NextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	NextId	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeByNextIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 argNextId );
+
+	/**
+	 *	Delete the EnumType instances identified by the key NextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByNextIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtValueByNextIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key NextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByNextIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubValueByNextIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key ContPrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	PrevId	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeByContPrevIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 argScopeId,
+		MCFDbKeyHash256 argPrevId );
+
+	/**
+	 *	Delete the EnumType instances identified by the key ContPrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByContPrevIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtValueByContPrevIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key ContPrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByContPrevIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubValueByContPrevIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key ContNextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	NextId	The EnumType key attribute of the instance generating the id.
+	 */
+	public void protdeleteEnumTypeByContNextIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 argScopeId,
+		MCFDbKeyHash256 argNextId );
+
+	/**
+	 *	Delete the EnumType instances identified by the key ContNextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByContNextIdx( ICFSecPubAuthorization Authorization,
+		ICFBamProtValueByContNextIdxKey argKey );
+	/**
+	 *	Delete the EnumType instances identified by the key ContNextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	argKey	The key identifying the instances to be deleted.
+	 */
+	public void protdeleteEnumTypeByContNextIdx( ICFSecPubAuthorization Authorization,
+		ICFBamPubValueByContNextIdxKey argKey );
+
+	/**
+	 *	Delete the instance from the database.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	rec	The instance interface to be deleted.
+	 */
+	public void protdeleteEnumType( ICFSecPubAuthorization Authorization,
+		ICFBamPubEnumType rec );
+
+
+	/**
+	 *	Read the derived EnumType record instance by protected primary key.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	PKey	The primary key of the EnumType instance to be read.
+	 *
+	 *	@return The record instance for the specified primary key, or null if there is
+	 *		no such existing key value.
+	 */
+	public ICFBamProtEnumType protreadDerived( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 PKey );
+
+	/**
+	 *	Lock the derived EnumType record instance by protected primary key.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	PKey	The primary key of the EnumType instance to be locked.
+	 *
+	 *	@return The record instance for the specified primary key, or null if there is
+	 *		no such existing key value.
+	 */
+	public ICFBamProtEnumType protlockDerived( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 PKey );
+
+	/**
+	 *	Read all EnumType instances.
+	 *
+	 *	@param	Authorization	The session authorization information.	
+	 *
+	 *	@return An array of derived record instances, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadProtAllDerived( ICFSecPubAuthorization Authorization );
+
+	/**
+	 *	Read the derived EnumType record instance identified by the unique key IdIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	Id	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return The record instance for the specified key, or null if there is
+	 *		no such existing key value.
+	 */
+	public ICFBamProtEnumType protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 Id );
+
+	/**
+	 *	Read the derived EnumType record instance identified by the unique key UNameIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	Name	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return The record instance for the specified key, or null if there is
+	 *		no such existing key value.
+	 */
+	public ICFBamProtEnumType protreadDerivedByUNameIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId,
+		String Name );
+
+	/**
+	 *	Read an array of the derived EnumType record instances identified by the duplicate key ScopeIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadDerivedByScopeIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId );
+
+	/**
+	 *	Read an array of the derived EnumType record instances identified by the duplicate key DefSchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	DefSchemaId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadDerivedByDefSchemaIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 DefSchemaId );
+
+	/**
+	 *	Read an array of the derived EnumType record instances identified by the duplicate key PrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	PrevId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadDerivedByPrevIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 PrevId );
+
+	/**
+	 *	Read an array of the derived EnumType record instances identified by the duplicate key NextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	NextId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadDerivedByNextIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 NextId );
+
+	/**
+	 *	Read an array of the derived EnumType record instances identified by the duplicate key ContPrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	PrevId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadDerivedByContPrevIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId,
+		MCFDbKeyHash256 PrevId );
+
+	/**
+	 *	Read an array of the derived EnumType record instances identified by the duplicate key ContNextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	NextId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadDerivedByContNextIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId,
+		MCFDbKeyHash256 NextId );
+
+	/**
+	 *	Read an array of the derived EnumType record instances identified by the duplicate key SchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	SchemaDefId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
+	 */
+	public ICFBamProtEnumType[] protreadDerivedBySchemaIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 SchemaDefId );
+
+	/**
+	 *	Read the specific EnumType record instance identified by the primary key.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	PKey	The primary key of the EnumType instance to be locked.
+	 *
+	 *	@return The record instance for the specified primary key, or null if there is
+	 *		no such existing key value.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType protreadRec( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 PKey );
+
+	/**
+	 *	Lock the specific EnumType record instance identified by the primary key.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	PKey	The primary key of the EnumType instance to be locked.
+	 *
+	 *	@return The record instance for the specified primary key, or null if there is
+	 *		no such existing key value.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType protlockRec( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 PKey );
+
+	/**
+	 *	Read all the specific EnumType record instances.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@return All the specific EnumType instances in the database accessible for the Authorization.
+	 */
+	public ICFBamProtEnumType[] protreadAllRec( ICFSecPubAuthorization Authorization );
+
+	/**
+	 *	Read the specific EnumType record instance identified by the unique key IdIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	Id	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return The record instance for the specified key, or null if there is
+	 *		no such existing key value.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 Id );
+
+	/**
+	 *	Read the specific EnumType record instance identified by the unique key UNameIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	Name	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return The record instance for the specified key, or null if there is
+	 *		no such existing key value.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType protreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId,
+		String Name );
+
+	/**
+	 *	Read an array of the specific EnumType record instances identified by the duplicate key ScopeIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType[] protreadRecByScopeIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId );
+
+	/**
+	 *	Read an array of the specific EnumType record instances identified by the duplicate key DefSchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	DefSchemaId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType[] protreadRecByDefSchemaIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 DefSchemaId );
+
+	/**
+	 *	Read an array of the specific EnumType record instances identified by the duplicate key PrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	PrevId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType[] protreadRecByPrevIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 PrevId );
+
+	/**
+	 *	Read an array of the specific EnumType record instances identified by the duplicate key NextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	NextId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType[] protreadRecByNextIdx( ICFSecPubAuthorization Authorization,
+		MCFDbKeyHash256 NextId );
+
+	/**
+	 *	Read an array of the specific EnumType record instances identified by the duplicate key ContPrevIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	PrevId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType[] protreadRecByContPrevIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId,
+		MCFDbKeyHash256 PrevId );
+
+	/**
+	 *	Read an array of the specific EnumType record instances identified by the duplicate key ContNextIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	ScopeId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@param	NextId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType[] protreadRecByContNextIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 ScopeId,
+		MCFDbKeyHash256 NextId );
+
+	/**
+	 *	Read an array of the specific EnumType record instances identified by the duplicate key SchemaIdx.
+	 *
+	 *	@param	Authorization	The session authorization information.
+	 *
+	 *	@param	SchemaDefId	The EnumType key attribute of the instance generating the id.
+	 *
+	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
+	 *
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
+	 */
+	public ICFBamProtEnumType[] protreadRecBySchemaIdx( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 SchemaDefId );
+
+	/**
+	 *	Move the specified record up in the chain (i.e. to the previous position.)
+	 *
+	 *	@return	The refreshed record after it has been moved
+	 */
+	public ICFBamProtEnumType protmoveRecUp( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 Id,
+		int revision );
+
+	/**
+	 *	Move the specified record down in the chain (i.e. to the next position.)
+	 *
+	 *	@return	The refreshed record after it has been moved
+	 */
+	public ICFBamProtEnumType protmoveRecDown( ICFSecPubAuthorization Authorization,
+		IMCFKeyHash256 Id,
+		int revision );
+}

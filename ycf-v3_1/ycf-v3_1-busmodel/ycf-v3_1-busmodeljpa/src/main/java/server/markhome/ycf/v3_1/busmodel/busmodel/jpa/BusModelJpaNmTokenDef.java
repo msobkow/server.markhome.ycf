@@ -1,0 +1,340 @@
+// Description: Java 25 JPA implementation of a NmTokenDef entity definition object.
+
+/*
+ *	server.markhome.ycf.BusModel
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Yorkton Code Fractal BusModel 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Yorkton Code Fractal BusModel.
+ *	
+ *	Yorkton Code Fractal BusModel is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Yorkton Code Fractal BusModel is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Yorkton Code Fractal BusModel is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Yorkton Code Fractal BusModel.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.ycf.v3_1.busmodel.busmodel.jpa;
+
+import java.io.Serializable;
+import java.math.*;
+import java.time.*;
+import java.util.*;
+import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
+import org.apache.commons.codec.binaryYCFCore64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.ycf.*;
+import server.markhome.ycf.dbutil.*;
+import server.markhome.ycf.YCFXmlUtil;
+import server.markhome.ycf.v3_1.secure.secure.*;
+import server.markhome.ycf.v3_1.intnet.intnet.*;
+import server.markhome.ycf.v3_1.busmodel.busmodel.*;
+import server.markhome.ycf.v3_1.secure.secure.jpa.*;
+import server.markhome.ycf.v3_1.intnet.intnet.jpa.*;
+
+@Entity
+@Table(
+	name = "nmtkndef", schema = "BusModel31",
+	indexes = {
+		@Index(name = "NmTokenDefIdIdx", columnList = "Id", unique = true)
+	}
+)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorValue("43053")
+@Transactional(Transactional.TxType.REQUIRED)
+@PersistenceContext(unitName = "BusModelPU")
+public class BusModelJpaNmTokenDef extends BusModelJpaAtom
+	implements IBusModelNmTokenDef
+{
+
+	@Column( name="db_max_len", nullable=false )
+	protected int requiredMaxLen;
+	@Column( name="InitVal", nullable=true, length=64 )
+	protected String optionalInitValue;
+
+	public BusModelJpaNmTokenDef() {
+		super();
+		requiredMaxLen = IBusModelPubNmTokenDef.MAXLEN_INIT_VALUE;
+		optionalInitValue = null;
+	}
+
+	@Override
+	public int getClassCode() {
+		return( IBusModelNmTokenDef.CLASS_CODE );
+	}
+
+	@Override
+	public int getRequiredMaxLen() {
+		return(requiredMaxLen);
+	}
+
+	@Override
+	public void setRequiredMaxLen( int value ) {
+		if( value < IBusModelPubNmTokenDef.MAXLEN_MIN_VALUE ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				"setRequiredMaxLen",
+				1,
+				"value",
+				value,
+				IBusModelPubNmTokenDef.MAXLEN_MIN_VALUE );
+		}
+		if( value > IBusModelPubNmTokenDef.MAXLEN_MAX_VALUE ) {
+			throw new YCFArgumentOverflowException( getClass(),
+				"setRequiredMaxLen",
+				1,
+				"value",
+				value,
+				IBusModelPubNmTokenDef.MAXLEN_MAX_VALUE );
+		}
+		requiredMaxLen = value;
+	}
+
+	@Override
+	public String getOptionalInitValue() {
+		return(optionalInitValue);
+	}
+
+	public void setOptionalInitValue( String value ) {
+		if( value != null && value.length() > 64 ) {
+			throw new YCFArgumentOverflowException( getClass(),
+				"setOptionalInitValue",
+				1,
+				"value.length()",
+				value.length(),
+				64 );
+		}
+		optionalInitValue = value;
+	}
+
+	@Override
+	public boolean equals( Object obj ) {
+		if (obj == null) {
+			return( false );
+		}
+		else if (obj instanceof IBusModelNmTokenDef) {
+			if (!super.equals(obj)) {
+				return( false );
+			}
+			IBusModelNmTokenDef rhs = (IBusModelNmTokenDef)obj;
+			if( getRequiredMaxLen() != rhs.getRequiredMaxLen() ) {
+				return( false );
+			}
+			if( getOptionalInitValue() != null ) {
+				if( rhs.getOptionalInitValue() != null ) {
+					if( ! getOptionalInitValue().equals( rhs.getOptionalInitValue() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getOptionalInitValue() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if (obj instanceof IBusModelNmTokenDefH) {
+			if (!super.equals(obj)) {
+				return( false );
+			}
+			IBusModelNmTokenDefH rhs = (IBusModelNmTokenDefH)obj;
+			if( getRequiredMaxLen() != rhs.getRequiredMaxLen() ) {
+				return( false );
+			}
+			if( getOptionalInitValue() != null ) {
+				if( rhs.getOptionalInitValue() != null ) {
+					if( ! getOptionalInitValue().equals( rhs.getOptionalInitValue() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getOptionalInitValue() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if (obj instanceof IBusModelValueHPKey) {
+			return( super.equals(obj) );
+		}
+		else {
+			return( super.equals(obj) );
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		int hashCode = super.hashCode();
+		hashCode = hashCode + getRequiredMaxLen();
+		if( getOptionalInitValue() != null ) {
+			hashCode = hashCode + getOptionalInitValue().hashCode();
+		}
+		return( hashCode & 0x7fffffff );
+	}
+
+	@Override
+	public int compareTo( Object obj ) {
+		int cmp;
+		if (obj == null) {
+			return( 1 );
+		}
+		else if (obj instanceof IBusModelNmTokenDef) {
+			cmp = super.compareTo(obj);
+			if (cmp != 0) {
+				return( cmp );
+			}
+			IBusModelNmTokenDef rhs = (IBusModelNmTokenDef)obj;
+			if( getRequiredMaxLen() < rhs.getRequiredMaxLen() ) {
+				return( -1 );
+			}
+			else if( getRequiredMaxLen() > rhs.getRequiredMaxLen() ) {
+				return( 1 );
+			}
+			if( getOptionalInitValue() != null ) {
+				if( rhs.getOptionalInitValue() != null ) {
+					cmp = getOptionalInitValue().compareTo( rhs.getOptionalInitValue() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else {
+				if( rhs.getOptionalInitValue() != null ) {
+					return( -1 );
+				}
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelNmTokenDefH ) {
+			cmp = super.compareTo(obj);
+			if (cmp != 0) {
+				return( cmp );
+			}
+			IBusModelNmTokenDefH rhs = (IBusModelNmTokenDefH)obj;
+			if( getRequiredMaxLen() < rhs.getRequiredMaxLen() ) {
+				return( -1 );
+			}
+			else if( getRequiredMaxLen() > rhs.getRequiredMaxLen() ) {
+				return( 1 );
+			}
+			if( getOptionalInitValue() != null ) {
+				if( rhs.getOptionalInitValue() != null ) {
+					cmp = getOptionalInitValue().compareTo( rhs.getOptionalInitValue() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else {
+				if( rhs.getOptionalInitValue() != null ) {
+					return( -1 );
+				}
+			}
+			return( 0 );
+		}
+		else {
+			cmp = super.compareTo(obj);
+			return( cmp );
+		}
+	}
+
+	@Override
+	public void set( IBusModelValue src ) {
+		if( src instanceof IBusModelNmTokenDef ) {
+			setNmTokenDef( (IBusModelNmTokenDef)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+				"compareTo",
+				"src",
+				src,
+				"BusModelJpaNmTokenDef" );
+		}
+	}
+
+	@Override
+	public void setNmTokenDef( IBusModelNmTokenDef src ) {
+		super.setAtom( src );
+		setRequiredMaxLen(src.getRequiredMaxLen());
+		setOptionalInitValue(src.getOptionalInitValue());
+	}
+
+	@Override
+	public void set( IBusModelValueH src ) {
+		if( src instanceof IBusModelNmTokenDefH ) {
+			setNmTokenDef( (IBusModelNmTokenDefH)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+					"set",
+					"src",
+					src,
+					"IBusModelNmTokenDefH" );
+		}
+	}
+
+	@Override
+	public void setNmTokenDef( IBusModelNmTokenDefH src ) {
+		super.setAtom( src );
+		setRequiredMaxLen(src.getRequiredMaxLen());
+		setOptionalInitValue(src.getOptionalInitValue());
+	}
+
+	@Override
+	public String getXmlAttrFragment() {
+		String ret = super.getXmlAttrFragment() 
+			+ " RequiredId=" + "\"" + getRequiredId().toString() + "\""
+			+ " RequiredMaxLen=" + "\"" + Integer.toString( getRequiredMaxLen() ) + "\""
+			+ " OptionalInitValue=" + ( ( getOptionalInitValue() == null ) ? "null" : "\"" + StringEscapeUtils.escapeXml11( getOptionalInitValue() ) + "\"" );
+		return( ret );
+	}
+
+	@Override
+	public String toString() {
+		String ret = "<BusModelJpaNmTokenDef" + getXmlAttrFragment() + "/>";
+		return( ret );
+	}
+}

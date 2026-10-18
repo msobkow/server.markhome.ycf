@@ -1,0 +1,444 @@
+// Description: Java 25 Object interface for CFBamPub IndexCol.
+
+/*
+ *	server.markhome.mcf.CFBam
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Mark's Code Fractal CFBam 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Mark's Code Fractal CFBam.
+ *	
+ *	Mark's Code Fractal CFBam is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Mark's Code Fractal CFBam is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Mark's Code Fractal CFBam is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Mark's Code Fractal CFBam.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.mcf.v3_1.cfbam.cfbampubobj;
+
+import java.math.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.keyhash.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
+import server.markhome.mcf.v3_1.cfint.cfintpub.*;
+import server.markhome.mcf.v3_1.cfbam.cfbampub.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
+import server.markhome.mcf.v3_1.cfint.cfintpubobj.*;
+
+public interface ICFBamPubIndexColObj
+	extends IMCFAnyObj
+{
+	/**
+	 *	Initially, the class code for an object is ICFBamPubIndexCol.CLASS_CODE, but the Obj layer relies on class code translation to map those
+	 *	backing store entities to a runtime set of front-facing classcodes that the clients download and use when talking to the server implementing this code base.
+	 *
+	 *	@return The runtime class code used by this object. Only after the system is fully booted are these values stable and reliable.
+	 */
+	int getClassCode();
+	/**
+	 *	Get the user who created this instance.
+	 *
+	 *	@return	The ICFSecPubSecUserObj instance who created this instance.
+	 */
+	ICFSecPubSecUserObj getCreatedBy();
+
+	/**
+	 *	Get the LocalDateTime this instance was created.
+	 *
+	 *	@return	The LocalDateTime value for the creation time of the instance.
+	 */
+	LocalDateTime getCreatedAt();
+
+	/**
+	 *	Get the user who updated this instance.
+	 *
+	 *	@return	The ICFSecPubSecUserObj instance who updated this instance.
+	 */
+	ICFSecPubSecUserObj getUpdatedBy();
+
+	/**
+	 *	Get the LocalDateTime date-time this instance was updated.
+	 *
+	 *	@return	The LocalDateTime value for the create time of the instance.
+	 */
+	LocalDateTime getUpdatedAt();
+	/**
+	 *	Realise this instance of a IndexCol.
+	 *
+	 *	@return	CFBamPubIndexColObj instance which should be subsequently referenced.
+	 */
+	ICFBamPubIndexColObj realise();
+
+	/**
+	 *	Forget this instance from the cache.
+	 *	<p>
+	 *	This method should only be invoked by implementation internals.
+	 */
+	void forget();
+
+	/**
+	 *	Re-read this instance by it's primary key.
+	 *
+	 *	@return	ICFBamPubIndexColObj the reference to the cached or read (realised) instance.
+	 */
+	ICFBamPubIndexColObj read();
+
+	/**
+	 *	Re-read this instance by it's primary key.
+	 *
+	 *	@return	ICFBamPubIndexColObj the reference to the cached or read (realised) instance.
+	 */
+	ICFBamPubIndexColObj read( boolean forceRead );
+
+	/**
+	 *	Move this object up in the chain and refresh the cache.
+	 *
+	 *	@return	ICFBamPubIndexColObj the reference to the moved and refreshed instance.
+	 */
+	ICFBamPubIndexColObj moveUp();
+
+	/**
+	 *	Move this object down in the chain and refresh the cache.
+	 *
+	 *	@return	ICFBamPubIndexColObj the reference to the moved and refreshed instance.
+	 */
+	ICFBamPubIndexColObj moveDown();
+
+	/**
+	 *	Initialize and return a locked edition of this IndexCol instance.
+	 *
+	 *	@return	The newly locked ICFBamPubIndexColEditObj edition of this instance.
+	 */
+	ICFBamPubIndexColEditObj beginEdit();
+
+	/**
+	 *	End this edition of this IndexCol instance.
+	 *
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
+	 */
+	void endEdit();
+
+	/**
+	 *	Get the current edition of this IndexCol instance.
+	 *
+	 *	@return	The ICFBamPubIndexColEditObj edition of this instance.
+	 */
+	ICFBamPubIndexColEditObj getEdit();
+
+	/**
+	 *	Get the current edition of this IndexCol instance as a ICFBamPubIndexColEditObj.
+	 *
+	 *	@return	The ICFBamPubIndexColEditObj edition of this instance.
+	 */
+	ICFBamPubIndexColEditObj getEditAsIndexCol();
+
+	/**
+	 *	Get the ICFBamPubIndexColTableObj table cache which manages this instance.
+	 *
+	 *	@return	ICFBamPubIndexColTableObj table cache which manages this instance.
+	 */
+	ICFBamPubIndexColTableObj getIndexColTable();
+
+	/**
+	 *	Get the ICFBamPubSchemaObj schema cache which manages this instance.
+	 *
+	 *	@return	ICFBamPubSchemaObj schema cache which manages this instance.
+	 */
+	ICFBamPubSchemaObj getSchema();
+
+	/**
+	 *	Set the ICFBamPubSchemaObj schema cache which manages this instance.
+	 *	Should only be used to install overloads of the buff implementation wired specifically to a transport implementation
+	 *	that eventually hits a server running a JPA backend.
+	 *
+	 *	@param schema	ICFBamPubSchemaObj schema cache which manages this instance.
+	 */
+	void setSchema(ICFBamPubSchemaObj schema);
+
+	/**
+	 *	Get the ICFBamPubIndexCol instance which currently backs this instance.
+	 *	<p>
+	 *	This value <i>will</i> change for read-only instances, so you should
+	 *	not hold on to the value as a reference anywhere outside the current call stack.
+	 *
+	 *	@return	ICFBamPubIndexCol instance which currently backs this object.
+	 */
+	ICFBamPubIndexCol getRec();
+
+	/**
+	 *	Internal use only.
+	 */
+	void setRec( ICFBamPubIndexCol value );
+
+	/**
+	 *	Get the ICFBamPubIndexCol instance which currently backs this instance.
+	 *	<p>
+	 *	This value <i>will</i> change for read-only instances, so you should
+	 *	not hold on to the value as a reference anywhere outside the current call stack.
+	 *
+	 *	@return	ICFBamPubIndexCol instance which currently backs this object.
+	 */
+	ICFBamPubIndexCol getIndexColRec();
+
+	/**
+	 *	Get the primary key of this instance.
+	 *
+	 *	@return	IMCFKeyHash256 primary key for this instance.
+	 */
+	IMCFKeyHash256 getPKey();
+
+	/**
+	 *	Set the primary key of this instance.
+	 *	<p>
+	 *	This method should only be invoked by implementation internals.
+	 *
+	 *	@param IMCFKeyHash256 primary key value for this instance.
+	 */
+	void setPKey( IMCFKeyHash256 value );
+
+	/**
+	 *	Is this a new instance?
+	 *
+	 *	@return	True if this is a new instance, otherwise false if it has
+	 *		been read, locked, or created.
+	 */
+	boolean getIsNew();
+
+	/**
+	 *	Indicate whether this is a new instance.
+	 *	<p>
+	 *	This method should only be used by implementation internals.
+	 *
+	 *	@param	True if this is a new instance, otherwise false.
+	 */
+	void setIsNew( boolean value );
+
+	/**
+	 *	Get the required ICFBamPubIndexObj instance referenced by the Index key.
+	 *
+	 *	@return	The required ICFBamPubIndexObj instance referenced by the Index key.
+	 */
+	ICFBamPubIndexObj getRequiredContainerIndex();
+
+	/**
+	 *	Get the required ICFBamPubIndexObj instance referenced by the Index key.
+	 *
+	 *	@return	The required ICFBamPubIndexObj instance referenced by the Index key.
+	 */
+	ICFBamPubIndexObj getRequiredContainerIndex( boolean forceRead );
+
+	/**
+	 *	Get the optional ICFBamPubSchemaDefObj instance referenced by the DefSchema key.
+	 *
+	 *	@return	The optional ICFBamPubSchemaDefObj instance referenced by the DefSchema key.
+	 */
+	ICFBamPubSchemaDefObj getOptionalLookupDefSchema();
+
+	/**
+	 *	Get the optional ICFBamPubSchemaDefObj instance referenced by the DefSchema key.
+	 *
+	 *	@return	The optional ICFBamPubSchemaDefObj instance referenced by the DefSchema key.
+	 */
+	ICFBamPubSchemaDefObj getOptionalLookupDefSchema( boolean forceRead );
+
+	/**
+	 *	Get the array of optional ICFBamPubRelationColObj array of instances referenced by the RefRelFromCol key.
+	 *
+	 *	@return	The optional ICFBamPubRelationColObj[] array of instances referenced by the RefRelFromCol key.
+	 */
+	List<ICFBamPubRelationColObj> getOptionalChildrenRefRelFromCol();
+
+	/**
+	 *	Get the array of optional ICFBamPubRelationColObj array of instances referenced by the RefRelFromCol key.
+	 *
+	 *	@return	The optional ICFBamPubRelationColObj[] array of instances referenced by the RefRelFromCol key.
+	 */
+	List<ICFBamPubRelationColObj> getOptionalChildrenRefRelFromCol( boolean forceRead );
+
+	/**
+	 *	Get the array of optional ICFBamPubRelationColObj array of instances referenced by the RefRelToCol key.
+	 *
+	 *	@return	The optional ICFBamPubRelationColObj[] array of instances referenced by the RefRelToCol key.
+	 */
+	List<ICFBamPubRelationColObj> getOptionalChildrenRefRelToCol();
+
+	/**
+	 *	Get the array of optional ICFBamPubRelationColObj array of instances referenced by the RefRelToCol key.
+	 *
+	 *	@return	The optional ICFBamPubRelationColObj[] array of instances referenced by the RefRelToCol key.
+	 */
+	List<ICFBamPubRelationColObj> getOptionalChildrenRefRelToCol( boolean forceRead );
+
+	/**
+	 *	Get the optional ICFBamPubIndexColObj instance referenced by the Prev key.
+	 *
+	 *	@return	The optional ICFBamPubIndexColObj instance referenced by the Prev key.
+	 */
+	ICFBamPubIndexColObj getOptionalLookupPrev();
+
+	/**
+	 *	Get the optional ICFBamPubIndexColObj instance referenced by the Prev key.
+	 *
+	 *	@return	The optional ICFBamPubIndexColObj instance referenced by the Prev key.
+	 */
+	ICFBamPubIndexColObj getOptionalLookupPrev( boolean forceRead );
+
+	/**
+	 *	Get the optional ICFBamPubIndexColObj instance referenced by the Next key.
+	 *
+	 *	@return	The optional ICFBamPubIndexColObj instance referenced by the Next key.
+	 */
+	ICFBamPubIndexColObj getOptionalLookupNext();
+
+	/**
+	 *	Get the optional ICFBamPubIndexColObj instance referenced by the Next key.
+	 *
+	 *	@return	The optional ICFBamPubIndexColObj instance referenced by the Next key.
+	 */
+	ICFBamPubIndexColObj getOptionalLookupNext( boolean forceRead );
+
+	/**
+	 *	Get the required ICFBamPubValueObj instance referenced by the Column key.
+	 *
+	 *	@return	The required ICFBamPubValueObj instance referenced by the Column key.
+	 */
+	ICFBamPubValueObj getRequiredLookupColumn();
+
+	/**
+	 *	Get the required ICFBamPubValueObj instance referenced by the Column key.
+	 *
+	 *	@return	The required ICFBamPubValueObj instance referenced by the Column key.
+	 */
+	ICFBamPubValueObj getRequiredLookupColumn( boolean forceRead );
+
+	/**
+	 *	Get the required MCFDbKeyHash256 attribute IndexId.
+	 *
+	 *	@return	The required MCFDbKeyHash256 attribute IndexId.
+	 */
+	MCFDbKeyHash256 getRequiredIndexId();
+
+	/**
+	 *	Get the required MCFDbKeyHash256 attribute Id.
+	 *
+	 *	@return	The required MCFDbKeyHash256 attribute Id.
+	 */
+	MCFDbKeyHash256 getRequiredId();
+
+	/**
+	 *	Get the optional MCFDbKeyHash256 attribute DefSchemaId.
+	 *
+	 *	@return	The optional MCFDbKeyHash256 attribute DefSchemaId.
+	 */
+	MCFDbKeyHash256 getOptionalDefSchemaId();
+
+	/**
+	 *	Get the required String attribute Name.
+	 *
+	 *	@return	The required String attribute Name.
+	 */
+	String getRequiredName();
+
+	/**
+	 *	Get the optional String attribute ShortName.
+	 *
+	 *	@return	The optional String attribute ShortName.
+	 */
+	String getOptionalShortName();
+
+	/**
+	 *	Get the optional String attribute Label.
+	 *
+	 *	@return	The optional String attribute Label.
+	 */
+	String getOptionalLabel();
+
+	/**
+	 *	Get the optional String attribute ShortDescription.
+	 *
+	 *	@return	The optional String attribute ShortDescription.
+	 */
+	String getOptionalShortDescription();
+
+	/**
+	 *	Get the optional String attribute Description.
+	 *
+	 *	@return	The optional String attribute Description.
+	 */
+	String getOptionalDescription();
+
+	/**
+	 *	Get the required MCFDbKeyHash256 attribute ColumnId.
+	 *
+	 *	@return	The required MCFDbKeyHash256 attribute ColumnId.
+	 */
+	MCFDbKeyHash256 getRequiredColumnId();
+
+	/**
+	 *	Get the required boolean attribute IsAscending.
+	 *
+	 *	@return	The required boolean attribute IsAscending.
+	 */
+	boolean getRequiredIsAscending();
+
+	/**
+	 *	Get the optional MCFDbKeyHash256 attribute PrevId.
+	 *
+	 *	@return	The optional MCFDbKeyHash256 attribute PrevId.
+	 */
+	MCFDbKeyHash256 getOptionalPrevId();
+
+	/**
+	 *	Get the optional MCFDbKeyHash256 attribute NextId.
+	 *
+	 *	@return	The optional MCFDbKeyHash256 attribute NextId.
+	 */
+	MCFDbKeyHash256 getOptionalNextId();
+
+	/**
+	 *	Internal use only.
+	 */
+	void copyPKeyToRec();
+
+	/**
+	 *	Internal use only.
+	 */
+	void copyRecToPKey();
+
+}

@@ -1,0 +1,2975 @@
+// Description: Java 25 Table Object implementation for RelationCol.
+
+/*
+ *	server.markhome.ycf.BusModel
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Yorkton Code Fractal BusModel 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Yorkton Code Fractal BusModel.
+ *	
+ *	Yorkton Code Fractal BusModel is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Yorkton Code Fractal BusModel is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Yorkton Code Fractal BusModel is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Yorkton Code Fractal BusModel.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.ycf.v3_1.busmodel.busmodelobj;
+
+import java.math.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binaryYCFCore64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.ycf.*;
+import server.markhome.ycf.dbutil.*;
+
+import server.markhome.ycf.v3_1.secure.securepub.*;
+import server.markhome.ycf.v3_1.intnet.intnetpub.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelpub.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelprot.*;
+import server.markhome.ycf.v3_1.busmodel.busmodel.*;
+import server.markhome.ycf.v3_1.secure.securepubobj.*;
+import server.markhome.ycf.v3_1.intnet.intnetpubobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelpubobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelprotobj.*;
+
+public class BusModelRelationColTableObj
+	implements IBusModelRelationColTableObj
+{
+	protected IBusModelSchemaObj schema;
+	protected static int runtimeClassCode = IBusModelRelationCol.CLASS_CODE;
+	protected static final int backingClassCode = IBusModelRelationCol.CLASS_CODE;
+	private Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> members;
+	private Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> allRelationCol;
+	private Map< IBusModelRelationColByUNameIdxKey,
+		IBusModelRelationColObj > indexByUNameIdx;
+	private Map< IBusModelRelationColByRelationIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByRelationIdx;
+	private Map< IBusModelRelationColByDefSchemaIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByDefSchemaIdx;
+	private Map< IBusModelRelationColByFromColIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByFromColIdx;
+	private Map< IBusModelRelationColByToColIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByToColIdx;
+	private Map< IBusModelRelationColByPrevIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByPrevIdx;
+	private Map< IBusModelRelationColByNextIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByNextIdx;
+	private Map< IBusModelRelationColByRelPrevIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByRelPrevIdx;
+	private Map< IBusModelRelationColByRelNextIdxKey,
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > > indexByRelNextIdx;
+	public static String TABLE_NAME = "RelationCol";
+	public static String TABLE_DBNAME = "relcol";
+
+	public BusModelRelationColTableObj() {
+		schema = null;
+		members = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+		allRelationCol = null;
+		indexByUNameIdx = null;
+		indexByRelationIdx = null;
+		indexByDefSchemaIdx = null;
+		indexByFromColIdx = null;
+		indexByToColIdx = null;
+		indexByPrevIdx = null;
+		indexByNextIdx = null;
+		indexByRelPrevIdx = null;
+		indexByRelNextIdx = null;
+	}
+
+	public BusModelRelationColTableObj( IBusModelSchemaObj argSchema ) {
+		schema = (IBusModelSchemaObj)argSchema;
+		members = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+		allRelationCol = null;
+		indexByUNameIdx = null;
+		indexByRelationIdx = null;
+		indexByDefSchemaIdx = null;
+		indexByFromColIdx = null;
+		indexByToColIdx = null;
+		indexByPrevIdx = null;
+		indexByNextIdx = null;
+		indexByRelPrevIdx = null;
+		indexByRelNextIdx = null;
+	}
+	
+	/**
+	 *	Get class code always returns the runtime class code for the objects, which is not stable until the application is done initializing and registering its objects.
+	 *
+	 *	@return runtime classcode
+	 */ 
+	@Override
+	public int getClassCode() {
+		return BusModelRelationColTableObj.getRuntimeClassCode();
+	}	
+
+	/**
+	 *	Get the backing store schema's class code, which is hard-coded into the object hierarchy.
+	 *
+	 *	@return The hardcoded backing store class code for this object, which is only valid in that schema.
+	 */
+	public static int getBackingClassCode() {
+		return( backingClassCode );
+	}
+
+	/**
+	 *	Get the runtime class code for this table; this value is only stable after the application is fully initialized.
+	 *
+	 *	@return runtimeClassCode
+	 */
+	public static int getRuntimeClassCode() {
+		return( runtimeClassCode );
+	}
+
+	/**
+	 *	Set the runtime class code for this table; this is done only during application initialization by the SchemaObj's <tt>initClassCodes()</tt> static method,
+	 *	which will only set the class codes once and never again.  Once set, the class codes are immutable within the application.
+	 *	Application programmers should never invoke this method, so it has package access only.
+	 *
+	 *	@param	argNewClassCode	The runtime class code to be used by clients and integrated application logic to identify this table of this schema.
+	 */
+	static void setRuntimeClassCode(int argNewClassCode ) {
+		if (argNewClassCode <= 0) {
+			throw new YCFArgumentUnderflowException(BusModelRelationColTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+		}
+		runtimeClassCode = argNewClassCode;
+	}
+
+	@Override
+	public IBusModelSchemaObj getSchema() {
+		return( schema );
+	}
+
+	@Override
+	public void setSchema( IBusModelSchemaObj value ) {
+		schema = (IBusModelSchemaObj)value;
+	}
+
+	@Override
+	public String getTableName() {
+		return( TABLE_NAME );
+	}
+
+	@Override
+	public String getTableDbName() {
+		return( TABLE_DBNAME );
+	}
+
+	@Override
+	public Class getObjQualifyingClass() {
+		return( IBusModelSchemaDefObj.class );
+	}
+
+
+	@Override
+	public void minimizeMemory() {
+		allRelationCol = null;
+		indexByUNameIdx = null;
+		indexByRelationIdx = null;
+		indexByDefSchemaIdx = null;
+		indexByFromColIdx = null;
+		indexByToColIdx = null;
+		indexByPrevIdx = null;
+		indexByNextIdx = null;
+		indexByRelPrevIdx = null;
+		indexByRelNextIdx = null;
+		List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+		IBusModelRelationColObj cur = null;
+		Iterator<IBusModelRelationColObj> iter = members.values().iterator();
+		while( iter.hasNext() ) {
+			cur = iter.next();
+			toForget.add( cur );
+		}
+		iter = toForget.iterator();
+		while( iter.hasNext() ) {
+			cur = iter.next();
+			cur.forget();
+		}
+	}
+	/**
+	 *	If your implementation subclasses the objects,
+	 *	you'll want to overload the constructByClassCode()
+	 *	implementation to return your implementation's
+	 *	instances instead of the base implementation.
+	 *
+	 *	This is the sole factory for instances derived from
+	 *	BusModelRelationColObj.
+	 */
+	@Override
+	public IBusModelRelationColObj newInstance() {
+		IBusModelRelationColObj inst = new BusModelRelationColObj( schema );
+		return( inst );
+	}
+
+	/**
+	 *	If your implementation subclasses the objects,
+	 *	you'll want to overload the constructByClassCode()
+	 *	implementation to return your implementation's
+	 *	instances instead of the base implementation.
+	 *
+	 *	This is the sole factory for instances derived from
+	 *	BusModelRelationColObj.
+	 */
+	@Override
+	public IBusModelRelationColEditObj newEditInstance( IBusModelRelationColObj orig ) {
+		IBusModelRelationColEditObj edit = new BusModelRelationColEditObj( orig );
+		return( edit );
+	}
+
+	@Override
+	public IBusModelRelationColObj constructByClassCode( int backingClassCode ) {
+		IBusModelRelationColObj obj = null;
+		if( backingClassCode == IBusModelRelationCol.CLASS_CODE) {
+			obj = ((IBusModelSchemaObj)schema).getRelationColTableObj().newInstance();
+		}
+		return( obj );
+	}
+
+	@Override
+	public IBusModelRelationColObj realiseRelationCol( IBusModelRelationColObj Obj ) {
+		IBusModelRelationColObj obj = Obj;
+		$implCommaIJavaOptAtomType$ pkey = obj.getPKey();
+		IBusModelRelationColObj keepObj = null;
+		if( members.containsKey( pkey ) && ( null != members.get( pkey ) ) ) {
+			IBusModelRelationColObj existingObj = members.get( pkey );
+			keepObj = existingObj;
+
+			/*
+			 *	We always rebind the data because if we're being called, some index has
+			 *	been updated and is refreshing it's data, which may or may not have changed
+			 */
+
+			// Detach object from alternate and duplicate indexes, leave PKey alone
+
+			if( indexByUNameIdx != null ) {
+				IBusModelRelationColByUNameIdxKey keyUNameIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByUNameIdxKey();
+				keyUNameIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyUNameIdx.setRequiredName( keepObj.getRequiredName() );
+				indexByUNameIdx.remove( keyUNameIdx );
+			}
+
+			if( indexByRelationIdx != null ) {
+				IBusModelRelationColByRelationIdxKey keyRelationIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelationIdxKey();
+				keyRelationIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelationIdx = indexByRelationIdx.get( keyRelationIdx );
+				if( mapRelationIdx != null ) {
+					mapRelationIdx.remove( keepObj.getPKey() );
+					if( mapRelationIdx.size() <= 0 ) {
+						indexByRelationIdx.remove( keyRelationIdx );
+					}
+				}
+			}
+
+			if( indexByDefSchemaIdx != null ) {
+				IBusModelRelationColByDefSchemaIdxKey keyDefSchemaIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByDefSchemaIdxKey();
+				keyDefSchemaIdx.setOptionalDefSchemaId( keepObj.getOptionalDefSchemaId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapDefSchemaIdx = indexByDefSchemaIdx.get( keyDefSchemaIdx );
+				if( mapDefSchemaIdx != null ) {
+					mapDefSchemaIdx.remove( keepObj.getPKey() );
+					if( mapDefSchemaIdx.size() <= 0 ) {
+						indexByDefSchemaIdx.remove( keyDefSchemaIdx );
+					}
+				}
+			}
+
+			if( indexByFromColIdx != null ) {
+				IBusModelRelationColByFromColIdxKey keyFromColIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByFromColIdxKey();
+				keyFromColIdx.setRequiredFromColId( keepObj.getRequiredFromColId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapFromColIdx = indexByFromColIdx.get( keyFromColIdx );
+				if( mapFromColIdx != null ) {
+					mapFromColIdx.remove( keepObj.getPKey() );
+					if( mapFromColIdx.size() <= 0 ) {
+						indexByFromColIdx.remove( keyFromColIdx );
+					}
+				}
+			}
+
+			if( indexByToColIdx != null ) {
+				IBusModelRelationColByToColIdxKey keyToColIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByToColIdxKey();
+				keyToColIdx.setRequiredToColId( keepObj.getRequiredToColId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapToColIdx = indexByToColIdx.get( keyToColIdx );
+				if( mapToColIdx != null ) {
+					mapToColIdx.remove( keepObj.getPKey() );
+					if( mapToColIdx.size() <= 0 ) {
+						indexByToColIdx.remove( keyToColIdx );
+					}
+				}
+			}
+
+			if( indexByPrevIdx != null ) {
+				IBusModelRelationColByPrevIdxKey keyPrevIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByPrevIdxKey();
+				keyPrevIdx.setOptionalPrevId( keepObj.getOptionalPrevId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapPrevIdx = indexByPrevIdx.get( keyPrevIdx );
+				if( mapPrevIdx != null ) {
+					mapPrevIdx.remove( keepObj.getPKey() );
+					if( mapPrevIdx.size() <= 0 ) {
+						indexByPrevIdx.remove( keyPrevIdx );
+					}
+				}
+			}
+
+			if( indexByNextIdx != null ) {
+				IBusModelRelationColByNextIdxKey keyNextIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByNextIdxKey();
+				keyNextIdx.setOptionalNextId( keepObj.getOptionalNextId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapNextIdx = indexByNextIdx.get( keyNextIdx );
+				if( mapNextIdx != null ) {
+					mapNextIdx.remove( keepObj.getPKey() );
+					if( mapNextIdx.size() <= 0 ) {
+						indexByNextIdx.remove( keyNextIdx );
+					}
+				}
+			}
+
+			if( indexByRelPrevIdx != null ) {
+				IBusModelRelationColByRelPrevIdxKey keyRelPrevIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelPrevIdxKey();
+				keyRelPrevIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyRelPrevIdx.setOptionalPrevId( keepObj.getOptionalPrevId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelPrevIdx = indexByRelPrevIdx.get( keyRelPrevIdx );
+				if( mapRelPrevIdx != null ) {
+					mapRelPrevIdx.remove( keepObj.getPKey() );
+					if( mapRelPrevIdx.size() <= 0 ) {
+						indexByRelPrevIdx.remove( keyRelPrevIdx );
+					}
+				}
+			}
+
+			if( indexByRelNextIdx != null ) {
+				IBusModelRelationColByRelNextIdxKey keyRelNextIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelNextIdxKey();
+				keyRelNextIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyRelNextIdx.setOptionalNextId( keepObj.getOptionalNextId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelNextIdx = indexByRelNextIdx.get( keyRelNextIdx );
+				if( mapRelNextIdx != null ) {
+					mapRelNextIdx.remove( keepObj.getPKey() );
+					if( mapRelNextIdx.size() <= 0 ) {
+						indexByRelNextIdx.remove( keyRelNextIdx );
+					}
+				}
+			}
+
+			keepObj.setRec( Obj.getRec() );
+			// Attach new object to alternate and duplicate indexes -- PKey stay stable
+
+			if( indexByUNameIdx != null ) {
+				IBusModelRelationColByUNameIdxKey keyUNameIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByUNameIdxKey();
+				keyUNameIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyUNameIdx.setRequiredName( keepObj.getRequiredName() );
+				indexByUNameIdx.put( keyUNameIdx, keepObj );
+			}
+
+			if( indexByRelationIdx != null ) {
+				IBusModelRelationColByRelationIdxKey keyRelationIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelationIdxKey();
+				keyRelationIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelationIdx = indexByRelationIdx.get( keyRelationIdx );
+				if( mapRelationIdx != null ) {
+					mapRelationIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByDefSchemaIdx != null ) {
+				IBusModelRelationColByDefSchemaIdxKey keyDefSchemaIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByDefSchemaIdxKey();
+				keyDefSchemaIdx.setOptionalDefSchemaId( keepObj.getOptionalDefSchemaId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapDefSchemaIdx = indexByDefSchemaIdx.get( keyDefSchemaIdx );
+				if( mapDefSchemaIdx != null ) {
+					mapDefSchemaIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByFromColIdx != null ) {
+				IBusModelRelationColByFromColIdxKey keyFromColIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByFromColIdxKey();
+				keyFromColIdx.setRequiredFromColId( keepObj.getRequiredFromColId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapFromColIdx = indexByFromColIdx.get( keyFromColIdx );
+				if( mapFromColIdx != null ) {
+					mapFromColIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByToColIdx != null ) {
+				IBusModelRelationColByToColIdxKey keyToColIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByToColIdxKey();
+				keyToColIdx.setRequiredToColId( keepObj.getRequiredToColId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapToColIdx = indexByToColIdx.get( keyToColIdx );
+				if( mapToColIdx != null ) {
+					mapToColIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByPrevIdx != null ) {
+				IBusModelRelationColByPrevIdxKey keyPrevIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByPrevIdxKey();
+				keyPrevIdx.setOptionalPrevId( keepObj.getOptionalPrevId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapPrevIdx = indexByPrevIdx.get( keyPrevIdx );
+				if( mapPrevIdx != null ) {
+					mapPrevIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByNextIdx != null ) {
+				IBusModelRelationColByNextIdxKey keyNextIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByNextIdxKey();
+				keyNextIdx.setOptionalNextId( keepObj.getOptionalNextId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapNextIdx = indexByNextIdx.get( keyNextIdx );
+				if( mapNextIdx != null ) {
+					mapNextIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByRelPrevIdx != null ) {
+				IBusModelRelationColByRelPrevIdxKey keyRelPrevIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelPrevIdxKey();
+				keyRelPrevIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyRelPrevIdx.setOptionalPrevId( keepObj.getOptionalPrevId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelPrevIdx = indexByRelPrevIdx.get( keyRelPrevIdx );
+				if( mapRelPrevIdx != null ) {
+					mapRelPrevIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByRelNextIdx != null ) {
+				IBusModelRelationColByRelNextIdxKey keyRelNextIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelNextIdxKey();
+				keyRelNextIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyRelNextIdx.setOptionalNextId( keepObj.getOptionalNextId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelNextIdx = indexByRelNextIdx.get( keyRelNextIdx );
+				if( mapRelNextIdx != null ) {
+					mapRelNextIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( allRelationCol != null ) {
+				allRelationCol.put( keepObj.getPKey(), keepObj );
+			}
+		}
+		else {
+			keepObj = obj;
+			keepObj.setIsNew( false );
+
+			// Attach new object to PKey, all, alternate, and duplicate indexes
+			members.put( keepObj.getPKey(), keepObj );
+			if( allRelationCol != null ) {
+				allRelationCol.put( keepObj.getPKey(), keepObj );
+			}
+
+			if( indexByUNameIdx != null ) {
+				IBusModelRelationColByUNameIdxKey keyUNameIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByUNameIdxKey();
+				keyUNameIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyUNameIdx.setRequiredName( keepObj.getRequiredName() );
+				indexByUNameIdx.put( keyUNameIdx, keepObj );
+			}
+
+			if( indexByRelationIdx != null ) {
+				IBusModelRelationColByRelationIdxKey keyRelationIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelationIdxKey();
+				keyRelationIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelationIdx = indexByRelationIdx.get( keyRelationIdx );
+				if( mapRelationIdx != null ) {
+					mapRelationIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByDefSchemaIdx != null ) {
+				IBusModelRelationColByDefSchemaIdxKey keyDefSchemaIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByDefSchemaIdxKey();
+				keyDefSchemaIdx.setOptionalDefSchemaId( keepObj.getOptionalDefSchemaId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapDefSchemaIdx = indexByDefSchemaIdx.get( keyDefSchemaIdx );
+				if( mapDefSchemaIdx != null ) {
+					mapDefSchemaIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByFromColIdx != null ) {
+				IBusModelRelationColByFromColIdxKey keyFromColIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByFromColIdxKey();
+				keyFromColIdx.setRequiredFromColId( keepObj.getRequiredFromColId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapFromColIdx = indexByFromColIdx.get( keyFromColIdx );
+				if( mapFromColIdx != null ) {
+					mapFromColIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByToColIdx != null ) {
+				IBusModelRelationColByToColIdxKey keyToColIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByToColIdxKey();
+				keyToColIdx.setRequiredToColId( keepObj.getRequiredToColId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapToColIdx = indexByToColIdx.get( keyToColIdx );
+				if( mapToColIdx != null ) {
+					mapToColIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByPrevIdx != null ) {
+				IBusModelRelationColByPrevIdxKey keyPrevIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByPrevIdxKey();
+				keyPrevIdx.setOptionalPrevId( keepObj.getOptionalPrevId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapPrevIdx = indexByPrevIdx.get( keyPrevIdx );
+				if( mapPrevIdx != null ) {
+					mapPrevIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByNextIdx != null ) {
+				IBusModelRelationColByNextIdxKey keyNextIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByNextIdxKey();
+				keyNextIdx.setOptionalNextId( keepObj.getOptionalNextId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapNextIdx = indexByNextIdx.get( keyNextIdx );
+				if( mapNextIdx != null ) {
+					mapNextIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByRelPrevIdx != null ) {
+				IBusModelRelationColByRelPrevIdxKey keyRelPrevIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelPrevIdxKey();
+				keyRelPrevIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyRelPrevIdx.setOptionalPrevId( keepObj.getOptionalPrevId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelPrevIdx = indexByRelPrevIdx.get( keyRelPrevIdx );
+				if( mapRelPrevIdx != null ) {
+					mapRelPrevIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+			if( indexByRelNextIdx != null ) {
+				IBusModelRelationColByRelNextIdxKey keyRelNextIdx =
+					schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelNextIdxKey();
+				keyRelNextIdx.setRequiredRelationId( keepObj.getRequiredRelationId() );
+				keyRelNextIdx.setOptionalNextId( keepObj.getOptionalNextId() );
+				Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj > mapRelNextIdx = indexByRelNextIdx.get( keyRelNextIdx );
+				if( mapRelNextIdx != null ) {
+					mapRelNextIdx.put( keepObj.getPKey(), keepObj );
+				}
+			}
+
+		}
+		return( keepObj );
+	}
+
+	@Override
+	public IBusModelRelationColObj createRelationCol( IBusModelRelationColObj Obj ) {
+		IBusModelRelationColObj obj = Obj;
+		IBusModelRelationCol rec = obj.getRelationColRec();
+		schema.getBusModelBackingStore().getTableRelationCol().createRelationCol(
+			null,
+			rec );
+		obj.copyRecToPKey();
+		obj = obj.realise();
+		IBusModelRelationColObj prev = obj.getOptionalLookupPrev();
+		if( prev != null ) {
+			prev.read( true );
+		}
+		obj.endEdit();
+		return( obj );
+	}
+
+	@Override
+	public IBusModelRelationColObj readRelationCol( $implCommaIJavaOptAtomType$ pkey ) {
+		return( readRelationCol( pkey, false ) );
+	}
+
+	@Override
+	public IBusModelRelationColObj readRelationCol( $implCommaIJavaOptAtomType$ pkey, boolean forceRead ) {
+		IBusModelRelationColObj obj = null;
+		if( ( ! forceRead ) && members.containsKey( pkey ) ) {
+			obj = members.get( pkey );
+		}
+		else {
+			IBusModelRelationCol readRec = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByIdIdx( null,
+						pkey );
+			if( readRec != null ) {
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( readRec.getPKey() );
+				obj.setRec( readRec );
+				obj = (IBusModelRelationColObj)obj.realise();
+			}
+		}
+		return( obj );
+	}
+
+	@Override
+	public IBusModelRelationColObj readCachedRelationCol( $implCommaIJavaOptAtomType$ pkey ) {
+		IBusModelRelationColObj obj = null;
+		if( members.containsKey( pkey ) ) {
+			obj = members.get( pkey );
+		}
+		return( obj );
+	}
+
+	@Override
+	public void reallyDeepDisposeRelationCol( IBusModelRelationColObj obj )
+	{
+		final String S_ProcName = "BusModelRelationColTableObj.reallyDeepDisposeRelationCol() ";
+		String classCode;
+		if( obj == null ) {
+			return;
+		}
+		$implCommaIJavaOptAtomType$ pkey = obj.getPKey();
+		IBusModelRelationColObj existing = readCachedRelationCol( pkey );
+		if( existing == null ) {
+			return;
+		}
+		members.remove( pkey );
+		IBusModelRelationColByUNameIdxKey keyUNameIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByUNameIdxKey();
+		keyUNameIdx.setRequiredRelationId( existing.getRequiredRelationId() );
+		keyUNameIdx.setRequiredName( existing.getRequiredName() );
+
+		IBusModelRelationColByRelationIdxKey keyRelationIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelationIdxKey();
+		keyRelationIdx.setRequiredRelationId( existing.getRequiredRelationId() );
+
+		IBusModelRelationColByDefSchemaIdxKey keyDefSchemaIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByDefSchemaIdxKey();
+		keyDefSchemaIdx.setOptionalDefSchemaId( existing.getOptionalDefSchemaId() );
+
+		IBusModelRelationColByFromColIdxKey keyFromColIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByFromColIdxKey();
+		keyFromColIdx.setRequiredFromColId( existing.getRequiredFromColId() );
+
+		IBusModelRelationColByToColIdxKey keyToColIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByToColIdxKey();
+		keyToColIdx.setRequiredToColId( existing.getRequiredToColId() );
+
+		IBusModelRelationColByPrevIdxKey keyPrevIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByPrevIdxKey();
+		keyPrevIdx.setOptionalPrevId( existing.getOptionalPrevId() );
+
+		IBusModelRelationColByNextIdxKey keyNextIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByNextIdxKey();
+		keyNextIdx.setOptionalNextId( existing.getOptionalNextId() );
+
+		IBusModelRelationColByRelPrevIdxKey keyRelPrevIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelPrevIdxKey();
+		keyRelPrevIdx.setRequiredRelationId( existing.getRequiredRelationId() );
+		keyRelPrevIdx.setOptionalPrevId( existing.getOptionalPrevId() );
+
+		IBusModelRelationColByRelNextIdxKey keyRelNextIdx = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelNextIdxKey();
+		keyRelNextIdx.setRequiredRelationId( existing.getRequiredRelationId() );
+		keyRelNextIdx.setOptionalNextId( existing.getOptionalNextId() );
+
+
+
+		if( indexByUNameIdx != null ) {
+			indexByUNameIdx.remove( keyUNameIdx );
+		}
+
+		if( indexByRelationIdx != null ) {
+			if( indexByRelationIdx.containsKey( keyRelationIdx ) ) {
+				indexByRelationIdx.get( keyRelationIdx ).remove( pkey );
+				if( indexByRelationIdx.get( keyRelationIdx ).size() <= 0 ) {
+					indexByRelationIdx.remove( keyRelationIdx );
+				}
+			}
+		}
+
+		if( indexByDefSchemaIdx != null ) {
+			if( indexByDefSchemaIdx.containsKey( keyDefSchemaIdx ) ) {
+				indexByDefSchemaIdx.get( keyDefSchemaIdx ).remove( pkey );
+				if( indexByDefSchemaIdx.get( keyDefSchemaIdx ).size() <= 0 ) {
+					indexByDefSchemaIdx.remove( keyDefSchemaIdx );
+				}
+			}
+		}
+
+		if( indexByFromColIdx != null ) {
+			if( indexByFromColIdx.containsKey( keyFromColIdx ) ) {
+				indexByFromColIdx.get( keyFromColIdx ).remove( pkey );
+				if( indexByFromColIdx.get( keyFromColIdx ).size() <= 0 ) {
+					indexByFromColIdx.remove( keyFromColIdx );
+				}
+			}
+		}
+
+		if( indexByToColIdx != null ) {
+			if( indexByToColIdx.containsKey( keyToColIdx ) ) {
+				indexByToColIdx.get( keyToColIdx ).remove( pkey );
+				if( indexByToColIdx.get( keyToColIdx ).size() <= 0 ) {
+					indexByToColIdx.remove( keyToColIdx );
+				}
+			}
+		}
+
+		if( indexByPrevIdx != null ) {
+			if( indexByPrevIdx.containsKey( keyPrevIdx ) ) {
+				indexByPrevIdx.get( keyPrevIdx ).remove( pkey );
+				if( indexByPrevIdx.get( keyPrevIdx ).size() <= 0 ) {
+					indexByPrevIdx.remove( keyPrevIdx );
+				}
+			}
+		}
+
+		if( indexByNextIdx != null ) {
+			if( indexByNextIdx.containsKey( keyNextIdx ) ) {
+				indexByNextIdx.get( keyNextIdx ).remove( pkey );
+				if( indexByNextIdx.get( keyNextIdx ).size() <= 0 ) {
+					indexByNextIdx.remove( keyNextIdx );
+				}
+			}
+		}
+
+		if( indexByRelPrevIdx != null ) {
+			if( indexByRelPrevIdx.containsKey( keyRelPrevIdx ) ) {
+				indexByRelPrevIdx.get( keyRelPrevIdx ).remove( pkey );
+				if( indexByRelPrevIdx.get( keyRelPrevIdx ).size() <= 0 ) {
+					indexByRelPrevIdx.remove( keyRelPrevIdx );
+				}
+			}
+		}
+
+		if( indexByRelNextIdx != null ) {
+			if( indexByRelNextIdx.containsKey( keyRelNextIdx ) ) {
+				indexByRelNextIdx.get( keyRelNextIdx ).remove( pkey );
+				if( indexByRelNextIdx.get( keyRelNextIdx ).size() <= 0 ) {
+					indexByRelNextIdx.remove( keyRelNextIdx );
+				}
+			}
+		}
+
+
+	}
+	@Override
+	public void deepDisposeRelationCol( $implCommaIJavaOptAtomType$ pkey ) {
+		IBusModelRelationColObj obj = readCachedRelationCol( pkey );
+		if( obj != null ) {
+			obj.forget();
+		}
+	}
+
+	@Override
+	public IBusModelRelationColObj lockRelationCol( $implCommaIJavaOptAtomType$ pkey ) {
+		IBusModelRelationColObj locked = null;
+		IBusModelRelationCol lockRec = schema.getBusModelBackingStore().getTableRelationCol().lockDerived( null, pkey );
+		if( lockRec != null ) {
+				locked = schema.getRelationColTableObj().newInstance();
+			locked.setRec( lockRec );
+			locked.setPKey( lockRec.getPKey() );
+			locked = (IBusModelRelationColObj)locked.realise();
+		}
+		else {
+			throw new YCFCollisionDetectedException( getClass(), "lockRelationCol", pkey );
+		}
+		return( locked );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readAllRelationCol() {
+		return( readAllRelationCol( false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readAllRelationCol( boolean forceRead ) {
+		final String S_ProcName = "readAllRelationCol";
+		if( ( allRelationCol == null ) || forceRead ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> map = new HashMap<$implCommaIJavaOptAtomType$,IBusModelRelationColObj>();
+			allRelationCol = map;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readAllDerived( null );
+			IBusModelRelationCol rec;
+			IBusModelRelationColObj obj;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+			}
+		}
+		int len = allRelationCol.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = allRelationCol.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedAllRelationCol() {
+		final String S_ProcName = "readCachedAllRelationCol";
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( allRelationCol != null ) {
+			int len = allRelationCol.size();
+			IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+			Iterator<IBusModelRelationColObj> valIter = allRelationCol.values().iterator();
+			int idx = 0;
+			while( ( idx < len ) && valIter.hasNext() ) {
+				arr[idx++] = valIter.next();
+			}
+			if( idx < len ) {
+				throw new YCFArgumentUnderflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+			}
+			else if( valIter.hasNext() ) {
+				throw new YCFArgumentOverflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+			}
+			for( idx = 0; idx < len; idx ++ ) {
+				arrayList.add( arr[idx] );
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public IBusModelRelationColObj readRelationColByIdIdx( IYCFKeyHash256 Id )
+	{
+		return( readRelationColByIdIdx( Id,
+			false ) );
+	}
+
+	@Override
+	public IBusModelRelationColObj readRelationColByIdIdx( IYCFKeyHash256 Id, boolean forceRead )
+	{
+		IBusModelRelationColObj obj = readRelationCol( Id, forceRead );
+		return( obj );
+	}
+
+	@Override
+	public IBusModelRelationColObj readRelationColByUNameIdx( IYCFKeyHash256 RelationId,
+		String Name )
+	{
+		return( readRelationColByUNameIdx( RelationId,
+			Name,
+			false ) );
+	}
+
+	@Override
+	public IBusModelRelationColObj readRelationColByUNameIdx( IYCFKeyHash256 RelationId,
+		String Name, boolean forceRead )
+	{
+		if( indexByUNameIdx == null ) {
+			indexByUNameIdx = new HashMap< IBusModelRelationColByUNameIdxKey,
+				IBusModelRelationColObj >();
+		}
+		IBusModelRelationColByUNameIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByUNameIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setRequiredName( Name );
+		IBusModelRelationColObj obj = null;
+		if( ( ! forceRead ) && indexByUNameIdx.containsKey( key ) ) {
+			obj = indexByUNameIdx.get( key );
+		}
+		else {
+			IBusModelRelationCol rec = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByUNameIdx( null,
+				RelationId,
+				Name );
+			if( rec != null ) {
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setRec( rec );
+				obj.setPKey( rec.getPKey() );
+				obj = (IBusModelRelationColObj)obj.realise();
+			}
+		}
+		return( obj );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByRelationIdx( IYCFKeyHash256 RelationId )
+	{
+		return( readRelationColByRelationIdx( RelationId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByRelationIdx( IYCFKeyHash256 RelationId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByRelationIdx";
+		IBusModelRelationColByRelationIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelationIdxKey();
+		key.setRequiredRelationId( RelationId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByRelationIdx == null ) {
+			indexByRelationIdx = new HashMap< IBusModelRelationColByRelationIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByRelationIdx.containsKey( key ) ) {
+			dict = indexByRelationIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByRelationIdx( null,
+				RelationId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByRelationIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByDefSchemaIdx( IYCFKeyHash256 DefSchemaId )
+	{
+		return( readRelationColByDefSchemaIdx( DefSchemaId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByDefSchemaIdx( IYCFKeyHash256 DefSchemaId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByDefSchemaIdx";
+		IBusModelRelationColByDefSchemaIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByDefSchemaIdxKey();
+		key.setOptionalDefSchemaId( DefSchemaId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByDefSchemaIdx == null ) {
+			indexByDefSchemaIdx = new HashMap< IBusModelRelationColByDefSchemaIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByDefSchemaIdx.containsKey( key ) ) {
+			dict = indexByDefSchemaIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByDefSchemaIdx( null,
+				DefSchemaId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByDefSchemaIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByFromColIdx( IYCFKeyHash256 FromColId )
+	{
+		return( readRelationColByFromColIdx( FromColId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByFromColIdx( IYCFKeyHash256 FromColId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByFromColIdx";
+		IBusModelRelationColByFromColIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByFromColIdxKey();
+		key.setRequiredFromColId( FromColId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByFromColIdx == null ) {
+			indexByFromColIdx = new HashMap< IBusModelRelationColByFromColIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByFromColIdx.containsKey( key ) ) {
+			dict = indexByFromColIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByFromColIdx( null,
+				FromColId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByFromColIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByToColIdx( IYCFKeyHash256 ToColId )
+	{
+		return( readRelationColByToColIdx( ToColId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByToColIdx( IYCFKeyHash256 ToColId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByToColIdx";
+		IBusModelRelationColByToColIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByToColIdxKey();
+		key.setRequiredToColId( ToColId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByToColIdx == null ) {
+			indexByToColIdx = new HashMap< IBusModelRelationColByToColIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByToColIdx.containsKey( key ) ) {
+			dict = indexByToColIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByToColIdx( null,
+				ToColId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByToColIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByPrevIdx( IYCFKeyHash256 PrevId )
+	{
+		return( readRelationColByPrevIdx( PrevId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByPrevIdx( IYCFKeyHash256 PrevId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByPrevIdx";
+		IBusModelRelationColByPrevIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByPrevIdxKey();
+		key.setOptionalPrevId( PrevId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByPrevIdx == null ) {
+			indexByPrevIdx = new HashMap< IBusModelRelationColByPrevIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByPrevIdx.containsKey( key ) ) {
+			dict = indexByPrevIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByPrevIdx( null,
+				PrevId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByPrevIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByNextIdx( IYCFKeyHash256 NextId )
+	{
+		return( readRelationColByNextIdx( NextId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByNextIdx( IYCFKeyHash256 NextId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByNextIdx";
+		IBusModelRelationColByNextIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByNextIdxKey();
+		key.setOptionalNextId( NextId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByNextIdx == null ) {
+			indexByNextIdx = new HashMap< IBusModelRelationColByNextIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByNextIdx.containsKey( key ) ) {
+			dict = indexByNextIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByNextIdx( null,
+				NextId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByNextIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByRelPrevIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 PrevId )
+	{
+		return( readRelationColByRelPrevIdx( RelationId,
+			PrevId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByRelPrevIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 PrevId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByRelPrevIdx";
+		IBusModelRelationColByRelPrevIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelPrevIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setOptionalPrevId( PrevId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByRelPrevIdx == null ) {
+			indexByRelPrevIdx = new HashMap< IBusModelRelationColByRelPrevIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByRelPrevIdx.containsKey( key ) ) {
+			dict = indexByRelPrevIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByRelPrevIdx( null,
+				RelationId,
+				PrevId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByRelPrevIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByRelNextIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 NextId )
+	{
+		return( readRelationColByRelNextIdx( RelationId,
+			NextId,
+			false ) );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readRelationColByRelNextIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 NextId,
+		boolean forceRead )
+	{
+		final String S_ProcName = "readRelationColByRelNextIdx";
+		IBusModelRelationColByRelNextIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelNextIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setOptionalNextId( NextId );
+		Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+		if( indexByRelNextIdx == null ) {
+			indexByRelNextIdx = new HashMap< IBusModelRelationColByRelNextIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( ( ! forceRead ) && indexByRelNextIdx.containsKey( key ) ) {
+			dict = indexByRelNextIdx.get( key );
+		}
+		else {
+			dict = new HashMap<$implCommaIJavaOptAtomType$, IBusModelRelationColObj>();
+			IBusModelRelationColObj obj;
+			IBusModelRelationCol[] recList = schema.getBusModelBackingStore().getTableRelationCol().readDerivedByRelNextIdx( null,
+				RelationId,
+				NextId );
+			IBusModelRelationCol rec;
+			for( int idx = 0; idx < recList.length; idx ++ ) {
+				rec = recList[ idx ];
+				obj = schema.getRelationColTableObj().newInstance();
+				obj.setPKey( rec.getPKey() );
+				obj.setRec( rec );
+				IBusModelRelationColObj realised = (IBusModelRelationColObj)obj.realise();
+				dict.put( realised.getPKey(), realised );
+			}
+			indexByRelNextIdx.put( key, dict );
+		}
+		int len = dict.size();
+		IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+		Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+		int idx = 0;
+		while( ( idx < len ) && valIter.hasNext() ) {
+			arr[idx++] = valIter.next();
+		}
+		if( idx < len ) {
+			throw new YCFArgumentUnderflowException( getClass(),
+				S_ProcName,
+				0,
+				"idx",
+				idx,
+				len );
+		}
+		else if( valIter.hasNext() ) {
+			throw new YCFArgumentOverflowException( getClass(),
+					S_ProcName,
+					0,
+					"idx",
+					idx,
+					len );
+		}
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>(len);
+		for( idx = 0; idx < len; idx ++ ) {
+			arrayList.add( arr[idx] );
+		}
+
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		List<IBusModelRelationColObj> sortedList = arrayList;
+		return( sortedList );
+	}
+
+	@Override
+	public IBusModelRelationColObj readCachedRelationColByIdIdx( IYCFKeyHash256 Id )
+	{
+		IBusModelRelationColObj obj = null;
+		obj = readCachedRelationCol( Id );
+		return( obj );
+	}
+
+	@Override
+	public IBusModelRelationColObj readCachedRelationColByUNameIdx( IYCFKeyHash256 RelationId,
+		String Name )
+	{
+		IBusModelRelationColObj obj = null;
+		IBusModelRelationColByUNameIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByUNameIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setRequiredName( Name );
+		if( indexByUNameIdx != null ) {
+			if( indexByUNameIdx.containsKey( key ) ) {
+				obj = indexByUNameIdx.get( key );
+			}
+			else {
+				Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+				while( ( obj == null ) && valIter.hasNext() ) {
+					obj = valIter.next();
+					if( obj != null ) {
+						if( obj.getRec().compareTo( key ) != 0 ) {
+							obj = null;
+						}
+					}
+				}
+			}
+		}
+		else {
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) != 0 ) {
+						obj = null;
+					}
+				}
+			}
+		}
+		return( obj );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByRelationIdx( IYCFKeyHash256 RelationId )
+	{
+		final String S_ProcName = "readCachedRelationColByRelationIdx";
+		IBusModelRelationColByRelationIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelationIdxKey();
+		key.setRequiredRelationId( RelationId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByRelationIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByRelationIdx.containsKey( key ) ) {
+				dict = indexByRelationIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByDefSchemaIdx( IYCFKeyHash256 DefSchemaId )
+	{
+		final String S_ProcName = "readCachedRelationColByDefSchemaIdx";
+		IBusModelRelationColByDefSchemaIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByDefSchemaIdxKey();
+		key.setOptionalDefSchemaId( DefSchemaId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByDefSchemaIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByDefSchemaIdx.containsKey( key ) ) {
+				dict = indexByDefSchemaIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByFromColIdx( IYCFKeyHash256 FromColId )
+	{
+		final String S_ProcName = "readCachedRelationColByFromColIdx";
+		IBusModelRelationColByFromColIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByFromColIdxKey();
+		key.setRequiredFromColId( FromColId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByFromColIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByFromColIdx.containsKey( key ) ) {
+				dict = indexByFromColIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByToColIdx( IYCFKeyHash256 ToColId )
+	{
+		final String S_ProcName = "readCachedRelationColByToColIdx";
+		IBusModelRelationColByToColIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByToColIdxKey();
+		key.setRequiredToColId( ToColId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByToColIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByToColIdx.containsKey( key ) ) {
+				dict = indexByToColIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByPrevIdx( IYCFKeyHash256 PrevId )
+	{
+		final String S_ProcName = "readCachedRelationColByPrevIdx";
+		IBusModelRelationColByPrevIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByPrevIdxKey();
+		key.setOptionalPrevId( PrevId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByPrevIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByPrevIdx.containsKey( key ) ) {
+				dict = indexByPrevIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByNextIdx( IYCFKeyHash256 NextId )
+	{
+		final String S_ProcName = "readCachedRelationColByNextIdx";
+		IBusModelRelationColByNextIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByNextIdxKey();
+		key.setOptionalNextId( NextId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByNextIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByNextIdx.containsKey( key ) ) {
+				dict = indexByNextIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByRelPrevIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 PrevId )
+	{
+		final String S_ProcName = "readCachedRelationColByRelPrevIdx";
+		IBusModelRelationColByRelPrevIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelPrevIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setOptionalPrevId( PrevId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByRelPrevIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByRelPrevIdx.containsKey( key ) ) {
+				dict = indexByRelPrevIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public List<IBusModelRelationColObj> readCachedRelationColByRelNextIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 NextId )
+	{
+		final String S_ProcName = "readCachedRelationColByRelNextIdx";
+		IBusModelRelationColByRelNextIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelNextIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setOptionalNextId( NextId );
+		ArrayList<IBusModelRelationColObj> arrayList = new ArrayList<IBusModelRelationColObj>();
+		if( indexByRelNextIdx != null ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict;
+			if( indexByRelNextIdx.containsKey( key ) ) {
+				dict = indexByRelNextIdx.get( key );
+				int len = dict.size();
+				IBusModelRelationColObj arr[] = new IBusModelRelationColObj[len];
+				Iterator<IBusModelRelationColObj> valIter = dict.values().iterator();
+				int idx = 0;
+				while( ( idx < len ) && valIter.hasNext() ) {
+					arr[idx++] = valIter.next();
+				}
+				if( idx < len ) {
+					throw new YCFArgumentUnderflowException( getClass(),
+						S_ProcName,
+						0,
+						"idx",
+						idx,
+						len );
+				}
+				else if( valIter.hasNext() ) {
+					throw new YCFArgumentOverflowException( getClass(),
+							S_ProcName,
+							0,
+							"idx",
+							idx,
+							len );
+				}
+				for( idx = 0; idx < len; idx ++ ) {
+					arrayList.add( arr[idx] );
+				}
+			}
+		}
+		else {
+			IBusModelRelationColObj obj;
+			Iterator<IBusModelRelationColObj> valIter = members.values().iterator();
+			while( valIter.hasNext() ) {
+				obj = valIter.next();
+				if( obj != null ) {
+					if( obj.getRec().compareTo( key ) == 0 ) {
+						arrayList.add( obj );
+					}
+				}
+			}
+		}
+		Comparator<IBusModelRelationColObj> cmp = new Comparator<IBusModelRelationColObj>() {
+			@Override
+			public int compare( IBusModelRelationColObj lhs, IBusModelRelationColObj rhs ) {
+				if( lhs == null ) {
+					if( rhs == null ) {
+						return( 0 );
+					}
+					else {
+						return( -1 );
+					}
+				}
+				else if( rhs == null ) {
+					return( 1 );
+				}
+				else {
+					$implCommaIJavaOptAtomType$ lhsPKey = lhs.getPKey();
+					$implCommaIJavaOptAtomType$ rhsPKey = rhs.getPKey();
+					int ret = lhsPKey.compareTo( rhsPKey );
+					return( ret );
+				}
+			}
+		};
+		Collections.sort( arrayList, cmp );
+		return( arrayList );
+	}
+
+	@Override
+	public void deepDisposeRelationColByIdIdx( IYCFKeyHash256 Id )
+	{
+		IBusModelRelationColObj obj = readCachedRelationColByIdIdx( Id );
+		if( obj != null ) {
+			obj.forget();
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByUNameIdx( IYCFKeyHash256 RelationId,
+		String Name )
+	{
+		IBusModelRelationColObj obj = readCachedRelationColByUNameIdx( RelationId,
+				Name );
+		if( obj != null ) {
+			obj.forget();
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByRelationIdx( IYCFKeyHash256 RelationId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByRelationIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByRelationIdx( RelationId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByDefSchemaIdx( IYCFKeyHash256 DefSchemaId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByDefSchemaIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByDefSchemaIdx( DefSchemaId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByFromColIdx( IYCFKeyHash256 FromColId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByFromColIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByFromColIdx( FromColId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByToColIdx( IYCFKeyHash256 ToColId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByToColIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByToColIdx( ToColId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByPrevIdx( IYCFKeyHash256 PrevId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByPrevIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByPrevIdx( PrevId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByNextIdx( IYCFKeyHash256 NextId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByNextIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByNextIdx( NextId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByRelPrevIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 PrevId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByRelPrevIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByRelPrevIdx( RelationId,
+				PrevId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deepDisposeRelationColByRelNextIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 NextId )
+	{
+		final String S_ProcName = "deepDisposeRelationColByRelNextIdx";
+		IBusModelRelationColObj obj;
+		List<IBusModelRelationColObj> arrayList = readCachedRelationColByRelNextIdx( RelationId,
+				NextId );
+		if( arrayList != null )  {
+			Iterator<IBusModelRelationColObj> arrayIter = arrayList.iterator();
+			while( arrayIter.hasNext() ) {
+				obj = arrayIter.next();
+				if( obj != null ) {
+					obj.forget();
+				}
+			}
+		}
+	}
+
+	@Override
+	public IBusModelRelationColObj updateRelationCol( IBusModelRelationColObj Obj ) {
+		IBusModelRelationColObj obj = Obj;
+		schema.getBusModelBackingStore().getTableRelationCol().updateRelationCol( null,
+			Obj.getRelationColRec() );
+		obj = (IBusModelRelationColObj)Obj.realise();
+		obj.endEdit();
+		return( obj );
+	}
+
+	@Override
+	public void deleteRelationCol( IBusModelRelationColObj Obj ) {
+		IBusModelRelationColObj obj = Obj;
+		IBusModelRelationColObj prev = obj.getOptionalLookupPrev();
+		IBusModelRelationColObj next = obj.getOptionalLookupNext();
+		schema.getBusModelBackingStore().getTableRelationCol().deleteRelationCol( null,
+			obj.getRelationColRec() );
+		Obj.forget();
+		if( prev != null ) {
+			prev.read( true );
+		}
+		if( next != null ) {
+			next.read( true );
+		}
+	}
+
+	@Override
+	public void deleteRelationColByIdIdx( IYCFKeyHash256 Id )
+	{
+		IBusModelRelationColObj obj = readRelationCol(Id);
+		if( obj != null ) {
+			IBusModelRelationColEditObj editObj = (IBusModelRelationColEditObj)obj.getEdit();
+			boolean editStarted;
+			if( editObj == null ) {
+				editObj = (IBusModelRelationColEditObj)obj.beginEdit();
+				if( editObj != null ) {
+					editStarted = true;
+				}
+				else {
+					editStarted = false;
+				}
+			}
+			else {
+				editStarted = false;
+			}
+			if( editObj != null ) {
+				editObj.deleteInstance();
+				if( editStarted ) {
+					editObj.endEdit();
+				}
+			}
+			obj.forget();
+		}
+		deepDisposeRelationColByIdIdx( Id );
+	}
+
+	@Override
+	public void deleteRelationColByUNameIdx( IYCFKeyHash256 RelationId,
+		String Name )
+	{
+		if( indexByUNameIdx == null ) {
+			indexByUNameIdx = new HashMap< IBusModelRelationColByUNameIdxKey,
+				IBusModelRelationColObj >();
+		}
+		IBusModelRelationColByUNameIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByUNameIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setRequiredName( Name );
+		IBusModelRelationColObj obj = null;
+		if( indexByUNameIdx.containsKey( key ) ) {
+			obj = indexByUNameIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByUNameIdx( null,
+				RelationId,
+				Name );
+			obj.forget();
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByUNameIdx( null,
+				RelationId,
+				Name );
+		}
+		deepDisposeRelationColByUNameIdx( RelationId,
+				Name );
+	}
+
+	@Override
+	public void deleteRelationColByRelationIdx( IYCFKeyHash256 RelationId )
+	{
+		IBusModelRelationColByRelationIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelationIdxKey();
+		key.setRequiredRelationId( RelationId );
+		if( indexByRelationIdx == null ) {
+			indexByRelationIdx = new HashMap< IBusModelRelationColByRelationIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByRelationIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByRelationIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByRelationIdx( null,
+				RelationId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByRelationIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByRelationIdx( null,
+				RelationId );
+		}
+		deepDisposeRelationColByRelationIdx( RelationId );
+	}
+
+	@Override
+	public void deleteRelationColByDefSchemaIdx( IYCFKeyHash256 DefSchemaId )
+	{
+		IBusModelRelationColByDefSchemaIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByDefSchemaIdxKey();
+		key.setOptionalDefSchemaId( DefSchemaId );
+		if( indexByDefSchemaIdx == null ) {
+			indexByDefSchemaIdx = new HashMap< IBusModelRelationColByDefSchemaIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByDefSchemaIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByDefSchemaIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByDefSchemaIdx( null,
+				DefSchemaId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByDefSchemaIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByDefSchemaIdx( null,
+				DefSchemaId );
+		}
+		deepDisposeRelationColByDefSchemaIdx( DefSchemaId );
+	}
+
+	@Override
+	public void deleteRelationColByFromColIdx( IYCFKeyHash256 FromColId )
+	{
+		IBusModelRelationColByFromColIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByFromColIdxKey();
+		key.setRequiredFromColId( FromColId );
+		if( indexByFromColIdx == null ) {
+			indexByFromColIdx = new HashMap< IBusModelRelationColByFromColIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByFromColIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByFromColIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByFromColIdx( null,
+				FromColId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByFromColIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByFromColIdx( null,
+				FromColId );
+		}
+		deepDisposeRelationColByFromColIdx( FromColId );
+	}
+
+	@Override
+	public void deleteRelationColByToColIdx( IYCFKeyHash256 ToColId )
+	{
+		IBusModelRelationColByToColIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByToColIdxKey();
+		key.setRequiredToColId( ToColId );
+		if( indexByToColIdx == null ) {
+			indexByToColIdx = new HashMap< IBusModelRelationColByToColIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByToColIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByToColIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByToColIdx( null,
+				ToColId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByToColIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByToColIdx( null,
+				ToColId );
+		}
+		deepDisposeRelationColByToColIdx( ToColId );
+	}
+
+	@Override
+	public void deleteRelationColByPrevIdx( IYCFKeyHash256 PrevId )
+	{
+		IBusModelRelationColByPrevIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByPrevIdxKey();
+		key.setOptionalPrevId( PrevId );
+		if( indexByPrevIdx == null ) {
+			indexByPrevIdx = new HashMap< IBusModelRelationColByPrevIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByPrevIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByPrevIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByPrevIdx( null,
+				PrevId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByPrevIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByPrevIdx( null,
+				PrevId );
+		}
+		deepDisposeRelationColByPrevIdx( PrevId );
+	}
+
+	@Override
+	public void deleteRelationColByNextIdx( IYCFKeyHash256 NextId )
+	{
+		IBusModelRelationColByNextIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByNextIdxKey();
+		key.setOptionalNextId( NextId );
+		if( indexByNextIdx == null ) {
+			indexByNextIdx = new HashMap< IBusModelRelationColByNextIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByNextIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByNextIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByNextIdx( null,
+				NextId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByNextIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByNextIdx( null,
+				NextId );
+		}
+		deepDisposeRelationColByNextIdx( NextId );
+	}
+
+	@Override
+	public void deleteRelationColByRelPrevIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 PrevId )
+	{
+		IBusModelRelationColByRelPrevIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelPrevIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setOptionalPrevId( PrevId );
+		if( indexByRelPrevIdx == null ) {
+			indexByRelPrevIdx = new HashMap< IBusModelRelationColByRelPrevIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByRelPrevIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByRelPrevIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByRelPrevIdx( null,
+				RelationId,
+				PrevId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByRelPrevIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByRelPrevIdx( null,
+				RelationId,
+				PrevId );
+		}
+		deepDisposeRelationColByRelPrevIdx( RelationId,
+				PrevId );
+	}
+
+	@Override
+	public void deleteRelationColByRelNextIdx( IYCFKeyHash256 RelationId,
+		IYCFKeyHash256 NextId )
+	{
+		IBusModelRelationColByRelNextIdxKey key = schema.getBusModelBackingStore().getBusModelFactory().getFactoryRelationCol().newByRelNextIdxKey();
+		key.setRequiredRelationId( RelationId );
+		key.setOptionalNextId( NextId );
+		if( indexByRelNextIdx == null ) {
+			indexByRelNextIdx = new HashMap< IBusModelRelationColByRelNextIdxKey,
+				Map< $implCommaIJavaOptAtomType$, IBusModelRelationColObj > >();
+		}
+		if( indexByRelNextIdx.containsKey( key ) ) {
+			Map<$implCommaIJavaOptAtomType$, IBusModelRelationColObj> dict = indexByRelNextIdx.get( key );
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByRelNextIdx( null,
+				RelationId,
+				NextId );
+			Iterator<IBusModelRelationColObj> iter = dict.values().iterator();
+			IBusModelRelationColObj obj;
+			List<IBusModelRelationColObj> toForget = new LinkedList<IBusModelRelationColObj>();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				toForget.add( obj );
+			}
+			iter = toForget.iterator();
+			while( iter.hasNext() ) {
+				obj = iter.next();
+				obj.forget();
+			}
+			indexByRelNextIdx.remove( key );
+		}
+		else {
+			schema.getBusModelBackingStore().getTableRelationCol().deleteRelationColByRelNextIdx( null,
+				RelationId,
+				NextId );
+		}
+		deepDisposeRelationColByRelNextIdx( RelationId,
+				NextId );
+	}
+
+	/**
+	 *	Move the BusModelRelationColObj instance up in the chain.  The instance is always refreshed.
+	 *
+	 *	@return	BusModelRelationColObj refreshed cache instance.
+	 */
+	@Override
+	public IBusModelRelationColObj moveUpRelationCol( IBusModelRelationColObj Obj ) {
+		IBusModelRelationColObj obj = null;
+		if( null != Obj.getEdit() ) {
+			throw new YCFCannotMoveEditedObjectException( getClass(),	"moveUpRelationCol" );
+		}
+		IBusModelRelationCol rec = schema.getBusModelBackingStore().getTableRelationCol().moveRecUp( null,
+			Obj.getRequiredId(),
+			Obj.getRec().getRequiredRevision() );
+		if( rec != null ) {
+			obj = schema.getRelationColTableObj().newInstance();
+			obj.setPKey( rec.getPKey() );
+			obj.setRec( rec );
+			obj = (IBusModelRelationColObj)obj.realise();
+			IBusModelRelationColObj prev = obj.getOptionalLookupPrev( true );
+			IBusModelRelationColObj next = obj.getOptionalLookupNext( true );
+			if( next != null ) {
+				IBusModelRelationColObj gnext = next.getOptionalLookupNext( true );
+			}
+		}
+		return( obj );
+	}
+
+	/**
+	 *	Move the BusModelRelationColObj instance down in the chain.  The instance is always refreshed.
+	 *
+	 *	@return	BusModelRelationColObj refreshed cache instance.
+	 */
+	@Override
+	public IBusModelRelationColObj moveDownRelationCol( IBusModelRelationColObj Obj ) {
+		IBusModelRelationColObj obj = null;
+		if( null != Obj.getEdit() ) {
+			throw new YCFCannotMoveEditedObjectException( getClass(),	"moveDownRelationCol" );
+		}
+		IBusModelRelationCol rec = schema.getBusModelBackingStore().getTableRelationCol().moveRecDown( null,
+			Obj.getRequiredId(),
+			Obj.getRec().getRequiredRevision() );
+		if( rec != null ) {
+			obj = schema.getRelationColTableObj().newInstance();
+			obj.setPKey( rec.getPKey() );
+			obj.setRec( rec );
+			obj = (IBusModelRelationColObj)obj.realise();
+			IBusModelRelationColObj prev = obj.getOptionalLookupPrev( true );
+			if( prev != null ) {
+				IBusModelRelationColObj gprev = prev.getOptionalLookupPrev( true );
+			}
+			IBusModelRelationColObj next = obj.getOptionalLookupNext( true );
+		}
+		return( obj );
+	}
+}

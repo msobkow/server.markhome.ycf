@@ -1,0 +1,320 @@
+
+// Description: Java JPA Factory interface for Table.
+
+/*
+ *	server.markhome.ycf.BusModel
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Yorkton Code Fractal BusModel 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Yorkton Code Fractal BusModel.
+ *	
+ *	Yorkton Code Fractal BusModel is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Yorkton Code Fractal BusModel is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Yorkton Code Fractal BusModel is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Yorkton Code Fractal BusModel.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.ycf.v3_1.busmodel.busmodel;
+
+import java.lang.reflect.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.util.*;
+import org.apache.commons.codec.binaryYCFCore64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.ycf.*;
+import server.markhome.ycf.dbutil.*;
+
+import server.markhome.ycf.v3_1.busmodel.busmodelprotobj.*;
+
+/*
+ *	IBusModelTableFactory interface for Table
+ */
+public interface IBusModelTableFactory extends IBusModelProtTableFactory
+{
+
+	/**
+	 *	Allocate a SchemaDefIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableBySchemaDefIdxKey newBySchemaDefIdxKey();
+
+	/**
+	 *	Allocate a protected SchemaDefIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableBySchemaDefIdxKey asProtected(IBusModelTableBySchemaDefIdxKey src);
+
+	/**
+	 *	Allocate a public SchemaDefIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableBySchemaDefIdxKey asPublic(IBusModelTableBySchemaDefIdxKey src);
+
+	/**
+	 *	Allocate a CodeVisIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableByCodeVisIdxKey newByCodeVisIdxKey();
+
+	/**
+	 *	Allocate a protected CodeVisIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableByCodeVisIdxKey asProtected(IBusModelTableByCodeVisIdxKey src);
+
+	/**
+	 *	Allocate a public CodeVisIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableByCodeVisIdxKey asPublic(IBusModelTableByCodeVisIdxKey src);
+
+	/**
+	 *	Allocate a SchemaCodeVisIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableBySchemaCodeVisIdxKey newBySchemaCodeVisIdxKey();
+
+	/**
+	 *	Allocate a protected SchemaCodeVisIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableBySchemaCodeVisIdxKey asProtected(IBusModelTableBySchemaCodeVisIdxKey src);
+
+	/**
+	 *	Allocate a public SchemaCodeVisIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableBySchemaCodeVisIdxKey asPublic(IBusModelTableBySchemaCodeVisIdxKey src);
+
+	/**
+	 *	Allocate a DefSchemaIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableByDefSchemaIdxKey newByDefSchemaIdxKey();
+
+	/**
+	 *	Allocate a protected DefSchemaIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableByDefSchemaIdxKey asProtected(IBusModelTableByDefSchemaIdxKey src);
+
+	/**
+	 *	Allocate a public DefSchemaIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableByDefSchemaIdxKey asPublic(IBusModelTableByDefSchemaIdxKey src);
+
+	/**
+	 *	Allocate a UNameIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableByUNameIdxKey newByUNameIdxKey();
+
+	/**
+	 *	Allocate a protected UNameIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableByUNameIdxKey asProtected(IBusModelTableByUNameIdxKey src);
+
+	/**
+	 *	Allocate a public UNameIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableByUNameIdxKey asPublic(IBusModelTableByUNameIdxKey src);
+
+	/**
+	 *	Allocate a SchemaCdIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableBySchemaCdIdxKey newBySchemaCdIdxKey();
+
+	/**
+	 *	Allocate a protected SchemaCdIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableBySchemaCdIdxKey asProtected(IBusModelTableBySchemaCdIdxKey src);
+
+	/**
+	 *	Allocate a public SchemaCdIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableBySchemaCdIdxKey asPublic(IBusModelTableBySchemaCdIdxKey src);
+
+	/**
+	 *	Allocate a PrimaryIndexIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableByPrimaryIndexIdxKey newByPrimaryIndexIdxKey();
+
+	/**
+	 *	Allocate a protected PrimaryIndexIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableByPrimaryIndexIdxKey asProtected(IBusModelTableByPrimaryIndexIdxKey src);
+
+	/**
+	 *	Allocate a public PrimaryIndexIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableByPrimaryIndexIdxKey asPublic(IBusModelTableByPrimaryIndexIdxKey src);
+
+	/**
+	 *	Allocate a LookupIndexIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableByLookupIndexIdxKey newByLookupIndexIdxKey();
+
+	/**
+	 *	Allocate a protected LookupIndexIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableByLookupIndexIdxKey asProtected(IBusModelTableByLookupIndexIdxKey src);
+
+	/**
+	 *	Allocate a public LookupIndexIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableByLookupIndexIdxKey asPublic(IBusModelTableByLookupIndexIdxKey src);
+
+	/**
+	 *	Allocate a AltIndexIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableByAltIndexIdxKey newByAltIndexIdxKey();
+
+	/**
+	 *	Allocate a protected AltIndexIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableByAltIndexIdxKey asProtected(IBusModelTableByAltIndexIdxKey src);
+
+	/**
+	 *	Allocate a public AltIndexIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableByAltIndexIdxKey asPublic(IBusModelTableByAltIndexIdxKey src);
+
+	/**
+	 *	Allocate a QualTableIdx key over Table instances.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableByQualTableIdxKey newByQualTableIdxKey();
+
+	/**
+	 *	Allocate a protected QualTableIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableByQualTableIdxKey asProtected(IBusModelTableByQualTableIdxKey src);
+
+	/**
+	 *	Allocate a public QualTableIdx key from a private instance.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableByQualTableIdxKey asPublic(IBusModelTableByQualTableIdxKey src);
+
+	/**
+	 *	Allocate a Table interface implementation.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTable newRec();
+
+	/**
+	 *	Allocate a protected Table interface from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTable asProtected(IBusModelTable src);
+
+	/**
+	 *	Allocate a public Table interface from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTable asPublic(IBusModelTable src);
+
+	/**
+	 *	Allocate a Table history interface implementation.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelTableH newHRec();
+
+	/**
+	 *	Allocate a protected Table history interface implementation from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelProtTableH asProtected(IBusModelTableH src);
+
+	/**
+	 *	Allocate a public Table history interface implementation from a private interface.
+	 *
+	 *	@return	The new instance.
+	 */
+	public IBusModelPubTableH asPublic(IBusModelTableH src);
+
+}

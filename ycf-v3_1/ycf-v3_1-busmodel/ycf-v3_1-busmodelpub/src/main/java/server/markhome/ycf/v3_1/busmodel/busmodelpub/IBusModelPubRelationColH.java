@@ -1,0 +1,131 @@
+// Description: Java 25 public interface for a RelationCol history object
+
+/*
+ *	server.markhome.ycf.BusModel
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Yorkton Code Fractal BusModel 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Yorkton Code Fractal BusModel.
+ *	
+ *	Yorkton Code Fractal BusModel is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Yorkton Code Fractal BusModel is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Yorkton Code Fractal BusModel is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Yorkton Code Fractal BusModel.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.ycf.v3_1.busmodel.busmodelpub;
+
+import java.io.Serializable;
+import java.math.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binaryYCFCore64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.ycf.*;
+import server.markhome.ycf.YCFXmlUtil;
+import server.markhome.ycf.v3_1.secure.securepub.*;
+import server.markhome.ycf.v3_1.intnet.intnetpub.*;
+//import server.markhome.ycf.v3_1.busmodel.busmodelpub.*;
+
+/**
+ *	IBusModelPubRelationColH provides access to public history records matching the BusModelPubRelationCol object change history.
+ */
+public interface IBusModelPubRelationColH
+{
+	public int getClassCode();
+
+	public YCFDbKeyHash256 getCreatedByUserId();
+	public void setCreatedByUserId( YCFDbKeyHash256 value );
+	public LocalDateTime getCreatedAt();
+	public void setCreatedAt( LocalDateTime value );
+	public YCFDbKeyHash256 getUpdatedByUserId();
+	public void setUpdatedByUserId( YCFDbKeyHash256 value );
+	public LocalDateTime getUpdatedAt();
+	public void setUpdatedAt( LocalDateTime value );
+
+	public IBusModelPubRelationColHPKey getPubPKey();
+	public void setPubPKey( IBusModelPubRelationColHPKey pkey );
+	public YCFDbKeyHash256 getAuditClusterId();
+	public void setAuditClusterId(YCFDbKeyHash256 auditClusterId);
+	public LocalDateTime getAuditStamp();
+	public void setAuditStamp(LocalDateTime auditStamp);
+	public short getAuditActionId();
+	public void setAuditActionId(short auditActionId);
+	public int getRequiredRevision();
+	public void setRequiredRevision(int revision);
+	public YCFDbKeyHash256 getAuditSessionId();
+	public void setAuditSessionId(YCFDbKeyHash256 auditSessionId);
+
+	public IYCFKeyHash256 getRequiredId();
+	public void setRequiredId( IYCFKeyHash256 requiredId );
+
+	public YCFDbKeyHash256 getRequiredRelationId();
+	public void setRequiredRelationId( YCFDbKeyHash256 value );
+	public YCFDbKeyHash256 getOptionalDefSchemaId();
+	public void setOptionalDefSchemaId( YCFDbKeyHash256 value );
+	public String getRequiredName();
+	public void setRequiredName( String value );
+	public String getOptionalShortName();
+	public void setOptionalShortName( String value );
+	public String getOptionalLabel();
+	public void setOptionalLabel( String value );
+	public String getOptionalShortDescription();
+	public void setOptionalShortDescription( String value );
+	public String getOptionalDescription();
+	public void setOptionalDescription( String value );
+	public YCFDbKeyHash256 getRequiredFromColId();
+	public void setRequiredFromColId( YCFDbKeyHash256 value );
+	public YCFDbKeyHash256 getRequiredToColId();
+	public void setRequiredToColId( YCFDbKeyHash256 value );
+	public YCFDbKeyHash256 getOptionalPrevId();
+	public void setOptionalPrevId( YCFDbKeyHash256 value );
+	public YCFDbKeyHash256 getOptionalNextId();
+	public void setOptionalNextId( YCFDbKeyHash256 value );
+	@Override
+	public boolean equals( Object obj );
+
+	@Override
+	public int hashCode();
+
+	//@Override
+	public int compareTo( Object obj );
+
+	public void set( IBusModelPubRelationCol src );
+	public void set( IBusModelPubRelationColH src );
+	public void setRelationCol( IBusModelPubRelationCol src );
+	public void setRelationCol( IBusModelPubRelationColH src );
+	public String getXmlAttrFragment();
+
+	@Override
+	public String toString();
+}

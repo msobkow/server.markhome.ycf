@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="Secure31PU" transaction-type="RESOURCE_LOCAL">
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaCluster</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaClusterH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaTenant</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaTenantH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaTableInfo</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaTableInfoH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCcy</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCcyH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCtry</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCtryH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCtryCcy</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCtryCcyH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCtryLang</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOCtryLangH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOLang</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOLangH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOTZone</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaISOTZoneH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUser</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUserH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUserPassword</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUserEMConf</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUserEMConfH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUserPWReset</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUserPWResetH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecUserPWHistory</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysGrp</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysGrpH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysGrpInc</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysGrpIncH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysGrpMemb</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysGrpMembH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusGrp</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusGrpH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusGrpMemb</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusGrpMembH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentGrp</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentGrpH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentGrpMemb</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentGrpMembH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysRole</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysRoleH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysRoleEnables</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysRoleEnablesH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysRoleMemb</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSysRoleMembH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusRole</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusRoleH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusRoleMemb</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecClusRoleMembH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentRole</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentRoleH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentRoleMemb</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecTentRoleMembH</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSecSession</class>
+        <class>server.markhome.ycf.v3_1.secure.secure.jpa.SecureJpaSysCluster</class>
+        <properties>
+            <!-- Example properties, adjust for your DBMS -->
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SpringJtaPlatform"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/secure31"/>
+            <property name="jakarta.persistence.jdbc.user" value="youruser"/>
+            <property name="jakarta.persistence.jdbc.password" value="yourpassword"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

@@ -1,0 +1,984 @@
+// Description: Java 25 implementation of a IndexTweak buffer
+
+/*
+ *	server.markhome.ycf.BusModel
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Yorkton Code Fractal BusModel 3.1 Business Application Model
+ *	
+ *	Copyright 2016-2026 Mark Stephen Sobkow
+ *	
+ *	This file is part of Yorkton Code Fractal BusModel.
+ *	
+ *	Yorkton Code Fractal BusModel is available under dual commercial license from
+ *	Mark Stephen Sobkow, or under the terms of the GNU General Public License,
+ *	Version 3 or later with classpath and static linking exceptions.
+ *	
+ *	As a special exception, Mark Sobkow gives you permission to link this library
+ *	with independent modules to produce an executable, provided that none of them
+ *	conflict with the intent of the GPLv3; that is, you are not allowed to invoke
+ *	the methods of this library from non-GPLv3-compatibly licensed code. You may not
+ *	implement an LPGLv3 "wedge" to try to bypass this restriction. That said, code which
+ *	does not rely on this library is free to specify whatever license its authors decide
+ *	to use. Mark Sobkow specifically rejects the infectious nature of the GPLv3, and
+ *	considers the mere act of including GPLv3 modules in an executable to be perfectly
+ *	reasonable given tools like modern Java's single-jar deployment options.
+ *	
+ *	Yorkton Code Fractal BusModel is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *	
+ *	Yorkton Code Fractal BusModel is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *	
+ *	You should have received a copy of the GNU General Public License
+ *	along with Yorkton Code Fractal BusModel.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	If you wish to modify and use this code without publishing your changes,
+ *	or integrate it with proprietary code, please contact Mark Stephen Sobkow
+ *	for a commercial license at mark.sobkow@gmail.com
+ */
+
+package server.markhome.ycf.v3_1.busmodel.busmodel.buff;
+
+import java.lang.reflect.*;
+import java.io.*;
+import java.math.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binaryYCFCore64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.ycf.*;
+import server.markhome.ycf.dbutil.*;
+import server.markhome.ycf.YCFXmlUtil;
+import server.markhome.ycf.v3_1.secure.securepub.*;
+import server.markhome.ycf.v3_1.intnet.intnetpub.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelpub.*;
+import server.markhome.ycf.v3_1.secure.securepubobj.*;
+import server.markhome.ycf.v3_1.intnet.intnetpubobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelpubobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelprot.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelprotobj.*;
+import server.markhome.ycf.v3_1.busmodel.busmodel.*;
+import server.markhome.ycf.v3_1.busmodel.busmodelobj.*;
+
+public class BusModelBuffIndexTweak
+	extends BusModelBuffTweak
+	implements IBusModelIndexTweak
+{
+	protected IYCFKeyHash256 requiredIndexId;
+
+	public BusModelBuffIndexTweak() {
+		super();
+		requiredIndexId = YCFDbKeyHash256.fromHex( IBusModelPubIndexTweak.INDEXID_INIT_VALUE.toString() );
+	}
+
+	@Override
+	public int getClassCode() {
+		return( IBusModelIndexTweak.CLASS_CODE );
+	}
+
+	@Override
+	public void setRequiredContainerScopeDef(IYCFKeyHash256 argIndexId) {
+		IBusModelSchema targetBackingBusModel = IBusModelSchema.getBackingBusModel();
+		if (targetBackingBusModel == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerIndexDef-args", 0, "IBusModelSchema.getBackingBusModel()");
+		}
+		IBusModelScopeTable targetTable = targetBackingBusModel.getTableScope();
+		if (targetTable == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerScopeDef", 0, "IBusModelSchema.getBackingBusModel().getTableScope()");
+		}
+		IBusModelScope found = targetTable.readDerived(ISecureSchema.getAuthorizationCallback().getEffectiveAuthorization(), argIndexId);
+		if (found == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerScopeDef-args", 0, "found");
+		}
+		else if (found instanceof IBusModelIndex) || (found instanceof IBusModelProtIndex) || (found instanceof IBusModelPubIndex)) {
+			super.setRequiredContainerScopeDef(argIndexId);
+		requiredIndexId = argIndexId;
+		}
+		else {
+			throw new YCFUnsupportedClassException(getClass(), "setRequiredContainerScopeDef-args", "found", found, "IBusModelIndexIBusModelProtIndexIBusModelPubIndex");
+		}
+	}
+
+	@Override
+	public void setRequiredContainerScopeDef(IBusModelIndex argObj) {
+
+		if(argObj == null) {
+			throw new YCFNullArgumentException(getClass(), "setContainerIndexDef", 1, "argObj");
+		}
+		else if ((argObj instanceof IBusModelIndex) || (argObj instanceof IBusModelProtIndex) || (argObj instanceof IBusModelPubIndex)) {
+			setRequiredIndexId(argObj.getRequiredId());
+		else {
+			throw new YCFUnsupportedClassException(getClass(), "setContainerIndexDef", "argObj", argObj, "IBusModelIndex, IBusModelProtIndex), IBusModelPubIndex)");
+		}
+	}
+
+	@Override
+	public void setRequiredContainerScopeDef(IBusModelProtIndex argObj) {
+
+		if(argObj == null) {
+			throw new YCFNullArgumentException(getClass(), "setContainerIndexDef", 1, "argObj");
+		}
+		else if ((argObj instanceof IBusModelProtIndex) || (argObj instanceof IBusModelPubIndex)) {
+			setRequiredIndexId(argObj.getRequiredId());
+		else {
+			throw new YCFUnsupportedClassException(getClass(), "setContainerIndexDef", "argObj", argObj, "IBusModelProtIndex, IBusModelPubIndex)");
+		}
+	}
+
+	@Override
+	public void setRequiredContainerScopeDef(IBusModelPubIndex argObj) {
+
+		if(argObj == null) {
+			throw new YCFNullArgumentException(getClass(), "setContainerIndexDef", 1, "argObj");
+		}
+		else if (argObj instanceof IBusModelPubIndex) {
+			setRequiredIndexId(argObj.getRequiredId());
+		}
+		else {
+			throw new YCFUnsupportedClassException(getClass(), "setContainerIndexDef", "argObj", argObj, "IBusModelPubIndex");
+		}
+	}
+
+	@Override
+	public IBusModelIndex getRequiredContainerIndexDef() {
+		IBusModelSchema targetBackingBusModel = IBusModelSchema.getBackingBusModel();
+		if (targetBackingBusModel == null) {
+			throw new YCFNullArgumentException(getClass(), "getRequiredContainerIndexDef", 0, "IBusModelSchema.getBackingBusModel()");
+		}
+		IBusModelIndexTable targetTable = targetBackingBusModel.getTableIndex();
+		if (targetTable == null) {
+			throw new YCFNullArgumentException(getClass(), "getRequiredContainerIndexDef", 0, "IBusModelSchema.getBackingBusModel().getTableIndex()");
+		}
+		IBusModelIndex targetRec = targetTable.readDerived(ISecureSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredIndexId());
+		return(targetRec);
+	}
+
+	@Override
+	public IBusModelIndex getRequiredContainerIndexDef() {
+		IBusModelSchema targetBackingBusModel = IBusModelSchema.getBackingBusModel();
+		if (targetBackingBusModel == null) {
+			throw new YCFNullArgumentException(getClass(), "getRequiredContainerIndexDef", 0, "IBusModelSchema.getBackingBusModel()");
+		}
+		IBusModelIndexTable targetTable = targetBackingBusModel.getTableIndex();
+		if (targetTable == null) {
+			throw new YCFNullArgumentException(getClass(), "getRequiredContainerIndexDef", 0, "IBusModelSchema.getBackingBusModel().getTableIndex()");
+		}
+		IBusModelIndex targetRec = targetTable.readDerived(ISecureSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredIndexId());
+		return(targetRec);
+	}
+
+	@Override
+	public IBusModelIndex getRequiredContainerIndexDef() {
+		IBusModelSchema targetBackingBusModel = IBusModelSchema.getBackingBusModel();
+		if (targetBackingBusModel == null) {
+			throw new YCFNullArgumentException(getClass(), "getRequiredContainerIndexDef", 0, "IBusModelSchema.getBackingBusModel()");
+		}
+		IBusModelIndexTable targetTable = targetBackingBusModel.getTableIndex();
+		if (targetTable == null) {
+			throw new YCFNullArgumentException(getClass(), "getRequiredContainerIndexDef", 0, "IBusModelSchema.getBackingBusModel().getTableIndex()");
+		}
+		IBusModelPubIndex targetRec = targetTable.readDerived(ISecureSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredIndexId());
+		return(targetRec);
+	}
+
+	@Override
+	public void setRequiredContainerScopeDef(IYCFKeyHash256 argIndexId) {
+		IBusModelSchema targetBackingBusModel = IBusModelSchema.getBackingBusModel();
+		if (targetBackingBusModel == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerIndexDef-args", 0, "IBusModelSchema.getBackingBusModel()");
+		}
+		IBusModelScopeTable targetTable = targetBackingBusModel.getTableScope();
+		if (targetTable == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerScopeDef", 0, "IBusModelSchema.getBackingBusModel().getTableScope()");
+		}
+		IBusModelScope found = targetTable.readDerived(ISecureSchema.getAuthorizationCallback().getEffectiveAuthorization(), argIndexId);
+		if (found == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerScopeDef-args", 0, "found");
+		}
+		else if (found instanceof IBusModelIndex) || (found instanceof IBusModelProtIndex) || (found instanceof IBusModelPubIndex)) {
+			super.setRequiredContainerScopeDef(argIndexId);
+		requiredIndexId = argIndexId;
+		}
+		else {
+			throw new YCFUnsupportedClassException(getClass(), "setRequiredContainerScopeDef-args", "found", found, "IBusModelIndexIBusModelProtIndexIBusModelPubIndex");
+		}
+	}
+
+	@Override
+	public void setRequiredContainerIndexDef(IYCFKeyHash256 argIndexId) {
+		IBusModelSchema targetBackingBusModel = IBusModelSchema.getBackingBusModel();
+		if (targetBackingBusModel == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerIndexDef-args", 0, "IBusModelSchema.getBackingBusModel()");
+		}
+		IBusModelScopeTable targetTable = targetBackingBusModel.getTableScope();
+		if (targetTable == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerScopeDef", 0, "IBusModelSchema.getBackingBusModel().getTableScope()");
+		}
+		IBusModelScope found = targetTable.readDerived(ISecureSchema.getAuthorizationCallback().getEffectiveAuthorization(), argIndexId);
+		if (found == null) {
+			throw new YCFNullArgumentException(getClass(), "setRequiredContainerScopeDef-args", 0, "found");
+		}
+		else if (found instanceof IBusModelIndex) || (found instanceof IBusModelProtIndex) || (found instanceof IBusModelPubIndex)) {
+			super.setRequiredContainerScopeDef(argIndexId);
+		requiredIndexId = argIndexId;
+		}
+		else {
+			throw new YCFUnsupportedClassException(getClass(), "setRequiredContainerScopeDef-args", "found", found, "IBusModelIndexIBusModelProtIndexIBusModelPubIndex");
+		}
+	}
+
+	@Override
+	public void setRequiredContainerIndexDef(IBusModelIndex argObj) {
+		if(argObj == null) {
+			throw new YCFNullArgumentException(getClass(), "setContainerIndexDef", 1, "argObj");
+		}
+		else {
+			setRequiredIndexId(argObj.getRequiredId());
+		}
+	}
+
+	@Override
+	public IYCFKeyHash256 getRequiredIndexId() {
+		return(requiredIndexId);
+	}
+
+	public void setRequiredIndexId( IYCFKeyHash256 value ) {
+		if( value == null || value.isNull() ) {
+			throw new YCFNullArgumentException( getClass(),
+				"setRequiredIndexId",
+				1,
+				"value" );
+		}
+		requiredIndexId = value;
+	}
+
+	@Override
+	public boolean equals( Object obj ) {
+		if( obj == null ) {
+			return( false );
+		}
+		else if( obj instanceof IBusModelIndexTweak rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelIndexTweakH rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelTweakHPKey ) {
+			IBusModelTweakHPKey rhs = (IBusModelTweakHPKey)obj;
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelIndexTweakByIndexIdxKey rhs ) {
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelProtIndexTweak rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelProtIndexTweakH rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelProtTweakHPKey rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelIndexTweakByIndexIdxKey rhs ) {
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelPubIndexTweak rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelPubIndexTweakH rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelPubTweakHPKey rhs ) {
+			if( getRequiredId() != null ) {
+				if( rhs.getRequiredId() != null ) {
+					if( ! getRequiredId().equals( rhs.getRequiredId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof IBusModelIndexTweakByIndexIdxKey rhs ) {
+			if( getRequiredIndexId() != null ) {
+				if( rhs.getRequiredIndexId() != null ) {
+					if( ! getRequiredIndexId().equals( rhs.getRequiredIndexId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredIndexId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else {
+			boolean retval = super.equals( obj );
+			return( retval );
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		int hashCode = super.hashCode();
+		hashCode = hashCode + getRequiredIndexId().hashCode();
+		return( hashCode & 0x7fffffff );
+	}
+
+	@Override
+	public int compareTo( Object obj ) {
+		int cmp;
+		if( obj == null ) {
+			return( -1 );
+		}
+		else if( obj instanceof IBusModelIndexTweak rhs ) {
+			cmp = super.compareTo( rhs );
+			if( cmp != 0 ) {
+				return( cmp );
+			}
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelTweakHPKey rhs ) {
+			if( getRequiredRevision() < rhs.getRequiredRevision() ) {
+				return( -1 );
+			}
+			else if( getRequiredRevision() > rhs.getRequiredRevision() ) {
+				return( 1 );
+			}
+			if (getRequiredId() != null) {
+				if (rhs.getRequiredId() != null) {
+					cmp = getRequiredId().compareTo( rhs.getRequiredId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelIndexTweakH rhs ) {
+			cmp = super.compareTo( rhs );
+			if( cmp != 0 ) {
+				return( cmp );
+			}
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelIndexTweakByIndexIdxKey rhs ) {
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}			return( 0 );
+		}
+		else if( obj instanceof IBusModelProtIndexTweak rhs ) {
+			cmp = super.compareTo( rhs );
+			if( cmp != 0 ) {
+				return( cmp );
+			}
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+ 		}
+		else if( obj instanceof IBusModelProtTweakHPKey rhs ) {
+			if( getRequiredRevision() < rhs.getRequiredRevision() ) {
+				return( -1 );
+			}
+			else if( getRequiredRevision() > rhs.getRequiredRevision() ) {
+				return( 1 );
+			}
+			if (getRequiredId() != null) {
+				if (rhs.getRequiredId() != null) {
+					cmp = getRequiredId().compareTo( rhs.getRequiredId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelProtIndexTweakH rhs ) {
+			cmp = super.compareTo( rhs );
+			if( cmp != 0 ) {
+				return( cmp );
+			}
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelProtIndexTweakByIndexIdxKey rhs ) {
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}			return( 0 );
+		}
+		else if( obj instanceof IBusModelPubIndexTweak rhs ) {
+			cmp = super.compareTo( rhs );
+			if( cmp != 0 ) {
+				return( cmp );
+			}
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelPubTweakHPKey rhs ) {
+			if( getRequiredRevision() < rhs.getRequiredRevision() ) {
+				return( -1 );
+			}
+			else if( getRequiredRevision() > rhs.getRequiredRevision() ) {
+				return( 1 );
+			}
+			if (getRequiredId() != null) {
+				if (rhs.getRequiredId() != null) {
+					cmp = getRequiredId().compareTo( rhs.getRequiredId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelPubIndexTweakH rhs ) {
+			cmp = super.compareTo( rhs );
+			if( cmp != 0 ) {
+				return( cmp );
+			}
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof IBusModelPubIndexTweakByIndexIdxKey rhs ) {
+			if (getRequiredIndexId() != null) {
+				if (rhs.getRequiredIndexId() != null) {
+					cmp = getRequiredIndexId().compareTo( rhs.getRequiredIndexId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredIndexId() != null) {
+				return( -1 );
+			}			return( 0 );
+		}
+		else {
+			cmp = super.compareTo( obj );
+			return( cmp );
+		}
+	}
+
+	@Override
+	public void set( IBusModelTweak src ) {
+		if( src instanceof BusModelBuffIndexTweak ) {
+			setIndexTweak( (BusModelBuffIndexTweak)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+				"compareTo",
+				"src",
+				src,
+				"BusModelBuffIndexTweak" );
+		}
+	}
+
+	@Override
+	public void setIndexTweak( IBusModelIndexTweak src ) {
+		super.setTweak( src );
+		setRequiredContainerIndexDef(src.getRequiredContainerIndexDef());
+		setRequiredIndexId(src.getRequiredIndexId());
+	}
+
+	@Override
+	public void set( IBusModelTweakH src ) {
+		if( src instanceof IBusModelIndexTweakH ) {
+			setIndexTweak( (IBusModelIndexTweakH)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+					"set",
+					"src",
+					src,
+					"IBusModelIndexTweakH" );
+		}
+	}
+
+	@Override
+	public void setIndexTweak( IBusModelIndexTweakH src ) {
+		super.setTweak( src );
+		setRequiredContainerIndexDef(src.getRequiredContainerIndexDef());
+		setRequiredIndexId(src.getRequiredIndexId());
+	}
+
+	@Override
+	public void set( IBusModelProtTweak src ) {
+		if( src instanceof BusModelProtBuffIndexTweak ) {
+			setIndexTweak( (BusModelProtBuffIndexTweak)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+				"compareTo",
+				"src",
+				src,
+				"BusModelProtBuffIndexTweak" );
+		}
+	}
+
+	@Override
+	public void setIndexTweak( IBusModelProtIndexTweak src ) {
+		super.setTweak( src );
+		setRequiredContainerIndexDef(src.getRequiredContainerIndexDef());
+		setRequiredIndexId(src.getRequiredIndexId());
+	}
+
+	@Override
+	public void set( IBusModelProtTweakH src ) {
+		if( src instanceof IBusModelProtIndexTweakH ) {
+			setIndexTweak( (IBusModelProtIndexTweakH)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+					"set",
+					"src",
+					src,
+					"IBusModelProtIndexTweakH" );
+		}
+	}
+
+	@Override
+	public void setIndexTweak( IBusModelProtIndexTweakH src ) {
+		super.setTweak( src );
+		setRequiredContainerIndexDef(src.getRequiredContainerIndexDef());
+		setRequiredIndexId(src.getRequiredIndexId());
+	}
+
+	@Override
+	public void set( IBusModelPubTweak src ) {
+		if( src instanceof BusModelPubBuffIndexTweak ) {
+			setIndexTweak( (BusModelPubBuffIndexTweak)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+				"compareTo",
+				"src",
+				src,
+				"BusModelPubBuffIndexTweak" );
+		}
+	}
+
+	@Override
+	public void setIndexTweak( IBusModelPubIndexTweak src ) {
+		super.setTweak( src );
+		setRequiredContainerIndexDef(src.getRequiredContainerIndexDef());
+		setRequiredIndexId(src.getRequiredIndexId());
+	}
+
+	@Override
+	public void set( IBusModelPubTweakH src ) {
+		if( src instanceof IBusModelPubIndexTweakH ) {
+			setIndexTweak( (IBusModelPubIndexTweakH)src );
+		}
+		else {
+			throw new YCFUnsupportedClassException( getClass(),
+					"set",
+					"src",
+					src,
+					"IBusModelPubIndexTweakH" );
+		}
+	}
+
+	@Override
+	public void setIndexTweak( IBusModelPubIndexTweakH src ) {
+		super.setTweak( src );
+		setRequiredContainerIndexDef(src.getRequiredContainerIndexDef());
+		setRequiredIndexId(src.getRequiredIndexId());
+	}
+
+	@Override
+	public String getXmlAttrFragment() {
+		String ret = super.getXmlAttrFragment() 
+			+ " RequiredId=" + "\"" + getRequiredId().toString() + "\""
+			+ " RequiredIndexId=" + "\"" + getRequiredIndexId().toString() + "\"";
+		return( ret );
+	}
+
+	@Override
+	public String toString() {
+		String ret = "<BusModelBuffIndexTweak" + getXmlAttrFragment() + "/>";
+		return( ret );
+	}
+}
