@@ -40,16 +40,28 @@ import java.io.PrintStream;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFMessageLog extends JSObject {
+public interface IYCFMessageLog extends IYCFAnyObj {
 
 	/**
-	 *	IYCFMessageLog getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFMessageLog> singleton = IYCFMtReference<YCFMessageLog>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFMessageLog getSingleton();
+	public static YCFMessageLog getService() {
+		YCFMessageLog ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFMessageLog();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	Get an PrintStream that wraps this log

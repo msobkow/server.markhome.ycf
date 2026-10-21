@@ -49,13 +49,25 @@ import server.markhome.ycf.IYCFNullArgumentException;
 public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 
 	/**
-	 *	IYCFXmlCoreSaxParser getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFXmlCoreSaxParser> singleton = IYCFMtReference<YCFXmlCoreSaxParser>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFXmlCoreSaxParser The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFXmlCoreSaxParser getSingleton();
+	public static YCFXmlCoreSaxParser getService() {
+		YCFXmlCoreSaxParser ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFXmlCoreSaxParser();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 //	Instance Attributes
 
@@ -105,7 +117,7 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
         try {
         	assert saxParser == null : "saxParser already exists";
 
-        	SAXParserFactory spf = SAXParserFactory.newInstance();
+        	SAXParserFactory spf = SAXParserFactory.getInstance();
 			spf.setNamespaceAware(true);
 			spf.setXIncludeAware(false);
 			//spf.setSchema(schema);

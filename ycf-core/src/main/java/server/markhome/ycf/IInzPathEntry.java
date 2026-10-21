@@ -33,7 +33,28 @@ import java.io.InputStream;
  * An IInzPathEntry can represent either a resource path, in which case it needs to specify a interface for resource loading, and use a path
  * that starts with "resource:", or a file system path, in which case it accesses files directly from the file system.
  */
-public interface IInzPathEntry extends JSObject {
+public interface IInzPathEntry extends IYCFAnyObj {
+
+	/**
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<InzPathEntry> singleton = IYCFMtReference<InzPathEntry>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
+	 *
+	 *	@return The service singleton.
+	 */
+	@JSExport
+	public static InzPathEntry getService() {
+		InzPathEntry ref = singleton.get();
+		if (ref == null) {
+			ref = new InzPathEntry();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
     /**
      * Constructs an IInzPathEntry with the specified file system path.

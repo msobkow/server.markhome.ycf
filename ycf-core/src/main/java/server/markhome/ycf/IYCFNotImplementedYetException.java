@@ -34,13 +34,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFNotImplementedYetException extends IYCFRuntimeException {
 
 	/**
-	 *	IYCFNotImplementedYetException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFNotImplementedYetException> singleton = IYCFMtReference<YCFNotImplementedYetException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFNotImplementedYetException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFNotImplementedYetException getSingleton();
+	public static YCFNotImplementedYetException getService() {
+		YCFNotImplementedYetException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFNotImplementedYetException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFNotImplementedYetException(enMsg, xMsg)

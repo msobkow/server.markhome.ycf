@@ -32,13 +32,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFUnsupportedClassException extends IYCFRuntimeException {
 
 	/**
-	 *	IYCFUnsupportedClassException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFUnsupportedClassException> singleton = IYCFMtReference<YCFUnsupportedClassException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFUnsupportedClassException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFUnsupportedClassException getSingleton();
+	public static YCFUnsupportedClassException getService() {
+		YCFUnsupportedClassException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFUnsupportedClassException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFUnsupportedClassException(enMsg, xMsg)

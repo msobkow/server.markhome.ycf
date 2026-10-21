@@ -38,13 +38,25 @@ import java.util.*;
 public interface IYCFConsoleMessageLog extends IYCFMessageLog {
 
 	/**
-	 *	IYCFConsoleMessageLog getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFConsoleMessageLog> singleton = IYCFMtReference<YCFConsoleMessageLog>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFConsoleMessageLog The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFConsoleMessageLog getSingleton();
+	public static YCFConsoleMessageLog getService() {
+		YCFConsoleMessageLog ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFConsoleMessageLog();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFConsoleMessageLog getInstance()

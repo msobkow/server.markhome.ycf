@@ -32,13 +32,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFDbException extends IYCFRuntimeException {
 
 	/**
-	 *	IYCFDbException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFDbException> singleton = IYCFMtReference<YCFDbException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFDbException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFDbException getSingleton();
+	public static YCFDbException getService() {
+		YCFDbException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFDbException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFDbException(enMsg, xMsg)

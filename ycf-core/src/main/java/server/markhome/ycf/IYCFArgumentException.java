@@ -35,13 +35,25 @@ import java.util.*;
 public interface IYCFArgumentException extends IYCFRuntimeException {
 
 	/**
-	 *	IYCFArgumentException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFArgumentException> singleton = IYCFMtReference<YCFArgumentException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFArgumentException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFArgumentException getSingleton();
+	public static YCFArgumentException getService() {
+		YCFArgumentException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFArgumentException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFArgumentException(enMsg, xMsg)

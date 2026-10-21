@@ -35,13 +35,25 @@ import java.util.*;
 public interface IYCFReqKeyHash384 extends IYCFKeyHash384 {
 
 	/**
-	 *	IYCFReqKeyHash384 getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<IYCFReqKeyHash384> singleton = IYCFMtReference<IYCFReqKeyHash384>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFReqKeyHash384 getSingleton();
+	public static IYCFReqKeyHash384 getService() {
+		IYCFReqKeyHash384 ref = singleton.get();
+		if (ref == null) {
+			ref = new IYCFReqKeyHash384();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFReqKeyHash384 getInstance()

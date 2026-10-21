@@ -33,13 +33,25 @@ import org.teavm.jso.JSProperty;
 public interface IYCFReqKeyHash256 extends IYCFKeyHash256 {
 
 	/**
-	 *	IYCFReqKeyHash256 getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<IYCFReqKeyHash256> singleton = IYCFMtReference<IYCFReqKeyHash256>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFReqKeyHash256 getSingleton();
+	public static IYCFReqKeyHash256 getService() {
+		IYCFReqKeyHash256 ref = singleton.get();
+		if (ref == null) {
+			ref = new IYCFReqKeyHash256();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFReqKeyHash256 getInstance()

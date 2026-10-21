@@ -34,16 +34,28 @@ import java.text.Format;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFBigDecimalUtil extends JSObject {
+public interface IYCFBigDecimalUtil extends IYCFAnyObj {
 
 	/**
-	 *	IYCFBigDecimalUtil getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFBigDecimalUtil> singleton = IYCFReference<YCFBigDecimalUtil>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFBigDecimalUtil The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFBigDecimalUtil getSingleton();
+	public static YCFBigDecimalUtil getService() {
+		YCFBigDecimalUtil ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFBigDecimalUtil();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	The maximum number of digits supported is 31, in keeping with database NUMBER limitations from the majority of vendors.

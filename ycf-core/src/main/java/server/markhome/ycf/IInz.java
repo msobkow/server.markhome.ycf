@@ -34,25 +34,44 @@ import java.util.concurrent.atomic.AtomicReference;
  * The IInz interface is responsible for loading language files, managing language codes,
  * and providing access to translations through the IInzLang interface.
  */
-public interface IInz extends JSObject {
-//    public static final String IYCFLIB_INZ_PATH = "/server.markhome.ycf.v3_1.cflib/src/main/resources/inz/langs";
+public interface IInz extends IYCFAnyObj {
+
+	/**
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<IInz> singleton = IYCFMtReference<IInz>.getService().getInstance();
+
+	/**
+	 *	Get the service singleton.
+	 *
+	 *	@return The service singleton.
+	 */
 	@JSExport
-    public static final String IYCFLIB_INZ_PATH = "resource://inz/langs";
+	public static IInz getService() {
+		IInz ref = singleton.get();
+		if (ref == null) {
+			ref = new Inz();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
+
+//    public static final String IYCFLIB_INZ_PATH = "/server.markhome.ycf/v3_1/ycf-core/src/main/resources/inz/langs/ycflib";
+    public static final String IYCFLIB_INZ_PATH = "resource://inz/langs/ycflib";
 
     /**
      * The default language code used when no specific language is set.
      * This is typically "en" for English.
      */
-	@JSExport
     public static final String DEFAULT_LANG_CODE = "en";
 
-	@JSExport
 	public static String systemLangCode = DEFAULT_LANG_CODE;
 
 	/**
 	 * The initial default effective language code handler returns the system language code.
 	 */
-	public static IInzEffectiveLangCode effectiveLangCode = new IInzEffectiveLangCode() {
+	public static IInzEffectiveLangCodeCallback effectiveLangCode = new IInzEffectiveLangCodeCallback() {
 																@Override
 																public String getEffectiveLangCode() {
 																	return(systemLangCode);
@@ -75,30 +94,30 @@ public interface IInz extends JSObject {
     protected static final ArrayList<InzEntry> entries = new ArrayList<>();
 
     /**
-     * Set the callback hook for getting the current session's language id string.
+     * Set the callback hook for getting the current session's language id String.
      * 
      * @param callback
      * @return The previously registered callback
 	 */
 	@JSExport
-    public static default IInzEffectiveLangCode installEffectiveLangCodeCallback(IInzEffectiveLangCode callback) {
+    public static IInzEffectiveLangCodeCallback installEffectiveLangCodeCallback(IInzEffectiveLangCodeCallback callback) {
 		if (callback == null) {
 			return(effectiveLangCode);
 		}
 		else {
-			IInzEffectiveLangCode ret = effectiveLangCode;
+			IInzEffectiveLangCodeCallback ret = effectiveLangCode;
 			effectiveLangCode = callback;
 			return(ret);
 		}
 	}
 
     /**
-     * Get the callback hook for getting the current session's language id string.
+     * Get the callback hook for getting the current session's language id String.
      * 
      * @return The IIInzEffectiveLangId callback that was most recently installed; initially null.
 	 */
 	@JSExport
-    public static default IInzEffectiveLangCode getEffectiveLangCodeCallback() {
+    public static IInzEffectiveLangCodeCallback getEffectiveLangCodeCallback() {
 		return(effectiveLangCode);
 	}
 
@@ -107,13 +126,13 @@ public interface IInz extends JSObject {
      * 
      * @return The current effective language id.
      *
-     * public static default String getEffectiveLangCode()
+     * public static String getEffectiveLangCode()
 	 */
 	@JSExport
-	public static string getEffectiveLangCode() {
+	public static String getEffectiveLangCode() {
 		String langcode;
 		try {
-			langcode = effectiveLangeCode.getEffectiveLangCode();
+			langcode = effectiveLangCode.getEffectiveLangCode();
 		}
 		catch(Throwable t) {
 			langcode = getSystemLangCode();
@@ -127,7 +146,7 @@ public interface IInz extends JSObject {
      * @param pathEntry The IInzPathEntry to add.
      */
 	@JSExport
-    public static default void addPathEntry(IInzPathEntry pathEntry) {
+    public static void addPathEntry(IInzPathEntry pathEntry) {
 		if (pathEntry == null || pathEntry.getPath() == null || pathEntry.getPath().isEmpty()) {
 			return;
 		}
@@ -186,7 +205,7 @@ public interface IInz extends JSObject {
      * </pre>
 	 */
 	@JSExport
-    public static default void loadLangEntries(boolean forceReload) {
+    public static void loadLangEntries(boolean forceReload) {
         if (pathEntries == null || pathEntries.isEmpty()) {
             throw new IllegalStateException("Path entries are not set");
         }
@@ -220,7 +239,7 @@ public interface IInz extends JSObject {
      * @return The current system language code as a String.
      */
 	@JSExport
-    public static default String getSystemLangCode() {
+    public static String getSystemLangCode() {
 		return(systemLangCode);
 	}
 
@@ -228,7 +247,7 @@ public interface IInz extends JSObject {
      * Set the current system language code.
      * @param langCode
      */
-     public static default void setSystemLangCode(String langCode) {
+     public static void setSystemLangCode(String langCode) {
 		if (langCode == null || langCode.isEmpty()) {
 			return;
 		}
@@ -244,13 +263,13 @@ public interface IInz extends JSObject {
      * Get a translation for a given key in the current system language, probing each of the path entries in order
      * until a non-null translation is found.  If no translation is found, it returns "!key!".
      * @param key The translation key to look up.
-     * @return The translated string if found, or "!key!" if not found.
+     * @return The translated String if found, or "!key!" if not found.
      * @throws IllegalArgumentException if the key is null or empty.
      * @see IInzEntry#x(String, String)
      * @see IInzLang#x(String)
      */
 	@JSExport
-    public static default String x(String key) {
+    public static String x(String key) {
         if (key == null || key.isEmpty()) {
             throw new IllegalArgumentException("Key cannot be null or empty.");
         }
@@ -263,13 +282,13 @@ public interface IInz extends JSObject {
      * This method is case-insensitive for both the key and the language code.
      * @param key The translation key to look up.
      * @param langCode The language code to use for the translation.
-     * @return The translated string if found, or "!key!" if not found.
+     * @return The translated String if found, or "!key!" if not found.
      * @throws IllegalArgumentException if the key or language code is null or empty.
      * @see IInzEntry#x(String, String)
      * @see IInzLang#x(String)
 	 */
 	@JSExport
-    public static default String x(String key, String langCode) {
+    public static String x(String key, String langCode) {
         if (key == null || key.isEmpty()) {
             throw new IllegalArgumentException("Key cannot be null or empty.");
         }
@@ -289,7 +308,7 @@ public interface IInz extends JSObject {
                 }
             }
             if (lowerLangCode.length() == 5) {
-                lowerLangCode = lowerLangCode.substring(0,1);
+                lowerLangCode = lowerLangCode.subString(0,1);
             }
             else {
                 if ("en".equals(lowerLangCode)) {
@@ -307,13 +326,13 @@ public interface IInz extends JSObject {
     /**
      * Get a system English translation for a given key using resource path entries only.
      * @param key The translation key to look up.
-     * @return The translated string if found, or "!key!" if not found.
+     * @return The translated String if found, or "!key!" if not found.
      * @throws IllegalArgumentException if the key is null or empty.
      * @see IInzEntry#x(String, String)
      * @see IInzLang#x(String)
 	 */
 	@JSExport
-    public static default String s(String key) {
+    public static String s(String key) {
         if (key == null || key.isEmpty()) {
             throw new IllegalArgumentException("Key cannot be null or empty.");
         }

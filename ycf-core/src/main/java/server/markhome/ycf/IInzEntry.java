@@ -44,29 +44,27 @@ import java.util.Properties;
  * @see IInz
  * @see IInzLang
  */
-public interface IInzEntry extends JSObject {
+public interface IInzEntry extends IYCFAnyObj {
 
 	/**
-	 *	The singleton for the interface is a protected final static. If this is not allowed by JDK 25, then the specification will be moved to the implementation and all references to it moved along with it.
-	 *	<p>
-	 *	Note that as a protected or private attribute, it is not exported nor published as a property.
+	 *	The service singleton has to be multithread-safe.
 	 */
-	protected final static IYCFMtReference<IInzEntry> InzEntry_singleton = new IYCFMtReference<>(null);
+	static final IYCFMtReference<InzEntry> singleton = IYCFMtReference<InzEntry>.getService().getInstance(null);
 
 	/**
-	 *	Get the singleton that implements the getInstance() and service methods.
+	 *	Get the service singleton.
 	 *
-	 *	@return IInzEntry The singleton for the interface.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static IInzEntry getSingleton() {
-		IInzEntry retval = InzEntry_singleton.get();
-		if(retval == null) {
-			retval = new InzEntry();
-			InzEntry_singleton.set(null, retval);
-			retval = InzEntry_singleton.get();
+	public static InzEntry getService() {
+		InzEntry ref = singleton.get();
+		if (ref == null) {
+			ref = new InzEntry();
+			singleton.set(null, ref);
+			ref = singleton.get();
 		}
-		return(retval);
+		return(ref);
 	}
 
 	/**

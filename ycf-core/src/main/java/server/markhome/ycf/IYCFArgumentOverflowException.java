@@ -34,12 +34,25 @@ import java.math.*;
 public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 
 	/**
-	 *	Get the interface implementation singleton providing the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFArgumentOverflowException> singleton = IYCFMtReference<YCFArgumentOverflowException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFArgumentOverflowException The interface singleton
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFArgumentOverflowException getSingleton();
+	public static YCFArgumentOverflowException getService() {
+		YCFArgumentOverflowException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFArgumentOverflowException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages.

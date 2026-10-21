@@ -30,16 +30,28 @@ import org.teavm.jso.JSProperty;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFFireOnInstanceOf extends JSObject {
+public interface IYCFFireOnInstanceOf extends IYCFAnyObj {
 
 	/**
-	 *	IYCFFireOnInstanceOf getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFFireOnInstanceOf> singleton = IYCFMtReference<YCFFireOnInstanceOf>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFFireOnInstanceOf The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static IYCFFireOnInstanceOf getSingleton();
+	public static YCFFireOnInstanceOf getService() {
+		YCFFireOnInstanceOf ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFFireOnInstanceOf();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFFireOnInstanceOf YCFFireOnInstanceOf_getInstance()

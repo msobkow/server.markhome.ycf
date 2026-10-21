@@ -33,13 +33,25 @@ import org.teavm.jso.JSProperty;
 public interface IYCFOptKeyHash160 extends IYCFKeyHash160 {
 
 	/**
-	 *	IYCFOptKeyHash160 getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<IYCFOptKeyHash160> singleton = IYCFMtReference<IYCFOptKeyHash160>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFOptKeyHash160  getSingleton();
+	public static IYCFOptKeyHash160 getService() {
+		IYCFOptKeyHash160 ref = singleton.get();
+		if (ref == null) {
+			ref = new IYCFOptKeyHash160();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFOptKeyHash160 getInstance()

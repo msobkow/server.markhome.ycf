@@ -46,6 +46,27 @@ import java.util.Comparator;
 public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 
 	/**
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<IYCFKeyHashBase<T>> singleton = IYCFMtReference<IYCFKeyHashBase<T>>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
+	 *
+	 *	@return The service singleton.
+	 */
+	@JSExport
+	public static IYCFKeyHashBase<T> getService() {
+		IYCFKeyHashBase<T> ref = singleton.get();
+		if (ref == null) {
+			ref = new IYCFKeyHashBase<T>();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
+
+	/**
 	 *	The lowercase hexadecimal digits are used for the string formats.
 	 */
 	static final String hexDigits = "0123456789abcdef";
@@ -147,271 +168,262 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	static volatile long counter = 1;
 
 	/**
-	 *	T getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
-	 *
-	 *	@return T The singleton for the implementation.
-	 */
-	@JSExport
-	public static T getSingleton();
-
-	/**
-	 *	T YCFKeyHashBase_getInstance()
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance()
 	 *		Get an instance that provides the service method implementations.
 	 *
-	 *	@return T The instance implementation.
+	 *	@return IYCFKeyHashBase<T> The instance implementation.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance();
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance();
 
 	/**
-	 *	T getInstance()
+	 *	IYCFKeyHashBase<T> getInstance()
 	 *		Get an instance that provides the service method implementations.
 	 *
-	 *	@return T The instance implementation.
+	 *	@return IYCFKeyHashBase<T> IYCFKeyHashBase<T>he instance implementation.
 	 */
 	@JSExport
-	public T getInstance();
+	public IYCFKeyHashBase<T> getInstance();
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(i)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(i)
 	 *		Get an instance that provides the service method implementations with a generated value.
 	 *
 	 *	@param Dummy integer parameter to indicate a key value should be generated.
 	 *
-	 *	@return T The instance implementation with a generated value.
+	 *	@return IYCFKeyHashBase<T> IYCFKeyHashBase<T>he instance implementation with a generated value.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(int i);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(int i);
 
 	/**
-	 *	T getInstance(i)
+	 *	IYCFKeyHashBase<T> getInstance(i)
 	 *		Get an instance that provides the service method implementations with a generated value.
 	 *
 	 *	@param Dummy integer parameter to indicate a key value should be generated.
 	 *
-	 *	@return T The instance implementation with a generated value.
+	 *	@return IYCFKeyHashBase<T> IYCFKeyHashBase<T>he instance implementation with a generated value.
 	 */
 	@JSExport
-	public T getInstance(int i);
+	public IYCFKeyHashBase<T> getInstance(int i);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(s)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(s)
 	 *		Get an instance that provides the service method implementations with a generated value.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
+	 *	@param s IYCFKeyHashBase<T>he string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
 	 *
 	 *	@return An instance which may be a null if the string s is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(String s);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(String s);
 
 	/**
-	 *	T getInstance()
+	 *	IYCFKeyHashBase<T> getInstance()
 	 *		Get an instance that provides the service method implementations with a generated value.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
+	 *	@param s IYCFKeyHashBase<T>he string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
 	 *
 	 *	@return An instance which may be a null if the string s is null.
 	 */
 	@JSExport
-	public T getInstance(String s);
+	public IYCFKeyHashBase<T> getInstance(String s);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(a)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(a)
 	 *		Get an instance using the specified byte array as an initializer for the hash data.
 	 *
-	 *	@param a The byte array to use to initialize the hash data.
+	 *	@param a IYCFKeyHashBase<T>he byte array to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the byte array a is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(byte[] a);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(byte[] a);
 
 	/**
-	 *	T getInstance(a)
+	 *	IYCFKeyHashBase<T> getInstance(a)
 	 *		Get an instance using the specified byte array as an initializer for the hash data.
 	 *
-	 *	@param a The byte array to use to initialize the hash data.
+	 *	@param a IYCFKeyHashBase<T>he byte array to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the byte array a is null.
 	 */
 	@JSExport
-	public T getInstance(byte[] a);
+	public IYCFKeyHashBase<T> getInstance(byte[] a);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(k)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(IYCFKeyHash128 k);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(IYCFKeyHash128 k);
 
 	/**
-	 *	T getInstance(k)
+	 *	IYCFKeyHashBase<T> getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public T getInstance(IYCFKeyHash128 k);
+	public IYCFKeyHashBase<T> getInstance(IYCFKeyHash128 k);
 
 	/**
-	 *	T getInstance(k)
+	 *	IYCFKeyHashBase<T> getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public T getInstance(IYCFKeyHash160 k);
+	public IYCFKeyHashBase<T> getInstance(IYCFKeyHash160 k);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(k)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(IYCFKeyHash160 k);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(IYCFKeyHash160 k);
 
 	/**
-	 *	T getInstance(k)
+	 *	IYCFKeyHashBase<T> getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public T getInstance(IYCFKeyHash224 k);
+	public IYCFKeyHashBase<T> getInstance(IYCFKeyHash224 k);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(k)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(IYCFKeyHash224 k);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(IYCFKeyHash224 k);
 
 	/**
-	 *	T getInstance(k)
+	 *	IYCFKeyHashBase<T> getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public T getInstance(IYCFKeyHash256 k);
+	public IYCFKeyHashBase<T> getInstance(IYCFKeyHash256 k);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(k)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(IYCFKeyHash256 k);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(IYCFKeyHash256 k);
 
 	/**
-	 *	T getInstance(k)
+	 *	IYCFKeyHashBase<T> getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public T getInstance(IYCFKeyHash384 k);
+	public IYCFKeyHashBase<T> getInstance(IYCFKeyHash384 k);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(k)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(IYCFKeyHash384 k);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(IYCFKeyHash384 k);
 
 	/**
-	 *	T getInstance(k)
+	 *	IYCFKeyHashBase<T> getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public T getInstance(IYCFKeyHash512 k);
+	public IYCFKeyHashBase<T> getInstance(IYCFKeyHash512 k);
 
 	/**
-	 *	T YCFKeyHashBase_getInstance(k)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(k)
 	 *		Get an instance using the specified key as an initializer for the hash data.
 	 *
-	 *	@param k The key to use to initialize the hash data.
+	 *	@param k IYCFKeyHashBase<T>he key to use to initialize the hash data.
 	 *
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_getInstance(IYCFKeyHash512 k);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_getInstance(IYCFKeyHash512 k);
 
 	/**
-	 *	T YCFKeyHashBase_fromInt(i)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_fromInt(i)
 	 *		Get an instance that uses the integer i to initialize the first 4 bytes of the key data.
 	 *
-	 *	@return T An instance that uses the integer i to initialize the first 4 bytes of the key data.
+	 *	@return IYCFKeyHashBase<T> An instance that uses the integer i to initialize the first 4 bytes of the key data.
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_fromInt(int i);
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_fromInt(int i);
 
 	/**
-	 *	T fromInt(i)
+	 *	IYCFKeyHashBase<T> fromInt(i)
 	 *		Get an instance that uses the integer i to initialize the first 4 bytes of the key data.
 	 *
-	 *	@return T An instance that uses the integer i to initialize the first 4 bytes of the key data.
+	 *	@return IYCFKeyHashBase<T> An instance that uses the integer i to initialize the first 4 bytes of the key data.
 	 */
 	@JSExport
-	public T fromInt(int i);
+	public IYCFKeyHashBase<T> fromInt(int i);
 
 	/**
-	 *	T YCFKeyHashBase_nullGet()
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_nullGet()
 	 *		Get a null instance.
 	 *
-	 *	@return T A null instance
+	 *	@return IYCFKeyHashBase<T> A null instance
 	 */
 	@JSExport
-	public static T YCFKeyHashBase_nullGet();
+	public static IYCFKeyHashBase<T> YCFKeyHashBase_nullGet();
 
 	/**
-	 *	T nullGet()
+	 *	IYCFKeyHashBase<T> nullGet()
 	 *		Get a null instance.
 	 *
-	 *	@return T A null instance.
+	 *	@return IYCFKeyHashBase<T> A null instance.
 	 */
 	@JSExport
-	public T nullGet();
+	public IYCFKeyHashBase<T> nullGet();
 
 	/**
 	 *	String YCFKeyHashBase_nullString()
 	 *		Get a null value string.
 	 *
-	 *	@return String The null value string.
+	 *	@return String IYCFKeyHashBase<T>he null value string.
 	 */
 	@JSExport
 	public static String YCFKeyHashBase_nullString();
@@ -429,7 +441,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	int YCFKeyHashBase_getHashLength()
 	 *		Get the length of the hash value.
 	 *
-	 *	@return The length of hashed values (size of the byte arrays.)
+	 *	@return IYCFKeyHashBase<T>he length of hashed values (size of the byte arrays.)
 	 */
 	@JSExport
   	public static int YCFKeyHashBase_getHashLength();
@@ -438,7 +450,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	int getHashLength()
 	 *		Get the length of the hash value.
 	 *
-	 *	@return The length of hashed values (size of the byte arrays.)
+	 *	@return IYCFKeyHashBase<T>he length of hashed values (size of the byte arrays.)
 	 */
 	@JSExport
   	public int getHashLength();
@@ -447,7 +459,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	int YCFKeyHashBase_getHashLengthString()
 	 *		Get the length of the hash value string form.
 	 *
-	 *	@return The length of hashed value strings.
+	 *	@return IYCFKeyHashBase<T>he length of hashed value strings.
 	 */
 	@JSExport
   	public static int YCFKeyHashBase_getHashLengthString();
@@ -456,7 +468,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	int getHashLengthString()
 	 *		Get the length of the hash value string form.
 	 *
-	 *	@return The length of hashed value strings.
+	 *	@return IYCFKeyHashBase<T>he length of hashed value strings.
 	 */
 	@JSExport
   	public int getHashLengthString();
@@ -465,7 +477,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	String YCFKeyHashBase_getHashAlgo()
 	 *		Get the name of the hash algorithm used.
 	 *
-	 *	@return The name of the hash algorithm used.
+	 *	@return IYCFKeyHashBase<T>he name of the hash algorithm used.
 	 */
 	@JSExport
   	public static String YCFKeyHashBase_getHashAlgo();
@@ -474,7 +486,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	String getHashAlgo()
 	 *		Get the name of the hash algorithm used.
 	 *
-	 *	@return The name of the hash algorithm used.
+	 *	@return IYCFKeyHashBase<T>he name of the hash algorithm used.
 	 */
 	@JSExport
   	public String getHashAlgo();
@@ -486,7 +498,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	@return less than zero if A is less than B, greater than zero if A is greater than B, otherwise zero.
 	 */
 	@JSExport
-  	public static int YCFKeyHashBase_compare(T a, T b);
+  	public static int YCFKeyHashBase_compare(IYCFKeyHashBase<T> a, IYCFKeyHashBase<T> b);
 
 	/**
 	 *	int compare(b)
@@ -495,7 +507,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	@return less than zero if this is less than B, greater than zero if this is greater than B, otherwise zero.
 	 */
 	@JSExport
-  	public int compare(T b);
+  	public int compare(IYCFKeyHashBase<T> b);
 
 	/**
 	 *	int YCFKeyHashBase_compareOrdered()
@@ -504,7 +516,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	@return less than zero if A is less than B, greater than zero if A is greater than B, otherwise zero.
 	 */
 	@JSExport
-  	public static int YCFKeyHashBase_compareOrdered(T a, T b);
+  	public static int YCFKeyHashBase_compareOrdered(IYCFKeyHashBase<T> a, IYCFKeyHashBase<T> b);
 
 	/**
 	 *	int compareOrdered()
@@ -513,7 +525,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	@return less than zero if this is less than B, greater than zero if this is greater than B, otherwise zero.
 	 */
 	@JSExport
-  	public int compareOrdered(T b);
+  	public int compareOrdered(IYCFKeyHashBase<T> b);
 
 	/**
 	 *	void YCFKeyHashBase_initStatics()
@@ -526,7 +538,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	byte[] YCFKeyHashBase_sbytesFromHex(s)
 	 *		Calculate a hash byte array from a hexadecimal string.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
+	 *	@param s IYCFKeyHashBase<T>he string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
 	 *
 	 *	@return A byte array or null if the string s is null.
 	 */
@@ -537,7 +549,7 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	byte[] sbytesFromHex(s)
 	 *		Calculate a hash byte array from a hexadecimal string.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
+	 *	@param s IYCFKeyHashBase<T>he string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
 	 *
 	 *	@return A byte array or null if the string s is null.
 	 */
@@ -545,103 +557,103 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
   	public byte[] sbytesFromHex(String s);
 
 	/**
-	 *	T YCFKeyHashBase_fromHex(s)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_fromHex(s)
 	 *		Create an instance from a hexadecimal string.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
+	 *	@param s IYCFKeyHashBase<T>he string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
 	 *
 	 *	@return An instance or null.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_fromHex(String s);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_fromHex(String s);
 
 	/**
-	 *	T fromHex(s)
+	 *	IYCFKeyHashBase<T> fromHex(s)
 	 *		Create an instance from a hexadecimal string.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
+	 *	@param s IYCFKeyHashBase<T>he string of hexadecimal characters, no more than YCFKeyHashBase_getHashLengthString() characters long.
 	 *
 	 *	@return An instance or null.
 	 */
 	@JSExport
-  	public T fromHex(String s);
+  	public IYCFKeyHashBase<T> fromHex(String s);
 
 	/**
-	 *	Comparator<T> YCFKeyHashBase_getComparator()
+	 *	Comparator<IYCFKeyHashBase<T>> YCFKeyHashBase_getComparator()
 	 *		Get a Comparator instance for the keys.
 	 *
 	 *	@return A Comparator for the key instances.
 	 */
 	@JSExport
-	public static Comparator<T> YCFKeyHashBase_getComparator();
+	public static Comparator<IYCFKeyHashBase<T>> YCFKeyHashBase_getComparator();
 
 	/**
-	 *	Comparator<T> getComparator()
+	 *	Comparator<IYCFKeyHashBase<T>> getComparator()
 	 *		Get a Comparator instance for the keys.
 	 *
 	 *	@return A Comparator for the key instances.
 	 */
 	@JSExport
-	public Comparator<T> getComparator();
+	public Comparator<IYCFKeyHashBase<T>> getComparator();
 
 	/**
 	 *	byte[] YCFKeyHashBase_getBytes(k)
 	 *		Get the byte array for key value k.
 	 *
-	 *	@param k The key value to be evaluated.
+	 *	@param k IYCFKeyHashBase<T>he key value to be evaluated.
 	 *
-	 *	@return The byte array for key value k, or null if k is null.
+	 *	@return IYCFKeyHashBase<T>he byte array for key value k, or null if k is null.
 	 */
 	@JSExport
-	public static byte[] YCFKeyHashBase_getBytes(T k);
+	public static byte[] YCFKeyHashBase_getBytes(IYCFKeyHashBase<T> k);
 
 	/**
 	 *	byte[] getBytes()
 	 *		Get the byte array for this key.
 	 *
-	 *	@return The byte array for this key.
+	 *	@return IYCFKeyHashBase<T>he byte array for this key.
 	 */
 	@JSExport
 	public byte[] getBytes();
 
 	/**
 	 *	void YCFKeyHashBase_setBytes(k, a)
-	 *		Set the byte array for key value k to a copy of the byte array a. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *		Set the byte array for key value k to a copy of the byte array a. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. IYCFKeyHashBase<T>his is the only code that should use this method.
 	 *
-	 *	@param k The key value to be updated.
-	 *	@param a The byte array to use for the update.  If it is null, then k's key data is set to zeroes.
+	 *	@param k IYCFKeyHashBase<T>he key value to be updated.
+	 *	@param a IYCFKeyHashBase<T>he byte array to use for the update.  If it is null, then k's key data is set to zeroes.
 	 */
 	@JSExport
-	public static void YCFKeyHashBase_setBytes(T k, byte[] a);
+	public static void YCFKeyHashBase_setBytes(IYCFKeyHashBase<T> k, byte[] a);
 
 	/**
 	 *	void setBytes(a)
-	 *		Set the byte array for the key to a copy of the byte array a. If a is null, set the key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *		Set the byte array for the key to a copy of the byte array a. If a is null, set the key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. IYCFKeyHashBase<T>his is the only code that should use this method.
 	 *
-	 *	@param a The byte array to use for the update.  If it is null, then the key data is set to zeroes.
+	 *	@param a IYCFKeyHashBase<T>he byte array to use for the update.  If it is null, then the key data is set to zeroes.
 	 */
 	@JSExport
 	public void setBytes(byte[] a);
 
 	/**
 	 *	void YCFKeyHashBase_setBytes(k, a, o, l)
-	 *		Set the byte array for key value k to a copy of the byte array a starting at the offset o for the length l. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *		Set the byte array for key value k to a copy of the byte array a starting at the offset o for the length l. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. IYCFKeyHashBase<T>his is the only code that should use this method.
 	 *
-	 *	@param k The key value to be updated.
-	 *	@param a The byte array to use for the update.  If it is null, then k's key data is set to zeroes.
-	 *	@param o The offset into the array a
-	 *	@param l The number of bytes to copy from array a
+	 *	@param k IYCFKeyHashBase<T>he key value to be updated.
+	 *	@param a IYCFKeyHashBase<T>he byte array to use for the update.  If it is null, then k's key data is set to zeroes.
+	 *	@param o IYCFKeyHashBase<T>he offset into the array a
+	 *	@param l IYCFKeyHashBase<T>he number of bytes to copy from array a
 	 */
 	@JSExport
-	public static void YCFKeyHashBase_setBytes(T k, byte[] a, int o, int l);
+	public static void YCFKeyHashBase_setBytes(IYCFKeyHashBase<T> k, byte[] a, int o, int l);
 
 	/**
 	 *	void setBytes(a, o, l)
-	 *		Set the byte array for the key to a copy of the byte array a starting at the offset o for the length l. If a is null, set the key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
+	 *		Set the byte array for the key to a copy of the byte array a starting at the offset o for the length l. If a is null, set the key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. IYCFKeyHashBase<T>his is the only code that should use this method.
 	 *
-	 *	@param a The byte array to use for the update.  If it is null, then the key data is set to zeroes.
-	 *	@param o The offset into the array a
-	 *	@param l The number of bytes to copy from array a
+	 *	@param a IYCFKeyHashBase<T>he byte array to use for the update.  If it is null, then the key data is set to zeroes.
+	 *	@param o IYCFKeyHashBase<T>he offset into the array a
+	 *	@param l IYCFKeyHashBase<T>he number of bytes to copy from array a
 	 */
 	@JSExport
 	public void setBytes(byte[] a, int o, int l);
@@ -650,257 +662,257 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	boolean YCFKeyHashBase_isNull(k)
 	 *		Is the key k null valued?
 	 *
-	 *	@return True if k is null or null valued, otherwise false.
+	 *	@return IYCFKeyHashBase<T>rue if k is null or null valued, otherwise false.
 	 */
 	@JSExport
-  	public static boolean YCFKeyHashBase_isNull(T k);
+  	public static boolean YCFKeyHashBase_isNull(IYCFKeyHashBase<T> k);
 
 	/**
 	 *	boolean isNull()
 	 *		Is this key null valued?
 	 *
-	 *	@return True if this key is null valued, otherwise false.
+	 *	@return IYCFKeyHashBase<T>rue if this key is null valued, otherwise false.
 	 */
 	@JSExport
   	public boolean isNull();
 
 	/**
-	 *	T YCFKeyHashBase_hash(s)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_hash(s)
 	 *		Create an instance by hashing the string s.
 	 *
-	 *	@param s The string to be hashed.
+	 *	@param s IYCFKeyHashBase<T>he string to be hashed.
 	 *
 	 *	@return An instance or null if s is null.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_hash(String s);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_hash(String s);
 
 	/**
-	 *	T hash(s)
+	 *	IYCFKeyHashBase<T> hash(s)
 	 *		Create an instance by hashing the string s.
 	 *
-	 *	@param s The string to be hashed.
+	 *	@param s IYCFKeyHashBase<T>he string to be hashed.
 	 *
 	 *	@return An instance or null if s is null.
 	 */
 	@JSExport
-  	public T hash(String s);
+  	public IYCFKeyHashBase<T> hash(String s);
 
 	/**
-	 *	T YCFKeyHashBase_hash(a)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_hash(a)
 	 *		Create an instance by hashing the byte array a.
 	 *
-	 *	@param a The byte array to be hashed.
+	 *	@param a IYCFKeyHashBase<T>he byte array to be hashed.
 	 *
 	 *	@return An instance or null if a is null.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_hash(byte[] a);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_hash(byte[] a);
 
 	/**
-	 *	T hash(a)
+	 *	IYCFKeyHashBase<T> hash(a)
 	 *		Create an instance by hashing the byte array a.
 	 *
-	 *	@param a The byte array to be hashed.
+	 *	@param a IYCFKeyHashBase<T>he byte array to be hashed.
 	 *
 	 *	@return An instance or null if a is null.
 	 */
 	@JSExport
-  	public T hash(byte[] a);
+  	public IYCFKeyHashBase<T> hash(byte[] a);
 
 	/**
-	 *	T YCFKeyHashBase_hash(a...)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_hash(a...)
 	 *		Create an instance by hashing the byte arrays a and ....
 	 *
-	 *	@param a... The byte arrays to be hashed.
+	 *	@param a... IYCFKeyHashBase<T>he byte arrays to be hashed.
 	 *
 	 *	@return An instance or null if a is null and no other arrays are specified.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_hash(byte[]... a);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_hash(byte[]... a);
 
 	/**
-	 *	T hash(a...)
+	 *	IYCFKeyHashBase<T> hash(a...)
 	 *		Create an instance by hashing the byte arrays a and ....
 	 *
-	 *	@param a... The byte arrays to be hashed.
+	 *	@param a... IYCFKeyHashBase<T>he byte arrays to be hashed.
 	 *
 	 *	@return An instance or null if a is null and no other arrays are specified.
 	 */
 	@JSExport
-  	public T hash(byte[]... a);
+  	public IYCFKeyHashBase<T> hash(byte[]... a);
 
 	/**
-	 *	T YCFKeyHashBase_hash(k...)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_hash(k...)
 	 *		Create an instance by hashing the keys k and ....
 	 *
-	 *	@param k... The keys to be hashed.
+	 *	@param k... IYCFKeyHashBase<T>he keys to be hashed.
 	 *
 	 *	@return An instance or null if k is null and no other keys are specified.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_hash(T... k);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_hash(IYCFKeyHashBase<T>... k);
 
 	/**
-	 *	T hash(k...)
+	 *	IYCFKeyHashBase<T> hash(k...)
 	 *		Create an instance by hashing the keys k and ....
 	 *
-	 *	@param k... The keys to be hashed.
+	 *	@param k... IYCFKeyHashBase<T>he keys to be hashed.
 	 *
 	 *	@return An instance or null if k is null and no other keys are specified.
 	 */
 	@JSExport
-  	public T hash(T... k);
+  	public IYCFKeyHashBase<T> hash(IYCFKeyHashBase<T>... k);
 
 	/**
-	 *	T YCFKeyHashBase_hash(i...)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_hash(i...)
 	 *		Create an instance by hashing the integers i and ....
 	 *
-	 *	@param k... The integers to be hashed.
+	 *	@param k... IYCFKeyHashBase<T>he integers to be hashed.
 	 *
 	 *	@return An instance.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_hash(int... k);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_hash(int... k);
 
 	/**
-	 *	T hash(i...)
+	 *	IYCFKeyHashBase<T> hash(i...)
 	 *		Create an instance by hashing the integers i and ....
 	 *
-	 *	@param i... The integers to be hashed.
+	 *	@param i... IYCFKeyHashBase<T>he integers to be hashed.
 	 *
 	 *	@return An instance.
 	 */
 	@JSExport
-  	public T hash(int... i);
+  	public IYCFKeyHashBase<T> hash(int... i);
 
 	/**
-	 *	T YCFKeyHashBase_hash(a...)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_hash(a...)
 	 *		Create an instance by hashing the integer arrays a and ....
 	 *
-	 *	@param a... The integer arrays to be hashed.
+	 *	@param a... IYCFKeyHashBase<T>he integer arrays to be hashed.
 	 *
 	 *	@return An instance, or null if a is null and no other arrays are specified.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_hash(int[]... a);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_hash(int[]... a);
 
 	/**
-	 *	T hash(a...)
+	 *	IYCFKeyHashBase<T> hash(a...)
 	 *		Create an instance by hashing the integer arrays a and ....
 	 *
-	 *	@param a... The integer arrays to be hashed.
+	 *	@param a... IYCFKeyHashBase<T>he integer arrays to be hashed.
 	 *
 	 *	@return An instance, or null if a is null and no other arrays are specified.
 	 */
 	@JSExport
-  	public T hash(int[]... a);
+  	public IYCFKeyHashBase<T> hash(int[]... a);
 
 	/**
-	 *	T YCFKeyHashBase_deepClone(k)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_deepClone(k)
 	 *		Create an instance by deep cloning the key data for k.
 	 *
-	 *	@param k The key value to clone.
+	 *	@param k IYCFKeyHashBase<T>he key value to clone.
 	 *
 	 *	@return An instance, or null if k is null.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_deepClone(T k);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_deepClone(IYCFKeyHashBase<T> k);
 
 	/**
-	 *	T deepClone()
+	 *	IYCFKeyHashBase<T> deepClone()
 	 *		Create an instance by deep cloning this key's data.
 	 *
 	 *	@return An instance cloned from this one.
 	 */
 	@JSExport
-  	public T deepClone();
+  	public IYCFKeyHashBase<T> deepClone();
 
 	/**
-	 *	T YCFKeyHashBase_fromHexQuick(s)
+	 *	IYCFKeyHashBase<T> YCFKeyHashBase_fromHexQuick(s)
 	 *		Create an instance by converting String s from hexadecimal.
 	 *
-	 *	@param s The hexadecimal string to convert.
+	 *	@param s IYCFKeyHashBase<T>he hexadecimal string to convert.
 	 *
 	 *	@return An instance, or null if s is null.
 	 */
 	@JSExport
-  	public static T YCFKeyHashBase_fromHexQuick(String s);
+  	public static IYCFKeyHashBase<T> YCFKeyHashBase_fromHexQuick(String s);
 
 	/**
-	 *	T fromHexQuick(s)
+	 *	IYCFKeyHashBase<T> fromHexQuick(s)
 	 *		Create an instance by converting String s from hexadecimal.
 	 *
-	 *	@param s The hexadecimal string to convert.
+	 *	@param s IYCFKeyHashBase<T>he hexadecimal string to convert.
 	 *
 	 *	@return An instance, or null if s is null.
 	 */
 	@JSExport
-  	public T fromHexQuick(String s);
+  	public IYCFKeyHashBase<T> fromHexQuick(String s);
 
 	/**
-	 *	T[] YCFKeyHashBase_toKeyHashes(a)
+	 *	IYCFKeyHashBase<T>[] YCFKeyHashBase_toKeyHashes(a)
 	 *		Create an array of instances from an array of hexadecimal strings.
 	 *
-	 *	@param a The array of hexadecimal strings to convert.
+	 *	@param a IYCFKeyHashBase<T>he array of hexadecimal strings to convert.
 	 *
 	 *	@return An array of instances, or null if a was null.
 	 */
 	@JSExport
-  	public static T[] YCFKeyHashBase_toKeyHashes(String[] a);
+  	public static IYCFKeyHashBase<T>[] YCFKeyHashBase_toKeyHashes(String[] a);
 
 	/**
-	 *	T[] toKeyHashes(a)
+	 *	IYCFKeyHashBase<T>[] toKeyHashes(a)
 	 *		Create an array of instances from an array of hexadecimal strings.
 	 *
-	 *	@param a The array of hexadecimal strings to convert.
+	 *	@param a IYCFKeyHashBase<T>he array of hexadecimal strings to convert.
 	 *
 	 *	@return An array of instances, or null if a was null.
 	 */
 	@JSExport
-  	public T[] toKeyHashes(String[] a);
+  	public IYCFKeyHashBase<T>[] toKeyHashes(String[] a);
 
 	/**
-	 *	List<T> YCFKeyHashBase_toKeyHashesList(a)
+	 *	List<IYCFKeyHashBase<T>> YCFKeyHashBase_toKeyHashesList(a)
 	 *		Create a list of instances from an array of hexadecimal strings.
 	 *
-	 *	@param a The array of hexadecimal strings to convert.
+	 *	@param a IYCFKeyHashBase<T>he array of hexadecimal strings to convert.
 	 *
 	 *	@return A list of instances, or null if a was null.
 	 */
 	@JSExport
-  	public static List<T> YCFKeyHashBase_toKeyHashesList(String[] a);
+  	public static List<IYCFKeyHashBase<T>> YCFKeyHashBase_toKeyHashesList(String[] a);
 
 	/**
-	 *	List<T> toKeyHashesList(a)
+	 *	List<IYCFKeyHashBase<T>> toKeyHashesList(a)
 	 *		Create a list of instances from an array of hexadecimal strings.
 	 *
-	 *	@param a The array of hexadecimal strings to convert.
+	 *	@param a IYCFKeyHashBase<T>he array of hexadecimal strings to convert.
 	 *
 	 *	@return A list of instances, or null if a was null.
 	 */
 	@JSExport
-  	public List<T> toKeyHashesList(String[] a);
+  	public List<IYCFKeyHashBase<T>> toKeyHashesList(String[] a);
 
 	/**
-	 *	Set<T> YCFKeyHashBase_toKeyHashesSet(a)
+	 *	Set<IYCFKeyHashBase<T>> YCFKeyHashBase_toKeyHashesSet(a)
 	 *		Create a set of instances from an array of hexadecimal strings.
 	 *
-	 *	@param a The array of hexadecimal strings to convert.
+	 *	@param a IYCFKeyHashBase<T>he array of hexadecimal strings to convert.
 	 *
 	 *	@return A set of instances, or null if a was null.
 	 */
 	@JSExport
-  	public static Set<T> YCFKeyHashBase_toKeyHashesSet(String[] a);
+  	public static Set<IYCFKeyHashBase<T>> YCFKeyHashBase_toKeyHashesSet(String[] a);
 
 	/**
-	 *	Set<T> toKeyHashesSet(a)
+	 *	Set<IYCFKeyHashBase<T>> toKeyHashesSet(a)
 	 *		Create a set of instances from an array of hexadecimal strings.
 	 *
-	 *	@param a The array of hexadecimal strings to convert.
+	 *	@param a IYCFKeyHashBase<T>he array of hexadecimal strings to convert.
 	 *
 	 *	@return A set of instances, or null if a was null.
 	 */
 	@JSExport
-  	public Set<T> toKeyHashesSet(String[] a);
+  	public Set<IYCFKeyHashBase<T>> toKeyHashesSet(String[] a);
 }

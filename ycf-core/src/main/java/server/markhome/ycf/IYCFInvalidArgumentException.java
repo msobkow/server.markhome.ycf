@@ -20,7 +20,6 @@
 
 package server.markhome.ycf;
 
-
 import org.teavm.jso.JSExport;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
@@ -33,13 +32,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFInvalidArgumentException extends IYCFArgumentException {
 
 	/**
-	 *	IYCFInvalidArgumentException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFInvalidArgumentException> singleton = IYCFMtReference<YCFInvalidArgumentException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFInvalidArgumentException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFInvalidArgumentException getSingleton();
+	public static YCFInvalidArgumentException getService() {
+		YCFInvalidArgumentException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFInvalidArgumentException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFInvalidArgumentException(enMsg, xMsg)

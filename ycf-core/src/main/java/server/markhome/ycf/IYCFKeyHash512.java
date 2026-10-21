@@ -44,13 +44,25 @@ import java.util.Set;
 public interface IYCFKeyHash512 extends IYCFKeyHashBase<IYCFKeyHash512> {
 
 	/**
-	 *	IYCFKeyHash512 getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<IYCFKeyHash512> singleton = IYCFMtReference<IYCFKeyHash512>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFKeyHash512 The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static IYCFKeyHash512 getSingleton();
+	public static IYCFKeyHash512 getService() {
+		IYCFKeyHash512 ref = singleton.get();
+		if (ref == null) {
+			ref = new IYCFKeyHash512();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFKeyHash512 YCFKeyHash512_getInstance()

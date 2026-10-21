@@ -32,13 +32,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFCannotMoveEditedObjectException extends IYCFRuntimeException {
 
 	/**
-	 *	IYCFCannotMoveEditedObjectException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFCannotMoveEditedObjectException> singleton = IYCFMtReference<YCFCannotMoveEditedObjectException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFCannotMoveEditedObjectException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFCannotMoveEditedObjectException getSingleton();
+	public static YCFCannotMoveEditedObjectException getService() {
+		YCFCannotMoveEditedObjectException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFCannotMoveEditedObjectException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFCannotMoveEditedObjectException(enMsg, xMsg)

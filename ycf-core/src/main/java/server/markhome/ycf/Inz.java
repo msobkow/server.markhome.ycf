@@ -37,10 +37,10 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Inz implements IInz {
 
     /**
-     * Private constructor to prevent instantiation.
-     * This class is designed to be used as a singleton, so the constructor is private.
+     * Class-accessible constructor to prevent instantiation other than singleton for service.
+     * This class is designed to be used as a singleton, so the constructor is package-accessible only.
      */
-    private Inz() {
+    Inz() {
        
     }
 }

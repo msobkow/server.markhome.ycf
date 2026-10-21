@@ -40,16 +40,28 @@ import org.xml.sax.SAXException;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFXmlCoreElementHandler extends JSObject {
+public interface IYCFXmlCoreElementHandler extends IYCFAnyObj {
 
 	/**
-	 *	IYCFXmlCoreElementHandler getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFXmlCoreElementHandler> singleton = IYCFMtReference<YCFXmlCoreElementHandler>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFXmlCoreElementHandler The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFXmlCoreElementHandler getSingleton();
+	public static YCFXmlCoreElementHandler getService() {
+		YCFXmlCoreElementHandler ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFXmlCoreElementHandler();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	The XML Core Parser which owns this Element Handler.

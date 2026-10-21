@@ -33,231 +33,106 @@ import java.util.concurrent.atomic.AtomicReference;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFLibEntry extends JSObject {
+public interface IYCFLibEntry extends IYCFAnyObj {
 
 	/**
-	 *	IYCFLibEntry getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<IYCFLibEntry> singleton = IYCFMtReference<IYCFLibEntry>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate for the method name.
-	 *
-	 *	<tt>public final static IYCFLibEntry getYCFLibEntrySingleton()</tt>
-	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFLibEntry getSingleton();
+	public static IYCFLibEntry getService() {
+		IYCFLibEntry ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFLibEntry();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	The OIDs of the interfaces and objects.
 	 */
-	@JSExport
-	public final static int YCFFalseOidFlag = 0x0000;
-
-	@JSExport
-	public final static int YCFTrueOidFlag = 0x0001;
-
-	@JSExport
-	public final static int YCFNullOidFlag = 0x0000;
-
-	@JSExport
-	public final static int YCFNotNullOidFlag = 0x0002;
-
-	@JSExport
-	public final static int YCFSendOidFlag = 0x0000;
-
-	@JSExport
-	public final static int YCFReceiveOidFlag = 0x0004;
-
-	@JSExport
-	public final static int YCFInvisibleOidFlag = 0x0000;
-
-	@JSExport
-	public final static int YCFVisibleOidFlag = 0x0008;
-
-	@JSExport
-	public final static int YCFOptionalOidFlag = 0x0000;
-
-	@JSExport
-	public final static int YCFRequiredOidFlag = 0x0010;
-
-	@JSExport
-	public final static int YCFInstanceOidFlag = 0x0000;
-
-	@JSExport
-	public final static int YCFArrayOidFlag = 0x0020;
-
-	@JSExport
-	public final static int YCFVArrayOidFlag = 0x0040;
-
-	@JSExport
-	public final static int YCFJSObjectOid = 0x0080;
-
-	@JSExport
-	public final static int YCFIncOidBy = YCFJSObjectOid;
-
-	@JSExport
-	public final static int YCFBlobOid = 0x0100;
-
-	@JSExport
-	public final static int YCFBooleanOid = 0x0180;
-
-	@JSExport
-	public final static int YCFCharOid = 0x0200;
-
-	@JSExport
-	public final static int YCFUTF8CharOid = 0x0280;
-
-	@JSExport
-	public final static int YCFInt8Oid = 0x0300;
-
-	@JSExport
-	public final static int YCFInt16Oid = 0x0380;
-
-	@JSExport
-	public final static int YCFInt32Oid = 0x0400;
-
-	@JSExport
-	public final static int YCFInt64Oid = 0x0480;
-
-	@JSExport
-	public final static int YCFByteOid = YCFInt8Oid;
-
-	@JSExport
-	public final static int YCFShortOid = YCFInt16Oid;
-
-	@JSExport
-	public final static int YCFIntegerOid = YCFInt32Oid;
-
-	@JSExport
-	public final static int YCFLongOid = YCFInt64Oid;
-
-	@JSExport
-	public final static int YCFFloatOid = 0x0500;
-
-	@JSExport
-	public final static int YCFDoubleOid = 0x0580;
-
-	@JSExport
-	public final static int YCFNumberOid = 0x0600;
-
-	@JSExport
-	public final static int YCFDateOid = 0x0680;
-
-	@JSExport
-	public final static int YCFTimeOid = 0x0700;
-
-	@JSExport
-	public final static int YCFDateTimeOid = 0x0780;
-
-	@JSExport
-	public final static int YCFTZDateOid = 0x0800;
-
-	@JSExport
-	public final static int YCFTZTimeOid = 0x0880;
-
-	@JSExport
-	public final static int YCFTZDateTimeOid = 0x0900;
-
-	@JSExport
-	public final static int YCFStringOid = 0x0980;
-
-	@JSExport
-	public final static int YCFVStringOid = 0x0a00;
-
-	@JSExport
-	public final static int YCFTokenOid = 0x0a80;
-
-	@JSExport
-	public final static int YCFVTokenOid = 0x0b00;
-
-	@JSExport
-	public final static int YCFNmTokenOid = 0x0b80;
-
-	@JSExport
-	public final static int YCFVNmTokenOid = 0x0c00;
-
-	@JSExport
-	public final static int YCFTokensOid = 0x0c80;
-
-	@JSExport
-	public final static int YCFVTokensOid = 0x0d00;
-
-	@JSExport
-	public final static int YCFNmTokensOid = 0x0d80;
-
-	@JSExport
-	public final static int YCFVNmTokensOid = 0x0e00;
-
-	@JSExport
-	public final static int YCFKeyHash128Oid = 0x0e80;
-
-	@JSExport
-	public final static int YCFKeyHash160Oid = 0x0f00;
-
-	@JSExport
-	public final static int YCFKeyHash224Oid = 0x0f80;
-
-	@JSExport
-	public final static int YCFKeyHash256Oid = 0x1000;
-
-	@JSExport
-	public final static int YCFKeyHash384Oid = 0x1080;
-
-	@JSExport
-	public final static int YCFKeyHash512Oid = 0x1100;
-
-	@JSExport
-	public final static int YCFEnumOid = 0x1180;
-
-	@JSExport
-	public final static int YCFId8Oid = 0x1200;
-
-	@JSExport
-	public final static int YCFId16Oid = 0x1280;
-
-	@JSExport
-	public final static int YCFId32Oid = 0x1300;
-
-	@JSExport
-	public final static int YCFId64Oid = 0x1380;
-
-	@JSExport
-	public final static int YCFUInt8Oid = 0x1400;
-
-	@JSExport
-	public final static int YCFUInt16Oid = 0x1480;
-
-	@JSExport
-	public final static int YCFUInt32Oid = 0x1500;
-
-	@JSExport
-	public final static int YCFUInt64Oid = 0x1580;
-
-	@JSExport
-	public final static int YCFUuidOid = 0x1600;
-
-	@JSExport
-	public final static int YCFUuid6Oid = 0x1680;
-
-	@JSExport
-	public final static int YCFArrayOid = 0x1700;
-
-	@JSExport
-	public final static int YCFVArrayOid = 0x1780;
-
-	@JSExport
-	public final static int YCFLibEntryOid = 0x1800;
-
-	@JSExport
-	public final static int YCFLastOid = YCFLibEntryOid;
+	public final static long YCFFalseOidFlag = 0x0;
+	public final static long YCFTrueOidFlag = 0x1;
+	public final static long YCFNullOidFlag = 0x0000;
+	public final static long YCFNotNullOidFlag = MaskNull;
+	public final static long YCFSentOidFlag = MaskSentObject;
+	public final static long YCFReceivedOidFlag = 0x0000;
+	public final static long YCFInvisibleOidFlag = 0x0000;
+	public final static long YCFVisibleOidFlag = MaskVisible;
+	public final static long YCFOptionalOidFlag = 0x0000;
+	public final static long YCFRequiredOidFlag = MaskRequired;
+	public final static long YCFInstanceOidFlag = MaskInstance;
+	public final static long YCFArrayOidFlag = MaskStatic;
+	public final static long YCFVArrayOidFlag = 0x0000;
+	public final static long YCFAnyObjOid = 0x4000;
+	public final static long YCFBlobOid = 0x8000;
+	public final static long YCFBooleanOid = 0xb000;
+	public final static long YCFCharOid = 0x10000;
+	public final static long YCFUTF8CharOid = 0x14000;
+	public final static long YCFInt8Oid = 0x18000;
+	public final static long YCFInt16Oid = 0x1b000;
+	public final static long YCFInt32Oid = 0x20000;
+	public final static long YCFInt64Oid = 0x24000;
+	public final static long YCFByteOid = YCFInt8Oid;
+	public final static long YCFShortOid = YCFInt16Oid;
+	public final static long YCFIntegerOid = YCFInt32Oid;
+	public final static long YCFLongOid = YCFInt64Oid;
+	public final static long YCFFloatOid = 0x80000;
+	public final static long YCFDoubleOid = 0xb0000;
+	public final static long YCFNumberOid = 0x34000;
+	public final static long YCFDateOid = 0x38000;
+	public final static long YCFTimeOid = 0x3b000;
+	public final static long YCFDateTimeOid = 0x40000;
+	public final static long YCFTZDateOid = 0x48000;
+	public final static long YCFTZTimeOid = 0x4b000;
+	public final static long YCFTZDateTimeOid = 0x50000;
+	public final static long YCFStringOid = 0x54000;
+	public final static long YCFVStringOid = 0x58000;
+	public final static long YCFTokenOid = 0x5b000;
+	public final static long YCFVTokenOid = 0x60000;
+	public final static long YCFNmTokenOid = 0x64000;
+	public final static long YCFVNmTokenOid = 0x68000;
+	public final static long YCFTokensOid = 0x6b000;
+	public final static long YCFVTokensOid = 0x74000;
+	public final static long YCFNmTokensOid = 0x78000;
+	public final static long YCFVNmTokensOid = 0x7b000;
+	public final static long YCFKeyHash128Oid = 0x80000;
+	public final static long YCFKeyHash160Oid = 0x84000;
+	public final static long YCFKeyHash224Oid = 0x88000;
+	public final static long YCFKeyHash256Oid = 0x8b000;
+	public final static long YCFKeyHash384Oid = 0x90000;
+	public final static long YCFKeyHash512Oid = 0x94000;
+	public final static long YCFEnumOid = 0x98000;
+	public final static long YCFId8Oid = 0x9b000;
+	public final static long YCFId16Oid = 0xa0000;
+	public final static long YCFId32Oid = 0xa4000;
+	public final static long YCFId64Oid = 0xa8000;
+	public final static long YCFUInt8Oid = 0x8b000;
+	public final static long YCFUInt16Oid = 0x90000;
+	public final static long YCFUInt32Oid = 0x94000;
+	public final static long YCFUInt64Oid = 0x98000;
+	public final static long YCFUuidOid = 0x9b000;
+	public final static long YCFUuid6Oid = 0xa0000;
+	public final static long YCFArrayOid = 0xa4000;
+	public final static long YCFVArrayOid = 0xa48000;
+	public final static long YCFMtReferenceOid = 0xb4000;
+	public final static long YCFLibEntryOid = 0xb8000;
+	public final static long YCFLastOid = YCFLibEntryOid;
 
 	/**
 	 *	The public resource name for the parent library.
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_PARENT_NAME = "server.markhome";</tt>
+	 *	<i>public static final String YCF_LIB_PARENT_NAME = "server.markhome";</i>
 	 */
 	public static final String YCF_LIB_PARENT_NAME = "server.markhome";
 
@@ -266,7 +141,7 @@ public interface IYCFLibEntry extends JSObject {
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_PARENT_VERSION = "3.1.42-20260918";</tt>
+	 *	<i>public static final String YCF_LIB_PARENT_VERSION = "3.1.42-20260918";</i>
 	 */
 	public static final String YCF_LIB_PARENT_VERSION = "3.1.42-20260918";
 
@@ -275,52 +150,25 @@ public interface IYCFLibEntry extends JSObject {
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_NAME = YCF_LIB_PARENT_NAME + ".ycf";</tt>
+	 *	<i>public static final String YCF_LIB_NAME = YCF_LIB_PARENT_NAME + ".ycf";</i>
 	 */
-	public static final String YCF_LIB_NAME = IYCF_LIB_PARENT_NAME + ".ycf";
+	public static final String YCF_LIB_NAME = YCF_LIB_PARENT_NAME + ".ycf";
 
 	/**
 	 *	The public version string for this library.
 	 *
 	 *	Implementations should define a public static final constant string prefixed by the uppercase library name matching the following signature:
 	 *
-	 *	<tt>public static final String YCF_LIB_VERSION = YCF_LIB_PARENT_VERSION;</tt>
+	 *	<i>public static final String YCF_LIB_VERSION = YCF_LIB_PARENT_VERSION;</i>
 	 */
 	public static final String YCF_LIB_VERSION = YCF_LIB_PARENT_VERSION;
-
-	/**
-	 *	Implementations must be a singleton, returning the same instance over and over after initialization. How this is achieved may vary.
-	 *
-	 *	<tt>protected final static singleton = new AtomicReference<YCFLibEntry>(null);</tt>
-	 */
-	protected final static AtomicReference<YCFLibEntry> singleton = new AtomicReference<IYCFLibEntry>(null);
-
-	/**
-	 *	Default constructor is protected so that only a singleton can be created.
-	 *
-	 *	<tt>public static IYCFLibEntry getInstance(){ }</tt>
-	 */
-	@JSExport
-	public static IYCFLibEntry getInstance() { return(new YCFLibEntry()); }
-
-	/**
-	 *	Get an instance. Because this is a singleton, getInstance() always returns null, as it just invokes YCFLibEntry() under the hood.
-	 *
-	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
-	 *
-	 *	<tt>public final static YCFLibEntry getIYCFLibEntryInstance()</tt>
-	 *
-	 *	@return The instance, if any. Always returns null.
-	 */
-	@JSExport
-	public static IYCFLibEntry getInstance() { return(null); }
 
 	/**
 	 *	Reset the singleton and any data caches after an application reload or other package or executable reloading event.
 	 *
 	 *	Implementations should define a public static final method with the following signature, using the uppercase package name before "Lib" as appropriate.
 	 *
-	 *	<tt>public static boolean execIYCFLibEntryLibReset(boolean yesReally)</tt>
+	 *	<i>public static boolean execIYCFLibEntryLibReset(boolean yesReally)</i>
 	 *
 	 *	@param	yesReally Are you sure you want to reset the value?
 	 */
@@ -332,10 +180,10 @@ public interface IYCFLibEntry extends JSObject {
 			retval = false;
 
 			if (yesReally && sgl != null) {
-				singleton.compareAndSet(sgl, null);
+				singleton.set(sgl, null);
 			}
 
-			sgl = getIYCFLibEntrySingleton();
+			sgl = getService();
 			assert sgl != null: "Singleton must not be null after initialization";
 
 			retval = true;
@@ -409,7 +257,7 @@ public interface IYCFLibEntry extends JSObject {
 	/**
 	 *	The default main does nothing.
 	 *
-	 *	<tt>public static void main(int argc, String[] argv) { return 0; }</tt>
+	 *	<i>public static void main(int argc, String[] argv) { return 0; }</i>
 	 */
 	@JSExport
 	public static void main(int argc, String[] argv) { }
@@ -417,7 +265,7 @@ public interface IYCFLibEntry extends JSObject {
 	/**
 	 *	The default main does nothing.
 	 *
-	 *	<tt>public static void main(String[] argv) { main(argv.length, argv); }</tt>
+	 *	<i>public static void main(String[] argv) { main(argv.length, argv); }</i>
 	 */
 	@JSExport
 	public static void main(String[] argv) { main(argv.length, argv); }

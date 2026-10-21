@@ -34,13 +34,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFNullArgumentException extends IYCFArgumentException {
 
 	/**
-	 *	IYCFNullArgumentException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFNullArgumentException> singleton = IYCFMtReference<YCFNullArgumentException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFNullArgumentException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFNullArgumentException getSingleton();
+	public static YCFNullArgumentException getService() {
+		YCFNullArgumentException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFNullArgumentException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFNullArgumentException(enMsg, xMsg)

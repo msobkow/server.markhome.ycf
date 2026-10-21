@@ -35,16 +35,28 @@ import java.text.StringCharacterIterator;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFXmlCoreIso8859Encoder extends JSObject {
+public interface IYCFXmlCoreIso8859Encoder extends IYCFAnyObj {
 
 	/**
-	 *	IYCFXmlCoreIso8859Encoder getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFXmlCoreIso8859Encoder> singleton = IYCFMtReference<YCFXmlCoreIso8859Encoder>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFXmlCoreIso8859Encoder getSingleton();
+	public static YCFXmlCoreIso8859Encoder getService() {
+		YCFXmlCoreIso8859Encoder ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFXmlCoreIso8859Encoder();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	protected char		ch;
 	protected byte		len;

@@ -33,16 +33,28 @@ import java.net.UnknownHostException;
  * @since 2026
  * @author msobkow
  */
-public final interface IYCFHostAddr extends JSObject {
+public final interface IYCFHostAddr extends IYCFAnyObj {
 
 	/**
-	 *	IYCFHostAddr getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFHostAddr> singleton = IYCFMtReference<YCFHostAddr>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFHostAddr The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFHostAddr getSingleton();
+	public static YCFHostAddr getService() {
+		YCFHostAddr ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFHostAddr();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
     public static final int IPV6_LENGTH = 16;
     public static final int IPV4_LENGTH = 4;

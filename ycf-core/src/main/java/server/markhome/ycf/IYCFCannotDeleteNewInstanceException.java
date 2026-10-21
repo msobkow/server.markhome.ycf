@@ -34,13 +34,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFCannotDeleteNewInstanceException extends IYCFRuntimeException {
 
 	/**
-	 *	IYCFCannotDeleteNewInstanceException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFCannotDeleteNewInstanceException> singleton = IYCFMtReference<YCFCannotDeleteNewInstanceException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFCannotDeleteNewInstanceException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFCannotDeleteNewInstanceException getSingleton();
+	public static YCFCannotDeleteNewInstanceException getService() {
+		YCFCannotDeleteNewInstanceException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFCannotDeleteNewInstanceException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFCannotDeleteNewInstanceException(enMsg, xMsg)

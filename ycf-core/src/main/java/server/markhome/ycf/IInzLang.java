@@ -62,7 +62,29 @@ import java.util.Properties;
  * 
  * @author Mark Stephen Sobkow
  */
-public interface IInzLang extends JSObject {
+public interface IInzLang extends IYCFAnyObj {
+
+	/**
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<InzLang> singleton = IYCFMtReference<InzLang>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
+	 *
+	 *	@return The service singleton.
+	 */
+	@JSExport
+	public static InzLang getService() {
+		InzLang ref = singleton.get();
+		if (ref == null) {
+			ref = new InzLang();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
+
     public final static String LANG_CODE_PROP = "_IInzLangCode";
     public final static String ENGLISH_NAME_PROP = "_IInzEnglishName";
     public final static String NLS_NAME_PROP = "_IInzNlsName";

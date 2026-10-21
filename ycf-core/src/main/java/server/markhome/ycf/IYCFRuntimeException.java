@@ -31,16 +31,28 @@ import server.markhome.ycf.Inz;
 /**
  * The base exception for many others in the IYCF exception hierarchy, IYCFRuntimeException specializes RuntimException with localization hooks and support
  */
-public interface IYCFRuntimeException extends JSObject {
+public interface IYCFRuntimeException extends IYCFAnyObj {
 
 	/**
-	 *	IYCFRuntimeException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFRuntimeException> singleton = IYCFMtReference<YCFRuntimeException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFRuntimeException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFRuntimeException getSingleton();
+	public static YCFRuntimeException getService() {
+		YCFRuntimeException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFRuntimeException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFRuntimeException(enMsg, xMsg)

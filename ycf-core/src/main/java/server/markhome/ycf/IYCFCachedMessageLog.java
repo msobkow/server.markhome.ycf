@@ -35,13 +35,25 @@ import java.io.*;
 public interface IYCFCachedMessageLog extends IYCFMessageLog {
 
 	/**
-	 *	IYCFCachedMessageLog getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFCachedMessageLog> singleton = IYCFMtReference<YCFCachedMessageLog>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFCachedMessageLog The singleton for the implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFCachedMessageLog getSingleton();
+	public static YCFCachedMessageLog getService() {
+		YCFCachedMessageLog ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFCachedMessageLog();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	private IYCFMessageLog log = null;
 	private StringBuilder cacheContents = new StringBuilder();

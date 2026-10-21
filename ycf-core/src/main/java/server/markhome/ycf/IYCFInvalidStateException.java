@@ -33,35 +33,47 @@ import server.markhome.ycf.Inz;
 public interface IYCFInvalidStateException extends IYCFArgumentException {
 
 	/**
-	 *	IYCFInvalidStateException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
-	 *
-	 *	@return IYCFInvalidStateException The singleton for the exception implementation.
+	 *	The service singleton has to be multithread-safe.
 	 */
-	@JSExport
-	public IYCFInvalidStateException getSingleton();
+	static final IYCFMtReference<YCFInvalidStateException> singleton = IYCFMtReference<YCFInvalidStateException>.getService().getInstance(null);
 
 	/**
-	 *	IYCFInvalidStateException(enMsg, xMsg)
+	 *	Get the service singleton.
+	 *
+	 *	@return The service singleton.
+	 */
+	@JSExport
+	public static YCFInvalidStateException getService() {
+		YCFInvalidStateException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFInvalidStateException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
+
+	/**
+	 *	getInstance(enMsg, xMsg)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *
-	 *	@return IYCFInvalidStateException An exception instance with the specified messages.
+	 *	@return YCFInvalidStateException An exception instance with the specified messages.
 	 */
 	@JSExport
 	public IYCFInvalidStateException getInstance(String enMsg, String xMsg);
 
 	/**
-	 *	IYCFInvalidStateException(enMsg, xMsg, cause)
+	 *	getInstance(enMsg, xMsg, cause)
 	 *		Construct an argument exception with the provided English and NLS-translated message bodies.
 	 *
 	 *	@param enMsg Text message body
 	 *	@param xMsg Translated text message body
 	 *	@param cause Root cause thrown by code
 	 *
-	 *	@return IYCFInvalidStateException An exception instance with the specified messages.
+	 *	@return YCFInvalidStateException An exception instance with the specified messages.
 	 */
 	@JSExport
 	public IYCFInvalidStateException getInstance(String enMsg, String xMsg, Throwable cause);

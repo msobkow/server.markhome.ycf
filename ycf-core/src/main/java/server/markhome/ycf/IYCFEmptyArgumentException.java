@@ -32,13 +32,25 @@ import server.markhome.ycf.Inz;
 public interface IYCFEmptyArgumentException extends IYCFArgumentException {
 
 	/**
-	 *	IYCFEmptyArgumentException getSingleton()
-	 *		Get the singleton instance that provides the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFEmptyArgumentException> singleton = IYCFMtReference<YCFEmptyArgumentException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFEmptyArgumentException The singleton for the exception implementation.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFEmptyArgumentException getSingleton();
+	public static YCFEmptyArgumentException getService() {
+		YCFEmptyArgumentException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFEmptyArgumentException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFEmptyArgumentException(enMsg, xMsg)

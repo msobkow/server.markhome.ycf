@@ -36,12 +36,25 @@ import java.math.*;
 public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 
 	/**
-	 *	Get the interface implementation singleton providing the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFArgumentUnderflowException> singleton = IYCFMtReference<YCFArgumentUnderflowException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFArgumentUnderflowException The interface singleton
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFArgumentUnderflowException getSingleton();
+	public static YCFArgumentUnderflowException getService() {
+		YCFArgumentUnderflowException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFArgumentUnderflowException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages.

@@ -36,12 +36,25 @@ import java.math.*;
 public interface IYCFArgumentRangeException extends IYCFArgumentException {
 
 	/**
-	 *	Get the interface implementation singleton providing the getInstance() implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFArgumentRangeException> singleton = IYCFMtReference<YCFArgumentRangeException>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return IYCFArgumentRangeException The interface singleton
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFArgumentRangeException getSingleton();
+	public static YCFArgumentRangeException getService() {
+		YCFArgumentRangeException ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFArgumentRangeException();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	Get an exception instance with the specified English and translated messages.

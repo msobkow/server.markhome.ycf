@@ -37,16 +37,28 @@ import server.markhome.ycf.IYCFMessageLog;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFXmlCoreContext extends JSObject {
+public interface IYCFXmlCoreContext extends IYCFAnyObj {
 
 	/**
-	 *	IYCFXmlCoreContext getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFXmlCoreContext> singleton = IYCFMtReference<YCFXmlCoreContext>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFXmlCoreContext getSingleton();
+	public static YCFXmlCoreContext getService() {
+		YCFXmlCoreContext ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFXmlCoreContext();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	Context stack chain.

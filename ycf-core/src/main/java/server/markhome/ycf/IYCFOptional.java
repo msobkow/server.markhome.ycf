@@ -32,16 +32,28 @@ import java.util.*;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFOptional extends JSObject {
+public interface IYCFOptional extends IYCFAnyObj {
 
 	/**
-	 *	IYCFOptional getSingleton()
-	 *		Get the singleton instance that provides the getInstance() and service method implementations.
+	 *	The service singleton has to be multithread-safe.
+	 */
+	static final IYCFMtReference<YCFOptional> singleton = IYCFMtReference<YCFOptional>.getService().getInstance(null);
+
+	/**
+	 *	Get the service singleton.
 	 *
-	 *	@return The singleton instance that provides the getInstance() and service method implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public IYCFOptional getSingleton();
+	public static YCFOptional getService() {
+		YCFOptional ref = singleton.get();
+		if (ref == null) {
+			ref = new YCFOptional();
+			singleton.set(null, ref);
+			ref = singleton.get();
+		}
+		return(ref);
+	}
 
 	/**
 	 *	IYCFOptional getInstance()
