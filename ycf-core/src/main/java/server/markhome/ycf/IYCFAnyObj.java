@@ -864,4 +864,60 @@ public interface IYCFAnyObj extends JSObject {
 	public static boolean isArray(long value) {
 		return((value & MaskInstance) == 0x0);
 	}
+
+	public final static long MtReferenceBaseOid = 0xb4000;
+	public final static long AnyObjOid = 0x4000;
+
+		public final static long LibEntryOid = 0xb8000;
+	public final static long LibEntryOid = 0xb8000;
+	public final static long BlobOid = 0x8000;
+	public final static long BooleanOid = 0xb000;
+	public final static long CharOid = 0x10000;
+	public final static long UTF8CharOid = 0x14000;
+	public final static long Int8Oid = 0x18000;
+	public final static long Int16Oid = 0x1b000;
+	public final static long Int32Oid = 0x20000;
+	public final static long Int64Oid = 0x24000;
+	public final static long ByteOid = YCFInt8Oid;
+	public final static long ShortOid = YCFInt16Oid;
+	public final static long IntegerOid = YCFInt32Oid;
+	public final static long LongOid = YCFInt64Oid;
+	public final static long FloatOid = 0x80000;
+	public final static long DoubleOid = 0xb0000;
+	public final static long NumberOid = 0x34000;
+	public final static long DateOid = 0x38000;
+	public final static long TimeOid = 0x3b000;
+	public final static long DateTimeOid = 0x40000;
+	public final static long TZDateOid = 0x48000;
+	public final static long TZTimeOid = 0x4b000;
+	public final static long TZDateTimeOid = 0x50000;
+	public final static long StringOid = 0x54000;
+	public final static long VStringOid = 0x58000;
+	public final static long TokenOid = 0x5b000;
+	public final static long VTokenOid = 0x60000;
+	public final static long NmTokenOid = 0x64000;
+	public final static long VNmTokenOid = 0x68000;
+	public final static long TokensOid = 0x6b000;
+	public final static long VTokensOid = 0x74000;
+	public final static long NmTokensOid = 0x78000;
+	public final static long VNmTokensOid = 0x7b000;
+	public final static long KeyHash128Oid = 0x80000;
+	public final static long KeyHash160Oid = 0x84000;
+	public final static long KeyHash224Oid = 0x88000;
+	public final static long KeyHash256Oid = 0x8b000;
+	public final static long KeyHash384Oid = 0x90000;
+	public final static long KeyHash512Oid = 0x94000;
+	public final static long EnumOid = 0x98000;
+	public final static long Id8Oid = 0x9b000;
+	public final static long Id16Oid = 0xa0000;
+	public final static long Id32Oid = 0xa4000;
+	public final static long Id64Oid = 0xa8000;
+	public final static long UInt8Oid = 0x8b000;
+	public final static long UInt16Oid = 0x90000;
+	public final static long UInt32Oid = 0x94000;
+	public final static long UInt64Oid = 0x98000;
+	public final static long UuidOid = 0x9b000;
+	public final static long Uuid6Oid = 0xa0000;
+	public final static long ArrayOid = 0xa4000;
+	public final static long VArrayOid = 0xa48000;
 }
