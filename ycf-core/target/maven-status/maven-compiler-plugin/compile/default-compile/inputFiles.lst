@@ -35,7 +35,6 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFKeyHashBase.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFLibEntry.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFMessageLog.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFMtReference.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFMtReferenceBase.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFMustOverrideException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/IYCFNotImplementedYetException.java
@@ -106,7 +105,6 @@
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFKeyHashBase.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFKeyHashUtil.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFLibEntry.java
-/opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFMtReference.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFMtReferenceBase.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFMustOverrideException.java
 /opt/ycf/v3_1/java/server.markhome.ycf/ycf-core/src/main/java/server/markhome/ycf/YCFNotImplementedYetException.java
