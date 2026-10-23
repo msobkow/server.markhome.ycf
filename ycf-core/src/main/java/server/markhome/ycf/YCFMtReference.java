@@ -33,14 +33,48 @@ import java.util.*;
 public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> {
 
 	/**
+	 *	Get the value this instance currently references.
+	 *
+	 *	@return The currently referenced value.
+	 */
+	@JSProperty
+	public T get() {
+		return((T)(super.ref));
+	}
+
+	/**
+	 *	Set the <i>value</i> this instance is to reference if the current value matches <i>expected</i>.
+	 *
+	 *	@param expected The value expected to be referenced if the value is to be changed.
+	 *	@param value The value to be referenced in the future if the current value matches expected.
+	 *
+	 *	@return The value this instance references after attempting to change the value; it may be either the value passed in or a completely different reference, but it will only be <i>expected</i> iff <i>value</i> and <i>expected</i> are identical.
+	 */
+	@JSProperty
+	public T set(T expected, T value) {
+		if (super.ref == expected) {
+			synchronized (this) {
+				if (super.ref == expected) {
+					super.ref = value;
+				}
+			}
+		}
+		return((T)(super.ref));
+	}
+
+	/**
 	 *	Get the operating system user login name running the application process.
 	 *
 	 *	@return String Operating system user login name running the application process, treated as case-sensitive by the application code.
 	 */
 	@JSExport
 	public String getUserLogin() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getUserLogin());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -50,8 +84,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getUserGroup() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getUserGroup());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -61,8 +99,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getHostName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getHostName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -72,8 +114,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public long getHostIPAddr() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
+		if(get() != null) {
+			return(get().getHostIPAddr());
+		}
+		else {
+			return(0L);
+		}
 	}
 
 	/**
@@ -83,8 +129,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public long getProcessId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
+		if(get() != null) {
+			return(get().getProcessId());
+		}
+		else {
+			return(0L);
+		}
 	}
 
 	/**
@@ -94,8 +144,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public long getThreadId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
+		if(get() != null) {
+			return(get().getThreadId());
+		}
+		else {
+			return(0L);
+		}
 	}
 
 	/**
@@ -105,8 +159,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public long getClusterCode() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
+		if(get() != null) {
+			return(get().getClusterCode());
+		}
+		else {
+			return(0L);
+		}
 	}
 
 	/**
@@ -116,8 +174,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSProperty
 	public IYCFKeyHash256 getClusterId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getClusterId());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -127,8 +189,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSProperty
 	public IYCFKeyHash256 getNodeId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getNodeId());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -138,8 +204,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFKeyHash256 getTenantId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getTenantId());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -149,8 +219,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFKeyHash256 getSecGroupId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getSecGroupId());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -160,8 +234,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFKeyHash256 getUserId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getUserId());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -171,8 +249,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFKeyHash256 getSessionId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getSessionId());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -182,8 +264,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFKeyHash256 getTxnId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getTxnId());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -193,8 +279,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFAnyObj getGenDef() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getGenDef());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -204,8 +294,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFAnyObj getScopeDef() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getScopeDef());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -215,8 +309,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFAnyObj getNamedObject(Class<?> qualifyingClass, String objName) {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getNamedObject());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -226,8 +324,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFAnyObj getNamedObject(String objName) {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getNamedObject());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -237,8 +339,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public IYCFAnyObj getObjQualifier(Class<?> qualifyingClass) {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getObjQualifier());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -248,8 +354,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getLoginName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getLoginName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -259,8 +369,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getUserName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getUserName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -270,8 +384,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getSessionName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getSessionName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -281,8 +399,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getTxnName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getTxnName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -292,8 +414,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getGenDefName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getGenDefName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -303,8 +429,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getScopeGenDefName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getScopeDefName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -314,8 +444,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getObjName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getObjName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -325,8 +459,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getObjQualifiedName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getObjQualifiedName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**
@@ -336,8 +474,12 @@ public class YCFMtReference<T extends IYCFAnyObj > implement IYCFMtReference<T> 
 	 */
 	@JSExport
 	public String getObjFullName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
+		if(get() != null) {
+			return(get().getObjFullName());
+		}
+		else {
+			return(null);
+		}
 	}
 
 	/**

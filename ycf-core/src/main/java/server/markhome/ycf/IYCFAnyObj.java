@@ -37,7 +37,7 @@ public interface IYCFAnyObj extends JSObject {
 	/**
 	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<IYCFAnyObj> singleton = IYCFMtReference<IYCFAnyObj>.getService().getInstance(null);
+	static final IYCFMtReferenceBase singleton = IYCFMtReferenceBase.getService().getInstance(null);
 
 	/**
 	 *	Get the service singleton that provides the getInstance() implementations.
@@ -46,13 +46,13 @@ public interface IYCFAnyObj extends JSObject {
 	 */
 	@JSExport
 	public static IYCFAnyObj getService() {
-		IYCFAnyObj ref = singleton.get();
+		IYCFAnyObj ref = ((IYCFAnyObj)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFAnyObj();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFAnyObj)(singleton.get()));
 		}
-		return(ref);
+		return((IYCFAnyObj)ref);
 	}
 
 	/**
@@ -62,19 +62,19 @@ public interface IYCFAnyObj extends JSObject {
 	 */
 	@JSExport
 	public static IYCFAnyObj getService(IYCFAnyObj initObj) {
-		IYCFAnyObj ref = singleton.get();
+		IYCFAnyObj ref = ((IYCFAnyObj)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFAnyObj(initObj);
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFAnyObj)(singleton.get()));
 		}
-		return(ref);
+		return((IYCFAnyObj)ref);
 	}
 
 	/**
 	 *	The LibEntry object for a package always defines the OIDs for the package.
 	 */
-	public static final int YCFANYOBJ_OID = IYCFLibEntry.YCFAnyObjOid;
+	public static final int YCFANYOBJ_OID = AnyObjOid;
 
 	/**
 	 *	Get the Oid value that implementations return to identify their class.  Note that you cannot count on an interface always returning the same Oid; only concrete implementations will return the same Oid values. Oids are unique in the runtime; one per instantiable class and a minimum of one per interface.
@@ -92,7 +92,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return An instance that provides the service method implementations.
 	 */
 	@JSExport
-	public default IYCFAnyObj getInstance() {
+	public static IYCFAnyObj getInstance() {
 		return(new YCFAnyObj());
 	}
 
@@ -104,60 +104,40 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return The Any instance that provides the service method implementations.
 	 */
 	 @JSExport
-	 public default IYCFAnyObj getInstance(IYCFAnyObj initObj) {
+	 public static IYCFAnyObj getInstance(IYCFAnyObj initObj) {
 		return(new YCFAnyObj(initObj));
 	}
 
 	/**
-	 *	The public resource name for the parent library.
-	 */
-	public static final String YCF_LIB_PARENT_NAME = IYCFLibEntry.getParentLibName();
-
-	/**
-	 *	The parent version string for this library.
-	 */
-	public static final String YCF_LIB_PARENT_VERSION = IYCFLibEntry.getParentLibVersion();
-
-	/**
-	 *	The public resource name for this library.
-	 */
-	public static final String YCF_LIB_NAME = YCF_LIB_PARENT_NAME + IYCFLibEntry.getLibName();
-
-	/**
-	 *	The public version string for this library.
-	 */
-	public static final String YCF_LIB_VERSION = IYCFLibEntry.getLibVersion();
-
-	/**
 	 *	Get the public resource name for the parent library.
 	 */
-	@JSProperty
+	@JSEntry
 	public static String getParentLibName() {
-		return(YCF_LIB_PARENT_NAME);
+		return(IYCFLibEntry.YCF_LIB_PARENT_NAME);
 	}
 
 	/**
 	 *	Get the parent resource version for this library.
 	 */
-	@JSProperty
+	@JSEntry
 	public static String getParentLibVersion() {
-		return(YCF_LIB_PARENT_VERSION);
+		return(IYCFLibEntry.YCF_LIB_PARENT_VERSION);
 	}
 
 	/**
 	 *	Get the public resource name for this library.
 	 */
-	@JSProperty
+	@JSEntry
 	public static String getLibName() {
-		return(YCF_LIB_NAME);
+		return(IYCFLibEntry.YCF_LIB_NAME);
 	}
 
 	/**
 	 *	Get the public version string for this library.
 	 */
-	@JSProperty
+	@JSEntry
 	public static String getLibVersion() {
-		return(YCF_LIB_VERSION);
+		return(IYCFLibEntry.YCF_LIB_VERSION);
 	}
 
 	/**
@@ -166,7 +146,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Operating system user login name running the application process, treated as case-sensitive by the application code.
 	 */
 	@JSExport
-	public default String getUserLogin() {
+	public static String getUserLogin() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -177,7 +157,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Operating system group name running the application process, treated as case-sensitive by the application code.
 	 */
 	@JSExport
-	public default String getUserGroup() {
+	public static String getUserGroup() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -188,7 +168,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Operating system host name running the application process, treated as case-insensitive and coerced to lowercase by the application code.
 	 */
 	@JSExport
-	public default String getHostName() {
+	public static String getHostName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -199,7 +179,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Operating system host name running the application process, treated as case-insensitive and coerced to lowercase by the application code.
 	 */
 	@JSExport
-	public default long getHostIPAddr() {
+	public static long getHostIPAddr() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(0L);
 	}
@@ -210,7 +190,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return long Process id
 	 */
 	@JSExport
-	public default long getProcessId() {
+	public static long getProcessId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(0L);
 	}
@@ -221,7 +201,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return long Thread id
 	 */
 	@JSExport
-	public default long getThreadId() {
+	public static long getThreadId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(0L);
 	}
@@ -232,7 +212,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return long Cluster code
 	 */
 	@JSExport
-	public default long getClusterCode() {
+	public static long getClusterCode() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(0L);
 	}
@@ -242,8 +222,8 @@ public interface IYCFAnyObj extends JSObject {
 	 *
 	 *	@return IYCFKeyHash256 Owner's cluster id.
 	 */
-	@JSProperty
-	public default IYCFKeyHash256 getClusterId() {
+	@JSEntry
+	public static IYCFKeyHash256 getClusterId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -253,8 +233,8 @@ public interface IYCFAnyObj extends JSObject {
 	 *
 	 *	@return IYCFKeyHash256 Data residence node id.
 	 */
-	@JSProperty
-	public default IYCFKeyHash256 getNodeId() {
+	@JSEntry
+	public static IYCFKeyHash256 getNodeId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -265,18 +245,18 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Owner's tenant id.
 	 */
 	@JSExport
-	public default IYCFKeyHash256 getTenantId() {
+	public static IYCFKeyHash256 getTenantId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
 
 	/**
-	 *	Get the default security group that applies to this piece of information.
+	 *	Get the static security group that applies to this piece of information.
 	 *
 	 *	@return IYCFKeyHash256 Owner's group id.
 	 */
 	@JSExport
-	public default IYCFKeyHash256 getSecGroupId() {
+	public static IYCFKeyHash256 getSecGroupId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -287,7 +267,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Owner's user id.
 	 */
 	@JSExport
-	public default IYCFKeyHash256 getUserId() {
+	public static IYCFKeyHash256 getUserId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -298,7 +278,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current session id.
 	 */
 	@JSExport
-	public default IYCFKeyHash256 getSessionId() {
+	public static IYCFKeyHash256 getSessionId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -309,7 +289,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current transaction id.
 	 */
 	@JSExport
-	public default IYCFKeyHash256 getTxnId() {
+	public static IYCFKeyHash256 getTxnId() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -320,7 +300,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current generation defintion.
 	 */
 	@JSExport
-	public default IYCFAnyObj getGenDef() {
+	public static IYCFAnyObj getGenDef() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -331,7 +311,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current session id.
 	 */
 	@JSExport
-	public default IYCFAnyObj getScopeDef() {
+	public static IYCFAnyObj getScopeDef() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -342,7 +322,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current object named objName with the specified qualifyingClass.
 	 */
 	@JSExport
-	public default IYCFAnyObj getNamedObject(Class<?> qualifyingClass, String objName) {
+	public static IYCFAnyObj getNamedObject(Class<?> qualifyingClass, String objName) {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -353,7 +333,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current object named objName with an indeterminate qualifyingClass.
 	 */
 	@JSExport
-	public default IYCFAnyObj getNamedObject(String objName) {
+	public static IYCFAnyObj getNamedObject(String objName) {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -364,7 +344,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return IYCFKeyHash256 Current object qualifier for the specified qualifyingClass.
 	 */
 	@JSExport
-	public default IYCFAnyObj getObjQualifier(Class<?> qualifyingClass) {
+	public static IYCFAnyObj getObjQualifier(Class<?> qualifyingClass) {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -375,7 +355,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current operating system user login name.
 	 */
 	@JSExport
-	public default String getLoginName() {
+	public static String getLoginName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -386,7 +366,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current user name.
 	 */
 	@JSExport
-	public default String getUserName() {
+	public static String getUserName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -397,7 +377,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current session name.
 	 */
 	@JSExport
-	public default String getSessionName() {
+	public static String getSessionName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -408,7 +388,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current transaction name.
 	 */
 	@JSExport
-	public default String getTxnName() {
+	public static String getTxnName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -419,7 +399,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current case-sensitive generation definition name.
 	 */
 	@JSExport
-	public default String getGenDefName() {
+	public static String getGenDefName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -430,7 +410,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current case-sensitive scoping generation definition name.
 	 */
 	@JSExport
-	public default String getScopeGenDefName() {
+	public static String getScopeGenDefName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -441,7 +421,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current case-sensitive object name.
 	 */
 	@JSExport
-	public default String getObjName() {
+	public static String getObjName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -452,7 +432,7 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current case-sensitive qualified object name.
 	 */
 	@JSExport
-	public default String getObjQualifiedName() {
+	public static String getObjQualifiedName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
@@ -463,15 +443,15 @@ public interface IYCFAnyObj extends JSObject {
 	 *	@return String Current case-sensitive object full name.
 	 */
 	@JSExport
-	public default String getObjFullName() {
+	public static String getObjFullName() {
 		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
 		return(null);
 	}
 
-	public static final long NullOid = 1;
+	public static final long NullOid = 0xc;
 	public static final long Null = 0x0;
-	public static final long NotNull = 0x1;
-	public static final long MaskNull = 0x1;
+	public static final long NotNull = 0xc;
+	public static final long MaskNull = 0xc;
 
 	/**
 	 *	Does this Oid indicate a Null value?
@@ -497,10 +477,10 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskNull) == NotNull);
 	}
 
-	public static final long RequiredOid = 0x02;
-    public static final long Optional = 0x00;
-	public static final long Required = 0x02;
-	public static final long MaskRequired = 0x02;
+	public static final long RequiredOid = 0xa;
+    public static final long Optional = 0x0;
+	public static final long Required = 0xa;
+	public static final long MaskRequired = 0xa;
 
 	/**
 	 *	Does this Oid indicate a Required value?
@@ -515,7 +495,7 @@ public interface IYCFAnyObj extends JSObject {
 	}
 
 	/**
-	 *	Does this Oid indicate a Not Null value?
+	 *	Does this Oid indicate an Optional value?
 	 *
 	 *	@param value
 	 *
@@ -526,10 +506,10 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskRequired) == Optional);
 	}
 
-	public static final long ModifiableOid = 0x04;
-	public static final long ReadOnly = 0x00;
-    public static final long Modifiable = 0x04;
-	public static final long MaskModifiable = 0x04;
+	public static final long ModifiableOid = 0x8;
+	public static final long ReadOnly = 0x0;
+    public static final long Modifiable = 0x8;
+	public static final long MaskModifiable = 0x8;
 
 	/**
 	 *	Does this Oid indicate a Modifiable value?
@@ -555,10 +535,10 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskModifiable) == ReadOnly);
 	}
 
-	public static final long StaticOid = 0x08;
-    public static final long Dynamic = 0x00;
-	public static final long Static = 0x08;
-	public static final long MaskStatic = 0x08;
+	public static final long StaticOid = 0x4;
+    public static final long Virtual = 0x0;
+	public static final long Static = 0x4;
+	public static final long MaskStatic = 0x4;
 
 	/**
 	 *	Does this Oid indicate a Static value? Static values are usually implemented a singletons. Static values are never virtual because they can't be dereferenced from an instance that would support operator/method overloading.
@@ -573,21 +553,21 @@ public interface IYCFAnyObj extends JSObject {
 	}
 
 	/**
-	 *	Does this Oid indicate a Dynamic value?  Dynamic values are usually implemented as object properties. A dynamic value implies a virtual value as well, because the instance could overload the operator or method.
+	 *	Does this Oid indicate a Virtual value?  Virtual values are usually implemented as object properties. A virtual value implies dynamic sizing for arrays as well.
 	 *
 	 *	@param value
 	 *
-	 *	@return True if the Oid indicates a Dynamic value, otherwise false.
+	 *	@return True if the Oid indicates a Virtual value, otherwise false.
 	 */
 	@JSExport
-	public static boolean isDynamic(long value) {
-		return((value & MaskStatic) == Dynamic);
+	public static boolean isVirtual(long value) {
+		return((value & MaskStatic) == Virtual);
 	}
 
-	public static final long UnknownOid = 0x10;
-	public static final long Unknown = 0x00;
-	public static final long Known = 0x10;
-	public static final long MaskUnknown = 0x10;
+	public static final long UnknownOid = 0x2;
+	public static final long Unknown = 0x0;
+	public static final long Known = 0x2;
+	public static final long MaskUnknown = 0x2;
 
 	/**
 	 *	Does this Oid indicate an Unknown value? Unknown values are statistically irrelevant because they deviate by more than 30 percent from the average and the median.
@@ -613,9 +593,9 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskUnknown) == Known);
 	}
 
-	public static final long PKeyOid = 0x20;
-	public static final long IsPKey = 0x20;
-	public static final long MaskPKey = 0x20;
+	public static final long PKeyOid = 0x1;
+	public static final long IsPKey = 0x1;
+	public static final long MaskPKey = 0x1;
 
 	/**
 	 *	Does this Oid indicate a Primary Key value? Primary Key values are essential to the operation of the code.
@@ -641,37 +621,37 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskPKey) == 0x0);
 	}
 
-	public static final long HistoryPKeyOid = 0x40;
-	public static final long IsHistoryPKey = 0x40;
-	public static final long MaskHistoryPKey = 0x40;
+	public static final long HistoricalOid = 0x0e;
+	public static final long IsHistorical = 0x0e;
+	public static final long MaskHistorical = 0x0e;
 
 	/**
-	 *	Does this Oid indicate a History Primary Key value? History Primary Key values are essential for restoring prior versions of modifiable data.
+	 *	Does this Oid indicate a Historical value? Historical values are essential for restoring prior versions of modifiable data.
 	 *
 	 *	@param value
 	 *
-	 *	@return True if the Oid indicates a History Primary Key value, otherwise false.
+	 *	@return True if the Oid indicates a Historical value, otherwise false.
 	 */
 	@JSExport
-	public static boolean isHistoryPKey(long value) {
-		return((value & MaskHistoryPKey) == IsHistoryPKey);
+	public static boolean isHistorical(long value) {
+		return((value & MaskHistorical) == IsHistorical);
 	}
 
 	/**
-	 *	Does this Oid indicate a History Data value?  Any value which isn't part of the history primary key must be data.
+	 *	Does this Oid indicate a Current value?  Any value which isn't part of the history primary key must be data.
 	 *
 	 *	@param value
 	 *
-	 *	@return True if the Oid indicates History Data value, otherwise false.
+	 *	@return True if the Oid indicates Current value, otherwise false.
 	 */
 	@JSExport
-	public static boolean isHistoryData(long value) {
-		return((value & MaskPKey) == 0x0);
+	public static boolean isCurrent(long value) {
+		return((value & MaskHistorical) == 0x0);
 	}
 
-	public static final long RecordOid = 0x80;
-	public static final long IsRecord = 0x80;
-	public static final long MaskRecord = 0x80;
+	public static final long RecordOid = 0x0c;
+	public static final long IsRecord = 0x0c;
+	public static final long MaskRecord = 0x0c;
 
 	/**
 	 *	Does this Oid indicate a Record value? Records are essential to the operation of the code.
@@ -697,37 +677,9 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskRecord) == 0x0);
 	}
 
-	public static final long HistoryRecordOid = 0x100;
-	public static final long IsHistoryRecord = 0x100;
-	public static final long MaskHistoryRecord = 0x100;
-
-	/**
-	 *	Does this Oid indicate a History Record value? History Records are essential to the operation of the code.
-	 *
-	 *	@param value
-	 *
-	 *	@return True if the Oid indicates a History Record value, otherwise false.
-	 */
-	@JSExport
-	public static boolean isHistoryRecord(long value) {
-		return((value & MaskHistoryRecord) == IsHistoryRecord);
-	}
-
-	/**
-	 *	Does this Oid indicate something other than a History Record?  All values are either History Records or they are not.
-	 *
-	 *	@param value
-	 *
-	 *	@return True if the Oid does not indicate a History Record value, otherwise false.
-	 */
-	@JSExport
-	public static boolean isNotHistoryRecord(long value) {
-		return((value & MaskHistoryRecord) == 0x0);
-	}
-
-	public static final long KeyOid = 0x200;
-	public static final long IsKey = 0x200;
-	public static final long MaskKey = 0x200;
+	public static final long KeyOid = 0x08;
+	public static final long IsKey = 0x08;
+	public static final long MaskKey = 0x08;
 
 	/**
 	 *	Does this Oid indicate a Key value? Key values are imporant for improving the performance of code.
@@ -753,37 +705,9 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskKey) == 0x0);
 	}
 
-	public static final long HistoryKeyOid = 0x400;
-	public static final long IsHistoryKey = 0x400;
-	public static final long MaskHistoryKey = 0x400;
-
-	/**
-	 *	Does this Oid indicate a History Key value? Key values are imporant for improving the performance of code.
-	 *
-	 *	@param value
-	 *
-	 *	@return True if the Oid indicates a History Key value, otherwise false.
-	 */
-	@JSExport
-	public static boolean isHistoryKey(long value) {
-		return((value & MaskHistoryKey) == IsHistoryKey);
-	}
-
-	/**
-	 *	Does this Oid indicate a non-History Key value?  Any value is either part of a history key or it is not.
-	 *
-	 *	@param value
-	 *
-	 *	@return True if the Oid indicates a non-Key value, otherwise false.
-	 */
-	@JSExport
-	public static boolean isNotHistoryKey(long value) {
-		return((value & MaskHistoryKey) == 0x0);
-	}
-
-	public static final long SentOid = 0x800;
-	public static final long IsSentObject = 0x800;
-	public static final long MaskSentObject = 0x800;
+	public static final long SentOid = 0x04;
+	public static final long IsSentObject = 0x04;
+	public static final long MaskSentObject = 0x04;
 
 	/**
 	 *	Does this Oid indicate a Sent value? All communications are presumed to be bi-directional with a response received for every request sent.
@@ -809,9 +733,9 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskSentObject) == 0x0);
 	}
 
-	public static final long VisibleOid = 0x1000;
-	public static final long IsVisible = 0x1000;
-	public static final long MaskVisible = 0x1000;
+	public static final long VisibleOid = 0x02;
+	public static final long IsVisible = 0x02;
+	public static final long MaskVisible = 0x02;
 
 	/**
 	 *	Does this Oid indicate a Visible value? Visible values can be presented to the user, though user preferences might hide the value.
@@ -837,9 +761,9 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskVisible) == 0x0);
 	}
 
-	public static final long InstanceOid = 0x2000;
-	public static final long IsInstance = 0x2000;
-	public static final long MaskInstance = 0x2000;
+	public static final long InstanceOid = 0x01;
+	public static final long IsInstance = 0x01;
+	public static final long MaskInstance = 0x01;
 
 	/**
 	 *	Does this Oid indicate an Instance value? Instance values are usually from a data object or buffer.
@@ -865,59 +789,60 @@ public interface IYCFAnyObj extends JSObject {
 		return((value & MaskInstance) == 0x0);
 	}
 
-	public final static long MtReferenceBaseOid = 0xb4000;
-	public final static long AnyObjOid = 0x4000;
+	public final static long FlagMask		= 0x7f00000000000000L;
+	public final static long SchemaIdMask	= 0x00ffff0000000000L;
+	public final static long OidMask		= 0x000000ffffff0000L;
+	public final static long IndexMask		= 0x000000000000ffffL;
 
-		public final static long LibEntryOid = 0xb8000;
-	public final static long LibEntryOid = 0xb8000;
-	public final static long BlobOid = 0x8000;
-	public final static long BooleanOid = 0xb000;
-	public final static long CharOid = 0x10000;
-	public final static long UTF8CharOid = 0x14000;
-	public final static long Int8Oid = 0x18000;
-	public final static long Int16Oid = 0x1b000;
-	public final static long Int32Oid = 0x20000;
-	public final static long Int64Oid = 0x24000;
-	public final static long ByteOid = YCFInt8Oid;
-	public final static long ShortOid = YCFInt16Oid;
-	public final static long IntegerOid = YCFInt32Oid;
-	public final static long LongOid = YCFInt64Oid;
-	public final static long FloatOid = 0x80000;
-	public final static long DoubleOid = 0xb0000;
-	public final static long NumberOid = 0x34000;
-	public final static long DateOid = 0x38000;
-	public final static long TimeOid = 0x3b000;
-	public final static long DateTimeOid = 0x40000;
-	public final static long TZDateOid = 0x48000;
-	public final static long TZTimeOid = 0x4b000;
-	public final static long TZDateTimeOid = 0x50000;
-	public final static long StringOid = 0x54000;
-	public final static long VStringOid = 0x58000;
-	public final static long TokenOid = 0x5b000;
-	public final static long VTokenOid = 0x60000;
-	public final static long NmTokenOid = 0x64000;
-	public final static long VNmTokenOid = 0x68000;
-	public final static long TokensOid = 0x6b000;
-	public final static long VTokensOid = 0x74000;
-	public final static long NmTokensOid = 0x78000;
-	public final static long VNmTokensOid = 0x7b000;
-	public final static long KeyHash128Oid = 0x80000;
-	public final static long KeyHash160Oid = 0x84000;
-	public final static long KeyHash224Oid = 0x88000;
-	public final static long KeyHash256Oid = 0x8b000;
-	public final static long KeyHash384Oid = 0x90000;
-	public final static long KeyHash512Oid = 0x94000;
-	public final static long EnumOid = 0x98000;
-	public final static long Id8Oid = 0x9b000;
-	public final static long Id16Oid = 0xa0000;
-	public final static long Id32Oid = 0xa4000;
-	public final static long Id64Oid = 0xa8000;
-	public final static long UInt8Oid = 0x8b000;
-	public final static long UInt16Oid = 0x90000;
-	public final static long UInt32Oid = 0x94000;
-	public final static long UInt64Oid = 0x98000;
-	public final static long UuidOid = 0x9b000;
-	public final static long Uuid6Oid = 0xa0000;
-	public final static long ArrayOid = 0xa4000;
-	public final static long VArrayOid = 0xa48000;
+	public final static long MtReferenceBaseOid = 0x010000L;
+	public final static long MtReferenceOid = 0x020000L;
+	public final static long AnyObjOid = 0x030000L;
+	public final static long LibEntryOid = 0x040000L;
+	public final static long BlobOid = 0x050000L;
+	public final static long BooleanOid = 0x060000L;
+	public final static long CharOid = 0x070000L;
+	public final static long UTF8CharOid = 0x080000L;
+	public final static long Int8Oid = 0x090000L;
+	public final static long Int16Oid = 0x0a0000L;
+	public final static long Int32Oid = 0x0b0000L;
+	public final static long Int64Oid = 0x0c0000L;
+	public final static long ByteOid = YCFInt8OidL;
+	public final static long ShortOid = YCFInt16OidL;
+	public final static long IntegerOid = YCFInt32OidL;
+	public final static long LongOid = YCFInt64OidL;
+	public final static long FloatOid = 0x0d0000L;
+	public final static long DoubleOid = 0x0e0000L;
+	public final static long NumberOid = 0x0f0000L;
+	public final static long DateOid = 0x100000L;
+	public final static long TimeOid = 0x110000L;
+	public final static long DateTimeOid = 0x120000L;
+	public final static long TZDateOid = 0x130000L;
+	public final static long TZTimeOid = 0x140000L;
+	public final static long TZDateTimeOid = 0x150000L;
+	public final static long StringOid = 0x160000L;
+	public final static long TokenOid = 0x170000L;
+	public final static long NmTokenOid = 0x180000L;
+	public final static long TokensOid = 0x180000L;
+	public final static long NmTokensOid = 0x190000L;
+	public final static long KeyHash128Oid = 0x1a0000L;
+	public final static long KeyHash160Oid = 0x1b0000L;
+	public final static long KeyHash224Oid = 0x1c0000L;
+	public final static long KeyHash256Oid = 0x1d0000L;
+	public final static long KeyHash384Oid = 0x1e0000L;
+	public final static long KeyHash512Oid = 0x1f0000L;
+	public final static long EnumOid = 0x200000L;
+	public final static long Id8Oid = 0x210000L;
+	public final static long Id16Oid = 0x220000L;
+	public final static long Id32Oid = 0x230000L;
+	public final static long Id64Oid = 0x240000L;
+	public final static long UInt8Oid = 0x250000L;
+	public final static long UInt16Oid = 0x260000L;
+	public final static long UInt32Oid = 0x270000L;
+	public final static long UInt64Oid = 0x280000L;
+	public final static long UuidOid = 0x290000L;
+	public final static long Uuid6Oid = 0x2a0000L;
+	public final static long ArrayOid = 0x2b0000L;
+
+	public final static long NextOid =		0x800000L;
+	public final static long MaxOid =	0xffffff0000L;
 }
