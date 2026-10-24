@@ -63,33 +63,15 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	}
 
 	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance()
-	 *		Get an instance that provides the service method implementations.
-	 *
-	 *	@return IYCFKeyHash128 The instance implementation.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance();
-
-	/**
 	 *	IYCFKeyHash128 getInstance()
 	 *		Get an instance that provides the service method implementations.
 	 *
 	 *	@return IYCFKeyHash128 The instance implementation.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance();
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(i)
-	 *		Get an instance that provides the service method implementations with a generated value.
-	 *
-	 *	@param Dummy integer parameter to indicate a key value should be generated.
-	 *
-	 *	@return IYCFKeyHash128 The instance implementation with a generated value.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(int i);
+	public static IYCFKeyHash128 getInstance() {
+		return(new YCFKeyHash128());
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(i)
@@ -100,40 +82,22 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return IYCFKeyHash128 The instance implementation with a generated value.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(int i);
+	public static IYCFKeyHash128 getInstance(int i) {
+		return(new YCFKeyHash128(i));
+	}
 
 	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(s)
+	 *	IYCFKeyHash128 getInstance(s)
 	 *		Get an instance that provides the service method implementations with a generated value.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash128_getHashLengthString() characters long.
+	 *	@param s The string of hexadecimal characters, no more than getHashLengthString() characters long.
 	 *
 	 *	@return An instance which may be a null if the string s is null.
 	 */
 	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(String s);
-
-	/**
-	 *	IYCFKeyHash128 getInstance()
-	 *		Get an instance that provides the service method implementations with a generated value.
-	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash128_getHashLengthString() characters long.
-	 *
-	 *	@return An instance which may be a null if the string s is null.
-	 */
-	@JSExport
-	public IYCFKeyHash128 getInstance(String s);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(a)
-	 *		Get an instance using the specified byte array as an initializer for the hash data.
-	 *
-	 *	@param a The byte array to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the byte array a is null.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(byte[] a);
+	public static IYCFKeyHash128 getInstance(String s) {
+		return(new YCFKeyHash128(s));
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(a)
@@ -144,18 +108,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance which may be a null if the byte array a is null.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(byte[] a);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(k)
-	 *		Get an instance using the specified key as an initializer for the hash data.
-	 *
-	 *	@param k The key to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the key k is null.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(IYCFKeyHash128 k);
+	public static IYCFKeyHash128 getInstance(byte[] a) {
+		return(new YCFKeyHash128(a));
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(k)
@@ -166,7 +121,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(IYCFKeyHash128 k);
+	public static IYCFKeyHash128 getInstance(IYCFKeyHash128 k) {
+		return(new YCFKeyHash128(k));
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(k)
@@ -177,18 +134,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(IYCFKeyHash160 k);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(k)
-	 *		Get an instance using the specified key as an initializer for the hash data.
-	 *
-	 *	@param k The key to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the key k is null.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(IYCFKeyHash160 k);
+	public static IYCFKeyHash128 getInstance(IYCFKeyHash160 k) {
+		return(new YCFKeyHash128(k));
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(k)
@@ -199,18 +147,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(IYCFKeyHash224 k);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(k)
-	 *		Get an instance using the specified key as an initializer for the hash data.
-	 *
-	 *	@param k The key to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the key k is null.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(IYCFKeyHash224 k);
+	public static IYCFKeyHash128 getInstance(IYCFKeyHash224 k) {
+		return(new YCFKeyHash128(k));
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(k)
@@ -221,18 +160,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(IYCFKeyHash256 k);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(k)
-	 *		Get an instance using the specified key as an initializer for the hash data.
-	 *
-	 *	@param k The key to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the key k is null.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(IYCFKeyHash256 k);
+	public static IYCFKeyHash128 getInstance(IYCFKeyHash256 k) {
+		return(new YCFKeyHash128(k));
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(k)
@@ -243,18 +173,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(IYCFKeyHash384 k);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(k)
-	 *		Get an instance using the specified key as an initializer for the hash data.
-	 *
-	 *	@param k The key to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the key k is null.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(IYCFKeyHash384 k);
+	public static IYCFKeyHash128 getInstance(IYCFKeyHash384 k) {
+		return(new YCFKeyHash128(k));
+	}
 
 	/**
 	 *	IYCFKeyHash128 getInstance(k)
@@ -265,38 +186,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance which may be a null if the key k is null.
 	 */
 	@JSExport
-	public IYCFKeyHash128 getInstance(IYCFKeyHash512 k);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_getInstance(k)
-	 *		Get an instance using the specified key as an initializer for the hash data.
-	 *
-	 *	@param k The key to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the key k is null.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_getInstance(IYCFKeyHash512 k);
-
-	/**
-	 *	IYCFKeyHash128 getInstance(k)
-	 *		Get an instance using the specified key as an initializer for the hash data.
-	 *
-	 *	@param k The key to use to initialize the hash data.
-	 *
-	 *	@return An instance which may be a null if the key k is null.
-	 */
-	@JSExport
-	public IYCFKeyHash128 getInstance(IYCFKeyHash128 k);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_fromInt(i)
-	 *		Get an instance that uses the integer i to initialize the first 4 bytes of the key data.
-	 *
-	 *	@return IYCFKeyHash128 An instance that uses the integer i to initialize the first 4 bytes of the key data.
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_fromInt(int i);
+	public static IYCFKeyHash128 getInstance(IYCFKeyHash512 k) {
+		return(new YCFKeyHash128(k));
+	}
 
 	/**
 	 *	IYCFKeyHash128 fromInt(i)
@@ -305,52 +197,31 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return IYCFKeyHash128 An instance that uses the integer i to initialize the first 4 bytes of the key data.
 	 */
 	@JSExport
-	public IYCFKeyHash128 fromInt(int i);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_nullGet()
-	 *		Get a null instance.
-	 *
-	 *	@return IYCFKeyHash128 A null instance
-	 */
-	@JSExport
-	public static IYCFKeyHash128 YCFKeyHash128_nullGet();
+	public static IYCFKeyHash128 fromInt(int i) {
+		return(new YCFKeyHash128(i));
+	}
 
 	/**
 	 *	IYCFKeyHash128 nullGet()
 	 *		Get a null instance.
 	 *
-	 *	@return IYCFKeyHash128 A null instance.
+	 *	@return IYCFKeyHash128 A null instance
 	 */
 	@JSExport
-	public IYCFKeyHash128 nullGet();
+	public static IYCFKeyHash128 nullGet() {
+		return(new YCFKeyHash128());
+	}
 
 	/**
-	 *	String YCFKeyHash128_nullString()
+	 *	String nullString()
 	 *		Get a null value string.
 	 *
 	 *	@return String The null value string.
 	 */
 	@JSExport
-	public static String YCFKeyHash128_nullString();
-
-	/**
-	 *	String nullString()
-	 *		Get the null value string.
-	 *
-	 *	@return  String the null value string.
-	 */
-	@JSExport
-	public String nullString();
-
-	/**
-	 *	int YCFKeyHash128_getHashLength()
-	 *		Get the length of the hash value.
-	 *
-	 *	@return The length of hashed values (size of the byte arrays.)
-	 */
-	@JSExport
-  	public static int YCFKeyHash128_getHashLength();
+	public String nullString() {
+		return(NULL_STRING);
+	}
 
 	/**
 	 *	int getHashLength()
@@ -359,16 +230,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return The length of hashed values (size of the byte arrays.)
 	 */
 	@JSExport
-  	public int getHashLength();
-
-	/**
-	 *	int YCFKeyHash128_getHashLengthString()
-	 *		Get the length of the hash value string form.
-	 *
-	 *	@return The length of hashed value strings.
-	 */
-	@JSExport
-  	public static int YCFKeyHash128_getHashLengthString();
+  	public int getHashLength() {
+		return(HASH_LENGTH);
+	}
 
 	/**
 	 *	int getHashLengthString()
@@ -377,16 +241,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return The length of hashed value strings.
 	 */
 	@JSExport
-  	public int getHashLengthString();
-
-	/**
-	 *	String YCFKeyHash128_getHashAlgo()
-	 *		Get the name of the hash algorithm used.
-	 *
-	 *	@return The name of the hash algorithm used.
-	 */
-	@JSExport
-  	public static String YCFKeyHash128_getHashAlgo();
+  	public int getHashLengthString() {
+		return(HASH_LENGTH_STRING);
+	}
 
 	/**
 	 *	String getHashAlgo()
@@ -395,16 +252,35 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return The name of the hash algorithm used.
 	 */
 	@JSExport
-  	public String getHashAlgo();
+  	public String getHashAlgo() {
+		return(HASH_ALGO);
+	}
 
 	/**
-	 *	int YCFKeyHash128_compare()
+	 *	int compare()
 	 *		Compare two instances.
 	 *
 	 *	@return less than zero if A is less than B, greater than zero if A is greater than B, otherwise zero.
 	 */
 	@JSExport
-  	public static int YCFKeyHash128_compare(IYCFKeyHash128 a, IYCFKeyHash128 b);
+  	public static int compare(IYCFKeyHash128 a, IYCFKeyHash128 b) {
+		if(a != null) {
+			if(b != null) {
+				return(a.compare(b));
+			}
+			else {
+				return(1);
+			}
+		}
+		else {
+			if(b != null) {
+				return(-1);
+			}
+			else {
+				return(0);
+			}
+		}
+	}
 
 	/**
 	 *	int compare(b)
@@ -413,16 +289,40 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return less than zero if this is less than B, greater than zero if this is greater than B, otherwise zero.
 	 */
 	@JSExport
-  	public int compare(IYCFKeyHash128 b);
+  	public int compare(IYCFKeyHash128 b) {
+		if(b != null) {
+			return(Arrays.compare(a.getBytes(), b.getBytes()));
+		}
+		else {
+			return(1);
+		}
+	}
 
 	/**
-	 *	int YCFKeyHash128_compareOrdered()
+	 *	int compareOrdered()
 	 *		Compare two instances.
 	 *
 	 *	@return less than zero if A is less than B, greater than zero if A is greater than B, otherwise zero.
 	 */
 	@JSExport
-  	public static int YCFKeyHash128_compareOrdered(IYCFKeyHash128 a, IYCFKeyHash128 b);
+  	public static int compareOrdered(IYCFKeyHash128 a, IYCFKeyHash128 b) {
+		if(a != null) {
+			if(b != null) {
+				return(a.compareOrdered(b));
+			}
+			else {
+				return(1);
+			}
+		}
+		else {
+			if(b != null) {
+				return(-1);
+			}
+			else {
+				return(0);
+			}
+		}
+	}
 
 	/**
 	 *	int compareOrdered()
@@ -434,64 +334,33 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
   	public int compareOrdered(IYCFKeyHash128 b);
 
 	/**
-	 *	void YCFKeyHash128_initStatics()
+	 *	void initStatics()
 	 *		Initialize the statics.
 	 */
 	@JSExport
-  	public static void YCFKeyHash128_initStatics();
-
-	/**
-	 *	byte[] YCFKeyHash128_sbytesFromHex(s)
-	 *		Calculate a hash byte array from a hexadecimal string.
-	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash128_getHashLengthString() characters long.
-	 *
-	 *	@return A byte array or null if the string s is null.
-	 */
-	@JSExport
-  	public static byte[] YCFKeyHash128_sbytesFromHex(String s);
+  	public static void initStatics();
 
 	/**
 	 *	byte[] sbytesFromHex(s)
 	 *		Calculate a hash byte array from a hexadecimal string.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash128_getHashLengthString() characters long.
+	 *	@param s The string of hexadecimal characters, no more than getHashLengthString() characters long.
 	 *
 	 *	@return A byte array or null if the string s is null.
 	 */
 	@JSExport
-  	public byte[] sbytesFromHex(String s);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_fromHex(s)
-	 *		Create an instance from a hexadecimal string.
-	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash128_getHashLengthString() characters long.
-	 *
-	 *	@return An instance or null.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_fromHex(String s);
+  	public static byte[] sbytesFromHex(String s);
 
 	/**
 	 *	IYCFKeyHash128 fromHex(s)
 	 *		Create an instance from a hexadecimal string.
 	 *
-	 *	@param s The string of hexadecimal characters, no more than YCFKeyHash128_getHashLengthString() characters long.
+	 *	@param s The string of hexadecimal characters, no more than getHashLengthString() characters long.
 	 *
 	 *	@return An instance or null.
 	 */
 	@JSExport
-  	public IYCFKeyHash128 fromHex(String s);
-
-	/**
-	 *	Comparator<IYCFKeyHash128> YCFKeyHash128_getComparator()
-	 *		Get a Comparator instance for the keys.
-	 *
-	 *	@return A Comparator for the key instances.
-	 */
-	@JSExport
-	public static Comparator<IYCFKeyHash128> YCFKeyHash128_getComparator();
+  	public static IYCFKeyHash128 fromHex(String s);
 
 	/**
 	 *	Comparator<IYCFKeyHash128> getComparator()
@@ -500,10 +369,10 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return A Comparator for the key instances.
 	 */
 	@JSExport
-	public Comparator<IYCFKeyHash128> getComparator();
+	public static Comparator<IYCFKeyHash128> getComparator();
 
 	/**
-	 *	byte[] YCFKeyHash128_getBytes(k)
+	 *	byte[] getBytes(k)
 	 *		Get the byte array for key value k.
 	 *
 	 *	@param k The key value to be evaluated.
@@ -511,7 +380,14 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return The byte array for key value k, or null if k is null.
 	 */
 	@JSExport
-	public static byte[] YCFKeyHash128_getBytes(IYCFKeyHash128 k);
+	public static byte[] getBytes(IYCFKeyHash128 k) {
+		if(k != null) {
+			return(k.getBytes());
+		}
+		else {
+			return(null);
+		}
+	}
 
 	/**
 	 *	byte[] getBytes()
@@ -523,14 +399,21 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	public byte[] getBytes();
 
 	/**
-	 *	void YCFKeyHash128_setBytes(k, a)
+	 *	void setBytes(k, a)
 	 *		Set the byte array for key value k to a copy of the byte array a. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
 	 *
 	 *	@param k The key value to be updated.
 	 *	@param a The byte array to use for the update.  If it is null, then k's key data is set to zeroes.
 	 */
 	@JSExport
-	public static void YCFKeyHash128_setBytes(IYCFKeyHash128 k, byte[] a);
+	public static void setBytes(IYCFKeyHash128 k, byte[] a) {
+		if(k != null) {
+			k.setBytes(a);
+		}
+		else {
+			throw IYCFNullArgumentException.getInstance(YCFKeyHash128.class, "setBytes", 1, "k");
+		}
+	}
 
 	/**
 	 *	void setBytes(a)
@@ -542,7 +425,7 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	public void setBytes(byte[] a);
 
 	/**
-	 *	void YCFKeyHash128_setBytes(k, a, o, l)
+	 *	void setBytes(k, a, o, l)
 	 *		Set the byte array for key value k to a copy of the byte array a starting at the offset o for the length l. If a is null, set k's key data to zeroes.  We want the KeyHash to be immutable so this method shouldn't even exist, but it is necessary for JPA. This is the only code that should use this method.
 	 *
 	 *	@param k The key value to be updated.
@@ -551,7 +434,20 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@param l The number of bytes to copy from array a
 	 */
 	@JSExport
-	public static void YCFKeyHash128_setBytes(IYCFKeyHash128 k, byte[] a, int o, int l);
+	public static void setBytes(IYCFKeyHash128 k, byte[] a, int o, int l) {
+		if(k != null) {
+			if(o < 0) {
+				throw IYCFArgumentUnderflowException.getInstance(YCFKeyHash128.class, "setBytes", 2, "o", o, 0);
+			}
+			if(l < 0) {
+				throw IYCFArgumentUnderflowException.getInstance(YCFKeyHash128.class, "setBytes", 3, "l", l, 0);
+			}
+			k.setBytes(a, o, l);
+		}
+		else {
+			throw IYCFNullArgumentException.getInstance(YCFKeyHash128.class, "setBytes", 1, "k");
+		}
+	}
 
 	/**
 	 *	void setBytes(a, o, l)
@@ -562,16 +458,36 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@param l The number of bytes to copy from array a
 	 */
 	@JSExport
-	public void setBytes(byte[] a, int o, int l);
+	public void setBytes(byte[] a, int o, int l) {
+		if(a == null) {
+			setNull();
+		}
+		else {
+			if(o < 0) {
+				throw IYCFArgumentUnderflowException.getInstance(YCFKeyHash128.class, "setBytes", 2, "o", o, 0);
+			}
+			if(l < 0) {
+				throw IYCFArgumentUnderflowException.getInstance(YCFKeyHash128.class, "setBytes", 3, "l", l, 0);
+			}
+			bytes = Arrays.clone(a, o, l);
+		}
+	}
 
 	/**
-	 *	boolean YCFKeyHash128_isNull(k)
+	 *	boolean isNull(k)
 	 *		Is the key k null valued?
 	 *
 	 *	@return True if k is null or null valued, otherwise false.
 	 */
 	@JSExport
-  	public static boolean YCFKeyHash128_isNull(IYCFKeyHash128 k);
+  	public static boolean isNull(IYCFKeyHash128 k) {
+		if(k != null) {
+			return(k.isNull());
+		}
+		else {
+			return(true);
+		}
+	}
 
 	/**
 	 *	boolean isNull()
@@ -583,17 +499,6 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
   	public boolean isNull();
 
 	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_hash(s)
-	 *		Create an instance by hashing the string s.
-	 *
-	 *	@param s The string to be hashed.
-	 *
-	 *	@return An instance or null if s is null.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_hash(String s);
-
-	/**
 	 *	IYCFKeyHash128 hash(s)
 	 *		Create an instance by hashing the string s.
 	 *
@@ -602,18 +507,7 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance or null if s is null.
 	 */
 	@JSExport
-  	public IYCFKeyHash128 hash(String s);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_hash(a)
-	 *		Create an instance by hashing the byte array a.
-	 *
-	 *	@param a The byte array to be hashed.
-	 *
-	 *	@return An instance or null if a is null.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_hash(byte[] a);
+  	public static IYCFKeyHash128 hash(String s);
 
 	/**
 	 *	IYCFKeyHash128 hash(a)
@@ -624,18 +518,7 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance or null if a is null.
 	 */
 	@JSExport
-  	public IYCFKeyHash128 hash(byte[] a);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_hash(a...)
-	 *		Create an instance by hashing the byte arrays a and ....
-	 *
-	 *	@param a... The byte arrays to be hashed.
-	 *
-	 *	@return An instance or null if a is null and no other arrays are specified.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_hash(byte[]... a);
+  	public static IYCFKeyHash128 hash(byte[] a);
 
 	/**
 	 *	IYCFKeyHash128 hash(a...)
@@ -646,18 +529,7 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance or null if a is null and no other arrays are specified.
 	 */
 	@JSExport
-  	public IYCFKeyHash128 hash(byte[]... a);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_hash(k...)
-	 *		Create an instance by hashing the keys k and ....
-	 *
-	 *	@param k... The keys to be hashed.
-	 *
-	 *	@return An instance or null if k is null and no other keys are specified.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_hash(IYCFKeyHash128... k);
+  	public static IYCFKeyHash128 hash(byte[]... a);
 
 	/**
 	 *	IYCFKeyHash128 hash(k...)
@@ -668,10 +540,10 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance or null if k is null and no other keys are specified.
 	 */
 	@JSExport
-  	public IYCFKeyHash128 hash(IYCFKeyHash128... k);
+  	public static IYCFKeyHash128 hash(IYCFKeyHash128... k);
 
 	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_hash(i...)
+	 *	IYCFKeyHash128 hash(i...)
 	 *		Create an instance by hashing the integers i and ....
 	 *
 	 *	@param k... The integers to be hashed.
@@ -679,29 +551,7 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance.
 	 */
 	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_hash(int... k);
-
-	/**
-	 *	IYCFKeyHash128 hash(i...)
-	 *		Create an instance by hashing the integers i and ....
-	 *
-	 *	@param i... The integers to be hashed.
-	 *
-	 *	@return An instance.
-	 */
-	@JSExport
-  	public IYCFKeyHash128 hash(int... i);
-
-	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_hash(a...)
-	 *		Create an instance by hashing the integer arrays a and ....
-	 *
-	 *	@param a... The integer arrays to be hashed.
-	 *
-	 *	@return An instance, or null if a is null and no other arrays are specified.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_hash(int[]... a);
+  	public static IYCFKeyHash128 hash(int... k);
 
 	/**
 	 *	IYCFKeyHash128 hash(a...)
@@ -712,10 +562,10 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance, or null if a is null and no other arrays are specified.
 	 */
 	@JSExport
-  	public IYCFKeyHash128 hash(int[]... a);
+  	public static IYCFKeyHash128 hash(int[]... a);
 
 	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_deepClone(k)
+	 *	IYCFKeyHash128 deepClone(k)
 	 *		Create an instance by deep cloning the key data for k.
 	 *
 	 *	@param k The key value to clone.
@@ -723,7 +573,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance, or null if k is null.
 	 */
 	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_deepClone(IYCFKeyHash128 k);
+  	public static IYCFKeyHash128 deepClone(IYCFKeyHash128 k) {
+		return(new YCFKeyHash128(k));
+	}
 
 	/**
 	 *	IYCFKeyHash128 deepClone()
@@ -735,17 +587,6 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
   	public IYCFKeyHash128 deepClone();
 
 	/**
-	 *	IYCFKeyHash128 YCFKeyHash128_fromHexQuick(s)
-	 *		Create an instance by converting String s from hexadecimal.
-	 *
-	 *	@param s The hexadecimal string to convert.
-	 *
-	 *	@return An instance, or null if s is null.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128 YCFKeyHash128_fromHexQuick(String s);
-
-	/**
 	 *	IYCFKeyHash128 fromHexQuick(s)
 	 *		Create an instance by converting String s from hexadecimal.
 	 *
@@ -754,18 +595,9 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An instance, or null if s is null.
 	 */
 	@JSExport
-  	public IYCFKeyHash128 fromHexQuick(String s);
-
-	/**
-	 *	IYCFKeyHash128[] YCFKeyHash128_toKeyHashes(a)
-	 *		Create an array of instances from an array of hexadecimal strings.
-	 *
-	 *	@param a The array of hexadecimal strings to convert.
-	 *
-	 *	@return An array of instances, or null if a was null.
-	 */
-	@JSExport
-  	public static IYCFKeyHash128[] YCFKeyHash128_toKeyHashes(String[] a);
+  	public static IYCFKeyHash128 fromHexQuick(String s) {
+		return(new YCFKeyHash128(s));
+	}
 
 	/**
 	 *	IYCFKeyHash128[] toKeyHashes(a)
@@ -776,18 +608,22 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return An array of instances, or null if a was null.
 	 */
 	@JSExport
-  	public IYCFKeyHash128[] toKeyHashes(String[] a);
-
-	/**
-	 *	List<IYCFKeyHash128> YCFKeyHash128_toKeyHashesList(a)
-	 *		Create a list of instances from an array of hexadecimal strings.
-	 *
-	 *	@param a The array of hexadecimal strings to convert.
-	 *
-	 *	@return A list of instances, or null if a was null.
-	 */
-	@JSExport
-  	public static List<IYCFKeyHash128> YCFKeyHash128_toKeyHashesList(String[] a);
+  	public static IYCFKeyHash128[] toKeyHashes(String[] a) {
+		if(a == null) {
+			return(null);
+		}
+		YCFKeyHash128[] arr = new IYCFKeyHash128[a.length()];
+		int i = 0;
+		for(String s: a) {
+			if(s != null) {
+				arr[i++] = new YCFKeyHash128(s);
+			}
+			else {
+				arr[i++] = null;
+			}
+		}
+		return(arr);
+	}
 
 	/**
 	 *	List<IYCFKeyHash128> toKeyHashesList(a)
@@ -798,18 +634,22 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return A list of instances, or null if a was null.
 	 */
 	@JSExport
-  	public List<IYCFKeyHash128> toKeyHashesList(String[] a);
-
-	/**
-	 *	Set<IYCFKeyHash128> YCFKeyHash128_toKeyHashesSet(a)
-	 *		Create a set of instances from an array of hexadecimal strings.
-	 *
-	 *	@param a The array of hexadecimal strings to convert.
-	 *
-	 *	@return A set of instances, or null if a was null.
-	 */
-	@JSExport
-  	public static Set<IYCFKeyHash128> YCFKeyHash128_toKeyHashesSet(String[] a);
+  	public static List<IYCFKeyHash128> toKeyHashesList(String[] a) {
+		if(a == null) {
+			return(null);
+		}
+		ArrayList<IYCFKeyHash128> arr = new ArrayList<>(a.length());
+		int i = 0;
+		for(String s: a) {
+			if(s != null) {
+				arr.add(new YCFKeyHash128(s));
+			}
+			else {
+				arr.add(null);
+			}
+		}
+		return(arr);
+	}
 
 	/**
 	 *	Set<IYCFKeyHash128> toKeyHashesSet(a)
@@ -820,5 +660,22 @@ public interface IYCFKeyHash128 extends IYCFKeyHashBase<IYCFKeyHash128> {
 	 *	@return A set of instances, or null if a was null.
 	 */
 	@JSExport
-  	public Set<IYCFKeyHash128> toKeyHashesSet(String[] a);
+  	public static Set<IYCFKeyHash128> toKeyHashesSet(String[] a) {
+		if(a == null) {
+			return(null);
+		}
+		HashSet<IYCFKeyHash128> set = new HashSet<>(a.length());
+		int i = 0;
+		for(String s: a) {
+			if(s != null) {
+				set.add(new YCFKeyHash128(s));
+			}
+			else {
+				if(!set.contains(null)) {
+					set.add(null);
+				}
+			}
+		}
+		return(set);
+	}
 }
