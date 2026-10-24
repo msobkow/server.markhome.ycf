@@ -34,9 +34,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFPrimaryKeyNotNewException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFPrimaryKeyNotNewException> singleton = IYCFMtReference<YCFPrimaryKeyNotNewException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -44,12 +44,12 @@ public interface IYCFPrimaryKeyNotNewException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFPrimaryKeyNotNewException getService() {
-		YCFPrimaryKeyNotNewException ref = singleton.get();
+	public static IYCFPrimaryKeyNotNewException getService() {
+		IYCFPrimaryKeyNotNewException ref = ((IYCFPrimaryKeyNotNewException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFPrimaryKeyNotNewException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFPrimaryKeyNotNewException)(singleton.get()));
 		}
 		return(ref);
 	}

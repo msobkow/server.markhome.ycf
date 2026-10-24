@@ -34,9 +34,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFUnresolvedRelationException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFUnresolvedRelationException> singleton = IYCFMtReference<YCFUnresolvedRelationException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -44,12 +44,12 @@ public interface IYCFUnresolvedRelationException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFUnresolvedRelationException getService() {
-		YCFUnresolvedRelationException ref = singleton.get();
+	public static IYCFUnresolvedRelationException getService() {
+		IYCFUnresolvedRelationException ref = ((IYCFUnresolvedRelationException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFUnresolvedRelationException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFUnresolvedRelationException)(singleton.get()));
 		}
 		return(ref);
 	}

@@ -37,9 +37,9 @@ import java.text.Format;
 public interface IYCFBigDecimalUtil extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFBigDecimalUtil> singleton = IYCFReference<YCFBigDecimalUtil>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -47,12 +47,12 @@ public interface IYCFBigDecimalUtil extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFBigDecimalUtil getService() {
-		YCFBigDecimalUtil ref = singleton.get();
+	public static IYCFBigDecimalUtil getService() {
+		IYCFBigDecimalUtil ref = ((IYCFBigDecimalUtil)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFBigDecimalUtil();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFBigDecimalUtil)(singleton.get()));
 		}
 		return(ref);
 	}

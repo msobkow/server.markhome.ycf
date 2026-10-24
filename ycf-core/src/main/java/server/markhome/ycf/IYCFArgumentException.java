@@ -35,9 +35,9 @@ import java.util.*;
 public interface IYCFArgumentException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFArgumentException> singleton = IYCFMtReference<YCFArgumentException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -45,12 +45,12 @@ public interface IYCFArgumentException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFArgumentException getService() {
-		YCFArgumentException ref = singleton.get();
+	public static IYCFArgumentException getService() {
+		IYCFArgumentException ref = ((IYCFArgumentException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFArgumentException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFArgumentException)(singleton.get()));
 		}
 		return(ref);
 	}

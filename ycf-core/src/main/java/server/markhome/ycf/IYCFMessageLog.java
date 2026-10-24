@@ -43,9 +43,9 @@ import java.io.PrintStream;
 public interface IYCFMessageLog extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFMessageLog> singleton = IYCFMtReference<YCFMessageLog>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -53,12 +53,12 @@ public interface IYCFMessageLog extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFMessageLog getService() {
-		YCFMessageLog ref = singleton.get();
+	public static IYCFMessageLog getService() {
+		IYCFMessageLog ref = ((IYCFMessageLog)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFMessageLog();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFMessageLog)(singleton.get()));
 		}
 		return(ref);
 	}

@@ -51,9 +51,9 @@ import server.markhome.ycf.IYCFMessageLog;
 public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFXmlCoreParser> singleton = IYCFMtReference<YCFXmlCoreParser>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -61,12 +61,12 @@ public interface IYCFXmlCoreParser extends IYCFXmlCoreContextFactory {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFXmlCoreParser getService() {
-		YCFXmlCoreParser ref = singleton.get();
+	public static IYCFXmlCoreParser getService() {
+		IYCFXmlCoreParser ref = ((IYCFXmlCoreParser)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFXmlCoreParser();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFXmlCoreParser)(singleton.get()));
 		}
 		return(ref);
 	}

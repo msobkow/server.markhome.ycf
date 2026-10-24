@@ -32,9 +32,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFEditAlreadyOpenException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFEditAlreadyOpenException> singleton = IYCFMtReference<YCFEditAlreadyOpenException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -42,12 +42,12 @@ public interface IYCFEditAlreadyOpenException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFEditAlreadyOpenException getService() {
-		YCFEditAlreadyOpenException ref = singleton.get();
+	public static IYCFEditAlreadyOpenException getService() {
+		IYCFEditAlreadyOpenException ref = ((IYCFEditAlreadyOpenException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFEditAlreadyOpenException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFEditAlreadyOpenException)(singleton.get()));
 		}
 		return(ref);
 	}

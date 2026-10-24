@@ -49,9 +49,9 @@ import server.markhome.ycf.IYCFNullArgumentException;
 public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFXmlCoreSaxParser> singleton = IYCFMtReference<YCFXmlCoreSaxParser>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -59,12 +59,12 @@ public interface IYCFXmlCoreSaxParser extends IYCFXmlCoreParser {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFXmlCoreSaxParser getService() {
-		YCFXmlCoreSaxParser ref = singleton.get();
+	public static IYCFXmlCoreSaxParser getService() {
+		IYCFXmlCoreSaxParser ref = ((IYCFXmlCoreSaxParser)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFXmlCoreSaxParser();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFXmlCoreSaxParser)(singleton.get()));
 		}
 		return(ref);
 	}

@@ -65,9 +65,9 @@ import java.util.Properties;
 public interface IInzLang extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<InzLang> singleton = IYCFMtReference<InzLang>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -75,12 +75,12 @@ public interface IInzLang extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static InzLang getService() {
-		InzLang ref = singleton.get();
+	public static IInzLang getService() {
+		IInzLang ref = ((IInzLang)(singleton.get()));
 		if (ref == null) {
-			ref = new InzLang();
+			ref = new Inz();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IInzLang)(singleton.get()));
 		}
 		return(ref);
 	}

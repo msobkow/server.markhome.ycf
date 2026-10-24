@@ -33,9 +33,9 @@ import org.teavm.jso.JSProperty;
 public interface IYCFFireOnInstanceOf extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFFireOnInstanceOf> singleton = IYCFMtReference<YCFFireOnInstanceOf>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -43,12 +43,12 @@ public interface IYCFFireOnInstanceOf extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFFireOnInstanceOf getService() {
-		YCFFireOnInstanceOf ref = singleton.get();
+	public static IYCFFireOnInstanceOf getService() {
+		IYCFFireOnInstanceOf ref = ((IYCFFireOnInstanceOf)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFFireOnInstanceOf();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFFireOnInstanceOf)(singleton.get()));
 		}
 		return(ref);
 	}

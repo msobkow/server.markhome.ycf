@@ -37,9 +37,9 @@ import server.markhome.ycf.IYCFFireOnInstanceOf;
 public interface IYCFFiringList extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFFiringList> singleton = IYCFMtReference<YCFFiringList>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -47,12 +47,12 @@ public interface IYCFFiringList extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFFiringList getService() {
-		YCFFiringList ref = singleton.get();
+	public static IYCFFiringList getService() {
+		IYCFFiringList ref = ((IYCFFiringList)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFFiringList();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFFiringList)(singleton.get()));
 		}
 		return(ref);
 	}

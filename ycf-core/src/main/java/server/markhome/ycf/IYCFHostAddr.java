@@ -36,9 +36,9 @@ import java.net.UnknownHostException;
 public final interface IYCFHostAddr extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFHostAddr> singleton = IYCFMtReference<YCFHostAddr>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -46,12 +46,12 @@ public final interface IYCFHostAddr extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFHostAddr getService() {
-		YCFHostAddr ref = singleton.get();
+	public static IYCFHostAddr getService() {
+		IYCFHostAddr ref = ((IYCFHostAddr)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFHostAddr();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFHostAddr)(singleton.get()));
 		}
 		return(ref);
 	}

@@ -43,9 +43,9 @@ import org.xml.sax.SAXException;
 public interface IYCFXmlCoreElementHandler extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFXmlCoreElementHandler> singleton = IYCFMtReference<YCFXmlCoreElementHandler>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -53,12 +53,12 @@ public interface IYCFXmlCoreElementHandler extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFXmlCoreElementHandler getService() {
-		YCFXmlCoreElementHandler ref = singleton.get();
+	public static IYCFXmlCoreElementHandler getService() {
+		IYCFXmlCoreElementHandler ref = ((IYCFXmlCoreElementHandler)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFXmlCoreElementHandler();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFXmlCoreElementHandler)(singleton.get()));
 		}
 		return(ref);
 	}

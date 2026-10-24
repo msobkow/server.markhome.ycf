@@ -37,7 +37,7 @@ public interface IYCFAnyObj extends JSObject {
 	/**
 	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReferenceBase singleton = IYCFMtReferenceBase.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance(null);
 
 	/**
 	 *	Get the service singleton that provides the getInstance() implementations.
@@ -69,383 +69,6 @@ public interface IYCFAnyObj extends JSObject {
 			ref = ((IYCFAnyObj)(singleton.get()));
 		}
 		return((IYCFAnyObj)ref);
-	}
-
-	/**
-	 *	The LibEntry object for a package always defines the OIDs for the package.
-	 */
-	public static final int YCFANYOBJ_OID = AnyObjOid;
-
-	/**
-	 *	Get the Oid value that implementations return to identify their class.  Note that you cannot count on an interface always returning the same Oid; only concrete implementations will return the same Oid values. Oids are unique in the runtime; one per instantiable class and a minimum of one per interface.
-	 *
-	 *	@return Oid value implementations return to identify their class.
-	 */
-	@JSExport
-	public static int getOid() {
-		return(YCFANYOBJ_OID);
-	}
-
-	/**
-	 *	Get an instance that provides the service method implementations.
-	 *
-	 *	@return An instance that provides the service method implementations.
-	 */
-	@JSExport
-	public static IYCFAnyObj getInstance() {
-		return(new YCFAnyObj());
-	}
-
-	/**
-	 *	Get an instance that provides the service method implementations specifying the initial instance to be referenced.
-	 *
-	 *	@param initObj The object to use to copy from or reference from the newly created instance.
-	 *
-	 *	@return The Any instance that provides the service method implementations.
-	 */
-	 @JSExport
-	 public static IYCFAnyObj getInstance(IYCFAnyObj initObj) {
-		return(new YCFAnyObj(initObj));
-	}
-
-	/**
-	 *	Get the public resource name for the parent library.
-	 */
-	@JSEntry
-	public static String getParentLibName() {
-		return(IYCFLibEntry.YCF_LIB_PARENT_NAME);
-	}
-
-	/**
-	 *	Get the parent resource version for this library.
-	 */
-	@JSEntry
-	public static String getParentLibVersion() {
-		return(IYCFLibEntry.YCF_LIB_PARENT_VERSION);
-	}
-
-	/**
-	 *	Get the public resource name for this library.
-	 */
-	@JSEntry
-	public static String getLibName() {
-		return(IYCFLibEntry.YCF_LIB_NAME);
-	}
-
-	/**
-	 *	Get the public version string for this library.
-	 */
-	@JSEntry
-	public static String getLibVersion() {
-		return(IYCFLibEntry.YCF_LIB_VERSION);
-	}
-
-	/**
-	 *	Get the operating system user login name running the application process.
-	 *
-	 *	@return String Operating system user login name running the application process, treated as case-sensitive by the application code.
-	 */
-	@JSExport
-	public static String getUserLogin() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the operating system group name running the application process.
-	 *
-	 *	@return String Operating system group name running the application process, treated as case-sensitive by the application code.
-	 */
-	@JSExport
-	public static String getUserGroup() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the operating system host name running the application process.
-	 *
-	 *	@return String Operating system host name running the application process, treated as case-insensitive and coerced to lowercase by the application code.
-	 */
-	@JSExport
-	public static String getHostName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the operating system host IP address running the application process. Note that in the case of a load-balanced cluster, more than one physical host might be assigned the same host IP address for access by the load balancer, particularly in network environments managed by Cisco or equivalent hardware.
-	 *
-	 *	@return String Operating system host name running the application process, treated as case-insensitive and coerced to lowercase by the application code.
-	 */
-	@JSExport
-	public static long getHostIPAddr() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
-	}
-
-	/**
-	 *	Get the process id for this program.
-	 *
-	 *	@return long Process id
-	 */
-	@JSExport
-	public static long getProcessId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
-	}
-
-	/**
-	 *	Get the thread id currently executing this code.
-	 *
-	 *	@return long Thread id
-	 */
-	@JSExport
-	public static long getThreadId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
-	}
-
-	/**
-	 *	Get the cluster code for this process. The core server uses the system cluster table cluster code value so that it's internal keys will be consistent locally and publicly.  Clients connecting to the server are assigned a generated cluster code guaranteed to be unique in the cluster during runtime and to not be the system cluster code.  This ensures that each host node/program running in the clustered network is using a different cluster code so that it's generated KeyHash ids will truly be unique and distinct without further effort required by the application logic.  The application code relies on this feature to provide maximum throughput and performance of the data processing operations.
-	 *
-	 *	@return long Cluster code
-	 */
-	@JSExport
-	public static long getClusterCode() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(0L);
-	}
-
-	/**
-	 *	Get the cluster id that owns this piece of information.
-	 *
-	 *	@return IYCFKeyHash256 Owner's cluster id.
-	 */
-	@JSEntry
-	public static IYCFKeyHash256 getClusterId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the node id that owns this piece of information resides.
-	 *
-	 *	@return IYCFKeyHash256 Data residence node id.
-	 */
-	@JSEntry
-	public static IYCFKeyHash256 getNodeId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the tenant id that owns this piece of information.
-	 *
-	 *	@return IYCFKeyHash256 Owner's tenant id.
-	 */
-	@JSExport
-	public static IYCFKeyHash256 getTenantId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the static security group that applies to this piece of information.
-	 *
-	 *	@return IYCFKeyHash256 Owner's group id.
-	 */
-	@JSExport
-	public static IYCFKeyHash256 getSecGroupId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the id of the user that owns this piece of information.
-	 *
-	 *	@return IYCFKeyHash256 Owner's user id.
-	 */
-	@JSExport
-	public static IYCFKeyHash256 getUserId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current session id. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return IYCFKeyHash256 Current session id.
-	 */
-	@JSExport
-	public static IYCFKeyHash256 getSessionId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current transaction id. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return IYCFKeyHash256 Current transaction id.
-	 */
-	@JSExport
-	public static IYCFKeyHash256 getTxnId() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current generation definition. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return IYCFKeyHash256 Current generation defintion.
-	 */
-	@JSExport
-	public static IYCFAnyObj getGenDef() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current scope generation definition . Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return IYCFKeyHash256 Current session id.
-	 */
-	@JSExport
-	public static IYCFAnyObj getScopeDef() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current object named objName from the current generation definition for the specified qualifyingClass as a starting point. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return IYCFKeyHash256 Current object named objName with the specified qualifyingClass.
-	 */
-	@JSExport
-	public static IYCFAnyObj getNamedObject(Class<?> qualifyingClass, String objName) {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current object named objName from the current generation definition making no presumptions about the qualifyingClass. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return IYCFKeyHash256 Current object named objName with an indeterminate qualifyingClass.
-	 */
-	@JSExport
-	public static IYCFAnyObj getNamedObject(String objName) {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the object qualifier for the specified qualifying class from the engine. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return IYCFKeyHash256 Current object qualifier for the specified qualifyingClass.
-	 */
-	@JSExport
-	public static IYCFAnyObj getObjQualifier(Class<?> qualifyingClass) {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current login name for the operating system. Not expected to change between invocations, but might if this program spawns threads owned by different user ids.
-	 *
-	 *	@return String Current operating system user login name.
-	 */
-	@JSExport
-	public static String getLoginName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current user name. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return String Current user name.
-	 */
-	@JSExport
-	public static String getUserName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current session name. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return String Current session name.
-	 */
-	@JSExport
-	public static String getSessionName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get the current transaction name. Will change between invocations as the threads of this process bind to different data sets.
-	 *
-	 *	@return String Current transaction name.
-	 */
-	@JSExport
-	public static String getTxnName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get current case-sensitive generation definition name.
-	 *
-	 *	@return String Current case-sensitive generation definition name.
-	 */
-	@JSExport
-	public static String getGenDefName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get current case-sensitive scoping generation definition name.
-	 *
-	 *	@return String Current case-sensitive scoping generation definition name.
-	 */
-	@JSExport
-	public static String getScopeGenDefName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get current case-sensitive object name, which might be different than the gen def name, which only defines the data being processed.
-	 *
-	 *	@return String Current case-sensitive object name.
-	 */
-	@JSExport
-	public static String getObjName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get current case-sensitive object qualified name, which might be different than the gen def name, which only defines the data being processed.
-	 *
-	 *	@return String Current case-sensitive qualified object name.
-	 */
-	@JSExport
-	public static String getObjQualifiedName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
-	}
-
-	/**
-	 *	Get current case-sensitive object full name, which might be different than the gen def name, which only defines the data being processed.
-	 *
-	 *	@return String Current case-sensitive object full name.
-	 */
-	@JSExport
-	public static String getObjFullName() {
-		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
-		return(null);
 	}
 
 	public static final long NullOid = 0xc;
@@ -805,10 +428,10 @@ public interface IYCFAnyObj extends JSObject {
 	public final static long Int16Oid = 0x090000L;
 	public final static long Int32Oid = 0x0a0000L;
 	public final static long Int64Oid = 0x0b0000L;
-	public final static long ByteOid = YCFInt8OidL;
-	public final static long ShortOid = YCFInt16OidL;
-	public final static long IntegerOid = YCFInt32OidL;
-	public final static long LongOid = YCFInt64OidL;
+	public final static long ByteOid = Int8OidL;
+	public final static long ShortOid = Int16Oid;
+	public final static long IntegerOid = Int32Oid;
+	public final static long LongOid = Int64Oid;
 	public final static long FloatOid = 0x0c0000L;
 	public final static long DoubleOid = 0x0d0000L;
 	public final static long NumberOid = 0x0e0000L;
@@ -844,4 +467,381 @@ public interface IYCFAnyObj extends JSObject {
 
 	public final static long NextOid =		0x800000L;
 	public final static long MaxOid =	0xffffff0000L;
+
+	/**
+	 *	The LibEntry object for a package always defines the OIDs for the package.
+	 */
+	public static final long YCFANYOBJ_OID = AnyObjOid;
+
+	/**
+	 *	Get the Oid value that implementations return to identify their class.  Note that you cannot count on an interface always returning the same Oid; only concrete implementations will return the same Oid values. Oids are unique in the runtime; one per instantiable class and a minimum of one per interface.
+	 *
+	 *	@return Oid value implementations return to identify their class.
+	 */
+	@JSExport
+	public static long getOid() {
+		return(YCFANYOBJ_OID);
+	}
+
+	/**
+	 *	Get an instance that provides the service method implementations.
+	 *
+	 *	@return An instance that provides the service method implementations.
+	 */
+	@JSExport
+	public static IYCFAnyObj getInstance() {
+		return(new YCFAnyObj());
+	}
+
+	/**
+	 *	Get an instance that provides the service method implementations specifying the initial instance to be referenced.
+	 *
+	 *	@param initObj The object to use to copy from or reference from the newly created instance.
+	 *
+	 *	@return The Any instance that provides the service method implementations.
+	 */
+	 @JSExport
+	 public static IYCFAnyObj getInstance(IYCFAnyObj initObj) {
+		return(new YCFAnyObj(initObj));
+	}
+
+	/**
+	 *	Get the public resource name for the parent library.
+	 */
+	@JSExport
+	public static String getParentLibName() {
+		return(IYCFLibEntry.YCF_LIB_PARENT_NAME);
+	}
+
+	/**
+	 *	Get the parent resource version for this library.
+	 */
+	@JSExport
+	public static String getParentLibVersion() {
+		return(IYCFLibEntry.YCF_LIB_PARENT_VERSION);
+	}
+
+	/**
+	 *	Get the public resource name for this library.
+	 */
+	@JSExport
+	public static String getLibName() {
+		return(IYCFLibEntry.YCF_LIB_NAME);
+	}
+
+	/**
+	 *	Get the public version string for this library.
+	 */
+	@JSExport
+	public static String getLibVersion() {
+		return(IYCFLibEntry.YCF_LIB_VERSION);
+	}
+
+	/**
+	 *	Get the operating system user login name running the application process.
+	 *
+	 *	@return String Operating system user login name running the application process, treated as case-sensitive by the application code.
+	 */
+	@JSExport
+	public static String getUserLogin() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the operating system group name running the application process.
+	 *
+	 *	@return String Operating system group name running the application process, treated as case-sensitive by the application code.
+	 */
+	@JSExport
+	public static String getUserGroup() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the operating system host name running the application process.
+	 *
+	 *	@return String Operating system host name running the application process, treated as case-insensitive and coerced to lowercase by the application code.
+	 */
+	@JSExport
+	public static String getHostName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the operating system host IP address running the application process. Note that in the case of a load-balanced cluster, more than one physical host might be assigned the same host IP address for access by the load balancer, particularly in network environments managed by Cisco or equivalent hardware.
+	 *
+	 *	@return String Operating system host name running the application process, treated as case-insensitive and coerced to lowercase by the application code.
+	 */
+	@JSExport
+	public static long getHostIPAddr() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(0L);
+	}
+
+	/**
+	 *	Get the process id for this program.
+	 *
+	 *	@return long Process id
+	 */
+	@JSExport
+	public static long getProcessId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(0L);
+	}
+
+	/**
+	 *	Get the thread id currently executing this code.
+	 *
+	 *	@return long Thread id
+	 */
+	@JSExport
+	public static long getThreadId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(0L);
+	}
+
+	/**
+	 *	Get the cluster code for this process. The core server uses the system cluster table cluster code value so that it's internal keys will be consistent locally and publicly.  Clients connecting to the server are assigned a generated cluster code guaranteed to be unique in the cluster during runtime and to not be the system cluster code.  This ensures that each host node/program running in the clustered network is using a different cluster code so that it's generated KeyHash ids will truly be unique and distinct without further effort required by the application logic.  The application code relies on this feature to provide maximum throughput and performance of the data processing operations.
+	 *
+	 *	@return long Cluster code
+	 */
+	@JSExport
+	public static long getClusterCode() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(0L);
+	}
+
+	/**
+	 *	Get the cluster id that owns this piece of information.
+	 *
+	 *	@return IYCFKeyHash256 Owner's cluster id.
+	 */
+	@JSExport
+	public static IYCFKeyHash256 getClusterId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the node id that owns this piece of information resides.
+	 *
+	 *	@return IYCFKeyHash256 Data residence node id.
+	 */
+	@JSExport
+	public static IYCFKeyHash256 getNodeId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the tenant id that owns this piece of information.
+	 *
+	 *	@return IYCFKeyHash256 Owner's tenant id.
+	 */
+	@JSExport
+	public static IYCFKeyHash256 getTenantId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the static security group that applies to this piece of information.
+	 *
+	 *	@return IYCFKeyHash256 Owner's group id.
+	 */
+	@JSExport
+	public static IYCFKeyHash256 getSecGroupId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the id of the user that owns this piece of information.
+	 *
+	 *	@return IYCFKeyHash256 Owner's user id.
+	 */
+	@JSExport
+	public static IYCFKeyHash256 getUserId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current session id. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return IYCFKeyHash256 Current session id.
+	 */
+	@JSExport
+	public static IYCFKeyHash256 getSessionId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current transaction id. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return IYCFKeyHash256 Current transaction id.
+	 */
+	@JSExport
+	public static IYCFKeyHash256 getTxnId() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current generation definition. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return IYCFKeyHash256 Current generation defintion.
+	 */
+	@JSExport
+	public static IYCFAnyObj getGenDef() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current scope generation definition . Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return IYCFKeyHash256 Current session id.
+	 */
+	@JSExport
+	public static IYCFAnyObj getScopeDef() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current object named objName from the current generation definition for the specified qualifyingClass as a starting point. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return IYCFKeyHash256 Current object named objName with the specified qualifyingClass.
+	 */
+	@JSExport
+	public static IYCFAnyObj getNamedObject(Class<?> qualifyingClass, String objName) {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current object named objName from the current generation definition making no presumptions about the qualifyingClass. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return IYCFKeyHash256 Current object named objName with an indeterminate qualifyingClass.
+	 */
+	@JSExport
+	public static IYCFAnyObj getNamedObject(String objName) {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the object qualifier for the specified qualifying class from the engine. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return IYCFKeyHash256 Current object qualifier for the specified qualifyingClass.
+	 */
+	@JSExport
+	public static IYCFAnyObj getObjQualifier(Class<?> qualifyingClass) {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current login name for the operating system. Not expected to change between invocations, but might if this program spawns threads owned by different user ids.
+	 *
+	 *	@return String Current operating system user login name.
+	 */
+	@JSExport
+	public static String getLoginName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current user name. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return String Current user name.
+	 */
+	@JSExport
+	public static String getUserName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current session name. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return String Current session name.
+	 */
+	@JSExport
+	public static String getSessionName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get the current transaction name. Will change between invocations as the threads of this process bind to different data sets.
+	 *
+	 *	@return String Current transaction name.
+	 */
+	@JSExport
+	public static String getTxnName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get current case-sensitive generation definition name.
+	 *
+	 *	@return String Current case-sensitive generation definition name.
+	 */
+	@JSExport
+	public static String getGenDefName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get current case-sensitive scoping generation definition name.
+	 *
+	 *	@return String Current case-sensitive scoping generation definition name.
+	 */
+	@JSExport
+	public static String getScopeGenDefName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get current case-sensitive object name, which might be different than the gen def name, which only defines the data being processed.
+	 *
+	 *	@return String Current case-sensitive object name.
+	 */
+	@JSExport
+	public static String getObjName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get current case-sensitive object qualified name, which might be different than the gen def name, which only defines the data being processed.
+	 *
+	 *	@return String Current case-sensitive qualified object name.
+	 */
+	@JSExport
+	public static String getObjQualifiedName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
+
+	/**
+	 *	Get current case-sensitive object full name, which might be different than the gen def name, which only defines the data being processed.
+	 *
+	 *	@return String Current case-sensitive object full name.
+	 */
+	@JSExport
+	public static String getObjFullName() {
+		// The generic base objects know absolutely nothing about the state of the world save for information about themselves.
+		return(null);
+	}
 }

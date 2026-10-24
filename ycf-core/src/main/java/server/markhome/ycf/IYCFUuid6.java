@@ -61,9 +61,9 @@ import java.util.Arrays;
 public interface IYCFUuid6 extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<IYCFUuid6> singleton = IYCFMtReference<IYCFUuid6>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -72,11 +72,11 @@ public interface IYCFUuid6 extends IYCFAnyObj {
 	 */
 	@JSExport
 	public static IYCFUuid6 getService() {
-		IYCFUuid6 ref = singleton.get();
+		IYCFUuid6 ref = ((IYCFUuid6)(singleton.get()));
 		if (ref == null) {
-			ref = new IYCFUuid6();
+			ref = new YCFUuid6();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFUuid6)(singleton.get()));
 		}
 		return(ref);
 	}

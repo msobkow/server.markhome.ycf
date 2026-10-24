@@ -30,13 +30,13 @@ import java.util.*;
  *	@since 2026
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public class YCFMtReferenceBase implements IYCFMtReferenceBase {
+public class YCFMtReference implements IYCFMtReference {
 
 	/**
 	 *	The base reference is protected.
 	 */
 	@JSProperty
-	protected JSObject ref;
+	protected IYCFAnyObj ref;
 
 	/**
 	 *	Get the value this instance currently references.
@@ -44,7 +44,7 @@ public class YCFMtReferenceBase implements IYCFMtReferenceBase {
 	 *	@return The currently referenced value.
 	 */
 	@JSProperty
-	public JSObject baseGet() {
+	public IYCFAnyObj get() {
 		return(ref);
 	}
 
@@ -57,7 +57,7 @@ public class YCFMtReferenceBase implements IYCFMtReferenceBase {
 	 *	@return The value this instance references after attempting to change the value; it may be either the value passed in or a completely different reference, but it will only be <i>expected</i> iff <i>value</i> and <i>expected</i> are identical.
 	 */
 	@JSProperty
-	public JSObject baseSet(JSObject expected, JSObject value) {
+	public IYCFAnyObj set(IYCFAnyObj expected, IYCFAnyObj value) {
 		if (ref == expected) {
 			synchronized (this) {
 				if (ref == expected) {

@@ -46,9 +46,9 @@ import java.util.Comparator;
 public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<IYCFKeyHashBase<T>> singleton = IYCFMtReference<IYCFKeyHashBase<T>>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -56,12 +56,12 @@ public interface IYCFKeyHashBase<T extends IYCFKeyHashBase<T>> {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static IYCFKeyHashBase<T> getService() {
-		IYCFKeyHashBase<T> ref = singleton.get();
+	public static IYCFKeyHashBase getService() {
+		IYCFKeyHashBase ref = ((IYCFKeyHashBase)(singleton.get()));
 		if (ref == null) {
-			ref = new IYCFKeyHashBase<T>();
+			ref = new YCFKeyHashBase();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFKeyHashBase)(singleton.get()));
 		}
 		return(ref);
 	}

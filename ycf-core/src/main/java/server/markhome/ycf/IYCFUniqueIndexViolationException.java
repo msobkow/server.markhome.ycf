@@ -34,9 +34,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFUniqueIndexViolationException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFUniqueIndexViolationException> singleton = IYCFMtReference<YCFUniqueIndexViolationException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -44,12 +44,12 @@ public interface IYCFUniqueIndexViolationException extends IYCFRuntimeException 
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFUniqueIndexViolationException getService() {
-		YCFUniqueIndexViolationException ref = singleton.get();
+	public static IYCFUniqueIndexViolationException getService() {
+		IYCFUniqueIndexViolationException ref = ((IYCFUniqueIndexViolationException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFUniqueIndexViolationException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFUniqueIndexViolationException)(singleton.get()));
 		}
 		return(ref);
 	}

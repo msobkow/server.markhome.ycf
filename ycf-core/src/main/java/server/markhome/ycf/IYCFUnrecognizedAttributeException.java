@@ -34,9 +34,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFUnrecognizedAttributeException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFUnrecognizedAttributeException> singleton = IYCFMtReference<YCFUnrecognizedAttributeException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -44,12 +44,12 @@ public interface IYCFUnrecognizedAttributeException extends IYCFRuntimeException
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFUnrecognizedAttributeException getService() {
-		YCFUnrecognizedAttributeException ref = singleton.get();
+	public static IYCFUnrecognizedAttributeException getService() {
+		IYCFUnrecognizedAttributeException ref = ((IYCFUnrecognizedAttributeException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFUnrecognizedAttributeException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFUnrecognizedAttributeException)(singleton.get()));
 		}
 		return(ref);
 	}

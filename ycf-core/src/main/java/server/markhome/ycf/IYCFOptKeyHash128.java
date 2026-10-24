@@ -36,9 +36,9 @@ import java.util.*;
 public interface IYCFOptKeyHash128 extends IYCFKeyHash128 {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<IYCFOptKeyHash128> singleton = IYCFMtReference<IYCFOptKeyHash128>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -47,11 +47,11 @@ public interface IYCFOptKeyHash128 extends IYCFKeyHash128 {
 	 */
 	@JSExport
 	public static IYCFOptKeyHash128 getService() {
-		IYCFOptKeyHash128 ref = singleton.get();
+		IYCFOptKeyHash128 ref = ((IYCFOptKeyHash128)(singleton.get()));
 		if (ref == null) {
-			ref = new IYCFOptKeyHash128();
+			ref = new YCFOptKeyHash128();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFOptKeyHash128)(singleton.get()));
 		}
 		return(ref);
 	}

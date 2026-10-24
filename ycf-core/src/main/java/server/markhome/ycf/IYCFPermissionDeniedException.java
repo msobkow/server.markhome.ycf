@@ -32,9 +32,9 @@ import java.util.*;
 public interface IYCFPermissionDeniedException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFPermissionDeniedException> singleton = IYCFMtReference<YCFPermissionDeniedException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -42,12 +42,12 @@ public interface IYCFPermissionDeniedException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFPermissionDeniedException getService() {
-		YCFPermissionDeniedException ref = singleton.get();
+	public static IYCFPermissionDeniedException getService() {
+		IYCFPermissionDeniedException ref = ((IYCFPermissionDeniedException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFPermissionDeniedException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFPermissionDeniedException)(singleton.get()));
 		}
 		return(ref);
 	}

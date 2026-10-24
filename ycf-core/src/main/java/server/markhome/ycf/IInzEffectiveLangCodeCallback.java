@@ -57,11 +57,10 @@ public interface IInzEffectiveLangCodeCallback extends IYCFAnyObj {
 }
 																}
 															};
-
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<InzEffectiveLangCodeCallback> singleton = IYCFMtReference<InzEffectiveLangCodeCallback>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -69,12 +68,12 @@ public interface IInzEffectiveLangCodeCallback extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static InzEffectiveLangCodeCallback getService() {
-		InzEffectiveLangCodeCallback ref = singleton.get();
+	public static IInzEffectiveLangCodeCallback getService() {
+		IInzEffectiveLangCodeCallback ref = ((IInz)(singleton.get()));
 		if (ref == null) {
 			ref = new InzEffectiveLangCodeCallback();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IInzEffectiveLangCodeCallback)(singleton.get()));
 		}
 		return(ref);
 	}

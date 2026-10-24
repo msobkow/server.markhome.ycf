@@ -33,9 +33,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFInvalidStateException extends IYCFArgumentException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFInvalidStateException> singleton = IYCFMtReference<YCFInvalidStateException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -43,12 +43,12 @@ public interface IYCFInvalidStateException extends IYCFArgumentException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFInvalidStateException getService() {
-		YCFInvalidStateException ref = singleton.get();
+	public static IYCFInvalidStateException getService() {
+		IYCFInvalidStateException ref = ((IYCFInvalidStateException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFInvalidStateException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFInvalidStateException)(singleton.get()));
 		}
 		return(ref);
 	}

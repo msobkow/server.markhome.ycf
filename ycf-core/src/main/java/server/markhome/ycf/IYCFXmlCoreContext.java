@@ -40,9 +40,9 @@ import server.markhome.ycf.IYCFMessageLog;
 public interface IYCFXmlCoreContext extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFXmlCoreContext> singleton = IYCFMtReference<YCFXmlCoreContext>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -50,12 +50,12 @@ public interface IYCFXmlCoreContext extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFXmlCoreContext getService() {
-		YCFXmlCoreContext ref = singleton.get();
+	public static IYCFXmlCoreContext getService() {
+		IYCFXmlCoreContext ref = ((IYCFXmlCoreContext)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFXmlCoreContext();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFXmlCoreContext)(singleton.get()));
 		}
 		return(ref);
 	}

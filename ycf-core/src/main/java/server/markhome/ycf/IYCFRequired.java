@@ -35,9 +35,9 @@ import java.util.*;
 public interface IYCFRequired extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFRequired> singleton = IYCFMtReference<YCFRequired>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -45,12 +45,12 @@ public interface IYCFRequired extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFRequired getService() {
-		YCFRequired ref = singleton.get();
+	public static IYCFRequired getService() {
+		IYCFRequired ref = ((IYCFRequired)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFRequired();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFRequired)(singleton.get()));
 		}
 		return(ref);
 	}

@@ -32,9 +32,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFDataNotFoundException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFDataNotFoundException> singleton = IYCFMtReference<YCFDataNotFoundException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -42,12 +42,12 @@ public interface IYCFDataNotFoundException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFDataNotFoundException getService() {
-		YCFDataNotFoundException ref = singleton.get();
+	public static IYCFDataNotFoundException getService() {
+		IYCFDataNotFoundException ref = ((IYCFDataNotFoundException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFDataNotFoundException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFDataNotFoundException)(singleton.get()));
 		}
 		return(ref);
 	}

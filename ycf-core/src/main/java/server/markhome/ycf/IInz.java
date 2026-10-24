@@ -37,9 +37,9 @@ import java.util.concurrent.atomic.AtomicReference;
 public interface IInz extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<IInz> singleton = IYCFMtReference<IInz>.getService().getInstance();
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -48,11 +48,11 @@ public interface IInz extends IYCFAnyObj {
 	 */
 	@JSExport
 	public static IInz getService() {
-		IInz ref = singleton.get();
+		IInz ref = ((IInz)(singleton.get()));
 		if (ref == null) {
 			ref = new Inz();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IInz)(singleton.get()));
 		}
 		return(ref);
 	}

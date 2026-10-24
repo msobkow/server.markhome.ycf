@@ -47,9 +47,9 @@ import java.util.Properties;
 public interface IInzEntry extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<InzEntry> singleton = IYCFMtReference<InzEntry>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -57,12 +57,12 @@ public interface IInzEntry extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static InzEntry getService() {
-		InzEntry ref = singleton.get();
+	public static IInzEntry getService() {
+		IInzEntry ref = ((IInzEntry)(singleton.get()));
 		if (ref == null) {
 			ref = new InzEntry();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IInzEntry)(singleton.get()));
 		}
 		return(ref);
 	}

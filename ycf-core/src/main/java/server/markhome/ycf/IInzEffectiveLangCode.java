@@ -36,9 +36,9 @@ import java.util.*;
 public interface IInzEffectiveLangCode extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<InzEffectiveLangCode> singleton = IYCFMtReference<InzEffectiveLangCode>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -46,12 +46,12 @@ public interface IInzEffectiveLangCode extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static InzEffectiveLangCode getService() {
-		InzEffectiveLangCode ref = singleton.get();
+	public static IInzEffectiveLangCode getService() {
+		IInzEffectiveLangCode ref = ((IInzEffectiveLangCode)(singleton.get()));
 		if (ref == null) {
-			ref = new InzEffectiveLangCode();
+			ref = new Inz();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IInzEffectiveLangCode)(singleton.get()));
 		}
 		return(ref);
 	}

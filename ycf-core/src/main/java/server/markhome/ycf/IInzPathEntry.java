@@ -36,9 +36,9 @@ import java.io.InputStream;
 public interface IInzPathEntry extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<InzPathEntry> singleton = IYCFMtReference<InzPathEntry>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -46,12 +46,12 @@ public interface IInzPathEntry extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static InzPathEntry getService() {
-		InzPathEntry ref = singleton.get();
+	public static IInzPathEntry getService() {
+		IInzPathEntry ref = ((IInzPathEntry)(singleton.get()));
 		if (ref == null) {
-			ref = new InzPathEntry();
+			ref = new Inz();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IInzPathEntry)(singleton.get()));
 		}
 		return(ref);
 	}

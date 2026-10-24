@@ -32,9 +32,9 @@ import java.util.*;
 public interface IYCFUsageException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFUsageException> singleton = IYCFMtReference<YCFUsageException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -42,12 +42,12 @@ public interface IYCFUsageException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFUsageException getService() {
-		YCFUsageException ref = singleton.get();
+	public static IYCFUsageException getService() {
+		IYCFUsageException ref = ((IYCFUsageException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFUsageException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFUsageException)(singleton.get()));
 		}
 		return(ref);
 	}

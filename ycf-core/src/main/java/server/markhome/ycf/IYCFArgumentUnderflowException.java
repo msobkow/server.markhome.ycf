@@ -36,9 +36,9 @@ import java.math.*;
 public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFArgumentUnderflowException> singleton = IYCFMtReference<YCFArgumentUnderflowException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -46,12 +46,12 @@ public interface IYCFArgumentUnderflowException extends IYCFArgumentException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFArgumentUnderflowException getService() {
-		YCFArgumentUnderflowException ref = singleton.get();
+	public static IYCFArgumentUnderflowException getService() {
+		IYCFArgumentUnderflowException ref = ((IYCFArgumentUnderflowException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFArgumentUnderflowException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFArgumentUnderflowException)(singleton.get()));
 		}
 		return(ref);
 	}

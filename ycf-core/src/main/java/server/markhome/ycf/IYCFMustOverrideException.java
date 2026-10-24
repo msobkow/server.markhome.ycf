@@ -34,9 +34,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFMustOverrideException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFMustOverrideException> singleton = IYCFMtReference<YCFMustOverrideException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -44,12 +44,12 @@ public interface IYCFMustOverrideException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFMustOverrideException getService() {
-		YCFMustOverrideException ref = singleton.get();
+	public static IYCFMustOverrideException getService() {
+		IYCFMustOverrideException ref = ((IYCFMustOverrideException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFMustOverrideException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFMustOverrideException)(singleton.get()));
 		}
 		return(ref);
 	}

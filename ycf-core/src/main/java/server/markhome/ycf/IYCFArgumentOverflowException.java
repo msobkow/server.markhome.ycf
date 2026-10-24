@@ -34,9 +34,9 @@ import java.math.*;
 public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFArgumentOverflowException> singleton = IYCFMtReference<YCFArgumentOverflowException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -44,12 +44,12 @@ public interface IYCFArgumentOverflowException extends IYCFArgumentException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFArgumentOverflowException getService() {
-		YCFArgumentOverflowException ref = singleton.get();
+	public static IYCFArgumentOverflowException getService() {
+		IYCFArgumentOverflowException ref = ((IYCFArgumentOverflowException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFArgumentOverflowException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFArgumentOverflowException)(singleton.get()));
 		}
 		return(ref);
 	}

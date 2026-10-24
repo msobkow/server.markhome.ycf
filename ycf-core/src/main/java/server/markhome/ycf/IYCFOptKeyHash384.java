@@ -35,9 +35,9 @@ import java.util.*;
 public interface IYCFOptKeyHash384 extends IYCFKeyHash384 {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<IYCFOptKeyHash384> singleton = IYCFMtReference<IYCFOptKeyHash384>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -46,11 +46,11 @@ public interface IYCFOptKeyHash384 extends IYCFKeyHash384 {
 	 */
 	@JSExport
 	public static IYCFOptKeyHash384 getService() {
-		IYCFOptKeyHash384 ref = singleton.get();
+		IYCFOptKeyHash384 ref = ((IYCFOptKeyHash384)(singleton.get()));
 		if (ref == null) {
-			ref = new IYCFOptKeyHash384();
+			ref = new YCFOptKeyHash384();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFOptKeyHash384)(singleton.get()));
 		}
 		return(ref);
 	}

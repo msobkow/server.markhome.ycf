@@ -36,9 +36,9 @@ import java.util.concurrent.atomic.AtomicReference;
 public interface IYCFLibEntry extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<IYCFLibEntry> singleton = IYCFMtReference<IYCFLibEntry>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -47,85 +47,14 @@ public interface IYCFLibEntry extends IYCFAnyObj {
 	 */
 	@JSExport
 	public static IYCFLibEntry getService() {
-		IYCFLibEntry ref = singleton.get();
+		IYCFLibEntry ref = ((IYCFLibEntry)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFLibEntry();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFLibEntry)(singleton.get()));
 		}
 		return(ref);
 	}
-
-	/**
-	 *	The OIDs of the interfaces and objects.
-	 */
-	public final static long YCFFalseOidFlag = 0x0;
-	public final static long YCFTrueOidFlag = 0x1;
-	public final static long YCFNullOidFlag = 0x0000;
-	public final static long YCFNotNullOidFlag = MaskNull;
-	public final static long YCFSentOidFlag = MaskSentObject;
-	public final static long YCFReceivedOidFlag = 0x0000;
-	public final static long YCFInvisibleOidFlag = 0x0000;
-	public final static long YCFVisibleOidFlag = MaskVisible;
-	public final static long YCFOptionalOidFlag = 0x0000;
-	public final static long YCFRequiredOidFlag = MaskRequired;
-	public final static long YCFInstanceOidFlag = MaskInstance;
-	public final static long YCFArrayOidFlag = MaskStatic;
-	public final static long YCFVArrayOidFlag = 0x0000;
-	public final static long YCFAnyObjOid = 0x4000;
-	public final static long YCFBlobOid = 0x8000;
-	public final static long YCFBooleanOid = 0xb000;
-	public final static long YCFCharOid = 0x10000;
-	public final static long YCFUTF8CharOid = 0x14000;
-	public final static long YCFInt8Oid = 0x18000;
-	public final static long YCFInt16Oid = 0x1b000;
-	public final static long YCFInt32Oid = 0x20000;
-	public final static long YCFInt64Oid = 0x24000;
-	public final static long YCFByteOid = YCFInt8Oid;
-	public final static long YCFShortOid = YCFInt16Oid;
-	public final static long YCFIntegerOid = YCFInt32Oid;
-	public final static long YCFLongOid = YCFInt64Oid;
-	public final static long YCFFloatOid = 0x80000;
-	public final static long YCFDoubleOid = 0xb0000;
-	public final static long YCFNumberOid = 0x34000;
-	public final static long YCFDateOid = 0x38000;
-	public final static long YCFTimeOid = 0x3b000;
-	public final static long YCFDateTimeOid = 0x40000;
-	public final static long YCFTZDateOid = 0x48000;
-	public final static long YCFTZTimeOid = 0x4b000;
-	public final static long YCFTZDateTimeOid = 0x50000;
-	public final static long YCFStringOid = 0x54000;
-	public final static long YCFVStringOid = 0x58000;
-	public final static long YCFTokenOid = 0x5b000;
-	public final static long YCFVTokenOid = 0x60000;
-	public final static long YCFNmTokenOid = 0x64000;
-	public final static long YCFVNmTokenOid = 0x68000;
-	public final static long YCFTokensOid = 0x6b000;
-	public final static long YCFVTokensOid = 0x74000;
-	public final static long YCFNmTokensOid = 0x78000;
-	public final static long YCFVNmTokensOid = 0x7b000;
-	public final static long YCFKeyHash128Oid = 0x80000;
-	public final static long YCFKeyHash160Oid = 0x84000;
-	public final static long YCFKeyHash224Oid = 0x88000;
-	public final static long YCFKeyHash256Oid = 0x8b000;
-	public final static long YCFKeyHash384Oid = 0x90000;
-	public final static long YCFKeyHash512Oid = 0x94000;
-	public final static long YCFEnumOid = 0x98000;
-	public final static long YCFId8Oid = 0x9b000;
-	public final static long YCFId16Oid = 0xa0000;
-	public final static long YCFId32Oid = 0xa4000;
-	public final static long YCFId64Oid = 0xa8000;
-	public final static long YCFUInt8Oid = 0x8b000;
-	public final static long YCFUInt16Oid = 0x90000;
-	public final static long YCFUInt32Oid = 0x94000;
-	public final static long YCFUInt64Oid = 0x98000;
-	public final static long YCFUuidOid = 0x9b000;
-	public final static long YCFUuid6Oid = 0xa0000;
-	public final static long YCFArrayOid = 0xa4000;
-	public final static long YCFVArrayOid = 0xa48000;
-	public final static long YCFMtReferenceOid = 0xb4000;
-	public final static long YCFLibEntryOid = 0xb8000;
-	public final static long YCFLastOid = YCFLibEntryOid;
 
 	/**
 	 *	The public resource name for the parent library.

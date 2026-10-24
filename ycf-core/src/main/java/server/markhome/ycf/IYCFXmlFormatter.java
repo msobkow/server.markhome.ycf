@@ -45,9 +45,9 @@ import server.markhome.ycf.v3_1.ycflib.IYCFNullArgumentException;
 public interface IYCFXmlFormatter extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFXmlFormatter> singleton = IYCFMtReference<YCFXmlFormatter>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -55,12 +55,12 @@ public interface IYCFXmlFormatter extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFXmlFormatter getService() {
-		YCFXmlFormatter ref = singleton.get();
+	public static IYCFXmlFormatter getService() {
+		IYCFXmlFormatter ref = ((IYCFXmlFormatter)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFXmlFormatter();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFXmlFormatter)(singleton.get()));
 		}
 		return(ref);
 	}

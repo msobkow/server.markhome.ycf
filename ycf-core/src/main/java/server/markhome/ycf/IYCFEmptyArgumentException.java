@@ -32,9 +32,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFEmptyArgumentException extends IYCFArgumentException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFEmptyArgumentException> singleton = IYCFMtReference<YCFEmptyArgumentException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -42,12 +42,12 @@ public interface IYCFEmptyArgumentException extends IYCFArgumentException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFEmptyArgumentException getService() {
-		YCFEmptyArgumentException ref = singleton.get();
+	public static IYCFEmptyArgumentException getService() {
+		IYCFEmptyArgumentException ref = ((IYCFEmptyArgumentException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFEmptyArgumentException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFEmptyArgumentException)(singleton.get()));
 		}
 		return(ref);
 	}

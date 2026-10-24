@@ -38,9 +38,9 @@ import java.text.StringCharacterIterator;
 public interface IYCFXmlCoreIso8859Encoder extends IYCFAnyObj {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFXmlCoreIso8859Encoder> singleton = IYCFMtReference<YCFXmlCoreIso8859Encoder>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -48,12 +48,12 @@ public interface IYCFXmlCoreIso8859Encoder extends IYCFAnyObj {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFXmlCoreIso8859Encoder getService() {
-		YCFXmlCoreIso8859Encoder ref = singleton.get();
+	public static IYCFXmlCoreIso8859Encoder getService() {
+		IYCFXmlCoreIso8859Encoder ref = ((IYCFXmlCoreIso8859Encoder)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFXmlCoreIso8859Encoder();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFXmlCoreIso8859Encoder)(singleton.get()));
 		}
 		return(ref);
 	}

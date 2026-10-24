@@ -32,9 +32,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFStaleCacheDetectedException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFStaleCacheDetectedException> singleton = IYCFMtReference<YCFStaleCacheDetectedException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -42,12 +42,12 @@ public interface IYCFStaleCacheDetectedException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFStaleCacheDetectedException getService() {
-		YCFStaleCacheDetectedException ref = singleton.get();
+	public static IYCFStaleCacheDetectedException getService() {
+		IYCFStaleCacheDetectedException ref = ((IYCFStaleCacheDetectedException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFStaleCacheDetectedException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFStaleCacheDetectedException)(singleton.get()));
 		}
 		return(ref);
 	}

@@ -38,9 +38,9 @@ import java.util.*;
 public interface IYCFConsoleMessageLog extends IYCFMessageLog {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFConsoleMessageLog> singleton = IYCFMtReference<YCFConsoleMessageLog>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -48,12 +48,12 @@ public interface IYCFConsoleMessageLog extends IYCFMessageLog {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFConsoleMessageLog getService() {
-		YCFConsoleMessageLog ref = singleton.get();
+	public static IYCFConsoleMessageLog getService() {
+		IYCFConsoleMessageLog ref = ((IYCFConsoleMessageLog)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFConsoleMessageLog();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFConsoleMessageLog)(singleton.get()));
 		}
 		return(ref);
 	}

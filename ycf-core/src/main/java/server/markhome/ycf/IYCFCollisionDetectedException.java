@@ -32,9 +32,9 @@ import server.markhome.ycf.Inz;
 public interface IYCFCollisionDetectedException extends IYCFRuntimeException {
 
 	/**
-	 *	The service singleton has to be multithread-safe.
+	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReference<YCFCollisionDetectedException> singleton = IYCFMtReference<YCFCollisionDetectedException>.getService().getInstance(null);
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
 	 *	Get the service singleton.
@@ -42,12 +42,12 @@ public interface IYCFCollisionDetectedException extends IYCFRuntimeException {
 	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static YCFCollisionDetectedException getService() {
-		YCFCollisionDetectedException ref = singleton.get();
+	public static IYCFCollisionDetectedException getService() {
+		IYCFCollisionDetectedException ref = ((IYCFCollisionDetectedException)(singleton.get()));
 		if (ref == null) {
 			ref = new YCFCollisionDetectedException();
 			singleton.set(null, ref);
-			ref = singleton.get();
+			ref = ((IYCFCollisionDetectedException)(singleton.get()));
 		}
 		return(ref);
 	}

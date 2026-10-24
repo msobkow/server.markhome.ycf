@@ -32,27 +32,33 @@ import java.util.*;
  *	@since 2016
  *	@author Mark Sobkow (mark.sobkow@gmail.com)
  */
-public interface IYCFMtReferenceBase extends JSObject {
+public interface IYCFMtReference extends JSObject {
 
 	/**
 	 *	The service singleton has to be thread-safe.
 	 */
-	static final IYCFMtReferenceBase singleton = new YCFMtReferenceBase();
+	static final IYCFMtReference singleton = IYCFMtReference.getService().getInstance();
 
 	/**
-	 *	Get the service singleton that provides the getInstance() implementations.
+	 *	Get the service singleton.
 	 *
-	 *	@return The service singleton that provides the getInstance() implementations.
+	 *	@return The service singleton.
 	 */
 	@JSExport
-	public static IYCFMtReferenceBase getService() {
-		return(singleton);
+	public static IYCFMtReference getService() {
+		IYCFMtReference ref = ((IYCFMtReference)(singleton.get()));
+		if (ref == null) {
+			ref = new YCFMtReference();
+			singleton.set(null, ref);
+			ref = ((IYCFMtReference)(singleton.get()));
+		}
+		return(ref);
 	}
 
 	/**
 	 *	The LibEntry object for a package always defines the OIDs for the package.
 	 */
-	public static final long YCFMTREFERENCEBASE_OID = IYCFAnyObj.MtReferenceBaseOid;
+	public static final long YCFMTREFERENCE_OID = IYCFAnyObj.MtReferenceOid;
 
 	/**
 	 *	Get the Oid value that implementations return to identify their class.  Note that you cannot count on an interface always returning the same Oid; only concrete implementations will return the same Oid values. Oids are unique in the runtime; one per instantiable class and a minimum of one per interface.
@@ -61,7 +67,7 @@ public interface IYCFMtReferenceBase extends JSObject {
 	 */
 	@JSExport
 	public static long getOid() {
-		return(YCFMTREFERENCEBASE_OID);
+		return(YCFMTREFERENCE_OID);
 	}
 
 	/**
@@ -70,7 +76,7 @@ public interface IYCFMtReferenceBase extends JSObject {
 	 *	@return An instance that provides the service method implementations.
 	 */
 	@JSExport
-	public IYCFMtReferenceBase getInstance();
+	public IYCFMtReference getInstance();
 
 	/**
 	 *	Get an instance that provides the service method implementations specifying the initial instance to be referenced.
@@ -80,7 +86,7 @@ public interface IYCFMtReferenceBase extends JSObject {
 	 *	@return The Any instance that provides the service method implementations.
 	 */
 	 @JSExport
-	 public IYCFMtReferenceBase getInstance(IYCFMtReferenceBase initObj);
+	 public IYCFMtReference getInstance(IYCFAnyObj initObj);
 
 	/**
 	 *	Get the value this instance currently references.
@@ -88,7 +94,7 @@ public interface IYCFMtReferenceBase extends JSObject {
 	 *	@return The currently referenced value.
 	 */
 	@JSProperty
-	public JSObject baseGet();
+	public IYCFAnyObj get();
 
 	/**
 	 *	Set the <i>value</i> this instance is to reference if the current value matches <i>expected</i>.
@@ -99,5 +105,5 @@ public interface IYCFMtReferenceBase extends JSObject {
 	 *	@return The value this instance references after attempting to change the value; it may be either the value passed in or a completely different reference, but it will only be <i>expected</i> iff <i>value</i> and <i>expected</i> are identical.
 	 */
 	@JSProperty
-	public JSObject baseSet(JSObject expected, JSObject value);
+	public IYCFAnyObj set(IYCFAnyObj expected, IYCFAnyObj value);
 }
